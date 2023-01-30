@@ -5,16 +5,31 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import '../../utils/app_color.dart';
 import 'age_page.dart';
 
+enum Gender {
+  boy,
+  girl
+}
+enum AgeSelect {
+  oneToThree,
+  threeToFive,
+  fiveToTen,
+  tenPlus,
+}
+
 class GenderPage extends StatefulWidget {
   @override
   State<GenderPage> createState() => _GenderPageState();
 }
 
-class _GenderPageState extends State<GenderPage> {
-  // const GenderPage({Key? key}) : super(key: key);
 
-  RxBool isBoy = false.obs;
-  RxBool isGirl = false.obs;
+class _GenderPageState extends State<GenderPage> {
+  Gender selectedGender =Gender.boy;
+  // const GenderPage({Key? key}) : super(key: key);
+  //
+  // RxBool isBoy = false.obs;
+  // RxBool isGirl = false.obs;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,15 +105,20 @@ class _GenderPageState extends State<GenderPage> {
                         children: [
                           GestureDetector(
                             onTap: (){
-                              isBoy.value == true;
-                              isGirl.value == false;
-                              print("========isBoy.value====${isBoy.value}");
+                              // isBoy.value == true;
+                              // isGirl.value == false;
+                              // print("========isBoy.value====${isBoy.value}");
+                              setState(() {
+                                selectedGender=Gender.boy;
+
+                              });
+
                             },
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color: isBoy.value == true ? AppColors.kBoyBGColor : Colors.transparent,
+                                  color:selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kBoyBGColor, width: 2)),
                               child: Padding(
@@ -130,15 +150,20 @@ class _GenderPageState extends State<GenderPage> {
                         children: [
                           GestureDetector(
                             onTap: (){
-                              isGirl.value == true;
-                              isBoy.value == false;
-                              print("========isGirl.value====${isGirl.value}");
+                              // isGirl.value == true;
+                              // isBoy.value == false;
+                              // print("========isGirl.value====${isGirl.value}");
+
+                              setState(() {
+                                selectedGender=Gender.girl;
+
+                              });
                             },
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                color: isGirl.value == true ? AppColors.kGirlBGColor : Colors.transparent,
+                                color:  selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kGirlBGColor, width: 2)),
                               child: Padding(
@@ -168,6 +193,7 @@ class _GenderPageState extends State<GenderPage> {
                   ElevatedButton(
                       onPressed: (){
                         // Get.to(const AgePage());
+                        print("=======select :${selectedGender.name} ====");
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
                       },
                       style: ButtonStyle(

@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_color.dart';
 import '../Widgets/polygon_Container.dart';
+import 'gender_page.dart';
 import 'story_category_page.dart';
 
 class AgePage extends StatelessWidget {
   const AgePage({Key? key}) : super(key: key);
 
+
+
+
   @override
   Widget build(BuildContext context) {
+    AgeSelect selectAge;
+
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       body: SafeArea(

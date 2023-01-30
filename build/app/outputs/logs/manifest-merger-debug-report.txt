@@ -1,0 +1,115 @@
+-- Merging decision tree log ---
+application
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:3:4-33:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/914d3250ab42d7de9cc8221d0089dff2/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/914d3250ab42d7de9cc8221d0089dff2/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/AndroidManifest.xml:24:18-86
+	android:name
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+manifest
+ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+MERGED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/e4cae6351c67261500c8843bd2f2d67d/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/9586365cf3c2c75d5366bb230e77dee7/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/cd3de05e99fd76a5d34b21c0523bd76e/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0cc9cbafa8c486fd3f86868a93c29998/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/30f64ec2a030d55e6944573e06650816/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ca0dd58da959cf179b5bf9bc3560515/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/6e2664c542e8016022d06dfd7a33f892/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/3faa409d273f71f1a7605793633b1482/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/2c8d98998e043d7c5aa2ab23960bb9b4/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0297e27d67f11e8499680246e1745b39/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/be32c5f8865b7d82164a887ff9ea1ea4/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/e086372835664239d2bb0d222598be8d/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/914d3250ab42d7de9cc8221d0089dff2/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/92bb2626275522e407f82139a27f0787/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/456f67d4b84e7c049bfc678289ccba74/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml:1:1-8:12
+	package
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:2:5-50
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/e4cae6351c67261500c8843bd2f2d67d/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/e4cae6351c67261500c8843bd2f2d67d/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/9586365cf3c2c75d5366bb230e77dee7/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/9586365cf3c2c75d5366bb230e77dee7/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/cd3de05e99fd76a5d34b21c0523bd76e/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/cd3de05e99fd76a5d34b21c0523bd76e/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0cc9cbafa8c486fd3f86868a93c29998/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0cc9cbafa8c486fd3f86868a93c29998/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/30f64ec2a030d55e6944573e06650816/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/30f64ec2a030d55e6944573e06650816/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ca0dd58da959cf179b5bf9bc3560515/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ca0dd58da959cf179b5bf9bc3560515/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/6e2664c542e8016022d06dfd7a33f892/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/6e2664c542e8016022d06dfd7a33f892/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/3faa409d273f71f1a7605793633b1482/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/3faa409d273f71f1a7605793633b1482/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/2c8d98998e043d7c5aa2ab23960bb9b4/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/2c8d98998e043d7c5aa2ab23960bb9b4/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0297e27d67f11e8499680246e1745b39/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0297e27d67f11e8499680246e1745b39/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/be32c5f8865b7d82164a887ff9ea1ea4/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/be32c5f8865b7d82164a887ff9ea1ea4/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/e086372835664239d2bb0d222598be8d/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/e086372835664239d2bb0d222598be8d/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/914d3250ab42d7de9cc8221d0089dff2/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/914d3250ab42d7de9cc8221d0089dff2/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/92bb2626275522e407f82139a27f0787/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/92bb2626275522e407f82139a27f0787/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/456f67d4b84e7c049bfc678289ccba74/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/456f67d4b84e7c049bfc678289ccba74/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml:7:5-66
+	android:name
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/debug/AndroidManifest.xml:7:22-64
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/426d84e1dffc76ebeddc4aa42abaccb9/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51

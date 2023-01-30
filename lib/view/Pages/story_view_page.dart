@@ -45,7 +45,7 @@ class StoryViewPage extends StatelessWidget {
                     const Text(
                       "Story ",
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                           fontFamily: "BalooBhai",
                           color: AppColors.kBtnColor),
@@ -53,7 +53,7 @@ class StoryViewPage extends StatelessWidget {
                     const Text(
                       "By Chat GPT",
                       style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                           fontFamily: "BalooBhai",
                           color: AppColors.txtColor1),

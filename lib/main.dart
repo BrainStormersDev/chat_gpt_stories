@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'view/Pages/splash_page.dart';
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  PackageInfo.fromPlatform();
   runApp(const MyApp());
 }
 

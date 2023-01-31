@@ -36,8 +36,8 @@ class ChatTextController extends GetxController {
 
     try {
       Map<String, String> rowParams = {
-        // "model": "text-curie-001",
-        "model": "text-davinci-003",
+        "model": "text-curie-001",
+        // "model": "text-davinci-003",
         "prompt": query,
       };
 
@@ -55,6 +55,7 @@ class ChatTextController extends GetxController {
         //
         addServerMessage(
             TextCompletionModel.fromJson(json.decode(response.body)).choices);
+
         state.value = ApiState.success;
       } else {
         // throw ServerException(message: "Image Generation Server Exception");

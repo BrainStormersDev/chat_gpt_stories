@@ -2,6 +2,7 @@ import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controllers/chat_text_controller.dart';
 import '../../model/IconModels.dart';
 import '../../utils/app_color.dart';
 import '../../utils/mySnackBar.dart';
@@ -18,7 +19,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
   @override
   Widget build(BuildContext context) {
 
-    List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story")];
+    List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for children")];
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       body: Obx(()=>SafeArea(
@@ -228,6 +229,8 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                         
                       }else{
                         print("==========value:${title[int.parse(selectItems.value)].value}==========");
+                        Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
+                        Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const StoryPage()));
                         
                         

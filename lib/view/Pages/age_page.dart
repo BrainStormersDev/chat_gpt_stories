@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import '../../controllers/chat_image_controller.dart';
+import '../../model/IconModels.dart';
 import '../../utils/app_color.dart';
+import '../../utils/mySnackBar.dart';
 import '../Widgets/polygon_Container.dart';
 import 'gender_page.dart';
 import 'story_category_page.dart';
-
-class AgePage extends StatelessWidget {
+class AgePage extends StatefulWidget {
   const AgePage({Key? key}) : super(key: key);
 
+  @override
+  State<AgePage> createState() => _AgePageState();
+}
 
-
-
+class _AgePageState extends State<AgePage> {
+  AgeSelect selectAge=AgeSelect.notSelect;
   @override
   Widget build(BuildContext context) {
-    AgeSelect selectAge;
-
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       body: SafeArea(
-        child: Padding(
+        child:Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Column(
@@ -70,20 +73,32 @@ class AgePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 110,
-                      decoration: ShapeDecoration(
-                          // color: Colors.red,
-                          shape: polygonAgeContainer()),
-                      child: const Center(
-                        child: Text(
-                          "1 - 3",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "BalooBhai",
-                              color: AppColors.txtColor1),
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          selectAge=AgeSelect.oneToThree;
+
+                        });
+
+
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 110,
+                        decoration: ShapeDecoration(
+                          color: selectAge==AgeSelect.oneToThree ?AppColors.kPrimary:null,
+                            shape: polygonAgeContainer(bordColor:selectAge==AgeSelect.oneToThree?AppColors.kWhite:AppColors.txtColor1)
+
+                        ),
+                        child:  Center(
+                          child: Text(
+                            "1 - 3",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "BalooBhai",
+                                color: selectAge==AgeSelect.oneToThree?AppColors.kWhite:AppColors.txtColor1),
+                          ),
                         ),
                       ),
                     ),
@@ -95,20 +110,28 @@ class AgePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 110,
-                      decoration: ShapeDecoration(
-                        // color: Colors.red,
-                          shape: polygonAgeContainer()),
-                      child: const Center(
-                        child: Text(
-                          "3 - 5",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "BalooBhai",
-                              color: AppColors.txtColor1),
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          selectAge=AgeSelect.threeToFive;
+
+                        });
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 110,
+                        decoration: ShapeDecoration(
+                            color: selectAge==AgeSelect.threeToFive ?AppColors.kPrimary:null,
+                            shape: polygonAgeContainer(bordColor:selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1)),
+                        child: const Center(
+                          child: Text(
+                            "3 - 5",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "BalooBhai",
+                                color: AppColors.txtColor1),
+                          ),
                         ),
                       ),
                     ),
@@ -120,20 +143,29 @@ class AgePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 110,
-                      decoration: ShapeDecoration(
-                        // color: Colors.red,
-                          shape: polygonAgeContainer()),
-                      child: const Center(
-                        child: Text(
-                          "5 - 10",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "BalooBhai",
-                              color: AppColors.txtColor1),
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          selectAge=AgeSelect.fiveToTen;
+
+                        });
+
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 110,
+                        decoration: ShapeDecoration(
+                          color: selectAge==AgeSelect.fiveToTen ?AppColors.kPrimary:null,
+                            shape: polygonAgeContainer()),
+                        child: const Center(
+                          child: Text(
+                            "5 - 10",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "BalooBhai",
+                                color: AppColors.txtColor1),
+                          ),
                         ),
                       ),
                     ),
@@ -145,20 +177,28 @@ class AgePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 110,
-                      decoration: ShapeDecoration(
-                        // color: Colors.red,
-                          shape: polygonAgeContainer()),
-                      child: const Center(
-                        child: Text(
-                          "10 +",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "BalooBhai",
-                              color: AppColors.txtColor1),
+                    InkWell(
+                      onTap: (){
+                        setState(() {
+                          selectAge=AgeSelect.tenPlus;
+
+                        });
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 110,
+                        decoration: ShapeDecoration(
+                            color: selectAge==AgeSelect.tenPlus ?AppColors.kPrimary:null,
+                            shape: polygonAgeContainer()),
+                        child: const Center(
+                          child: Text(
+                            "10 +",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "BalooBhai",
+                                color: AppColors.txtColor1),
+                          ),
                         ),
                       ),
                     ),
@@ -168,8 +208,15 @@ class AgePage extends StatelessWidget {
                 const SizedBox(height: 35,),
                 ElevatedButton(
                     onPressed: (){
-                      // Get.to(const AgePage());
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));
+                      if(selectAge==AgeSelect.notSelect){
+                        MySnackBar.snackBarYellow(
+                            title:"Alert", message:"Please select Age limit");
+
+                      }else{
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));
+
+                      }
+
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
@@ -185,8 +232,42 @@ class AgePage extends StatelessWidget {
               ],
             ),
           ),
-        ),
+        )
       ),
+    );
+  }
+
+  Widget ageItem({required IconOfStory data}){
+
+    return  Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        InkWell(
+          onTap: (){
+            // controller.getGenerateImages("Pakistan");
+            // controller.getTextCompletion("story");
+          },
+          child: Container(
+            height: 60,
+            width: 110,
+            decoration: ShapeDecoration(
+              // color: Colors.red,
+                shape: polygonAgeContainer()),
+            child: const Center(
+              child: Text(
+                "1 - 3",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "BalooBhai",
+                    color: AppColors.txtColor1),
+              ),
+            ),
+          ),
+        ),
+        Image.asset("assets/PNG/age1-3.png", scale: 0.9,),
+      ],
     );
   }
 }

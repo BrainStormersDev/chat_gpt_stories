@@ -5,13 +5,13 @@ import 'package:morphable_shape/morphable_shape.dart';
 import '../../utils/app_color.dart';
 
 
-PolygonShapeBorder polygonAgeContainer () {
+PolygonShapeBorder polygonAgeContainer ({Color bordColor =AppColors.txtColor1}) {
   return PolygonShapeBorder(
       sides:6,
       border: DynamicBorderSide(
         style: BorderStyle.solid,
         width: 1,
-        color: AppColors.txtColor1,
+        color:bordColor,
         // gradient: LinearGradient(colors:[Colors.red, Colors.blue]),
         begin: 0.toPercentLength,
         end: 100.toPercentLength,

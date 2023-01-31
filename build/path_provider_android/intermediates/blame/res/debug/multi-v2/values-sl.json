@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/path_provider_android/intermediates/res/merged/debug/values-sl/values-sl.xml",
+            "map": [
+                {
+                    "source": "/Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/res/values-sl/values-sl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/path_provider_android/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml",
+            "map": [
+                {
+                    "source": "/Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/0df9b2e2e8a018301981863d0877730d/core-1.6.0/res/values-sl/values-sl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

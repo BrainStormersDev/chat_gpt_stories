@@ -138,8 +138,9 @@ class _GenderPageState extends State<GenderPage> {
                               fontSize: 30,
                               fontFamily: "BalooBhai",
                               fontWeight: FontWeight.bold,
+                              // color: selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                               foreground: Paint()
-                                ..style = PaintingStyle.stroke
+                                ..style = selectedGender==Gender.boy ? PaintingStyle.fill : PaintingStyle.stroke
                                 ..color = AppColors.kBoyBGColor),
                         )
                       ],
@@ -184,7 +185,7 @@ class _GenderPageState extends State<GenderPage> {
                               fontFamily: "BalooBhai",
                               fontWeight: FontWeight.bold,
                               foreground: Paint()
-                                ..style = PaintingStyle.stroke
+                                ..style = selectedGender==Gender.girl ? PaintingStyle.fill : PaintingStyle.stroke
                                 ..color = AppColors.kGirlBGColor),
                         )
                       ],

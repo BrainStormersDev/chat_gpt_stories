@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const kSplashColor = Color(0xFFFEF0D6);
   static const kWhite = Colors.white;
+  static const kBlack = Colors.black;
   static const kPrimary =Color(0xFFFFBA17);
   static const kRed =Colors.red;
   static const kScreenColor = Color(0xFFF5F5F5);

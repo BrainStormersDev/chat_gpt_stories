@@ -43,6 +43,9 @@ dependencies:
   cached_network_image: 3.2.3
 #  share_plus: ^6.3.0
   shimmer: ^2.0.0
+#  package_info_plus:
+  url_launcher:
+#  flutter_tts: ^3.6.3
   morphable_shape: ^1.6.4
   firebase_core: ^2.4.1
   flutter_local_notifications: ^13.0.0

@@ -6,7 +6,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
+
 
 import 'view/Pages/splash_page.dart';
 //lat
@@ -17,6 +20,7 @@ import 'view/Pages/splash_page.dart';
 //   print(message.notification!.title);
 // }
 
+
 String? stDeviceToken;
 RxInt count =0.obs;
 
@@ -25,6 +29,7 @@ Future<void> main() async {
   // await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   await _localNotification();
+
   runApp(const MyApp());
 }
 

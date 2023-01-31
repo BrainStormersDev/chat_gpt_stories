@@ -123,14 +123,14 @@ class _AgePageState extends State<AgePage> {
                         decoration: ShapeDecoration(
                             color: selectAge==AgeSelect.threeToFive ?AppColors.kPrimary:null,
                             shape: polygonAgeContainer(bordColor:selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1)),
-                        child: const Center(
+                        child:  Center(
                           child: Text(
                             "3 - 5",
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "BalooBhai",
-                                color: AppColors.txtColor1),
+                                color: selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1),
                           ),
                         ),
                       ),
@@ -156,15 +156,15 @@ class _AgePageState extends State<AgePage> {
                         width: 110,
                         decoration: ShapeDecoration(
                           color: selectAge==AgeSelect.fiveToTen ?AppColors.kPrimary:null,
-                            shape: polygonAgeContainer()),
-                        child: const Center(
+                            shape: polygonAgeContainer(bordColor:selectAge==AgeSelect.fiveToTen?AppColors.kWhite:AppColors.txtColor1)),
+                        child:  Center(
                           child: Text(
                             "5 - 10",
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "BalooBhai",
-                                color: AppColors.txtColor1),
+                                color: selectAge==AgeSelect.fiveToTen?AppColors.kWhite:AppColors.txtColor1),
                           ),
                         ),
                       ),
@@ -189,15 +189,15 @@ class _AgePageState extends State<AgePage> {
                         width: 110,
                         decoration: ShapeDecoration(
                             color: selectAge==AgeSelect.tenPlus ?AppColors.kPrimary:null,
-                            shape: polygonAgeContainer()),
-                        child: const Center(
+                            shape: polygonAgeContainer(bordColor:selectAge==AgeSelect.tenPlus?AppColors.kWhite:AppColors.txtColor1)),
+                        child:  Center(
                           child: Text(
                             "10 +",
                             style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "BalooBhai",
-                                color: AppColors.txtColor1),
+                                color: selectAge==AgeSelect.tenPlus?AppColors.kWhite:AppColors.txtColor1),
                           ),
                         ),
                       ),

@@ -1,22 +1,25 @@
-#Tue Jan 31 17:39:46 PKT 2023
+#Tue Jan 31 08:42:58 EST 2023
 path.4=classes_2.dex
 path.3=classes_1.dex
 path.2=classes_0.dex
 path.1=classes.dex
+path.7=classes_5.dex
 path.6=classes_4.dex
 path.5=classes_3.dex
 path.0=classes.dex
-base.4=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_2.dex
-base.3=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_1.dex
-base.2=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_0.dex
-base.1=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
-base.0=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.4=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_2.dex
+base.3=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_1.dex
+base.2=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_0.dex
+base.1=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+base.0=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
+renamed.7=classes8.dex
 renamed.6=classes7.dex
+base.7=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_5.dex
 renamed.5=classes6.dex
-base.6=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_4.dex
+base.6=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_4.dex
 renamed.4=classes5.dex
-base.5=E\:\\StudioProjects\\chat_gpt_stories\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_3.dex
+base.5=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_3.dex

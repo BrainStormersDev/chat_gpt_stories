@@ -9,6 +9,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 import 'view/Pages/splash_page.dart';
+//lat
+
 
 // Future<void> backgroundHandler(RemoteMessage message) async {
 //   print(message.data.toString());

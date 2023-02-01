@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/shared_preferences_android/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml",
+            "map": [
+                {
+                    "source": "/Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/278b130730ca07226ce885fb1f646e1f/core-1.6.0/res/values-iw/values-iw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/shared_preferences_android/intermediates/res/merged/debug/values-iw/values-iw.xml",
+            "map": [
+                {
+                    "source": "/Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/278b130730ca07226ce885fb1f646e1f/core-1.6.0/res/values-iw/values-iw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

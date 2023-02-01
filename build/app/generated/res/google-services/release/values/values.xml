@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">123364940719</string>
+    <string name="google_api_key" translatable="false">AIzaSyDezKt8owdX11OjGQeWIG4tyAFcVIOjzOE</string>
+    <string name="google_app_id" translatable="false">1:123364940719:android:b97b46a29e4bd0926bed5a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDezKt8owdX11OjGQeWIG4tyAFcVIOjzOE</string>
+    <string name="google_storage_bucket" translatable="false">chat-gpt-stories.appspot.com</string>
+    <string name="project_id" translatable="false">chat-gpt-stories</string>
+</resources>

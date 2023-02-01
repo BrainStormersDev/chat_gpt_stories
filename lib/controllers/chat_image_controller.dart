@@ -36,7 +36,7 @@ class ChatImageController extends GetxController {
     try {
       // ['256x256', '512x512', '1024x1024']
       Map<String, dynamic> rowParams = {
-        "n": 10,
+        "n": 4,
         "size": "256x256",
         "prompt": query,
       };

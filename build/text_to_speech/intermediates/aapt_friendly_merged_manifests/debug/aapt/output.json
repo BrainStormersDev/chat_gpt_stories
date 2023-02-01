@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "applicationId": "com.ixsans.text_to_speech",
+  "variantType": "LIBRARY",
+  "elements": [
+    {
+      "outputType": {
+        "type": "AAPT_FRIENDLY_MERGED_MANIFESTS"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": -1,
+        "outputFile": "text_to_speech-debug.aar",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.ixsans.text_to_speech",
+        "split": ""
+      }
+    }
+  ]
+}

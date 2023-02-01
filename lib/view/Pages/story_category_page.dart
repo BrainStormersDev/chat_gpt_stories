@@ -2,6 +2,7 @@ import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 import '../../controllers/chat_text_controller.dart';
 import '../../model/IconModels.dart';
 import '../../utils/app_color.dart';
@@ -14,12 +15,15 @@ class StoryCategoryPage extends StatefulWidget {
 
 class _StoryCategoryPageState extends State<StoryCategoryPage> {
   ChatImageController controller= Get.put(ChatImageController());
+
+
   RxString selectItems="-1".obs;
+  List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for children")];
   // const StoryCategoryPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
 
-    List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for children")];
+
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       body: Obx(()=>SafeArea(
@@ -220,22 +224,24 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                 // const SizedBox(height: 35,),
                 ElevatedButton(
                     onPressed: (){
-                      // Get.to(const AgePage());
-                      
-                      if(selectItems.value=="-1"){
 
-                        MySnackBar.snackBarRed(
-                            title:"Alert", message:"Please select story type");
-                        
-                      }else{
-                        print("==========value:${title[int.parse(selectItems.value)].value}==========");
-                        Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
-                        Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const StoryPage()));
-                        
-                        
-                      }
+
+                      // // Get.to(const AgePage());
                       //
+                      // if(selectItems.value=="-1"){
+                      //
+                      //   MySnackBar.snackBarRed(
+                      //       title:"Alert", message:"Please select story type");
+                      //
+                      // }else{
+                      //   print("==========value:${title[int.parse(selectItems.value)].value}==========");
+                      //   Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
+                      //   Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
+                      //   Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
+                      //
+                      //
+                      // }
+                      // //
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
@@ -256,32 +262,53 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
     );
   }
 
+
+
   Widget icon({required IconOfStory data, required int index}){
     return InkWell(
       onTap: (){
         selectItems.value =index.toString();
         print("========data:${selectItems.value }=======");
         // controller.getGenerateImages(data.story);
+        nextPage();
 
       },
       child: Container(
-        decoration: BoxDecoration(border:int.parse(selectItems.value.toString())==index? Border.all(color: AppColors.kBtnColor):null),
+        decoration: BoxDecoration(
+            color:int.parse(selectItems.value.toString())==index? AppColors.kPrimary:null,
+            border:int.parse(selectItems.value.toString())==index? Border.all(color: AppColors.kBtnColor):null),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(data.url),
-             Text(
-               data.title,
-              style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "BalooBhai",
-                  color: AppColors.txtColor1),
+             Expanded(
+               child: Text(
+                 data.title,
+                style:  TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "BalooBhai",
+                    color:int.parse(selectItems.value.toString())==index?AppColors.kWhite: AppColors.txtColor1),
             ),
+             ),
           ],
         ),
       ),
     );
   }
+  nextPage(){
+
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      print("==========value:${title[int.parse(selectItems.value)].value}==========");
+      Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
+      Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
+
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
+    });
+  }
+
+
+
 }

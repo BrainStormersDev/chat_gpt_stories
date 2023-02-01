@@ -6,24 +6,30 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_gpt_stories/view/Pages/story_view_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
 import '../../controllers/chat_text_controller.dart';
+import '../../model/text_completion_model.dart';
 import '../../utils/app_color.dart';
 
 class StoryPage extends StatefulWidget {
-  const StoryPage({Key? key}) : super(key: key);
+  final String storyType;
+  const StoryPage({Key? key, required this.storyType}) : super(key: key);
 
   @override
   State<StoryPage> createState() => _StoryPageState();
 }
 
 class _StoryPageState extends State<StoryPage> {
-  // late PackageInfo packageInfo;
+  ChatImageController controllerImage= Get.put(ChatImageController());
+  ChatTextController controllerText= Get.put(ChatTextController());
+  late PackageInfo packageInfo;
   bool versionCheck1 = false;
   String version = '';
   var playStoreUrl = '';
@@ -32,13 +38,13 @@ class _StoryPageState extends State<StoryPage> {
   void initState() {
     // TODO: implement initState
 
-    versionCheck();
+    // versionCheck();
     super.initState();
   }
   Future<void> versionCheck() async {
     // for test
     // versionCheck1 = true;
-    // packageInfo = await PackageInfo.fromPlatform();
+    packageInfo = await PackageInfo.fromPlatform();
     var url;
     setState(() {
       // version = packageInfo.version; //+'\n'+Platform.operatingSystemVersion;
@@ -49,51 +55,51 @@ class _StoryPageState extends State<StoryPage> {
     final response = await http.get(url);
     var data = jsonDecode(response.body);
     print("====data: ${data}=====");
-    // if (response.statusCode == 200) {
-    //   if (Platform.isAndroid) {
-    //     if (packageInfo.version != data['data']["staff_app_version"]) {
-    //       if (data['data']["staff_android_status"] == 0) {
-    //         setState(() {
-    //           versionCheck1 = true;
-    //           playStoreUrl = data['data']["staff_app_url"];
-    //         });
-    //       }
-    //     }
-    //     // if (packageInfo.version != data['data']["staff_huawei_app_version"]) {
-    //     //   if ((data['data']["staff_huawei_status"] == 0)) {
-    //     //     setState(() {
-    //     //       versionCheck1 = true;
-    //     //       // playStoreUrl = "https://appgallery.huawei.com/app/C104569603";
-    //     //       // playStoreUrl = data['data']["staff_app_url"];
-    //     //       playStoreUrl = data['data']["staff_huawei_app_url"];
-    //     //       // print("=====huawei playStoreUrl: $playStoreUrl========");
-    //     //     });
-    //     //   }
-    //     // }
-    //   } else if (Platform.isIOS) {
-    //     if (packageInfo.version != data['data']["staff_iphone_app_version"]) {
-    //       if (data['data']["staff_ios_status"] == 0) {
-    //         setState(() {
-    //           versionCheck1 = true;
-    //           playStoreUrl = data['data']["staff_iphone_app_url"].toString();
-    //           // print("=====playStoreUrl: $playStoreUrl========");
-    //         });
-    //       }
-    //       if (data['data']["staff_ios_status"] == 3) {
-    //         // isIOSCheck.value = false;
-    //         // print("======isIOSCheck.value:${isIOSCheck.value}======");
-    //       }
-    //
-    //     }
-    //   }
-    // }
+    if (response.statusCode == 200) {
+      versionCheck1 = true;
+      if (Platform.isAndroid) {
+        if (packageInfo.version != data['data']["staff_app_version"]) {
+          if (data['data']["staff_android_status"] == 0) {
+            setState(() {
+              versionCheck1 = true;
+              playStoreUrl = data['data']["staff_app_url"];
+            });
+          }
+        }
+        // if (packageInfo.version != data['data']["staff_huawei_app_version"]) {
+        //   if ((data['data']["staff_huawei_status"] == 0)) {
+        //     setState(() {
+        //       versionCheck1 = true;
+        //       // playStoreUrl = "https://appgallery.huawei.com/app/C104569603";
+        //       // playStoreUrl = data['data']["staff_app_url"];
+        //       playStoreUrl = data['data']["staff_huawei_app_url"];
+        //       // print("=====huawei playStoreUrl: $playStoreUrl========");
+        //     });
+        //   }
+        // }
+      } else if (Platform.isIOS) {
+        if (packageInfo.version != data['data']["staff_iphone_app_version"]) {
+          if (data['data']["staff_ios_status"] == 0) {
+            setState(() {
+              versionCheck1 = true;
+              playStoreUrl = data['data']["staff_iphone_app_url"].toString();
+              // print("=====playStoreUrl: $playStoreUrl========");
+            });
+          }
+          if (data['data']["staff_ios_status"] == 3) {
+            // isIOSCheck.value = false;
+            // print("======isIOSCheck.value:${isIOSCheck.value}======");
+          }
+
+        }
+      }
+    }
 
    
   }
   @override
   Widget build(BuildContext context) {
-    ChatImageController controllerImage= Get.put(ChatImageController());
-    ChatTextController controllerText= Get.put(ChatTextController());
+
 
 
     RxString abc=''.obs;
@@ -148,9 +154,13 @@ class _StoryPageState extends State<StoryPage> {
                             } on PlatformException {
                               launchUrl(Uri.parse(
                                 // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
-                                  playStoreUrl));
+                                  playStoreUrl
+
+                              ));
                             } finally {
-                              launchUrl(Uri.parse(playStoreUrl
+                              launchUrl(Uri.parse(
+
+                                  playStoreUrl
                                 // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
 
                               ));
@@ -279,15 +289,63 @@ class _StoryPageState extends State<StoryPage> {
                         color: AppColors.txtColor1),
                   ),
                 ),
+
+               
+
                 const SizedBox(height: 20,),
+               // true
                 controllerImage.state.value == ApiState.loading
-                    ? const CircularProgressIndicator()
+                    ? Container(
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        "assets/PNG/giphy2.gif",
+                        height: 125.0,
+                        width: 125.0,
+                      ),
+
+                  SizedBox(height: 10,),
+
+                  Center(
+                    child: SizedBox(
+                      width: 250.0,
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Bobbers',
+                          color:  AppColors.txtColor1
+                        ),
+                        child: AnimatedTextKit(
+                          animatedTexts: [
+                            TyperAnimatedText('Please wait ....'),
+                            TyperAnimatedText('While your story of ${widget.storyType} is creating'),
+                          ],
+                          onTap: () {
+                            print("Tap Event");
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                      // const Text("Please wait ....",style: TextStyle(
+                      //     fontSize: 20,
+                      //
+                      //     fontFamily: "BalooBhai",
+                      //     color: AppColors.txtColor1),),
+                      // SizedBox(height: 10,),
+                      // const Text("While your strory is creating",style: TextStyle(
+                      //     fontSize: 20,
+                      //     fontFamily: "BalooBhai",
+                      //     color: AppColors.txtColor1),),
+                    ],
+                  ),
+                )
                     :Column(
                       children: [
                         InkWell(
                   onTap: (){
 
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const StoryViewPage()));
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
 
                   },
                   child: Card(
@@ -323,7 +381,8 @@ class _StoryPageState extends State<StoryPage> {
                                 icon: const Icon(Icons.skip_previous_rounded, color: AppColors.kBtnColor, size: 30,)),
                             GestureDetector(
                               onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const StoryViewPage()));
+
+                                Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType:widget.storyType ,)));
                               },
                               child: const CircleAvatar(
                                 radius: 30,

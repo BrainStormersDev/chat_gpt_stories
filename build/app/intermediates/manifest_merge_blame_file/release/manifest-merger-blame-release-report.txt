@@ -1,0 +1,401 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.americanlyceum.chat_gpt_stories"
+4    android:versionCode="2"
+5    android:versionName="1.0.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:7:5-67
+11-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:7:22-64
+12    <uses-permission android:name="android.permission.WAKE_LOCK" />
+12-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:5-68
+12-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:8:22-65
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Permissions options for the `notification` group -->
+13-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:9:5-79
+13-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:9:22-76
+14    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+14-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:11:5-77
+14-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:11:22-74
+15    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+15-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:7:5-81
+15-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:7:22-78
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:8:5-66
+16-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:8:22-63
+17    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+17-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:9:5-81
+17-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:9:22-78
+18    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+18-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:10:5-79
+18-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:10:22-76
+19    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+19-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:28:5-82
+19-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:28:22-79
+20    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+20-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/583fe59912588b5bffc34ee23db40fa0/jetified-play-services-measurement-api-21.2.0/AndroidManifest.xml:25:5-79
+20-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/583fe59912588b5bffc34ee23db40fa0/jetified-play-services-measurement-api-21.2.0/AndroidManifest.xml:25:22-76
+21    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+21-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:26:5-110
+21-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:26:22-107
+22
+23    <application
+24        android:name="android.app.Application"
+24-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:5:9-42
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.6.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/278b130730ca07226ce885fb1f646e1f/core-1.6.0/AndroidManifest.xml:24:18-86
+26        android:icon="@mipmap/ic_launcher"
+26-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:6:9-43
+27        android:label="Chat Gpt Stories" >
+27-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:4:9-41
+28        <activity
+28-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:7:9-27:20
+29            android:name="com.americanlyceum.chat_gpt_stories.MainActivity"
+29-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:8:13-76
+30            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+30-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:12:13-163
+31            android:exported="true"
+31-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:9:13-36
+32            android:hardwareAccelerated="true"
+32-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:13:13-47
+33            android:launchMode="singleTop"
+33-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:10:13-43
+34            android:theme="@style/LaunchTheme"
+34-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:11:13-47
+35            android:windowSoftInputMode="adjustResize" >
+35-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:14:13-55
+36
+37            <!--
+38                 Specifies an Android theme to apply to this Activity as soon as
+39                 the Android process has started. This theme is visible to the user
+40                 while the Flutter UI initializes. After that, this theme continues
+41                 to determine the Window background behind the Flutter UI.
+42            -->
+43            <meta-data
+43-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:19:13-22:17
+44                android:name="io.flutter.embedding.android.NormalTheme"
+44-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:20:15-70
+45                android:resource="@style/NormalTheme" />
+45-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:21:15-52
+46
+47            <intent-filter>
+47-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:23:13-26:29
+48                <action android:name="android.intent.action.MAIN" />
+48-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:24:17-68
+48-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:24:25-66
+49
+50                <category android:name="android.intent.category.LAUNCHER" />
+50-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:25:17-76
+50-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:25:27-74
+51            </intent-filter>
+52        </activity>
+53        <!--
+54             Don't delete the meta-data below.
+55             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+56        -->
+57        <meta-data
+57-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:30:9-32:33
+58            android:name="flutterEmbedding"
+58-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:31:13-44
+59            android:value="2" />
+59-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:32:13-30
+60
+61        <service
+61-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:14:9-17:72
+62            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+62-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:15:13-107
+63            android:exported="false"
+63-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:16:13-37
+64            android:permission="android.permission.BIND_JOB_SERVICE" />
+64-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:17:13-69
+65        <service
+65-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:18:9-24:19
+66            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+66-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:19:13-97
+67            android:exported="false" >
+67-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:20:13-37
+68            <intent-filter>
+68-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:21:13-23:29
+69                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+69-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:22:17-78
+69-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:22:25-75
+70            </intent-filter>
+71        </service>
+72
+73        <receiver
+73-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:26:9-33:20
+74            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+74-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:27:13-98
+75            android:exported="true"
+75-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:28:13-36
+76            android:permission="com.google.android.c2dm.permission.SEND" >
+76-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:29:13-73
+77            <intent-filter>
+77-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:30:13-32:29
+78                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+78-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:31:17-81
+78-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:31:25-78
+79            </intent-filter>
+80        </receiver>
+81
+82        <service
+82-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:35:9-39:19
+83            android:name="com.google.firebase.components.ComponentDiscoveryService"
+83-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:35:18-89
+84            android:directBootAware="true"
+84-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:34:13-43
+85            android:exported="false" >
+85-->[com.google.firebase:firebase-analytics-ktx:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/fcc897380b31d85385268958700ec94b/jetified-firebase-analytics-ktx-21.2.0/AndroidManifest.xml:10:13-37
+86            <meta-data
+86-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:36:13-38:85
+87                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+87-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:37:17-128
+88                android:value="com.google.firebase.components.ComponentRegistrar" />
+88-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:38:17-82
+89            <meta-data
+89-->[:firebase_core] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
+90                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+90-->[:firebase_core] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:10:17-124
+91                android:value="com.google.firebase.components.ComponentRegistrar" />
+91-->[:firebase_core] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
+92            <meta-data
+92-->[com.google.firebase:firebase-analytics-ktx:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/fcc897380b31d85385268958700ec94b/jetified-firebase-analytics-ktx-21.2.0/AndroidManifest.xml:11:13-13:85
+93                android:name="com.google.firebase.components:com.google.firebase.analytics.ktx.FirebaseAnalyticsKtxRegistrar"
+93-->[com.google.firebase:firebase-analytics-ktx:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/fcc897380b31d85385268958700ec94b/jetified-firebase-analytics-ktx-21.2.0/AndroidManifest.xml:12:17-126
+94                android:value="com.google.firebase.components.ComponentRegistrar" />
+94-->[com.google.firebase:firebase-analytics-ktx:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/fcc897380b31d85385268958700ec94b/jetified-firebase-analytics-ktx-21.2.0/AndroidManifest.xml:13:17-82
+95            <meta-data
+95-->[com.google.firebase:firebase-common-ktx:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/69a4fdcc687323069cce5a8f707c9031/jetified-firebase-common-ktx-20.3.0/AndroidManifest.xml:14:13-16:85
+96                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar"
+96-->[com.google.firebase:firebase-common-ktx:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/69a4fdcc687323069cce5a8f707c9031/jetified-firebase-common-ktx-20.3.0/AndroidManifest.xml:15:17-113
+97                android:value="com.google.firebase.components.ComponentRegistrar" />
+97-->[com.google.firebase:firebase-common-ktx:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/69a4fdcc687323069cce5a8f707c9031/jetified-firebase-common-ktx-20.3.0/AndroidManifest.xml:16:17-82
+98            <meta-data
+98-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:55:13-57:85
+99                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+99-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:56:17-119
+100                android:value="com.google.firebase.components.ComponentRegistrar" />
+100-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:57:17-82
+101            <meta-data
+101-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/3601228ad151aaab9a90c682be766c32/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
+102                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+102-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/3601228ad151aaab9a90c682be766c32/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
+103                android:value="com.google.firebase.components.ComponentRegistrar" />
+103-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/3601228ad151aaab9a90c682be766c32/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
+104            <meta-data
+104-->[com.google.firebase:firebase-iid:21.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4bca00b5adb657b463850c4ad1103311/jetified-firebase-iid-21.1.0/AndroidManifest.xml:32:13-34:85
+105                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+105-->[com.google.firebase:firebase-iid:21.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4bca00b5adb657b463850c4ad1103311/jetified-firebase-iid-21.1.0/AndroidManifest.xml:33:17-96
+106                android:value="com.google.firebase.components.ComponentRegistrar" />
+106-->[com.google.firebase:firebase-iid:21.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4bca00b5adb657b463850c4ad1103311/jetified-firebase-iid-21.1.0/AndroidManifest.xml:34:17-82
+107            <meta-data
+107-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/583fe59912588b5bffc34ee23db40fa0/jetified-play-services-measurement-api-21.2.0/AndroidManifest.xml:31:13-33:85
+108                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+108-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/583fe59912588b5bffc34ee23db40fa0/jetified-play-services-measurement-api-21.2.0/AndroidManifest.xml:32:17-139
+109                android:value="com.google.firebase.components.ComponentRegistrar" />
+109-->[com.google.android.gms:play-services-measurement-api:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/583fe59912588b5bffc34ee23db40fa0/jetified-play-services-measurement-api-21.2.0/AndroidManifest.xml:33:17-82
+110            <meta-data
+110-->[com.google.firebase:firebase-installations:17.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/b79b10d107a61b1299d258a8be0378f0/jetified-firebase-installations-17.1.0/AndroidManifest.xml:17:13-19:85
+111                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+111-->[com.google.firebase:firebase-installations:17.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/b79b10d107a61b1299d258a8be0378f0/jetified-firebase-installations-17.1.0/AndroidManifest.xml:18:17-127
+112                android:value="com.google.firebase.components.ComponentRegistrar" />
+112-->[com.google.firebase:firebase-installations:17.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/b79b10d107a61b1299d258a8be0378f0/jetified-firebase-installations-17.1.0/AndroidManifest.xml:19:17-82
+113        </service>
+114
+115        <provider
+115-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:41:9-45:38
+116            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+116-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:42:13-102
+117            android:authorities="com.americanlyceum.chat_gpt_stories.flutterfirebasemessaginginitprovider"
+117-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:43:13-88
+118            android:exported="false"
+118-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:44:13-37
+119            android:initOrder="99" />
+119-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:45:13-35
+120
+121        <receiver
+121-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:14:9-16:40
+122            android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver"
+122-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:15:13-91
+123            android:exported="false" />
+123-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:16:13-37
+124        <receiver
+124-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:17:9-19:40
+125            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+125-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:18:13-97
+126            android:exported="false" />
+126-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:19:13-37
+127        <receiver
+127-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:20:9-29:20
+128            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+128-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:21:13-101
+129            android:exported="false" >
+129-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:22:13-37
+130            <intent-filter>
+130-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:23:13-28:29
+131                <action android:name="android.intent.action.BOOT_COMPLETED" />
+131-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:24:17-79
+131-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:24:25-76
+132                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+132-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:25:17-84
+132-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:25:25-81
+133                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+133-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:26:17-82
+133-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:26:25-79
+134                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+134-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:27:17-82
+134-->[:flutter_local_notifications] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/flutter_local_notifications/intermediates/library_manifest/release/AndroidManifest.xml:27:25-79
+135            </intent-filter>
+136        </receiver>
+137
+138        <activity
+138-->[:url_launcher_android] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:8:9-11:74
+139            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+139-->[:url_launcher_android] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:9:13-74
+140            android:exported="false"
+140-->[:url_launcher_android] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:10:13-37
+141            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+141-->[:url_launcher_android] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/url_launcher_android/intermediates/library_manifest/release/AndroidManifest.xml:11:13-71
+142
+143        <uses-library
+143-->[androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1643822f9cbc61321397cbb1ce298270/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+144            android:name="androidx.window.extensions"
+144-->[androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1643822f9cbc61321397cbb1ce298270/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+145            android:required="false" />
+145-->[androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1643822f9cbc61321397cbb1ce298270/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+146        <uses-library
+146-->[androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1643822f9cbc61321397cbb1ce298270/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+147            android:name="androidx.window.sidecar"
+147-->[androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1643822f9cbc61321397cbb1ce298270/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+148            android:required="false" />
+148-->[androidx.window:window:1.0.0-beta04] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1643822f9cbc61321397cbb1ce298270/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+149
+150        <receiver
+150-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:31:9-38:20
+151            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+151-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:32:13-78
+152            android:exported="true"
+152-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:33:13-36
+153            android:permission="com.google.android.c2dm.permission.SEND" >
+153-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:34:13-73
+154            <intent-filter>
+154-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:30:13-32:29
+155                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+155-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:31:17-81
+155-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:31:25-78
+156            </intent-filter>
+157        </receiver>
+158        <!--
+159             FirebaseMessagingService performs security checks at runtime,
+160             but set to not exported to explicitly avoid allowing another app to call it.
+161        -->
+162        <service
+162-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:44:9-51:19
+163            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+163-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:45:13-82
+164            android:directBootAware="true"
+164-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:46:13-43
+165            android:exported="false" >
+165-->[com.google.firebase:firebase-messaging:23.1.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/ba8ecbc27302b60c6c7d657e65f106c8/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:47:13-37
+166            <intent-filter android:priority="-500" >
+166-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:21:13-23:29
+167                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+167-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:22:17-78
+167-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:22:25-75
+168            </intent-filter>
+169        </service>
+170        <service
+170-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4913f00b998030e190c5ff461c94c2a2/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:28:9-34:19
+171            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+171-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4913f00b998030e190c5ff461c94c2a2/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:29:13-103
+172            android:exported="false" >
+172-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4913f00b998030e190c5ff461c94c2a2/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:30:13-37
+173            <meta-data
+173-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4913f00b998030e190c5ff461c94c2a2/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:31:13-33:39
+174                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+174-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4913f00b998030e190c5ff461c94c2a2/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:32:17-94
+175                android:value="cct" />
+175-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/4913f00b998030e190c5ff461c94c2a2/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:33:17-36
+176        </service>
+177        <service
+177-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:26:9-30:19
+178            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+178-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:27:13-117
+179            android:exported="false"
+179-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:28:13-37
+180            android:permission="android.permission.BIND_JOB_SERVICE" >
+180-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:29:13-69
+181        </service>
+182
+183        <receiver
+183-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:32:9-34:40
+184            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+184-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:33:13-132
+185            android:exported="false" />
+185-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/1ef6bc5cf08138699bf151ff108437ca/jetified-transport-runtime-3.1.8/AndroidManifest.xml:34:13-37
+186
+187        <provider
+187-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:25:9-30:39
+188            android:name="com.google.firebase.provider.FirebaseInitProvider"
+188-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:26:13-77
+189            android:authorities="com.americanlyceum.chat_gpt_stories.firebaseinitprovider"
+189-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:27:13-72
+190            android:directBootAware="true"
+190-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:28:13-43
+191            android:exported="false"
+191-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:29:13-37
+192            android:initOrder="100" />
+192-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:30:13-36
+193
+194        <receiver
+194-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:29:9-33:20
+195            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+195-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:30:13-85
+196            android:enabled="true"
+196-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:31:13-35
+197            android:exported="false" >
+197-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:32:13-37
+198        </receiver>
+199
+200        <service
+200-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:35:9-38:40
+201            android:name="com.google.android.gms.measurement.AppMeasurementService"
+201-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:36:13-84
+202            android:enabled="true"
+202-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:37:13-35
+203            android:exported="false" />
+203-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:38:13-37
+204        <service
+204-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:39:9-43:72
+205            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+205-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:40:13-87
+206            android:enabled="true"
+206-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:41:13-35
+207            android:exported="false"
+207-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:42:13-37
+208            android:permission="android.permission.BIND_JOB_SERVICE" />
+208-->[com.google.android.gms:play-services-measurement:21.2.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dc5b39f16056b1763f1f05e5e008fe98/jetified-play-services-measurement-21.2.0/AndroidManifest.xml:43:13-69
+209
+210        <activity
+210-->[com.google.android.gms:play-services-base:18.0.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/24ec011b664ba429a2de2f5fa7f5682c/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+211            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+211-->[com.google.android.gms:play-services-base:18.0.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/24ec011b664ba429a2de2f5fa7f5682c/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+212            android:exported="false"
+212-->[com.google.android.gms:play-services-base:18.0.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/24ec011b664ba429a2de2f5fa7f5682c/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+213            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+213-->[com.google.android.gms:play-services-base:18.0.1] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/24ec011b664ba429a2de2f5fa7f5682c/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+214
+215        <meta-data
+215-->[com.google.android.gms:play-services-basement:18.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/38b31c21efdf18969cd035091bbf5b4f/jetified-play-services-basement-18.1.0/AndroidManifest.xml:21:9-23:69
+216            android:name="com.google.android.gms.version"
+216-->[com.google.android.gms:play-services-basement:18.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/38b31c21efdf18969cd035091bbf5b4f/jetified-play-services-basement-18.1.0/AndroidManifest.xml:22:13-58
+217            android:value="@integer/google_play_services_version" />
+217-->[com.google.android.gms:play-services-basement:18.1.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/38b31c21efdf18969cd035091bbf5b4f/jetified-play-services-basement-18.1.0/AndroidManifest.xml:23:13-66
+218    </application>
+219
+220</manifest>

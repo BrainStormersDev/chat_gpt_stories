@@ -3,7 +3,7 @@
 
 
 
-const String OPEN_AI_KEY = "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";
+const String OPEN_AI_KEY = "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";
 // const String OPEN_AI_KEY = "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";
 const String baseURL = "https://api.openai.com/v1";
 String endPoint(String endPoint) => "$baseURL/$endPoint";

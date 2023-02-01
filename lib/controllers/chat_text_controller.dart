@@ -25,7 +25,11 @@ class ChatTextController extends GetxController {
     super.onClose();
   }
 
-  List<TextCompletionData> messages = [];
+  List<TextCompletionData> messages = [TextCompletionData(
+    text: '',
+    index:2,
+    finish_reason: '',
+  )];
 
   var state = ApiState.notFound.obs;
 
@@ -45,7 +49,17 @@ class ChatTextController extends GetxController {
 
       final response = await http.post(
         Uri.parse(endPoint("completions")),
-        body: encodedParams,
+        body: json.encode({
+          "model": "text-davinci-003",
+          "prompt": query,
+          'temperature': 0,
+          'max_tokens': 4000,
+          'top_p': 1,
+          'frequency_penalty': 0.0,
+          'presence_penalty': 0.0,
+        }),
+        // body: encodedParams,
+
         headers: headerBearerOption(OPEN_AI_KEY),
       );
       print("Response  body  ${response.body}");

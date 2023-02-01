@@ -104,9 +104,11 @@ class _SplashPageState extends State<SplashPage> {
             bottom: 40,
               child: ElevatedButton(
                   onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
 
 
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
+                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
+                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
                   },
                   style: ButtonStyle(
                     shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),

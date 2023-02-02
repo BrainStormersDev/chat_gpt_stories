@@ -231,7 +231,7 @@ class _StoryPageState extends State<StoryPage> {
       ),
       body:SafeArea(
         child: Obx(()=>Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -354,14 +354,14 @@ class _StoryPageState extends State<StoryPage> {
                           fit: BoxFit.cover,
                           progressIndicatorBuilder: (context, url, downloadProgress) =>
                               SizedBox(
-                                  height: 150,
-                                  width: 150,
+                                  height: 220,
+                                  width: double.infinity,
                                   child: Shimmer.fromColors(
                                     baseColor: Colors.grey.withOpacity(.3),
                                     highlightColor: Colors.grey,
                                     child: Container(
                                       height: 220,
-                                      width: 130,
+                                      width: double.infinity,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(4)),

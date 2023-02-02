@@ -2,22 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import '../../utils/mySnackBar.dart';
 import 'age_page.dart';
 
-enum Gender {
-  notSelect,
-  boy,
-  girl
-}
-enum AgeSelect {
-  notSelect,
-  oneToThree,
-  threeToFive,
-  fiveToTen,
-  tenPlus,
-}
+
 
 class GenderPage extends StatefulWidget {
   @override
@@ -26,7 +16,7 @@ class GenderPage extends StatefulWidget {
 
 
 class _GenderPageState extends State<GenderPage> {
-  Gender selectedGender =Gender.notSelect;
+
   // const GenderPage({Key? key}) : super(key: key);
   //
   // RxBool isBoy = false.obs;
@@ -104,8 +94,8 @@ class _GenderPageState extends State<GenderPage> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        border:selectedGender==Gender.boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:selectedGender==Gender.boy ? AppColors.kPrimary:null
+                        border:MyRep.selectedGender==Gender.boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRep.selectedGender==Gender.boy ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -117,7 +107,7 @@ class _GenderPageState extends State<GenderPage> {
                               // isGirl.value == false;
                               // print("========isBoy.value====${isBoy.value}");
                               setState(() {
-                                selectedGender=Gender.boy;
+                                MyRep.selectedGender=Gender.boy;
 
                               });
                               Future.delayed(const Duration(milliseconds: 100), () {
@@ -131,7 +121,7 @@ class _GenderPageState extends State<GenderPage> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color:selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
+                                  color:MyRep.selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kBoyBGColor, width: 2)),
                               child: Padding(
@@ -151,8 +141,8 @@ class _GenderPageState extends State<GenderPage> {
                                 fontWeight: FontWeight.bold,
                                 // color: selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                 foreground: Paint()
-                                  ..style = selectedGender==Gender.boy ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =selectedGender==Gender.boy ?AppColors.kWhite: AppColors.kBoyBGColor),
+                                  ..style =MyRep. selectedGender==Gender.boy ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRep.selectedGender==Gender.boy ?AppColors.kWhite: AppColors.kBoyBGColor),
                           )
                         ],
                       ),
@@ -162,8 +152,8 @@ class _GenderPageState extends State<GenderPage> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          border:selectedGender==Gender.girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                          color:selectedGender==Gender.girl ? AppColors.kPrimary:null
+                          border:MyRep.selectedGender==Gender.girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                          color:MyRep.selectedGender==Gender.girl ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -176,7 +166,7 @@ class _GenderPageState extends State<GenderPage> {
                               // print("========isGirl.value====${isGirl.value}");
 
                               setState(() {
-                                selectedGender=Gender.girl;
+                                MyRep.selectedGender=Gender.girl;
 
                               });
                               Future.delayed(const Duration(milliseconds: 100), () {
@@ -187,7 +177,7 @@ class _GenderPageState extends State<GenderPage> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color:  selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
+                                  color: MyRep. selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kGirlBGColor, width: 2)),
                               child: Padding(
@@ -206,8 +196,8 @@ class _GenderPageState extends State<GenderPage> {
                                 fontFamily: "BalooBhai",
                                 fontWeight: FontWeight.bold,
                                 foreground: Paint()
-                                  ..style = selectedGender==Gender.girl ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =selectedGender==Gender.girl ?AppColors.kWhite: AppColors.kGirlBGColor),
+                                  ..style = MyRep.selectedGender==Gender.girl ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRep.selectedGender==Gender.girl ?AppColors.kWhite: AppColors.kGirlBGColor),
                           )
                         ],
                       ),
@@ -218,9 +208,9 @@ class _GenderPageState extends State<GenderPage> {
                 ElevatedButton(
                     onPressed: (){
                       // Get.to(const AgePage());
-                      print("=======select :${selectedGender.name} ====");
+                      print("=======select :${MyRep.selectedGender.name} ====");
 
-                      if(selectedGender==Gender.notSelect){
+                      if(MyRep.selectedGender==Gender.notSelect){
                         MySnackBar.snackBarYellow(
                             title:"Alert", message:"Please select gender");
                       }

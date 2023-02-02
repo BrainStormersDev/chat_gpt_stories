@@ -26,8 +26,9 @@ RxInt count =0.obs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
+  messageHandler();
   await _localNotification();
 
   runApp(const MyApp());
@@ -89,11 +90,15 @@ Future<void> _showNotification(var data) async {
   );
 
   // _type = data['type'];
-  String payload = json.encode(data.countryModelData);
-  await flutterLocalNotificationsPlugin.show(0, "data.notification!.title!", "data.notification!.body", platformChannelSpecifics, payload: payload);
-  await flutterLocalNotificationsPlugin.show(0, data.notification!.title, data.notification!.body, platformChannelSpecifics, payload: payload);
 
-  print("===========body:${data.toString()}====${data['title'].toString()}=========");
+  print("===========body:${json.encode(data)}=========");
+
+  // String payload = json.encode(data);
+  //
+  // await flutterLocalNotificationsPlugin.show(0, "data.notification!.title!", "data.notification!.body", platformChannelSpecifics, payload: payload);
+  // await flutterLocalNotificationsPlugin.show(0, data.notification!.title, data.notification!.body, platformChannelSpecifics, payload: payload);
+  //
+  // print("===========body:${data.toString()}====${data['title'].toString()}=========");
 }
 
 _localNotification() {
@@ -119,7 +124,7 @@ _localNotification() {
     // print("========event.data:${jsonDecode(event.data.toString())}=========");
     // print("========event.data:${event.data}=========");
     // showNotificationBG(event);
-    _showNotification(event);
+    // _showNotification(event);
   });
 }
 

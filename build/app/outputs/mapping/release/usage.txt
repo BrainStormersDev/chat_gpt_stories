@@ -434,6 +434,7 @@ kotlin.collections.ArraysKt___ArraysJvmKt:
     private static final java.math.BigInteger sumOfBigInteger(boolean[],kotlin.jvm.functions.Function1)
     private static final java.math.BigInteger sumOfBigInteger(char[],kotlin.jvm.functions.Function1)
     public void <init>()
+io.flutter.plugins.sharedpreferences.R$style
 com.google.android.gms.common.zzab
 kotlinx.coroutines.channels.AbstractChannel$onReceive$1
 kotlinx.coroutines.internal.LocalAtomics_commonKt
@@ -472,8 +473,8 @@ javax.inject.Qualifier
 com.google.android.gms.internal.common.zzv
 com.google.common.collect.MinMaxPriorityQueue$Heap
 com.google.common.util.concurrent.AbstractIdleService$1
-com.google.common.collect.ImmutableSortedMultisetFauxverideShim
 kotlin.io.FileTreeWalk$FileTreeWalkIterator$SingleFileState
+com.google.common.collect.ImmutableSortedMultisetFauxverideShim
 com.google.android.gms.common.api.internal.zaao
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi28
 com.google.common.collect.ImmutableSortedMap$1EntrySet
@@ -577,6 +578,7 @@ com.google.firebase.R$string
 kotlin.collections.builders.MapBuilder$EntriesItr
 kotlin.ULongArray$Iterator
 com.google.common.collect.Synchronized$SynchronizedBiMap
+com.ixsans.text_to_speech.R$attr
 io.flutter.plugins.firebase.messaging.R$color
 com.google.android.gms.internal.measurement.zzfy:
     private void <init>()
@@ -843,8 +845,8 @@ com.google.android.gms.common.wrappers.InstantApps:
     public void <init>()
 androidx.collection.LongSparseArray
 androidx.core.graphics.drawable.WrappedDrawableState
-com.google.common.collect.SingletonImmutableTable
 kotlin.KotlinNullPointerException
+com.google.common.collect.SingletonImmutableTable
 com.google.common.collect.ImmutableAsList$SerializedForm
 com.google.common.util.concurrent.JdkFutureAdapters$ListenableFutureAdapter$1
 androidx.core.view.NestedScrollingChild2
@@ -1086,8 +1088,8 @@ com.google.common.collect.ImmutableAsList
 com.google.common.collect.LexicographicalOrdering
 androidx.core.location.LocationManagerCompat$Api30Impl
 com.google.common.collect.MultimapBuilder$MultimapBuilderWithKeys$1
-com.google.common.cache.CacheBuilderSpec$DurationParser
 kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$2
+com.google.common.cache.CacheBuilderSpec$DurationParser
 com.google.common.collect.TreeRangeSet$RangesByUpperBound$1
 kotlin.UIntArray
 com.google.common.primitives.Doubles$DoubleArrayAsList
@@ -1113,8 +1115,8 @@ androidx.core.location.LocationManagerCompat$PreRGnssStatusTransport
 com.google.common.cache.CacheBuilderSpec$ValueStrengthParser
 androidx.core.location.LocationManagerCompat$CancellableLocationListener
 com.google.common.cache.LocalCache$LoadingValueReference$1
-com.google.common.collect.Lists
 kotlin.text.StringsKt__StringsKt$splitToSequence$2
+com.google.common.collect.Lists
 io.flutter.plugin.common.EventChannel$EventSink:
     public abstract void error(java.lang.String,java.lang.String,java.lang.Object)
     public abstract void endOfStream()
@@ -1170,9 +1172,9 @@ com.google.common.collect.Maps$FilteredEntrySortedMap
 com.google.common.cache.LocalCache$Strength$2
 kotlin.jvm.JvmStatic
 com.google.common.collect.DiscreteDomain
-com.google.common.eventbus.SubscriberRegistry$2
 kotlin.sequences.SequencesKt:
     private void <init>()
+com.google.common.eventbus.SubscriberRegistry$2
 kotlinx.coroutines.flow.FlowKt__TransformKt$runningReduce$$inlined$unsafeFlow$1
 kotlinx.coroutines.flow.SharingStartedKt
 com.google.android.gms.common.zzaa
@@ -1223,9 +1225,9 @@ kotlinx.coroutines.flow.StartedEagerly
 com.google.android.gms.internal.common.zzw
 com.google.common.collect.ImmutableMap$1
 com.google.common.util.concurrent.MoreExecutors$4
-com.google.common.reflect.MutableTypeToInstanceMap$UnmodifiableEntry
 kotlin.collections.IntIterator:
     public final java.lang.Integer next()
+com.google.common.reflect.MutableTypeToInstanceMap$UnmodifiableEntry
 com.google.android.gms.common.api.Api$Client:
     public abstract android.content.Intent getSignInIntent()
     public abstract android.os.IBinder getServiceBrokerBinder()
@@ -1236,8 +1238,8 @@ com.google.android.gms.common.api.Api$Client:
 com.google.common.collect.FilteredEntryMultimap$AsMap$1ValuesImpl
 kotlin.comparisons.ReverseOrderComparator
 kotlinx.coroutines.flow.FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1$2
-com.google.common.eventbus.Dispatcher
 kotlin.jvm.internal.IntSpreadBuilder
+com.google.common.eventbus.Dispatcher
 kotlinx.coroutines.flow.internal.FlowCoroutineKt$scopedFlow$1$1
 com.google.android.gms.internal.measurement.zzke
 androidx.core.content.res.FontResourcesParserCompat$FamilyResourceEntry
@@ -1385,9 +1387,9 @@ com.google.gson.stream.JsonWriter:
     public com.google.gson.stream.JsonWriter jsonValue(java.lang.String)
     public com.google.gson.stream.JsonWriter value(double)
 androidx.core.text.PrecomputedTextCompat$PrecomputedTextFutureTask$PrecomputedTextCallback
-com.google.common.collect.ForwardingNavigableSet$StandardDescendingSet
 kotlin.Experimental$Level
 kotlin.collections.UArraySortingKt
+com.google.common.collect.ForwardingNavigableSet$StandardDescendingSet
 kotlinx.coroutines.flow.internal.ChannelFlowMerge$collectTo$2$1
 kotlinx.coroutines.selects.SelectBuilder$DefaultImpls
 com.google.common.collect.AbstractSortedMultiset
@@ -1550,11 +1552,12 @@ com.google.common.collect.TreeRangeMap$SubRangeMap$SubRangeMapAsMap$3
 com.google.android.gms.common.internal.ResourceUtils
 com.google.android.gms.common.images.ImageManager$OnImageLoadedListener
 androidx.core.graphics.drawable.RoundedBitmapDrawableFactory$DefaultRoundedBitmapDrawable
-com.google.common.cache.AbstractCache$StatsCounter
 kotlin.InitializedLazyImpl
+com.google.common.cache.AbstractCache$StatsCounter
 com.google.common.collect.TreeRangeMap$SubRangeMap$1$1
 kotlin.time.MonotonicTimeSource
 com.google.common.math.StatsAccumulator
+dev.fluttercommunity.plus.packageinfo.R$drawable
 androidx.core.app.JobIntentService$CommandProcessor
 com.google.common.util.concurrent.Striped$WeakSafeLock
 kotlinx.coroutines.flow.FlowKt__ShareKt$launchSharing$1
@@ -1569,8 +1572,8 @@ com.google.common.graph.Traverser$GraphTraverser
 kotlin.Metadata$DefaultImpls
 com.google.common.cache.RemovalListeners$1
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi23$MediaBrowserServiceApi23
-com.google.common.collect.Maps$NavigableKeySet
 kotlin.internal.DynamicExtension
+com.google.common.collect.Maps$NavigableKeySet
 androidx.core.provider.FontsContractCompat$FontRequestCallback
 kotlin.UByteArray
 com.google.common.hash.AbstractStreamingHasher
@@ -1608,8 +1611,8 @@ androidx.core.view.WindowInsetsControllerCompat$Impl30:
     int getSystemBarsBehavior()
     void addOnControllableInsetsChangedListener(androidx.core.view.WindowInsetsControllerCompat$OnControllableInsetsChangedListener)
     void removeOnControllableInsetsChangedListener(androidx.core.view.WindowInsetsControllerCompat$OnControllableInsetsChangedListener)
-com.google.common.graph.MapRetrievalCache
 kotlin.sequences.SequencesKt___SequencesKt$filterIsInstance$1
+com.google.common.graph.MapRetrievalCache
 androidx.core.view.ViewCompat$NestedScrollType
 com.google.android.gms.actions.ItemListIntents
 kotlinx.coroutines.flow.FlowKt__DistinctKt$defaultKeySelector$1
@@ -1727,7 +1730,6 @@ kotlin.collections.ArraysKt___ArraysKt:
     private static final java.lang.Double findLast(double[],kotlin.jvm.functions.Function1)
     private static final java.lang.Boolean findLast(boolean[],kotlin.jvm.functions.Function1)
     private static final java.lang.Character findLast(char[],kotlin.jvm.functions.Function1)
-    public static final java.lang.Object first(java.lang.Object[])
     public static final byte first(byte[])
     public static final short first(short[])
     public static final int first(int[])
@@ -3283,6 +3285,7 @@ kotlin.collections.ArraysKt___ArraysKt:
     public static final float sum(float[])
     public static final double sum(double[])
     public void <init>()
+dev.fluttercommunity.plus.packageinfo.R
 com.google.common.base.Functions$IdentityFunction
 kotlinx.coroutines.flow.FlowKt__ReduceKt$single$2
 com.google.android.gms.internal.base.zaj
@@ -3711,8 +3714,8 @@ kotlin.collections.builders.MapBuilderKeys
 com.google.android.gms.measurement.internal.zzid:
     public static java.lang.Object zza(java.lang.Object)
 kotlin.collections.ArraysKt___ArraysKt$asSequence$$inlined$Sequence$4
-com.google.common.base.JdkPattern
 kotlin.reflect.KProperty1$Getter
+com.google.common.base.JdkPattern
 com.google.common.collect.Multimaps$UnmodifiableSetMultimap
 com.google.android.datatransport.runtime.dagger.internal.SetBuilder
 com.google.android.datatransport.runtime.ForcedSender
@@ -3756,6 +3759,8 @@ android.support.v4.media.MediaBrowserCompat$MediaBrowserImplBase$MediaServiceCon
 kotlinx.coroutines.flow.FlowKt__TransformKt$runningReduce$1$1
 androidx.viewpager.widget.PagerTabStrip$2
 com.google.common.primitives.ImmutableDoubleArray
+com.google.android.gms.internal.measurement.zzjr:
+    public static final synthetic int zzb
 kotlinx.coroutines.channels.ConflatedChannel:
     protected final boolean isBufferAlwaysFull()
     protected final boolean isBufferFull()
@@ -3763,8 +3768,6 @@ kotlinx.coroutines.channels.ConflatedChannel:
     protected java.lang.Object offerSelectInternal(java.lang.Object,kotlinx.coroutines.selects.SelectInstance)
     protected java.lang.Object pollSelectInternal(kotlinx.coroutines.selects.SelectInstance)
     protected void onCancelIdempotent(boolean)
-com.google.android.gms.internal.measurement.zzjr:
-    public static final synthetic int zzb
 kotlin.text.StringsKt___StringsKt$windowedSequence$2
 com.google.firebase.analytics.ktx.R
 com.google.firebase.provider.FirebaseInitProvider:
@@ -3975,8 +3978,8 @@ io.flutter.embedding.android.KeyEmbedderResponder:
     private static final java.lang.String TAG
 kotlinx.coroutines.flow.internal.CombineKt$zipImpl$1$1$2$1$emit$1
 com.google.android.gms.dynamic.RemoteCreator$RemoteCreatorException
-com.google.common.collect.Sets$ImprovedAbstractSet
 kotlin.comparisons.ComparisonsKt__ComparisonsKt$thenBy$2
+com.google.common.collect.Sets$ImprovedAbstractSet
 com.google.android.gms.common.data.DataBuffer
 com.google.common.collect.Multimaps$UnmodifiableMultimap$1
 kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$flatMap$1
@@ -4186,6 +4189,7 @@ io.flutter.embedding.engine.loader.FlutterLoader:
     private static final java.lang.String VMSERVICE_SNAPSHOT_LIBRARY
     private static io.flutter.embedding.engine.loader.FlutterLoader instance
 javax.annotation.CheckForNull
+com.ixsans.text_to_speech.R$styleable
 com.google.common.primitives.Chars
 androidx.core.app.JobIntentService$CompatWorkEnqueuer
 com.google.common.collect.AbstractNavigableMap
@@ -4356,6 +4360,7 @@ com.google.common.cache.CacheBuilderSpec$MaximumSizeParser
 com.google.common.collect.ArrayTable$RowMap
 kotlin.jvm.internal.EnumCompanionObject
 androidx.core.app.TaskStackBuilder$SupportParentable
+kotlin.jvm.jdk8.JvmRepeatableKt
 com.google.firebase.installations.local.PersistedInstallation:
     public void clearForTesting()
     private static final java.lang.String SETTINGS_FILE_NAME_PREFIX
@@ -4366,7 +4371,6 @@ com.google.firebase.installations.local.PersistedInstallation:
     private static final java.lang.String EXPIRES_IN_SECONDS_KEY
     private static final java.lang.String PERSISTED_STATUS_KEY
     private static final java.lang.String FIS_ERROR_KEY
-kotlin.jvm.jdk8.JvmRepeatableKt
 kotlinx.coroutines.flow.SharedFlow
 com.google.android.datatransport.runtime.dagger.internal.GwtIncompatible
 io.flutter.embedding.engine.renderer.FlutterRenderer$ViewportMetrics:
@@ -4387,6 +4391,7 @@ javax.annotation.Nonnull
 com.google.common.collect.FilteredMultimapValues
 com.google.firebase.analytics.connector.internal.zzg
 com.google.common.collect.RegularImmutableMap$KeysOrValuesAsList
+dev.fluttercommunity.plus.packageinfo.R$integer
 kotlin.Result$Companion:
     private final java.lang.Object success(java.lang.Object)
     private final java.lang.Object failure(java.lang.Throwable)
@@ -4396,8 +4401,8 @@ kotlin.internal.PlatformImplementations:
     public kotlin.text.MatchGroup getMatchResultNamedGroup(java.util.regex.MatchResult,java.lang.String)
 com.google.common.hash.BloomFilterStrategies
 kotlinx.coroutines.CompletionHandlerKt
-com.google.common.eventbus.SubscriberExceptionContext
 kotlin.jvm.internal.BooleanSpreadBuilder
+com.google.common.eventbus.SubscriberExceptionContext
 kotlin.system.ProcessKt
 com.google.common.io.CountingOutputStream
 com.google.firebase.encoders.json.JsonDataEncoderBuilder:
@@ -4480,8 +4485,8 @@ androidx.core.app.NotificationCompat$BigPictureStyle$Api16Impl:
     private void <init>()
 kotlin.reflect.KClassesImplKt
 com.google.common.collect.ImmutableSetMultimap
-com.google.common.util.concurrent.AbstractService$IsStoppedGuard
 kotlin.time.TimeSource$Companion
+com.google.common.util.concurrent.AbstractService$IsStoppedGuard
 com.google.common.util.concurrent.FuturesGetChecked$1
 com.google.common.collect.TreeRangeMap$SubRangeMap
 io.flutter.embedding.engine.FlutterEngine:
@@ -4525,9 +4530,9 @@ com.google.common.io.Closeables
 com.google.android.gms.common.internal.zzi
 com.google.android.gms.internal.common.zzy
 kotlin.collections.AbstractMap
+kotlin.time.DurationUnitKt__DurationUnitKt
 com.google.android.gms.common.internal.HideFirstParty
 com.google.common.collect.ComparatorOrdering
-kotlin.time.DurationUnitKt__DurationUnitKt
 com.google.common.collect.AbstractMapBasedMultimap$WrappedSortedSet
 com.google.common.base.Splitter$2$1
 com.google.android.gms.internal.common.zzh
@@ -4582,6 +4587,7 @@ androidx.core.app.AppOpsManagerCompat:
     public static final int MODE_IGNORED
     public static final int MODE_ERRORED
     public static final int MODE_DEFAULT
+dev.fluttercommunity.plus.packageinfo.R$string
 androidx.core.app.Person$Builder:
     void <init>(androidx.core.app.Person)
 androidx.core.view.WindowCompat$Impl30
@@ -4592,10 +4598,10 @@ androidx.core.os.ParcelableCompat$ParcelableCompatCreatorHoneycombMR2
 com.google.common.io.Files
 androidx.core.app.ActivityCompat$2
 com.google.common.hash.Crc32cHashFunction
-kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$maxWith$1
 com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey:
     void <init>(java.lang.Object,java.lang.String)
     public java.lang.String toIdString()
+kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$maxWith$1
 androidx.core.text.util.FindAddress$ZipRange
 kotlin.reflect.KVariance
 kotlin.sequences.SequencesKt__SequencesKt$Sequence$1
@@ -4735,6 +4741,7 @@ kotlin.sequences.FlatteningSequence$iterator$1
 kotlinx.coroutines.CancelFutureOnCancel
 kotlin.DeepRecursiveFunction
 kotlin.collections.ArraysKt___ArraysJvmKt$asList$3
+io.flutter.plugins.sharedpreferences.R$dimen
 com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder$PureJavaComparator
 kotlin.comparisons.ComparisonsKt__ComparisonsKt$thenBy$1
 com.google.android.datatransport.runtime.dagger.multibindings.LongKey
@@ -4750,6 +4757,7 @@ io.flutter.plugins.firebase.messaging.PluginRegistrantException:
     public void <init>()
 kotlinx.coroutines.internal.LockFreeLinkedListNode$makeCondAddOp$1
 com.google.common.cache.RemovalCause$3
+io.flutter.plugins.sharedpreferences.R
 android.support.v4.media.MediaBrowserCompat$ItemCallback:
     public void <init>()
     final android.media.browse.MediaBrowser$ItemCallback mItemCallbackFwk
@@ -4915,6 +4923,7 @@ com.google.firebase.analytics.FirebaseAnalytics:
     public void setUserId(java.lang.String)
     public void setUserProperty(java.lang.String,java.lang.String)
     private java.util.concurrent.ExecutorService zzc
+dev.fluttercommunity.plus.packageinfo.R$layout
 androidx.core.graphics.TypefaceCompat$ResourcesCallbackAdapter
 com.google.common.base.Optional
 com.google.common.primitives.ImmutableIntArray$AsList
@@ -4938,8 +4947,8 @@ com.google.android.gms.common.data.DataBufferRef
 android.support.v4.media.MediaBrowserCompat$MediaBrowserImplBase
 kotlin.sequences.SequencesKt___SequencesKt$runningFold$1
 com.google.common.collect.TreeRangeSet$ComplementRangesByLowerBound
-com.google.common.io.ByteSource$ByteArrayByteSource
 kotlin.coroutines.RestrictsSuspension
+com.google.common.io.ByteSource$ByteArrayByteSource
 com.google.common.collect.AbstractSortedSetMultimap
 com.google.common.net.InetAddresses
 kotlinx.coroutines.debug.internal.DebugProbesKt
@@ -5155,6 +5164,7 @@ com.google.android.datatransport.runtime.scheduling.persistence.SQLiteEventStore
     static final int MAX_RETRIES
     private static final int LOCK_RETRY_BACK_OFF_MILLIS
 com.google.android.gms.common.config.zzc
+androidx.media.MediaBrowserServiceCompat$ServiceBinderImpl$2
 kotlinx.coroutines.internal.LockFreeTaskQueueCore:
     public final java.util.List map(kotlin.jvm.functions.Function1)
     public final boolean isClosed()
@@ -5173,7 +5183,6 @@ kotlinx.coroutines.internal.LockFreeTaskQueueCore:
     public static final int ADD_SUCCESS
     public static final int ADD_FROZEN
     public static final int ADD_CLOSED
-androidx.media.MediaBrowserServiceCompat$ServiceBinderImpl$2
 com.google.common.graph.AbstractValueGraph$1
 com.google.common.collect.ComputationException
 kotlin.coroutines.CoroutineContext$Element:
@@ -5660,6 +5669,7 @@ com.google.gson.JsonPrimitive:
     public synthetic bridge com.google.gson.JsonElement deepCopy()
 androidx.core.util.PatternsCompat
 javax.annotation.meta.TypeQualifierValidator
+com.ixsans.text_to_speech.R$id
 com.google.common.io.CharSequenceReader
 kotlinx.coroutines.channels.SendElementWithUndeliveredHandler
 com.google.android.gms.internal.measurement.zzct
@@ -6301,6 +6311,7 @@ com.google.common.collect.TopKSelector
 androidx.media.MediaBrowserServiceCompat$ResultWrapper
 io.flutter.embedding.engine.loader.FlutterLoader$Settings:
     public void setLogTag(java.lang.String)
+io.flutter.plugins.sharedpreferences.BuildConfig
 com.google.common.collect.StandardTable$Column$EntrySetIterator
 androidx.core.app.ShareCompat
 com.google.common.escape.UnicodeEscaper
@@ -6315,8 +6326,8 @@ io.flutter.embedding.engine.systemchannels.DeferredComponentChannel:
     public void completeInstallError(java.lang.String,java.lang.String)
     private static final java.lang.String TAG
 com.google.common.graph.AbstractUndirectedNetworkConnections
-com.google.common.cache.LocalCache$WeakAccessEntry
 kotlin.collections.unsigned.UArraysKt___UArraysKt$withIndex$3
+com.google.common.cache.LocalCache$WeakAccessEntry
 com.google.common.util.concurrent.ListeningScheduledExecutorService
 androidx.annotation.TransitionRes
 com.google.android.gms.common.api.GoogleApi$Settings$Builder:
@@ -6443,15 +6454,15 @@ androidx.fragment.app.DialogFragment:
 com.google.android.gms.auth.api.signin.zaa
 kotlinx.coroutines.channels.ArrayBroadcastChannel
 kotlinx.coroutines.flow.SharedFlowImpl$Emitter
-com.google.common.collect.ImmutableTable$Builder
 io.flutter.app.FlutterFragmentActivity
+com.google.common.collect.ImmutableTable$Builder
 kotlinx.coroutines.CancellableContinuation$DefaultImpls:
     public static synthetic boolean cancel$default(kotlinx.coroutines.CancellableContinuation,java.lang.Throwable,int,java.lang.Object)
 com.google.android.datatransport.runtime.dagger.multibindings.ClassKey
 kotlinx.coroutines.flow.FlowKt__LimitKt$transformWhile$1$invokeSuspend$$inlined$collectWhile$1$1
 com.google.common.reflect.TypeToken$TypeCollector
-com.google.android.gms.common.server.response.FastJsonResponse$Field
 kotlin.collections.MutableMapWithDefault
+com.google.android.gms.common.server.response.FastJsonResponse$Field
 com.google.firebase.datatransport.R$integer
 androidx.core.view.DisplayCutoutCompat
 android.support.v4.media.MediaBrowserCompat$SearchCallback:
@@ -6992,6 +7003,7 @@ com.google.common.graph.MutableNetwork
 com.google.android.gms.cloudmessaging.R
 kotlinx.coroutines.flow.StateFlowSlot
 androidx.annotation.experimental.Experimental$Level
+dev.fluttercommunity.plus.packageinfo.R$attr
 com.google.common.hash.AbstractNonStreamingHashFunction
 kotlin.ranges.URangesKt
 com.google.common.collect.Sets$SetView
@@ -7100,6 +7112,11 @@ android.support.v4.media.session.IMediaSession$Stub:
     static final int TRANSACTION_setShuffleModeEnabledRemoved
     static final int TRANSACTION_setShuffleMode
     static final int TRANSACTION_sendCustomAction
+io.flutter.plugins.sharedpreferences.MethodCallHandlerImpl:
+    private static final java.lang.String SHARED_PREFERENCES_NAME
+    private static final java.lang.String LIST_IDENTIFIER
+    private static final java.lang.String BIG_INTEGER_PREFIX
+    private static final java.lang.String DOUBLE_PREFIX
 com.google.common.collect.HashBiMap$EntryForValue
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplBase$3
 kotlinx.coroutines.flow.FlowKt__EmittersKt$invokeSafely$1
@@ -7188,9 +7205,9 @@ androidx.loader.content.Loader:
     boolean mContentChanged
     boolean mProcessingChange
 com.google.common.util.concurrent.AbstractService
+kotlin.collections.AbstractList$Companion
 com.google.common.base.Defaults
 com.google.common.util.concurrent.Futures$InCompletionOrderFuture
-kotlin.collections.AbstractList$Companion
 kotlin.DeepRecursiveScope
 com.google.android.gms.auth.api.signin.GoogleSignInOptions
 androidx.core.graphics.drawable.WrappedDrawable
@@ -7330,8 +7347,8 @@ kotlin.comparisons.ComparisonsKt___ComparisonsJvmKt:
     public static final varargs float minOf(float,float[])
     public static final varargs double minOf(double,double[])
     public void <init>()
-com.google.common.util.concurrent.FuturesGetChecked$GetCheckedTypeValidatorHolder$ClassValueValidator
 kotlin.collections.ArraysKt___ArraysKt$withIndex$2
+com.google.common.util.concurrent.FuturesGetChecked$GetCheckedTypeValidatorHolder$ClassValueValidator
 com.google.android.gms.internal.base.zam
 kotlin.collections.CollectionsKt__IteratorsJVMKt:
     public static final java.util.Iterator iterator(java.util.Enumeration)
@@ -7356,8 +7373,8 @@ kotlinx.coroutines.channels.AbstractChannel$Itr:
 com.google.common.collect.LinkedHashMultimap$ValueSetLink
 com.google.android.gms.common.api.internal.ListenerHolders
 androidx.core.provider.SelfDestructiveThread$2$1
-com.google.j2objc.annotations.WeakOuter
 org.intellij.lang.annotations.JdkConstants$TitledBorderTitlePosition
+com.google.j2objc.annotations.WeakOuter
 com.google.common.collect.MapMakerInternalMap$1
 androidx.core.view.accessibility.AccessibilityViewCommand
 com.google.common.collect.MapMakerInternalMap$WeakKeyWeakValueSegment
@@ -7587,8 +7604,8 @@ kotlinx.coroutines.flow.FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$
 kotlinx.coroutines.flow.internal.AbortFlowException
 kotlinx.coroutines.DisposeOnCancel
 com.google.common.util.concurrent.DirectExecutor
-com.google.common.reflect.Types$JavaVersion$3
 kotlin.io.FileTreeWalk$FileTreeWalkIterator$TopDownDirectoryState
+com.google.common.reflect.Types$JavaVersion$3
 kotlinx.coroutines.channels.TickerChannelsKt
 com.google.common.cache.LongAdder
 kotlinx.coroutines.SupervisorJobImpl
@@ -7891,8 +7908,8 @@ com.google.android.gms.common.api.internal.GoogleApiManager:
     public final com.google.android.gms.tasks.Task zar(com.google.android.gms.common.api.GoogleApi,com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey,int)
     public final void zaw(com.google.android.gms.common.api.GoogleApi,int,com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl)
 kotlinx.coroutines.flow.FlowKt__ZipKt$combineTransform$$inlined$combineTransformUnsafe$FlowKt__ZipKt$1$1
-kotlinx.coroutines.channels.ProducerCoroutine
 kotlin.coroutines.SafeContinuation$Companion
+kotlinx.coroutines.channels.ProducerCoroutine
 com.google.common.collect.TreeTraverser
 kotlin.TuplesKt:
     public static final java.util.List toList(kotlin.Pair)
@@ -7962,9 +7979,10 @@ androidx.core.view.ViewCompat$Api21Impl
 com.google.common.collect.Tables$TransformedTable$2
 com.google.common.collect.AbstractMapBasedMultiset$Itr
 com.google.common.util.concurrent.AggregateFutureState$SynchronizedAtomicHelper
-com.google.android.gms.internal.common.zzab
 androidx.core.telephony.TelephonyManagerCompat$Api30Impl
+com.google.android.gms.internal.common.zzab
 com.google.common.collect.Maps$3
+io.flutter.plugins.sharedpreferences.R$drawable
 com.google.firebase.messaging.Constants$AnalyticsKeys
 com.google.common.base.Joiner$3
 com.google.common.collect.MapMakerInternalMap
@@ -8002,6 +8020,7 @@ androidx.fragment.app.FragmentActivity:
     static final java.lang.String ALLOCATED_REQUEST_INDICIES_TAG
     static final java.lang.String REQUEST_FRAGMENT_WHO_TAG
     static final int MAX_NUM_PENDING_FRAGMENT_ACTIVITY_RESULTS
+com.ixsans.text_to_speech.R$integer
 com.google.common.collect.BoundType
 org.intellij.lang.annotations.JdkConstants$ListSelectionMode
 io.flutter.embedding.engine.systemchannels.MouseCursorChannel:
@@ -8046,8 +8065,9 @@ com.dexterous.flutterlocalnotifications.utils.LongUtils:
 kotlin.jvm.internal.CollectionToArray:
     private static final java.lang.Object[] toArrayImpl(java.util.Collection,kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function2)
     private static final int MAX_SIZE
+dev.fluttercommunity.plus.packageinfo.PackageInfoPlugin:
+    private static final java.lang.String CHANNEL_NAME
 kotlin.reflect.KProperty0$Getter
-com.google.common.base.ExtraObjectsMethodsForWeb
 kotlin.text.StringsKt__StringsJVMKt:
     private static final int nativeIndexOf(java.lang.String,char,int)
     private static final int nativeIndexOf(java.lang.String,java.lang.String,int)
@@ -8131,6 +8151,7 @@ kotlin.text.StringsKt__StringsJVMKt:
     public static final java.lang.String repeat(java.lang.CharSequence,int)
     public static final java.util.Comparator getCASE_INSENSITIVE_ORDER(kotlin.jvm.internal.StringCompanionObject)
     public void <init>()
+com.google.common.base.ExtraObjectsMethodsForWeb
 com.google.common.collect.Sets$FilteredSortedSet
 com.google.common.io.LineReader$1
 com.google.common.collect.Multimaps$Keys
@@ -8138,8 +8159,8 @@ com.google.android.gms.common.api.zah
 androidx.legacy.content.WakefulBroadcastReceiver:
     private static final java.lang.String EXTRA_WAKE_LOCK_ID
 com.google.android.gms.common.data.DataHolder
-com.google.common.collect.StandardTable$ColumnMap$ColumnMapEntrySet
 kotlin.jvm.internal.ShortCompanionObject
+com.google.common.collect.StandardTable$ColumnMap$ColumnMapEntrySet
 androidx.core.content.pm.PackageInfoCompat
 com.google.common.collect.Maps$EntryFunction$2
 com.google.firebase.installations.interop.R
@@ -8242,8 +8263,8 @@ com.google.gson.internal.bind.TypeAdapters:
 com.google.common.util.concurrent.AbstractListeningExecutorService
 kotlin.io.FilesKt__UtilsKt$copyRecursively$1
 kotlinx.coroutines.debug.internal.ConcurrentWeakMap$Core$KeyValueIterator
-com.google.common.collect.Tables$TransformedTable$1
 kotlin.sequences.SequencesKt__SequencesKt$shuffled$1
+com.google.common.collect.Tables$TransformedTable$1
 androidx.core.provider.FontRequestWorker$3
 com.google.firebase.encoders.json.JsonValueObjectEncoderContext:
     private void <init>(com.google.firebase.encoders.json.JsonValueObjectEncoderContext)
@@ -8291,6 +8312,7 @@ com.google.firebase.messaging.FcmBroadcastProcessor:
     public static void reset()
     private static final java.lang.String EXTRA_BINARY_DATA
     private static final java.lang.String EXTRA_BINARY_DATA_BASE_64
+com.ixsans.text_to_speech.R$style
 com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl
 kotlin.text.jdk8.RegexExtensionsJDK8Kt
 com.google.common.collect.ImmutableList$SerializedForm
@@ -8336,8 +8358,8 @@ io.flutter.plugins.urllauncher.MethodCallHandlerImpl:
     private static final java.lang.String TAG
 com.google.common.graph.DirectedGraphConnections$PredAndSucc
 com.google.android.gms.common.data.DataBufferObserver$Observable
-com.google.common.collect.MapMakerInternalMap$AbstractStrongKeyEntry
 kotlin.ranges.ClosedRange$DefaultImpls
+com.google.common.collect.MapMakerInternalMap$AbstractStrongKeyEntry
 android.support.v4.media.session.MediaControllerCompat$MediaControllerImpl
 com.google.android.datatransport.runtime.dagger.multibindings.IntKey
 com.google.common.collect.UnmodifiableIterator
@@ -8346,19 +8368,19 @@ com.google.common.collect.StandardTable$Row$1
 com.google.common.collect.AbstractIndexedListIterator
 kotlinx.coroutines.ObsoleteCoroutinesApi
 com.google.common.util.concurrent.Striped$3
-com.google.gson.stream.JsonScope
 kotlin.contracts.ExperimentalContracts
-com.google.common.collect.TreeRangeSet$SubRangeSet
+com.google.gson.stream.JsonScope
 kotlin.StandardKt__StandardKt
+com.google.common.collect.TreeRangeSet$SubRangeSet
 kotlin.math.MathKt__MathHKt
 com.google.common.hash.Murmur3_128HashFunction
 kotlinx.coroutines.flow.FlowKt__DelayKt$debounceInternal$1
-kotlinx.coroutines.flow.FlowKt__TransformKt$map$$inlined$unsafeTransform$1
 com.google.android.gms.common.internal.BaseGmsClient$BaseConnectionCallbacks:
     public static final int CAUSE_SERVICE_DISCONNECTED
     public static final int CAUSE_DEAD_OBJECT_EXCEPTION
-com.google.common.base.CharMatcher$BreakingWhitespace
+kotlinx.coroutines.flow.FlowKt__TransformKt$map$$inlined$unsafeTransform$1
 kotlin.reflect.KMutableProperty
+com.google.common.base.CharMatcher$BreakingWhitespace
 androidx.legacy.coreutils.R$styleable
 kotlinx.coroutines.flow.FlowKt__EmittersKt$onStart$$inlined$unsafeFlow$1
 androidx.viewpager.R$id
@@ -8545,6 +8567,7 @@ com.google.common.collect.Synchronized$SynchronizedAsMapEntries
 com.google.common.collect.Synchronized$SynchronizedAsMap
 com.google.common.base.CharMatcher$BitSetMatcher
 com.google.common.util.concurrent.Striped$WeakSafeReadWriteLock
+com.ixsans.text_to_speech.R$layout
 com.google.gson.internal.LazilyParsedNumber:
     private java.lang.Object writeReplace()
     private void readObject(java.io.ObjectInputStream)
@@ -8756,8 +8779,8 @@ com.dexterous.flutterlocalnotifications.R$styleable
 kotlinx.coroutines.flow.ReadonlySharedFlow
 kotlin.SafePublicationLazyImpl
 kotlin.time.DurationUnitKt__DurationUnitJvmKt
-com.google.common.io.ByteProcessor
 kotlin.coroutines.jvm.internal.RestrictedSuspendLambda
+com.google.common.io.ByteProcessor
 androidx.core.location.LocationManagerCompat$PreRGnssStatusTransport$4
 com.google.common.collect.Tables$TransposeTable
 com.google.common.collect.Maps$UnmodifiableEntrySet
@@ -8808,6 +8831,7 @@ kotlin.ranges.ULongRange
 com.google.j2objc.annotations.Weak
 com.google.android.gms.internal.common.zzc:
     public static void zze(android.os.Parcel,android.os.Parcelable)
+com.ixsans.text_to_speech.R$string
 com.google.android.gms.common.api.zag
 io.flutter.plugin.common.BinaryCodec
 kotlinx.coroutines.channels.SendChannel:
@@ -8821,8 +8845,8 @@ com.google.common.io.MultiReader
 android.support.v4.media.MediaMetadataCompat$BitmapKey
 com.google.android.gms.common.stats.ConnectionTracker:
     public void unbindServiceSafe(android.content.Context,android.content.ServiceConnection)
-com.google.common.collect.ForwardingSortedSetMultimap
 kotlin.reflect.KTypeParameter
+com.google.common.collect.ForwardingSortedSetMultimap
 com.google.common.math.Quantiles$ScaleAndIndexes
 com.google.common.collect.AbstractMapBasedMultimap
 kotlin.text.StringsKt__StringsKt:
@@ -9176,8 +9200,8 @@ com.google.common.base.Suppliers$SupplierFunctionImpl
 kotlinx.coroutines.flow.internal.ChannelFlowMerge$collectTo$2$emit$1
 com.google.android.gms.common.api.internal.zaw
 androidx.core.view.ActionProvider$VisibilityListener
-com.google.common.cache.LocalCache$SoftValueReference
 com.google.android.gms.auth.api.signin.zad
+com.google.common.cache.LocalCache$SoftValueReference
 com.google.common.base.CharMatcher$ForPredicate
 com.google.firebase.datatransport.R$dimen
 androidx.annotation.ContentView
@@ -9344,8 +9368,8 @@ androidx.savedstate.Recreator:
 com.google.common.hash.PrimitiveSink
 androidx.core.view.accessibility.AccessibilityManagerCompat
 kotlinx.coroutines.flow.FlowKt__ZipKt$combine$$inlined$unsafeFlow$2$1
-com.google.common.base.Splitter$SplittingIterator
 androidx.core.view.GestureDetectorCompat$GestureDetectorCompatImplJellybeanMr2
+com.google.common.base.Splitter$SplittingIterator
 io.flutter.embedding.engine.loader.ApplicationInfoLoader:
     public void <init>()
     public static final java.lang.String NETWORK_POLICY_METADATA_KEY
@@ -9391,8 +9415,8 @@ kotlin.collections.builders.MapBuilder
 com.google.common.collect.ImmutableBiMap$SerializedForm
 com.google.common.collect.TreeMultiset$AvlNode
 androidx.core.app.ActivityCompat$SharedElementCallback21Impl
-com.google.common.collect.TreeTraverser$PostOrderNode
 kotlin.collections.ArraysKt___ArraysKt$withIndex$4
+com.google.common.collect.TreeTraverser$PostOrderNode
 com.google.common.collect.RangeGwtSerializationDependencies
 io.flutter.embedding.engine.plugins.service.ServiceAware$OnModeChangeListener
 androidx.versionedparcelable.VersionedParcelParcel:
@@ -9412,8 +9436,8 @@ androidx.versionedparcelable.VersionedParcelParcel:
     private static final java.lang.String TAG
 com.google.common.collect.FilteredEntryMultimap$Keys$1
 com.google.common.reflect.TypeToken$TypeSet
-com.google.common.base.Optional$1$1
 kotlin.collections.builders.MapBuilder$Itr
+com.google.common.base.Optional$1$1
 com.americanlyceum.chat_gpt_stories.R$color
 com.google.android.gms.common.api.internal.zacm
 androidx.core.app.RemoteInput$Builder:
@@ -9438,11 +9462,11 @@ kotlinx.coroutines.Job:
     public abstract kotlinx.coroutines.DisposableHandle invokeOnCompletion(kotlin.jvm.functions.Function1)
     public abstract kotlinx.coroutines.Job plus(kotlinx.coroutines.Job)
 com.google.common.util.concurrent.CycleDetectingLockFactory$Policies$3
+androidx.media.MediaBrowserServiceCompat$ServiceBinderImpl
 com.google.android.gms.tasks.zzp:
     public final void zzc()
-androidx.media.MediaBrowserServiceCompat$ServiceBinderImpl
-com.google.common.eventbus.EventBus$LoggingHandler
 kotlin.text.CharCategory$Companion
+com.google.common.eventbus.EventBus$LoggingHandler
 kotlinx.coroutines.flow.FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$2$1
 kotlinx.coroutines.flow.FlowKt__EmittersKt$unsafeTransform$1$1
 kotlinx.coroutines.tasks.TasksKt
@@ -9541,8 +9565,8 @@ androidx.core.view.inputmethod.InputContentInfoCompat$InputContentInfoCompatApi2
 kotlin.jvm.internal.StringCompanionObject
 androidx.loader.content.ModernAsyncTask$4
 com.google.errorprone.annotations.concurrent.UnlockMethod
-com.google.common.collect.Maps$10
 androidx.viewpager.widget.ViewPager$PageTransformer
+com.google.common.collect.Maps$10
 com.google.common.collect.CompactHashMap$ValuesView
 androidx.core.view.accessibility.AccessibilityManagerCompat$TouchExplorationStateChangeListener
 kotlin.time.MonoTimeSourceKt
@@ -9591,13 +9615,14 @@ io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding:
 com.google.common.reflect.TypeVisitor
 com.google.gson.internal.JavaVersion:
     private void <init>()
-com.google.common.base.Splitter$4$1
-com.google.common.graph.DirectedGraphConnections
 kotlin.jvm.functions.Function8:
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+com.google.common.base.Splitter$4$1
+com.google.common.graph.DirectedGraphConnections
 kotlinx.coroutines.flow.FlowKt__DelayKt$debounceInternal$1$3$1
 androidx.media.MediaSessionManagerImplApi21
 com.google.firebase.analytics.connector.AnalyticsConnector$AnalyticsConnectorHandle
+dev.fluttercommunity.plus.packageinfo.R$color
 com.google.firebase.analytics.connector.R
 kotlin.collections.MovingSubList
 androidx.annotation.InterpolatorRes
@@ -9686,6 +9711,7 @@ com.google.android.gms.common.api.internal.zaaw
 com.google.common.primitives.Shorts
 androidx.core.graphics.PathParser$PathDataNode
 com.google.common.collect.ImmutableEnumSet$1
+dev.fluttercommunity.plus.packageinfo.R$styleable
 kotlinx.coroutines.selects.SelectBuilderImpl
 kotlinx.coroutines.channels.TickerChannelsKt$fixedDelayTicker$1
 com.google.common.cache.LocalCache$ValueIterator
@@ -9791,8 +9817,8 @@ com.google.common.base.Predicates$ObjectPredicate$1
 com.google.common.collect.ObjectCountLinkedHashMap
 androidx.viewpager.widget.ViewPager$2
 com.tekartik.sqflite.R$color
-com.google.common.collect.DescendingImmutableSortedMultiset
 kotlin.collections.CollectionsKt__CollectionsKt$binarySearchBy$1
+com.google.common.collect.DescendingImmutableSortedMultiset
 kotlinx.coroutines.debug.AgentPremain$DebugProbesTransformer
 io.flutter.view.FlutterView
 com.google.common.collect.SortedLists$1
@@ -9873,6 +9899,9 @@ io.flutter.plugins.firebase.core.GeneratedAndroidFirebaseCore$PigeonFirebaseOpti
     public java.lang.String getIosBundleId()
     public java.lang.String getAppGroupId()
 com.google.android.gms.common.api.internal.zae
+io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin:
+    public static void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
+    private static final java.lang.String CHANNEL_NAME
 kotlinx.coroutines.channels.Channel$Factory:
     public static final int UNLIMITED
     public static final int RENDEZVOUS
@@ -9894,8 +9923,8 @@ com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSc
     static final java.lang.String BACKEND_NAME
     static final java.lang.String EVENT_PRIORITY
     static final java.lang.String EXTRAS
-com.google.common.base.PairwiseEquivalence
 kotlin.jvm.internal.TypeReference
+com.google.common.base.PairwiseEquivalence
 com.google.android.gms.auth.api.signin.zae
 com.google.common.cache.LongAddable
 com.google.common.eventbus.Dispatcher$ImmediateDispatcher
@@ -9985,9 +10014,9 @@ com.google.android.gms.common.zaa
 kotlinx.coroutines.flow.FlowKt__CountKt$count$1
 com.google.android.gms.common.api.zad
 com.google.common.base.CharMatcher$AnyOf
+kotlin.jvm.internal.LocalVariableReferencesKt
 com.google.firebase.heartbeatinfo.HeartBeatConsumerComponent:
     private void <init>()
-kotlin.jvm.internal.LocalVariableReferencesKt
 com.google.common.collect.TreeMultimap
 com.google.common.hash.HashCode$BytesHashCode
 com.google.common.collect.ForwardingNavigableMap$StandardNavigableKeySet
@@ -10022,6 +10051,7 @@ com.google.common.collect.Synchronized$SynchronizedCollection
 kotlin.concurrent.LocksKt
 com.google.gson.internal.sql.SqlTypesSupport:
     private void <init>()
+kotlin.ULong
 com.google.gson.internal.bind.TypeAdapters$25:
     private static final java.lang.String YEAR
     private static final java.lang.String MONTH
@@ -10029,7 +10059,6 @@ com.google.gson.internal.bind.TypeAdapters$25:
     private static final java.lang.String HOUR_OF_DAY
     private static final java.lang.String MINUTE
     private static final java.lang.String SECOND
-kotlin.ULong
 com.google.firebase.installations.FirebaseInstallations$2
 com.google.android.gms.internal.measurement.zzcw
 com.google.android.gms.internal.base.zaa:
@@ -10037,8 +10066,8 @@ com.google.android.gms.internal.base.zaa:
 com.google.android.gms.signin.internal.zaf:
     public final void zae(int)
     public final void zaf(com.google.android.gms.common.internal.IAccountAccessor,int,boolean)
-javax.annotation.Detainted
 org.intellij.lang.annotations.JdkConstants$TabPlacement
+javax.annotation.Detainted
 com.google.firebase.installations.interop.R$id
 kotlin.jvm.internal.ClassReference:
     public static synthetic void getTypeParameters$annotations()
@@ -10097,10 +10126,10 @@ androidx.core.app.Person:
     private static final java.lang.String IS_IMPORTANT_KEY
 com.google.android.datatransport.Transport:
     public abstract void schedule(com.google.android.datatransport.Event,com.google.android.datatransport.TransportScheduleCallback)
-com.google.common.collect.ForwardingNavigableMap$StandardDescendingMap$1
 kotlin.internal.PlatformImplementationsKt:
     private static final synthetic java.lang.Object castToBaseType(java.lang.Object)
     public static final boolean apiVersionIsAtLeast(int,int,int)
+com.google.common.collect.ForwardingNavigableMap$StandardDescendingMap$1
 com.google.common.util.concurrent.TrustedListenableFutureTask$TrustedFutureInterruptibleTask
 com.google.common.cache.CacheLoader
 androidx.annotation.StyleRes
@@ -10110,8 +10139,8 @@ androidx.core.app.NotificationCompat$NotificationVisibility
 kotlinx.coroutines.flow.internal.ChannelFlowMerge
 kotlin.math.UMathKt
 kotlin.sequences.SequencesKt___SequencesKt$zipWithNext$2
-com.google.common.base.CharMatcher$Or
 kotlin.sequences.SequencesKt__SequencesKt$flatMapIndexed$1
+com.google.common.base.CharMatcher$Or
 com.google.common.util.concurrent.Striped$1
 kotlinx.coroutines.CompletedWithCancellation:
     public static synthetic kotlinx.coroutines.CompletedWithCancellation copy$default(kotlinx.coroutines.CompletedWithCancellation,java.lang.Object,kotlin.jvm.functions.Function1,int,java.lang.Object)
@@ -10148,9 +10177,9 @@ com.google.common.util.concurrent.RateLimiter
 com.google.common.base.CharMatcher$Digit
 kotlin.text.RegexKt
 com.google.common.math.PairedStatsAccumulator
-com.google.common.collect.RegularContiguousSet$2
 kotlin.jvm.functions.Function19:
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+com.google.common.collect.RegularContiguousSet$2
 com.dexterous.flutterlocalnotifications.R$id
 kotlinx.coroutines.flow.FlowKt__LimitKt$collectWhile$collector$1$emit$1
 kotlin.collections.builders.MapBuilderEntries
@@ -10218,12 +10247,12 @@ android.support.v4.media.MediaMetadataCompat$Builder
 javax.annotation.concurrent.Immutable
 com.google.firebase.datatransport.R$style
 kotlinx.coroutines.flow.FlowKt__ErrorsKt$retryWhen$$inlined$unsafeFlow$1$1
-com.google.common.reflect.AbstractInvocationHandler
 kotlin.collections.MapsKt__MapWithDefaultKt:
     public static final java.lang.Object getOrImplicitDefaultNullable(java.util.Map,java.lang.Object)
     public static final java.util.Map withDefault(java.util.Map,kotlin.jvm.functions.Function1)
     public static final java.util.Map withDefaultMutable(java.util.Map,kotlin.jvm.functions.Function1)
     public void <init>()
+com.google.common.reflect.AbstractInvocationHandler
 kotlin.ranges.CharProgression$Companion
 kotlin.comparisons.ComparisonsKt__ComparisonsKt$compareBy$3
 com.google.common.collect.ForwardingNavigableMap$StandardDescendingMap
@@ -10315,6 +10344,7 @@ kotlinx.coroutines.flow.FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$
 androidx.loader.R$styleable
 kotlinx.coroutines.flow.FlowKt__LimitKt$take$$inlined$unsafeFlow$1$1
 com.google.common.graph.ImmutableValueGraph$1
+com.ixsans.text_to_speech.R$dimen
 com.google.common.collect.Iterators
 com.google.common.primitives.UnsignedInts$LexicographicalComparator
 com.google.common.collect.Maps$UnmodifiableBiMap
@@ -10335,6 +10365,8 @@ androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 com.google.common.collect.ImmutableBiMap
 com.google.common.collect.HashMultimap
 com.google.android.gms.common.util.concurrent.HandlerExecutor
+io.flutter.plugins.sharedpreferences.R$id
+dev.fluttercommunity.plus.packageinfo.R$id
 kotlin.reflect.KMutableProperty1$Setter
 androidx.fragment.app.FragmentHostCallback:
     public void <init>(android.content.Context,android.os.Handler,int)
@@ -10479,8 +10511,8 @@ kotlinx.coroutines.flow.LintKt
 com.google.android.gms.common.api.internal.IStatusCallback
 com.google.common.collect.MultimapBuilder$LinkedHashSetSupplier
 com.google.common.collect.ArrayTable$ArrayMap$1
-androidx.lifecycle.ComputableLiveData$3
 androidx.core.location.GnssStatusCompat
+androidx.lifecycle.ComputableLiveData$3
 com.google.common.eventbus.Subscribe
 androidx.core.graphics.drawable.RoundedBitmapDrawable21
 kotlinx.coroutines.flow.internal.ChannelFlowOperator
@@ -10523,6 +10555,7 @@ androidx.core.widget.NestedScrollView$OnScrollChangeListener
 android.support.v4.media.MediaBrowserCompat$MediaBrowserImplApi21$5
 com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection
 com.google.common.collect.ComparisonChain$InactiveComparisonChain
+com.ixsans.text_to_speech.R
 kotlinx.coroutines.tasks.TasksKt$awaitImpl$2$2
 androidx.customview.R$string
 android.support.v4.media.MediaBrowserCompat$CustomActionResultReceiver:
@@ -10636,6 +10669,7 @@ kotlin.collections.MapsKt__MapsKt:
     private static final void minusAssign(java.util.Map,kotlin.sequences.Sequence)
     public void <init>()
 kotlin.NotImplementedError
+dev.fluttercommunity.plus.packageinfo.R$dimen
 com.google.android.gms.common.internal.safeparcel.SafeParcelable$Indicator
 kotlin.jvm.JvmName
 com.google.android.gms.common.api.TransformedResult
@@ -10708,6 +10742,7 @@ androidx.activity.R$integer
 kotlinx.coroutines.debug.internal.DebuggerInfo
 javax.annotation.meta.Exclusive
 com.google.android.gms.internal.measurement.zzdh
+com.google.android.datatransport.runtime.dagger.internal.MapFactory$1
 com.google.common.base.Throwables:
     private void <init>()
     public static void throwIfInstanceOf(java.lang.Throwable,java.lang.Class)
@@ -10730,10 +10765,10 @@ com.google.common.base.Throwables:
     static synthetic java.lang.reflect.Method access$300()
     private static final java.lang.String JAVA_LANG_ACCESS_CLASSNAME
     static final java.lang.String SHARED_SECRETS_CLASSNAME
-com.google.android.datatransport.runtime.dagger.internal.MapFactory$1
 kotlinx.coroutines.flow.internal.SafeCollector_commonKt:
     public static final kotlinx.coroutines.flow.Flow unsafeFlow(kotlin.jvm.functions.Function2)
 com.google.common.collect.AbstractBiMap$1
+io.flutter.plugins.sharedpreferences.R$string
 kotlinx.coroutines.flow.internal.ChannelFlowTransformLatest$flowCollect$3
 kotlinx.coroutines.flow.ChannelFlowBuilder
 com.google.common.primitives.Floats$LexicographicalComparator
@@ -10837,6 +10872,7 @@ com.google.common.base.Preconditions:
 kotlin.concurrent.TimersKt
 com.google.common.collect.TreeTraverser$PostOrderIterator
 kotlin.comparisons.ComparisonsKt__ComparisonsKt$compareByDescending$2
+dev.fluttercommunity.plus.packageinfo.R$style
 com.tekartik.sqflite.R$id
 com.google.android.gms.internal.base.zaq:
     public void <init>()
@@ -10869,6 +10905,7 @@ com.google.android.gms.common.util.JsonUtils
 com.google.common.graph.EndpointPair$Ordered
 android.support.v4.media.session.PlaybackStateCompat$ShuffleMode
 com.google.common.collect.Maps$8
+io.flutter.plugins.sharedpreferences.R$layout
 kotlinx.coroutines.flow.FlowKt__LimitKt$drop$2$1
 com.google.common.primitives.Ints
 com.google.firebase.dynamicloading.ComponentLoader:
@@ -10896,8 +10933,8 @@ com.google.android.datatransport.runtime.logging.Logging:
     private static final java.lang.String LOG_PREFIX
     private static final int MAX_LOG_TAG_SIZE_IN_SDK_N
 kotlin.jvm.internal.ArrayByteIterator
-com.google.common.primitives.UnsignedLongs$ParseOverflowDetection
 kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$9
+com.google.common.primitives.UnsignedLongs$ParseOverflowDetection
 kotlin.reflect.KProperty1
 kotlin.sequences.SequencesKt___SequencesKt$elementAt$1
 com.google.common.collect.StandardTable$Column$Values
@@ -10943,9 +10980,9 @@ kotlinx.coroutines.JobSupportKt:
     private static final int TRUE
 androidx.core.app.SharedElementCallback$OnSharedElementsReadyListener
 androidx.core.view.MenuCompat
+com.google.android.gms.common.internal.zzaa
 com.google.android.gms.common.internal.TelemetryLogging:
     private void <init>()
-com.google.android.gms.common.internal.zzaa
 com.google.common.collect.Maps$DescendingMap$1EntrySetImpl
 io.flutter.plugin.common.ActivityLifecycleListener
 com.google.common.collect.AbstractSetMultimap
@@ -11043,8 +11080,8 @@ kotlin.collections.ArraysKt__ArraysKt:
 com.google.common.io.Files$2
 com.google.common.collect.StandardTable$ColumnKeyIterator
 org.jetbrains.annotations.NonNls
-com.google.common.primitives.Longs$LongConverter
 kotlin.text.FlagEnum
+com.google.common.primitives.Longs$LongConverter
 androidx.core.content.SharedPreferencesCompat$EditorCompat$Helper
 com.google.common.collect.Collections2$FilteredCollection
 androidx.core.view.DragStartHelper$1
@@ -11052,8 +11089,8 @@ kotlin.coroutines.SafeContinuation
 kotlinx.coroutines.flow.FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1$2
 kotlin.random.KotlinRandom$Companion
 com.google.android.gms.common.api.internal.zacj
-com.google.common.collect.ComparisonChain$1
 kotlin.random.PlatformRandom$Companion
+com.google.common.collect.ComparisonChain$1
 kotlinx.coroutines.scheduling.CoroutineSchedulerKt
 com.google.common.collect.Maps$SortedAsMapView
 androidx.media.AudioFocusRequestCompat$FocusGainType
@@ -11173,8 +11210,8 @@ com.google.firebase.messaging.SendException:
     public static final int ERROR_TOO_MANY_MESSAGES
 androidx.core.view.WindowInsetsAnimationCompat$Impl
 android.support.v4.os.IResultReceiver$Default
-com.google.common.collect.FilteredSetMultimap
 kotlin.text.MatchResult
+com.google.common.collect.FilteredSetMultimap
 com.google.common.collect.Maps$FilteredEntryBiMap$1
 kotlinx.coroutines.flow.FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$8
 androidx.viewpager.widget.ViewPager$ViewPositionComparator
@@ -11332,8 +11369,8 @@ androidx.core.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNo
 android.support.v4.media.MediaBrowserCompat$MediaBrowserImplApi21$4
 com.google.android.gms.common.api.internal.RegistrationMethods
 com.google.common.collect.TreeTraverser$4
-com.google.common.collect.Lists$1
 kotlin.collections.CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1
+com.google.common.collect.Lists$1
 androidx.core.graphics.TypefaceCompatApi24Impl
 kotlinx.coroutines.debug.AgentPremain
 com.google.firebase.installations.interop.R$dimen
@@ -11443,9 +11480,10 @@ com.google.common.collect.ForwardingMap
 com.google.android.gms.common.api.internal.LifecycleActivity:
     public void <init>(android.content.ContextWrapper)
 androidx.core.content.res.ResourcesCompat$ImplApi29
-com.google.common.collect.Synchronized$SynchronizedMultimap
 kotlin.random.Random$Default$Serialized
+com.google.common.collect.Synchronized$SynchronizedMultimap
 kotlin.io.FilesKt__UtilsKt
+dev.fluttercommunity.plus.packageinfo.BuildConfig
 kotlinx.coroutines.flow.FlowKt__TransformKt$onEach$$inlined$unsafeTransform$1
 com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture
 kotlinx.coroutines.channels.ChannelsKt__Channels_commonKt
@@ -11486,8 +11524,8 @@ com.google.common.cache.CacheBuilder$OneWeigher
 com.google.common.cache.package-info
 com.google.android.datatransport.runtime.dagger.Provides
 com.google.android.datatransport.runtime.dagger.MapKey
-androidx.core.view.LayoutInflaterFactory
 kotlin.ExtensionFunctionType
+androidx.core.view.LayoutInflaterFactory
 com.google.firebase.FirebaseNetworkException
 com.google.common.collect.TreeMultiset$Aggregate$2
 com.google.common.escape.Escapers$Builder
@@ -11520,13 +11558,13 @@ androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplBase$1
 com.google.android.gms.tasks.zzl:
     public final void zzc()
 com.google.common.collect.ImmutableClassToInstanceMap
-com.google.common.collect.Maps$6
 kotlin.SuspendKt
+com.google.common.collect.Maps$6
 androidx.core.view.InputDeviceCompat
 kotlinx.coroutines.flow.FlowKt__ReduceKt$lastOrNull$1
-com.google.common.cache.Striped64
 kotlin.jvm.functions.Function9:
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+com.google.common.cache.Striped64
 com.google.android.gms.common.api.internal.zaci:
     public void <init>(com.google.android.gms.common.api.internal.RegisterListenerMethod,com.google.android.gms.common.api.internal.UnregisterListenerMethod,java.lang.Runnable)
 com.google.common.graph.AbstractNetwork
@@ -11557,8 +11595,8 @@ androidx.core.net.ConnectivityManagerCompat$RestrictBackgroundStatus
 com.google.gson.LongSerializationPolicy$1:
     public com.google.gson.JsonElement serialize(java.lang.Long)
 com.google.common.util.concurrent.RateLimiter$SleepingStopwatch$1
-com.google.common.primitives.SignedBytes$LexicographicalComparator
 kotlin.time.DurationUnitKt
+com.google.common.primitives.SignedBytes$LexicographicalComparator
 androidx.localbroadcastmanager.R
 com.google.gson.internal.LinkedHashTreeMap$EntrySet
 androidx.lifecycle.DefaultLifecycleObserver
@@ -11602,8 +11640,8 @@ kotlinx.coroutines.internal.FastServiceLoader:
     private final java.lang.Object use(java.util.jar.JarFile,kotlin.jvm.functions.Function1)
     private static final java.lang.String PREFIX
 com.google.android.gms.common.internal.Asserts
-com.google.common.util.concurrent.Striped$PaddedSemaphore
 kotlin.collections.builders.MapBuilderValues
+com.google.common.util.concurrent.Striped$PaddedSemaphore
 org.intellij.lang.annotations.JdkConstants$CursorType
 androidx.annotation.RequiresPermission$Write
 com.google.common.net.InternetDomainName
@@ -11633,6 +11671,7 @@ kotlinx.coroutines.debug.internal.ConcurrentWeakMap
 com.google.common.hash.package-info
 kotlin.collections.ArrayDeque
 com.google.common.primitives.Floats
+io.flutter.plugins.sharedpreferences.R$integer
 com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoScheduler:
     private static final java.lang.String LOG_TAG
     static final java.lang.String ATTEMPT_NUMBER
@@ -11770,8 +11809,8 @@ kotlin.collections.EmptySet:
     private static final long serialVersionUID
 com.google.android.datatransport.runtime.dagger.multibindings.IntoSet
 com.google.common.collect.HashMultimapGwtSerializationDependencies
-com.google.common.collect.Cut
 kotlin.jvm.internal.ArrayLongIterator
+com.google.common.collect.Cut
 com.google.common.util.concurrent.AbstractService$IsStartableGuard
 com.google.android.gms.internal.common.zzp
 com.google.firebase.messaging.Store:
@@ -11833,8 +11872,8 @@ io.flutter.Log:
     public static void d(java.lang.String,java.lang.String,java.lang.Throwable)
     public static void wtf(java.lang.String,java.lang.String)
     public static void wtf(java.lang.String,java.lang.String,java.lang.Throwable)
-com.google.common.collect.ArrayListMultimapGwtSerializationDependencies
 kotlin.jvm.JvmDefault
+com.google.common.collect.ArrayListMultimapGwtSerializationDependencies
 kotlin.PropertyReferenceDelegatesKt
 com.google.firebase.FirebaseException:
     public void <init>(java.lang.String,java.lang.Throwable)
@@ -11935,8 +11974,8 @@ kotlinx.coroutines.sync.MutexImpl$LockSelect$completeResumeLockWaiter$1
 androidx.core.view.WindowInsetsAnimationCompat
 kotlin.text._OneToManyTitlecaseMappingsKt
 kotlin.ranges.ClosedFloatRange
-com.google.firebase.iid.BuildConfig
 androidx.core.view.accessibility.AccessibilityEventCompat
+com.google.firebase.iid.BuildConfig
 androidx.core.location.LocationCompat$Api17Impl
 kotlinx.coroutines.channels.ConflatedBroadcastChannel$onSend$1
 androidx.core.content.res.FontResourcesParserCompat
@@ -12087,8 +12126,8 @@ android.support.v4.media.session.IMediaSession:
     public abstract void setShuffleModeEnabledRemoved(boolean)
     public abstract void setShuffleMode(int)
     public abstract void sendCustomAction(java.lang.String,android.os.Bundle)
-com.google.common.collect.DenseImmutableTable$ImmutableArrayMap
 kotlin.reflect.TypeVariableImpl
+com.google.common.collect.DenseImmutableTable$ImmutableArrayMap
 androidx.annotation.InspectableProperty$EnumEntry
 com.google.errorprone.annotations.concurrent.GuardedBy
 androidx.fragment.app.FragmentController:
@@ -12110,8 +12149,8 @@ androidx.fragment.app.FragmentController:
     public void restoreLoaderNonConfig(androidx.collection.SimpleArrayMap)
     public void dumpLoaders(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi26$1
-com.google.common.graph.ElementOrder$Type
 kotlin.time.DurationUnitKt__DurationUnitJvmKt$WhenMappings
+com.google.common.graph.ElementOrder$Type
 com.google.android.gms.tasks.zzab
 com.google.common.hash.BloomFilterStrategies$2
 kotlinx.coroutines.selects.SelectBuilderImpl$AtomicSelectOp
@@ -12296,8 +12335,8 @@ com.google.common.reflect.package-info
 io.flutter.embedding.engine.mutatorsstack.FlutterMutatorView:
     public void <init>(android.content.Context)
 kotlinx.coroutines.flow.FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1$2$1
-com.google.common.collect.ForwardingMultiset
 kotlin.collections.MapWithDefaultImpl
+com.google.common.collect.ForwardingMultiset
 kotlin.random.RandomKt:
     public static final kotlin.random.Random Random(int)
     public static final kotlin.random.Random Random(long)
@@ -12310,8 +12349,8 @@ kotlin.random.RandomKt:
     public static final java.lang.String boundsErrorMessage(java.lang.Object,java.lang.Object)
 kotlinx.coroutines.flow.internal.FusibleFlow
 io.flutter.embedding.android.FlutterFragmentActivity$CachedEngineIntentBuilder
-com.google.common.collect.Multisets$3$1
 kotlin.sequences.TakeWhileSequence
+com.google.common.collect.Multisets$3$1
 kotlinx.coroutines.flow.FlowKt__ReduceKt$first$1
 androidx.fragment.app.FragmentManagerImpl$FragmentLifecycleCallbacksHolder:
     void <init>(androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks,boolean)
@@ -12519,9 +12558,9 @@ com.google.android.gms.common.api.ResolvingResultCallbacks
 io.flutter.embedding.android.SplashScreenProvider
 com.google.firebase.emulators.EmulatedServiceSettings
 io.flutter.embedding.engine.FlutterEngineGroup$Options
+kotlin.sequences.SequencesKt___SequencesKt$flatMapIndexed$1
 com.google.common.collect.MapMakerInternalMap$StrongKeyStrongValueSegment
 com.google.common.escape.Escaper$1
-kotlin.sequences.SequencesKt___SequencesKt$flatMapIndexed$1
 com.google.android.gms.common.api.ResolvableApiException:
     public android.app.PendingIntent getResolution()
     public void startResolutionForResult(android.app.Activity,int)
@@ -12562,8 +12601,8 @@ kotlinx.coroutines.flow.FlowKt__ZipKt$combineTransform$6$2
 com.google.common.collect.MultimapBuilder$4
 io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager$FeatureInstallStateUpdatedListener
 androidx.loader.content.ModernAsyncTask$AsyncTaskResult
-com.google.common.util.concurrent.WrappingExecutorService$1
 kotlin.collections.AbstractMap$keys$1$iterator$1
+com.google.common.util.concurrent.WrappingExecutorService$1
 kotlin.jvm.internal.BooleanCompanionObject
 com.google.android.datatransport.R
 androidx.core.view.OnReceiveContentListener
@@ -12714,6 +12753,8 @@ com.google.firebase.FirebaseApiNotAvailableException
 androidx.core.location.LocationManagerCompat$CancellableLocationListener$2
 com.google.errorprone.annotations.DoNotMock
 androidx.customview.view.AbsSavedState$2
+kotlin.text.CharDirectionality
+kotlin.jvm.JvmInline
 com.google.firebase.FirebaseApp:
     public static void clearInstancesForTest()
     public static java.lang.String getPersistenceKey(java.lang.String,com.google.firebase.FirebaseOptions)
@@ -12724,8 +12765,6 @@ com.google.firebase.FirebaseApp:
     public void removeLifecycleEventListener(com.google.firebase.FirebaseAppLifecycleListener)
     private static final java.lang.String LOG_TAG
     public static final java.lang.String DEFAULT_APP_NAME
-kotlin.jvm.JvmInline
-kotlin.text.CharDirectionality
 io.flutter.embedding.android.FlutterFragment$CachedEngineFragmentBuilder
 androidx.savedstate.R
 com.google.common.collect.MapMakerInternalMap$StrongKeyDummyValueEntry
@@ -13164,13 +13203,14 @@ org.intellij.lang.annotations.RegExp
 androidx.core.provider.CalleeHandler
 com.google.firebase.installations.interop.BuildConfig
 androidx.versionedparcelable.R
-com.google.gson.internal.LinkedHashTreeMap
 kotlin.text.Regex
+com.google.gson.internal.LinkedHashTreeMap
 androidx.core.app.RemoteInput$Source
 com.google.firebase.FirebaseTooManyRequestsException
 kotlin.sequences.MergingSequence$iterator$1
 com.google.android.gms.common.server.response.zaf
 kotlin.jvm.internal.MutablePropertyReference1
+com.ixsans.text_to_speech.R$color
 com.google.firebase.messaging.R$id
 com.google.firebase.messaging.TopicsStore:
     static synchronized void clearCaches()
@@ -13226,13 +13266,13 @@ kotlin.StandardKt
 com.americanlyceum.chat_gpt_stories.R$layout
 androidx.core.app.NotificationCompat$GroupAlertBehavior
 androidx.core.view.NestedScrollingParent2
-com.google.common.collect.TreeRangeSet$ComplementRangesByLowerBound$1
 kotlin.jvm.JvmSynthetic
+com.google.common.collect.TreeRangeSet$ComplementRangesByLowerBound$1
 com.google.android.gms.tasks.zzj:
     public final void zzc()
 android.support.v4.media.session.MediaSessionCompat$Callback
-com.google.common.collect.FilteredEntryMultimap$Keys$1$1
 kotlin.reflect.KMutableProperty1
+com.google.common.collect.FilteredEntryMultimap$Keys$1$1
 kotlinx.coroutines.channels.ChannelsKt__Channels_commonKt$consumeEach$3
 com.google.common.collect.ImmutableRangeSet$Builder
 com.google.common.util.concurrent.MoreExecutors$ScheduledListeningDecorator
@@ -13331,11 +13371,11 @@ com.google.common.eventbus.Dispatcher$LegacyAsyncDispatcher
 com.google.common.graph.MapIteratorCache$1$1
 androidx.annotation.IntDef
 androidx.core.os.CancellationSignal$OnCancelListener
-androidx.documentfile.provider.SingleDocumentFile
 com.google.android.gms.common.api.internal.zaar
+androidx.documentfile.provider.SingleDocumentFile
+kotlin.annotation.AnnotationRetention
 com.google.common.collect.AbstractMapBasedMultimap$1
 com.google.common.collect.MultimapBuilder$SetMultimapBuilder
-kotlin.annotation.AnnotationRetention
 io.flutter.plugins.pathprovider.R$id
 kotlinx.coroutines.flow.FlowKt__ZipKt$combineTransform$6$1
 com.google.android.gms.common.api.internal.zaaa
@@ -13348,6 +13388,7 @@ com.google.common.base.Converter$1
 com.google.thirdparty.publicsuffix.PublicSuffixType
 androidx.core.location.GnssStatusCompat$Callback
 com.google.common.collect.AbstractMapBasedMultimap$NavigableKeySet
+com.ixsans.text_to_speech.BuildConfig
 androidx.core.content.pm.ShortcutManagerCompat
 kotlinx.coroutines.selects.SelectInstance
 com.google.android.gms.common.BlockingServiceConnection:
@@ -13440,9 +13481,10 @@ kotlinx.coroutines.CoroutineId:
     public static synthetic kotlinx.coroutines.CoroutineId copy$default(kotlinx.coroutines.CoroutineId,long,int,java.lang.Object)
     public final long component1()
     public final kotlinx.coroutines.CoroutineId copy(long)
-com.google.common.collect.AbstractIterator
 kotlin.reflect.TypesJVMKt$typeToString$unwrap$1
+com.google.common.collect.AbstractIterator
 com.google.android.gms.common.api.internal.zabd
+io.flutter.plugins.sharedpreferences.R$styleable
 com.google.common.util.concurrent.AbstractScheduledService$CustomScheduler$ReschedulableCallable
 com.google.android.gms.common.server.converter.zae
 kotlin.io.FileTreeWalk
@@ -13508,8 +13550,8 @@ io.flutter.plugin.common.MethodChannel:
     private static final java.lang.String TAG
 org.jetbrains.annotations.TestOnly
 kotlin.collections.AbstractMap$keys$1
-com.google.common.eventbus.Subscriber
 kotlin.jvm.internal.MutablePropertyReference2Impl
+com.google.common.eventbus.Subscriber
 com.google.android.gms.common.api.Api:
     public final com.google.android.gms.common.api.Api$AnyClientKey zab()
     public final com.google.android.gms.common.api.Api$BaseClientBuilder zac()
@@ -13561,9 +13603,9 @@ com.google.common.collect.StandardTable$ColumnKeySet
 androidx.customview.widget.FocusStrategy$CollectionAdapter
 kotlinx.coroutines.flow.internal.FusibleFlow$DefaultImpls
 androidx.documentfile.R
-com.google.common.collect.HashBiMap$KeySet
 kotlin.internal.jdk8.JDK8PlatformImplementations:
     public kotlin.text.MatchGroup getMatchResultNamedGroup(java.util.regex.MatchResult,java.lang.String)
+com.google.common.collect.HashBiMap$KeySet
 com.google.android.gms.common.api.internal.StatusPendingResult
 com.google.common.collect.RegularImmutableMultiset$ElementSet
 org.jetbrains.annotations.Nullable
@@ -13643,8 +13685,8 @@ com.google.android.gms.internal.cloudmessaging.zzf:
 androidx.core.content.ContextCompat$Api26Impl:
     private void <init>()
 com.google.common.collect.ArrayTable$Row
-com.google.common.collect.HashBiMap$EntryForKey
 com.google.android.gms.common.util.HttpUtils
+com.google.common.collect.HashBiMap$EntryForKey
 kotlinx.coroutines.sync.MutexImpl$TryLockDesc
 kotlinx.coroutines.flow.FlowKt__MergeKt$flatMapConcat$$inlined$map$1$2$1
 kotlinx.coroutines.flow.FlowKt__MigrationKt$delayEach$1
@@ -13886,6 +13928,7 @@ androidx.versionedparcelable.VersionedParcelStream
 androidx.core.view.inputmethod.EditorInfoCompat
 com.google.android.gms.common.AccountPicker$AccountChooserOptions$Builder
 kotlinx.coroutines.CancelFutureOnCompletion
+io.flutter.plugins.sharedpreferences.R$attr
 com.google.common.util.concurrent.AggregateFutureState$AtomicHelper
 com.google.common.collect.LinkedListMultimap$NodeIterator
 kotlinx.coroutines.flow.FlowKt__TransformKt$map$$inlined$unsafeTransform$1$1
@@ -13898,8 +13941,8 @@ com.google.android.gms.common.annotation.KeepForSdkWithMembers
 com.google.common.cache.LocalCache$WeakValueReference
 com.google.common.collect.Iterables$3
 com.google.common.collect.StandardTable$TableSet
-com.google.common.graph.AbstractBaseGraph
 kotlin.DeepRecursiveScopeImpl$crossFunctionCompletion$$inlined$Continuation$1
+com.google.common.graph.AbstractBaseGraph
 kotlinx.coroutines.ThreadState
 com.google.common.io.Files$FilePredicate$2
 org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
@@ -13908,8 +13951,8 @@ com.google.android.gms.common.internal.MethodInvocation:
 kotlinx.coroutines.ExperimentalCoroutinesApi
 kotlinx.coroutines.flow.FlowKt__ZipKt$combine$$inlined$unsafeFlow$2
 kotlin.NumbersKt
-com.google.common.graph.Graphs
 kotlin.annotation.AnnotationTarget
+com.google.common.graph.Graphs
 kotlinx.coroutines.sync.SemaphoreKt$withPermit$1
 com.google.common.collect.TreeBasedTable$Factory
 com.google.common.collect.DenseImmutableTable
@@ -13959,8 +14002,8 @@ com.google.android.gms.common.api.internal.zal:
     public void <init>(java.lang.Iterable)
     public final com.google.android.gms.tasks.Task zaa()
 com.google.android.gms.common.api.HasApiKey
-com.google.common.cache.AbstractLoadingCache
 kotlin.SinceKotlin
+com.google.common.cache.AbstractLoadingCache
 io.flutter.view.FlutterView$Provider
 kotlinx.coroutines.ResumeUndispatchedRunnable
 com.dexterous.flutterlocalnotifications.R$integer
@@ -13999,8 +14042,8 @@ com.google.firebase.FirebaseOptions:
     private static final java.lang.String STORAGE_BUCKET_RESOURCE_NAME
     private static final java.lang.String PROJECT_ID_RESOURCE_NAME
 androidx.core.widget.TintableImageSourceView
-com.google.common.cache.Cache
 kotlin.io.FileTreeWalk$FileTreeWalkIterator$BottomUpDirectoryState
+com.google.common.cache.Cache
 com.google.android.gms.common.api.internal.zabc
 kotlin.DslMarker
 com.google.android.gms.common.server.converter.zad
@@ -14097,6 +14140,7 @@ com.google.common.collect.ImmutableMultimap$2
 com.google.android.gms.common.api.internal.zaaq
 com.google.common.collect.Queues
 com.google.firebase.concurrent.FirebaseExecutors
+com.ixsans.text_to_speech.R$drawable
 kotlin.contracts.SimpleEffect
 io.flutter.plugins.firebase.messaging.R$style
 io.flutter.app.FlutterActivityDelegate$1$1
@@ -14150,9 +14194,9 @@ androidx.media.R$id:
     private void <init>()
 io.flutter.view.FlutterView$2
 io.flutter.embedding.engine.plugins.broadcastreceiver.BroadcastReceiverControlSurface
-androidx.core.view.ViewCompat$4
 io.flutter.embedding.engine.systemchannels.SpellCheckChannel:
     private static final java.lang.String TAG
+androidx.core.view.ViewCompat$4
 com.google.common.graph.Graph
 com.google.common.cache.LocalCache
 com.google.common.collect.AbstractMapBasedMultimap$2
@@ -14193,8 +14237,8 @@ androidx.core.app.NotificationCompat$CarExtender$UnreadConversation
 kotlin.ranges.ULongProgression
 com.google.android.gms.internal.measurement.zzen:
     private void <init>()
-com.google.common.collect.SortedLists$KeyAbsentBehavior$1
 kotlin.collections.RingBuffer$iterator$1
+com.google.common.collect.SortedLists$KeyAbsentBehavior$1
 com.google.android.gms.dynamic.zag
 com.google.android.gms.common.internal.safeparcel.SafeParcelReader:
     public static byte readByte(android.os.Parcel,int)
@@ -14238,6 +14282,7 @@ com.google.android.gms.common.internal.safeparcel.SafeParcelReader:
     public static java.math.BigInteger[] createBigIntegerArray(android.os.Parcel,int)
     public static boolean[] createBooleanArray(android.os.Parcel,int)
     public static byte[][] createByteArrayArray(android.os.Parcel,int)
+io.flutter.plugins.sharedpreferences.R$color
 kotlin.jvm.functions.Function13:
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
 androidx.media.R
@@ -14286,11 +14331,11 @@ kotlinx.coroutines.scheduling.LimitingDispatcher
 com.google.common.collect.TreeMultiset$3
 com.google.common.collect.RangeSet
 androidx.core.view.WindowInsetsAnimationCompat$Impl21
-com.google.common.collect.SortedLists$KeyPresentBehavior$4
 kotlin.jvm.internal.PropertyReference:
     public void <init>(java.lang.Object)
     public boolean isLateinit()
     public boolean isConst()
+com.google.common.collect.SortedLists$KeyPresentBehavior$4
 kotlinx.coroutines.channels.Channel:
     public static final int UNLIMITED
     public static final int RENDEZVOUS
@@ -14448,11 +14493,11 @@ kotlin.text.StringsKt__AppendableKt:
     private static final java.lang.Appendable appendLine(java.lang.Appendable,char)
     public void <init>()
 kotlinx.coroutines.flow.DistinctFlowImpl$collect$2
-com.google.common.collect.SortedLists$KeyAbsentBehavior
 kotlin.sequences.SequencesKt___SequencesKt$filterIndexed$2
+com.google.common.collect.SortedLists$KeyAbsentBehavior
 kotlinx.coroutines.channels.AbstractSendChannel$TryOfferDesc
-com.google.common.collect.Multisets$5
 kotlin.UByteKt
+com.google.common.collect.Multisets$5
 androidx.legacy.coreutils.R$string
 androidx.core.view.WindowInsetsControllerCompat:
     private void <init>(android.view.WindowInsetsController)
@@ -14562,8 +14607,8 @@ kotlin.text.DelimitedRangesSequence$iterator$1:
     public final void setNextItem(kotlin.ranges.IntRange)
     public final int getCounter()
     public final void setCounter(int)
-com.google.common.reflect.TypeResolver$TypeMappingIntrospector
 kotlin.collections.BooleanIterator
+com.google.common.reflect.TypeResolver$TypeMappingIntrospector
 com.google.common.collect.SortedSetMultimap
 com.google.common.io.PatternFilenameFilter
 com.google.common.reflect.Types$ParameterizedTypeImpl
@@ -14660,10 +14705,10 @@ com.google.gson.stream.JsonReader:
     private static final int NUMBER_CHAR_EXP_SIGN
     private static final int NUMBER_CHAR_EXP_DIGIT
 com.google.common.reflect.TypeToken$TypeFilter$2
+androidx.core.graphics.TypefaceCompatApi21Impl
 kotlinx.coroutines.JobImpl:
     public boolean complete()
     public boolean completeExceptionally(java.lang.Throwable)
-androidx.core.graphics.TypefaceCompatApi21Impl
 com.google.common.collect.AbstractSortedMultiset$1DescendingMultisetImpl
 com.google.common.collect.Maps$FilteredEntryMap$EntrySet$1$1
 kotlinx.coroutines.flow.FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$8$1
@@ -14912,6 +14957,9 @@ com.google.gson.JsonElement:
     public java.math.BigDecimal getAsBigDecimal()
     public java.math.BigInteger getAsBigInteger()
     public short getAsShort()
+com.google.android.gms.common.internal.zzn:
+    public void <init>(android.content.ComponentName,int)
+    public void <init>(java.lang.String,int,boolean)
 com.google.gson.GsonBuilder:
     void <init>(com.google.gson.Gson)
     public com.google.gson.GsonBuilder setVersion(double)
@@ -14938,9 +14986,6 @@ com.google.gson.GsonBuilder:
     public com.google.gson.GsonBuilder registerTypeAdapter(java.lang.reflect.Type,java.lang.Object)
     public com.google.gson.GsonBuilder registerTypeHierarchyAdapter(java.lang.Class,java.lang.Object)
     public com.google.gson.GsonBuilder serializeSpecialFloatingPointValues()
-com.google.android.gms.common.internal.zzn:
-    public void <init>(android.content.ComponentName,int)
-    public void <init>(java.lang.String,int,boolean)
 org.jetbrains.annotations.NotNull
 kotlinx.coroutines.internal.ScopeCoroutine:
     public void <init>(kotlin.coroutines.CoroutineContext,kotlin.coroutines.Continuation)
@@ -15003,6 +15048,8 @@ com.google.common.hash.AbstractNonStreamingHashFunction$BufferingHasher
 androidx.loader.content.CursorLoader
 com.google.android.gms.common.stats.zza
 com.google.android.gms.tasks.zzy
+com.ixsans.text_to_speech.Tts:
+    public static final java.lang.String TAG
 com.google.firebase.analytics.FirebaseAnalytics$ConsentType
 kotlinx.coroutines.flow.internal.ChannelFlowOperator$collectWithContextUndispatched$2
 androidx.media.R$attr
@@ -15115,7 +15162,6 @@ android.support.v4.media.session.MediaControllerCompat$Callback:
 com.google.common.hash.AbstractByteHasher
 com.google.android.gms.common.server.response.zah
 com.google.common.io.AppendableWriter
-com.google.common.collect.Maps
 kotlin.KotlinVersion:
     public void <init>(int,int)
     public final int getMajor()
@@ -15138,6 +15184,7 @@ kotlin.Result:
     public boolean equals(java.lang.Object)
     public final synthetic java.lang.Object unbox-impl()
     private final java.lang.Object value
+com.google.common.collect.Maps
 kotlinx.coroutines.channels.ChannelsKt__DeprecatedKt$filterNotNull$1
 androidx.core.os.MessageCompat
 io.flutter.plugin.common.PluginRegistry
@@ -15169,6 +15216,7 @@ com.google.android.gms.common.api.internal.BasePendingResult:
     static final java.lang.ThreadLocal zaa
 kotlinx.coroutines.internal.LockFreeLinkedListKt:
     private static final java.lang.Object LIST_EMPTY
+dev.fluttercommunity.plus.packageinfo.PackageInfoPlugin$Companion
 androidx.core.app.NotificationCompatJellybean:
     private static final java.lang.Object sActionsLock
 com.google.android.gms.stats.WakeLock:
@@ -15310,6 +15358,7 @@ com.google.firebase.messaging.FirebaseMessaging:
     private final java.util.concurrent.Executor taskExecutor
 androidx.lifecycle.Lifecycle:
     java.util.concurrent.atomic.AtomicReference mInternalScopeRef
+com.ixsans.text_to_speech.Tts$Companion
 com.google.android.gms.internal.measurement.zzns:
     public static final com.google.android.gms.internal.measurement.zzib zza
     public static final com.google.android.gms.internal.measurement.zzib zzb
@@ -15386,6 +15435,8 @@ io.flutter.view.AccessibilityBridge$SemanticsNode:
     private float previousScrollExtentMax
     private float previousScrollExtentMin
 com.google.android.gms.internal.measurement.zzkh
+dev.fluttercommunity.plus.packageinfo.PackageInfoPlugin:
+    public static final dev.fluttercommunity.plus.packageinfo.PackageInfoPlugin$Companion Companion
 com.google.firebase.encoders.Encoder
 com.google.android.gms.common.util.Strings:
     private static final java.util.regex.Pattern zza
@@ -15733,6 +15784,8 @@ androidx.core.view.ViewCompat:
     private static androidx.core.view.ViewCompat$AccessibilityPaneVisibilityManager sAccessibilityPaneVisibilityManager
 androidx.core.os.LocaleListCompat:
     private static final androidx.core.os.LocaleListCompat sEmptyLocaleList
+com.ixsans.text_to_speech.Tts:
+    public static final com.ixsans.text_to_speech.Tts$Companion Companion
 androidx.arch.core.executor.TaskExecutor:
     public abstract void executeOnDiskIO(java.lang.Runnable)
     public abstract void postToMainThread(java.lang.Runnable)
@@ -15750,5 +15803,5 @@ kotlin.KotlinVersion:
 io.flutter.plugin.common.BinaryMessenger$-CC:
     public static io.flutter.plugin.common.BinaryMessenger$TaskQueue $default$makeBackgroundTaskQueue(io.flutter.plugin.common.BinaryMessenger,io.flutter.plugin.common.BinaryMessenger$TaskQueueOptions)
     public static void $default$setMessageHandler(io.flutter.plugin.common.BinaryMessenger,java.lang.String,io.flutter.plugin.common.BinaryMessenger$BinaryMessageHandler,io.flutter.plugin.common.BinaryMessenger$TaskQueue)
-io.flutter.view.TextureRegistry$SurfaceTextureEntry$-CC
 io.flutter.plugin.platform.PlatformView$-CC
+io.flutter.view.TextureRegistry$SurfaceTextureEntry$-CC

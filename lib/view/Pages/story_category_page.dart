@@ -26,236 +26,246 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
-      body: Obx(()=>SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Story ",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "BalooBhai",
-                          color: AppColors.kBtnColor),
-                    ),
-                    Text(
-                      "By Chat GPT",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "BalooBhai",
-                          color: AppColors.txtColor1),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: Text(
-                    "I want to listen a story about",
-                    style: TextStyle(color: AppColors.txtColor2, fontSize: 21),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                const SizedBox(height: 20,),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: 40,
+          elevation: 0,
+          backgroundColor: AppColors.kScreenColor,
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
 
-                Container(
-                  height: 400,
-                  child: GridView.count(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 8.0,
-                    shrinkWrap: true,
-                    children: List.generate(title.length, (index) {
-                      return icon(data:title[index],index: index);
+            },
+            icon: const Icon(Icons.arrow_back, color: AppColors.txtColor1,), ),
+        ),
+      body: Obx(()=>Padding(
+        padding: const EdgeInsets.only(left: 20.0,right: 20.0,),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "Story ",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "BalooBhai",
+                        color: AppColors.kBtnColor),
+                  ),
+                  Text(
+                    "By Chat GPT",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "BalooBhai",
+                        color: AppColors.txtColor1),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Text(
+                  "I want to listen a story about",
+                  style: TextStyle(color: AppColors.txtColor2, fontSize: 21),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              Container(
+                height: 400,
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 4.0,
+                  mainAxisSpacing: 8.0,
+                  shrinkWrap: true,
+                  children: List.generate(title.length, (index) {
+                    return icon(data:title[index],index: index);
+                  }
+                  )  ,
+                ),
+              ),
+
+
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Image.asset("assets/PNG/storyLion.png"),
+              //           const Text(
+              //             "Animals",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 fontFamily: "BalooBhai",
+              //                 color: AppColors.txtColor1),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Image.asset("assets/PNG/storyFairy.png"),
+              //           const Text(
+              //             "Fairy",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 fontFamily: "BalooBhai",
+              //                 color: AppColors.txtColor1),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Image.asset("assets/PNG/storyJeannie.png"),
+              //           const Text(
+              //             "Jeannie",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 fontFamily: "BalooBhai",
+              //                 color: AppColors.txtColor1),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 20,),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Image.asset("assets/PNG/storyHero.png"),
+              //           const Text(
+              //             "Hero",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 fontFamily: "BalooBhai",
+              //                 color: AppColors.txtColor1),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Image.asset("assets/PNG/storyprince.png"),
+              //           const Text(
+              //             "Prince",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 fontFamily: "BalooBhai",
+              //                 color: AppColors.txtColor1),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Image.asset("assets/PNG/storyToy.png"),
+              //           const Text(
+              //             "Toy Story",
+              //             style: TextStyle(
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //                 fontFamily: "BalooBhai",
+              //                 color: AppColors.txtColor1),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 20,),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.end,
+              //   // mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //     const SizedBox(width: 30,),
+              //     Column(
+              //       crossAxisAlignment: CrossAxisAlignment.center,
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children: [
+              //         Image.asset("assets/PNG/storyPrinces.png"),
+              //         const Text(
+              //           "Princes",
+              //           style: TextStyle(
+              //               fontSize: 15,
+              //               fontWeight: FontWeight.bold,
+              //               fontFamily: "BalooBhai",
+              //               color: AppColors.txtColor1),
+              //         ),
+              //       ],
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(height: 35,),
+              ElevatedButton(
+                  onPressed: (){
+
+
+                    // Get.to(const AgePage());
+
+                    if(selectItems.value=="-1"){
+
+                      MySnackBar.snackBarRed(
+                          title:"Alert", message:"Please select story type");
+
+                    }else{
+                      print("==========value:${title[int.parse(selectItems.value)].value}==========");
+                      Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
+                      Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
+
+
                     }
-                    )  ,
+                    //
+                  },
+                  style: ButtonStyle(
+                      shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
+                      backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
                   ),
-                ),
-
-
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.end,
-                //   children: [
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           Image.asset("assets/PNG/storyLion.png"),
-                //           const Text(
-                //             "Animals",
-                //             style: TextStyle(
-                //                 fontSize: 15,
-                //                 fontWeight: FontWeight.bold,
-                //                 fontFamily: "BalooBhai",
-                //                 color: AppColors.txtColor1),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           Image.asset("assets/PNG/storyFairy.png"),
-                //           const Text(
-                //             "Fairy",
-                //             style: TextStyle(
-                //                 fontSize: 15,
-                //                 fontWeight: FontWeight.bold,
-                //                 fontFamily: "BalooBhai",
-                //                 color: AppColors.txtColor1),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           Image.asset("assets/PNG/storyJeannie.png"),
-                //           const Text(
-                //             "Jeannie",
-                //             style: TextStyle(
-                //                 fontSize: 15,
-                //                 fontWeight: FontWeight.bold,
-                //                 fontFamily: "BalooBhai",
-                //                 color: AppColors.txtColor1),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: 20,),
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.end,
-                //   children: [
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           Image.asset("assets/PNG/storyHero.png"),
-                //           const Text(
-                //             "Hero",
-                //             style: TextStyle(
-                //                 fontSize: 15,
-                //                 fontWeight: FontWeight.bold,
-                //                 fontFamily: "BalooBhai",
-                //                 color: AppColors.txtColor1),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           Image.asset("assets/PNG/storyprince.png"),
-                //           const Text(
-                //             "Prince",
-                //             style: TextStyle(
-                //                 fontSize: 15,
-                //                 fontWeight: FontWeight.bold,
-                //                 fontFamily: "BalooBhai",
-                //                 color: AppColors.txtColor1),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         mainAxisAlignment: MainAxisAlignment.center,
-                //         children: [
-                //           Image.asset("assets/PNG/storyToy.png"),
-                //           const Text(
-                //             "Toy Story",
-                //             style: TextStyle(
-                //                 fontSize: 15,
-                //                 fontWeight: FontWeight.bold,
-                //                 fontFamily: "BalooBhai",
-                //                 color: AppColors.txtColor1),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: 20,),
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.end,
-                //   // mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     const SizedBox(width: 30,),
-                //     Column(
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Image.asset("assets/PNG/storyPrinces.png"),
-                //         const Text(
-                //           "Princes",
-                //           style: TextStyle(
-                //               fontSize: 15,
-                //               fontWeight: FontWeight.bold,
-                //               fontFamily: "BalooBhai",
-                //               color: AppColors.txtColor1),
-                //         ),
-                //       ],
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: 35,),
-                ElevatedButton(
-                    onPressed: (){
-
-
-                      // // Get.to(const AgePage());
-                      //
-                      // if(selectItems.value=="-1"){
-                      //
-                      //   MySnackBar.snackBarRed(
-                      //       title:"Alert", message:"Please select story type");
-                      //
-                      // }else{
-                      //   print("==========value:${title[int.parse(selectItems.value)].value}==========");
-                      //   Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
-                      //   Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
-                      //   Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
-                      //
-                      //
-                      // }
-                      // //
-                    },
-                    style: ButtonStyle(
-                        shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                        backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
-                    ),
-                    child: const SizedBox(
-                        height: 50,
-                        // width: MediaQuery.of(context).size.width/2,
-                        child: Center(
-                            child: Text("Next",
-                                style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
-              ],
-            ),
+                  child: const SizedBox(
+                      height: 50,
+                      // width: MediaQuery.of(context).size.width/2,
+                      child: Center(
+                          child: Text("Next",
+                              style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+            ],
           ),
         ),
       ),)

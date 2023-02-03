@@ -1,7 +1,10 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../controllers/chat_image_controller.dart';
+import '../../controllers/registration_controller.dart';
+import '../../main.dart';
 import '../../model/IconModels.dart';
 import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
@@ -17,6 +20,9 @@ class AgePage extends StatefulWidget {
 }
 
 class _AgePageState extends State<AgePage> {
+
+
+  RegistrationController registrationController =Get.put(RegistrationController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +59,7 @@ class _AgePageState extends State<AgePage> {
                           color: AppColors.kBtnColor),
                     ),
                     Text(
-                      "By Chat GPT",
+                      "By GPT",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -82,7 +88,7 @@ class _AgePageState extends State<AgePage> {
                 InkWell(
                   onTap: (){
                     setState(() {
-                      MyRep.selectAge=AgeSelect.oneToThree;
+                      MyRepo.selectAge=AgeSelect.oneToThree;
 
                     });
                     nextPage();
@@ -92,8 +98,8 @@ class _AgePageState extends State<AgePage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        border:MyRep.selectAge==AgeSelect.oneToThree? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRep.selectAge==AgeSelect.oneToThree ? AppColors.kPrimary:null,
+                        border:MyRepo.selectAge==AgeSelect.oneToThree? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.oneToThree ? AppColors.kPrimary:null,
                         borderRadius: BorderRadius.circular(10)
 
                     ),
@@ -104,7 +110,7 @@ class _AgePageState extends State<AgePage> {
                         InkWell(
                           onTap: (){
                             setState(() {
-                              MyRep.selectAge=AgeSelect.oneToThree;
+                              MyRepo.selectAge=AgeSelect.oneToThree;
 
                             });
                             nextPage();
@@ -115,8 +121,8 @@ class _AgePageState extends State<AgePage> {
                             height: 60,
                             width: 110,
                             decoration: ShapeDecoration(
-                              color: MyRep.selectAge==AgeSelect.oneToThree ?AppColors.kPrimary:null,
-                                shape: polygonAgeContainer(bordColor:MyRep.selectAge==AgeSelect.oneToThree?AppColors.kWhite:AppColors.txtColor1)
+                              color: MyRepo.selectAge==AgeSelect.oneToThree ?AppColors.kPrimary:null,
+                                shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.oneToThree?AppColors.kWhite:AppColors.txtColor1)
 
                             ),
                             child:  Center(
@@ -126,7 +132,7 @@ class _AgePageState extends State<AgePage> {
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "BalooBhai",
-                                    color: MyRep.selectAge==AgeSelect.oneToThree?AppColors.kWhite:AppColors.txtColor1),
+                                    color: MyRepo.selectAge==AgeSelect.oneToThree?AppColors.kWhite:AppColors.txtColor1),
                               ),
                             ),
                           ),
@@ -140,15 +146,15 @@ class _AgePageState extends State<AgePage> {
                 InkWell(
                   onTap: (){
                     setState(() {
-                      MyRep.selectAge=AgeSelect.threeToFive;
+                      MyRepo.selectAge=AgeSelect.threeToFive;
 
                     });
                     nextPage();
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        border:MyRep.selectAge==AgeSelect.threeToFive? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRep.selectAge==AgeSelect.threeToFive ? AppColors.kPrimary:null,
+                        border:MyRepo.selectAge==AgeSelect.threeToFive? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.threeToFive ? AppColors.kPrimary:null,
                       borderRadius: BorderRadius.circular(10)
 
                     ),
@@ -160,8 +166,8 @@ class _AgePageState extends State<AgePage> {
                           height: 60,
                           width: 110,
                           decoration: ShapeDecoration(
-                              color:MyRep. selectAge==AgeSelect.threeToFive ?AppColors.kPrimary:null,
-                              shape: polygonAgeContainer(bordColor:MyRep.selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1)),
+                              color:MyRepo. selectAge==AgeSelect.threeToFive ?AppColors.kPrimary:null,
+                              shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1)),
                           child:  Center(
                             child: Text(
                               "3 - 5",
@@ -169,7 +175,7 @@ class _AgePageState extends State<AgePage> {
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "BalooBhai",
-                                  color:MyRep. selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1),
+                                  color:MyRepo. selectAge==AgeSelect.threeToFive?AppColors.kWhite:AppColors.txtColor1),
                             ),
                           ),
                         ),
@@ -182,7 +188,7 @@ class _AgePageState extends State<AgePage> {
                 InkWell(
                   onTap: (){
                     setState(() {
-                      MyRep. selectAge=AgeSelect.fiveToTen;
+                      MyRepo. selectAge=AgeSelect.fiveToTen;
 
                     });
                     nextPage();
@@ -190,8 +196,8 @@ class _AgePageState extends State<AgePage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        border:MyRep.selectAge==AgeSelect.fiveToTen? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRep.selectAge==AgeSelect.fiveToTen ? AppColors.kPrimary:null,
+                        border:MyRepo.selectAge==AgeSelect.fiveToTen? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.fiveToTen ? AppColors.kPrimary:null,
                         borderRadius: BorderRadius.circular(10)
 
                     ),
@@ -203,8 +209,8 @@ class _AgePageState extends State<AgePage> {
                           height: 60,
                           width: 110,
                           decoration: ShapeDecoration(
-                            color: MyRep.selectAge==AgeSelect.fiveToTen ?AppColors.kPrimary:null,
-                              shape: polygonAgeContainer(bordColor:MyRep.selectAge==AgeSelect.fiveToTen?AppColors.kWhite:AppColors.txtColor1)),
+                            color: MyRepo.selectAge==AgeSelect.fiveToTen ?AppColors.kPrimary:null,
+                              shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.fiveToTen?AppColors.kWhite:AppColors.txtColor1)),
                           child:  Center(
                             child: Text(
                               "5 - 10",
@@ -212,7 +218,7 @@ class _AgePageState extends State<AgePage> {
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "BalooBhai",
-                                  color: MyRep.selectAge==AgeSelect.fiveToTen?AppColors.kWhite:AppColors.txtColor1),
+                                  color: MyRepo.selectAge==AgeSelect.fiveToTen?AppColors.kWhite:AppColors.txtColor1),
                             ),
                           ),
                         ),
@@ -225,15 +231,15 @@ class _AgePageState extends State<AgePage> {
                 InkWell(
                   onTap: (){
                     setState(() {
-                      MyRep.selectAge=AgeSelect.tenPlus;
+                      MyRepo.selectAge=AgeSelect.tenPlus;
 
                     });
                     nextPage();
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        border:MyRep.selectAge==AgeSelect.tenPlus? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRep.selectAge==AgeSelect.tenPlus ? AppColors.kPrimary:null,
+                        border:MyRepo.selectAge==AgeSelect.tenPlus? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.tenPlus ? AppColors.kPrimary:null,
                         borderRadius: BorderRadius.circular(10)
 
                     ),
@@ -245,8 +251,8 @@ class _AgePageState extends State<AgePage> {
                           height: 60,
                           width: 110,
                           decoration: ShapeDecoration(
-                              color:MyRep. selectAge==AgeSelect.tenPlus ?AppColors.kPrimary:null,
-                              shape: polygonAgeContainer(bordColor:MyRep.selectAge==AgeSelect.tenPlus?AppColors.kWhite:AppColors.txtColor1)),
+                              color:MyRepo. selectAge==AgeSelect.tenPlus ?AppColors.kPrimary:null,
+                              shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.tenPlus?AppColors.kWhite:AppColors.txtColor1)),
                           child:  Center(
                             child: Text(
                               "10 +",
@@ -254,7 +260,7 @@ class _AgePageState extends State<AgePage> {
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "BalooBhai",
-                                  color: MyRep.selectAge==AgeSelect.tenPlus?AppColors.kWhite:AppColors.txtColor1),
+                                  color: MyRepo.selectAge==AgeSelect.tenPlus?AppColors.kWhite:AppColors.txtColor1),
                             ),
                           ),
                         ),
@@ -266,7 +272,7 @@ class _AgePageState extends State<AgePage> {
                 const SizedBox(height: 35,),
                 ElevatedButton(
                     onPressed: (){
-                      if(MyRep.selectAge==AgeSelect.notSelect){
+                      if(MyRepo.selectAge==AgeSelect.notSelect){
                         MySnackBar.snackBarYellow(
                             title:"Alert", message:"Please select Age limit");
 
@@ -295,6 +301,16 @@ class _AgePageState extends State<AgePage> {
   }
 
   nextPage(){
+
+
+    final box =GetStorage();
+    box.write(kAge, MyRepo.selectAge.name);
+    box.write(kGender, MyRepo.selectedGender.name);
+    box.write(kTokenStorage, MyRepo.deviceToken.value);
+
+
+
+    registrationController.getRegistration(age: MyRepo.selectAge.name, token: MyRepo.deviceToken.value,gender: MyRepo.selectedGender.name);
     Future.delayed(const Duration(milliseconds: 100), () {
       Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));
     });

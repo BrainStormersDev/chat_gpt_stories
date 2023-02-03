@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:chat_gpt_stories/controllers/get_token_controller.dart';
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -31,6 +33,7 @@ class ChatTextController extends GetxController {
     finish_reason: '',
   )];
 
+
   var state = ApiState.notFound.obs;
 
   getTextCompletion(String query) async {
@@ -60,7 +63,7 @@ class ChatTextController extends GetxController {
         }),
         // body: encodedParams,
 
-        headers: headerBearerOption(OPEN_AI_KEY),
+        headers: headerBearerOption(MyRepo.kApiToken.value),
       );
       print("Response  body  ${response.body}");
       if (response.statusCode == 200) {
@@ -73,7 +76,11 @@ class ChatTextController extends GetxController {
         state.value = ApiState.success;
       } else {
         // throw ServerException(message: "Image Generation Server Exception");
-        state.value = ApiState.error;
+
+
+     state.value = ApiState.error;
+
+
       }
     } catch (e) {
       print("Errorrrrrrrrrrrrrrr  ");

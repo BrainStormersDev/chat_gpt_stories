@@ -1,7 +1,10 @@
+import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import 'gender_page.dart';
 
@@ -57,7 +60,7 @@ class _SplashPageState extends State<SplashPage> {
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: const [
                    Text("Story ", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "BalooBhai", color: AppColors.kBtnColor),),
-                   Text("By Chat GPT", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "BalooBhai", color: AppColors.txtColor1),),
+                   Text("By GPT", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "BalooBhai", color: AppColors.txtColor1),),
                  ],
                ),
                const SizedBox(height: 10,),
@@ -104,7 +107,16 @@ class _SplashPageState extends State<SplashPage> {
             bottom: 40,
               child: ElevatedButton(
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
+
+                    if(GetStorage().hasData(kGender) ){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
+
+                    }
+                    else{
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
+
+                    }
+
 
 
                     // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);

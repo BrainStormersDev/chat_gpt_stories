@@ -5,6 +5,10 @@ import '../../../common/headers.dart';
 import '../../../model/image_generation_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../utils/MyRepo.dart';
+import 'chat_text_controller.dart';
+import 'get_token_controller.dart';
+
 class ChatImageController extends GetxController {
   //TODO: Implement ChatImageController
 
@@ -46,7 +50,7 @@ class ChatImageController extends GetxController {
       final response = await http.post(
         Uri.parse(endPoint("images/generations")),
         body: encodedParams,
-        headers: headerBearerOption(OPEN_AI_KEY),
+        headers: headerBearerOption(MyRepo.kApiToken.value),
       );
 
       if (response.statusCode == 200) {
@@ -56,7 +60,20 @@ class ChatImageController extends GetxController {
       } else {
         print("Errorrrrrrrrrrrrrrr  ${response.body}");
         // throw ServerException(message: "Image Generation Server Exception");
-        state.value = ApiState.error;
+        if(MyRepo.count.value<5){
+
+
+          await Get.put(TokenController()).getToken();
+          await Get.put(ChatTextController()).getTextCompletion(query);
+          getGenerateImages( query);
+        }
+
+        MyRepo.count.value++;
+
+
+        if(MyRepo.count.value==6){
+          state.value = ApiState.error;
+        }
       }
     } catch (e) {
       print("Errorrrrrrrrrrrrrrr  ");

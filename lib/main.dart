@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
+import 'package:get_storage/get_storage.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 
@@ -21,12 +23,12 @@ import 'view/Pages/splash_page.dart';
 // }
 
 
-String? stDeviceToken;
 RxInt count =0.obs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await GetStorage.init();
   // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   messageHandler();
   await _localNotification();
@@ -43,9 +45,9 @@ Future<void> messageHandler() async {
     sound: true,
   );
   messaging.subscribeToTopic('all');
-  messaging.getToken().then((deviceToken) {
-    stDeviceToken = deviceToken;
-    print("D_Token:$stDeviceToken==");
+  messaging.getToken().then((token) {
+    MyRepo.deviceToken.value = token!;
+    print("===D_Token:${MyRepo.deviceToken.value}==");
   });
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event) async {
@@ -160,7 +162,7 @@ class MyApp extends StatelessWidget {
       home: GetMaterialApp(
           debugShowCheckedModeBanner: false,
 
-          home: SplashPage()),
+          home:SplashPage()),
     );
   }
 }

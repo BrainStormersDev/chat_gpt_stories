@@ -86,7 +86,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                                 color: AppColors.kBtnColor),
                           ),
                           const Text(
-                            "By Chat GPT",
+                            "By GPT",
                             style: TextStyle(
                                 fontSize: 26,
                                 fontWeight: FontWeight.bold,
@@ -212,10 +212,14 @@ class _StoryViewPageState extends State<StoryViewPage> {
                             child: AnimatedTextKit(
 
                               animatedTexts: [
+
                                 TyperAnimatedText(controllerText.messages[0].text,
                                   textStyle: TextStyle(color: AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
 
                                   speed: const Duration(milliseconds: 70),
+
+
+
 
 
                                 ),
@@ -224,6 +228,8 @@ class _StoryViewPageState extends State<StoryViewPage> {
                                 print("Tap Event");
                               },
                               stopPauseOnTap: true,
+                              totalRepeatCount: 1,
+
                             ),
                           ),
                           // Card(

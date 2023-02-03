@@ -1,6 +1,7 @@
 import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 import '../../controllers/chat_text_controller.dart';
@@ -31,12 +32,23 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
           toolbarHeight: 40,
           elevation: 0,
           backgroundColor: AppColors.kScreenColor,
+          actions:  [
+            InkWell(
+                onTap: (){
+                  showCustomDialog( context);
+                },
+                child: Container(
+                    margin: EdgeInsets.only(right:  15.0,top: 10),
+                    child: Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))),
+          ],
           leading: IconButton(
             onPressed: (){
               Navigator.pop(context);
 
             },
+
             icon: const Icon(Icons.arrow_back, color: AppColors.txtColor1,), ),
+
         ),
       body: Obx(()=>Padding(
         padding: const EdgeInsets.only(left: 20.0,right: 20.0,),
@@ -60,7 +72,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                         color: AppColors.kBtnColor),
                   ),
                   Text(
-                    "By Chat GPT",
+                    "By GPT",
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -317,6 +329,64 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
       Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
     });
+  }
+
+
+  void showCustomDialog(BuildContext context) {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 700),
+      pageBuilder: (_, __, ___) {
+        return Material(
+          color: Colors.transparent,
+          child: Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(40)
+              ),
+              height: 240,
+              child:Column(
+                children: [
+                  Container(
+                  //  margin: EdgeInsets.only(top: 20,right: 20),
+                    alignment: Alignment.topRight,
+                    child: InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: const Icon(FontAwesomeIcons.circleXmark)),
+                  ),
+                  Row(children: [
+                    Text("Age"),
+
+                  ],)
+                ],
+              ),
+
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, anim, __, child) {
+        Tween<Offset> tween;
+        if (anim.status == AnimationStatus.reverse) {
+          tween = Tween(begin: Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(anim),
+          child: FadeTransition(
+            opacity: anim,
+            child: child,
+          ),
+        );
+      },
+    );
   }
 
 

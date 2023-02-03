@@ -43,7 +43,7 @@ class Share extends StatelessWidget {
                           color: AppColors.kBtnColor),
                     ),
                     const Text(
-                      "By Chat GPT",
+                      "By GPT",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,

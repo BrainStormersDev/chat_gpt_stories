@@ -1,3 +1,4 @@
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -31,7 +32,11 @@ class RegistrationController extends GetxController {
 
   var state = ApiState.notFound.obs;
 
-  getRegistration({required String age,required String token, gender}) async {
+  getRegistration({required String age, String? token,required String gender}) async {
+
+    print("=======age: $age=======");
+    print("=======token: $token=======");
+    print("=======gender: $gender=======");
 
     state.value = ApiState.loading;
     registrationModels =RegistrationModels(status: false,message: '',data:Data());
@@ -46,17 +51,15 @@ class RegistrationController extends GetxController {
         "email": '',
       };
 
-      final encodedParams = json.encode(rowParams);
+      // final encodedParams = json.encode(rowParams);
 
       final response = await http.post(
-        Uri.parse("http://story-telling.eduverse.uk/api/v1/register"),
-        body: encodedParams,
+        Uri.parse("${kBaseUrl}register"),
+        body: rowParams,
       );
 
       if (response.statusCode == 200) {
         registrationModels = RegistrationModels.fromJson(jsonDecode(response.body));
-
-        print("=======registrationModels:${registrationModels.accessToken}======");
         print("succccccccccccccccccccccccc ");
         state.value = ApiState.success;
       } else {

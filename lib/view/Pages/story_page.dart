@@ -250,14 +250,14 @@ class _StoryPageState extends State<StoryPage> {
                     SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
                      Text(
                       "Story ${abc.value}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
                           fontFamily: "BalooBhai",
                           color: AppColors.kBtnColor),
                     ),
                     const Text(
-                      "By Chat GPT",
+                      "By GPT",
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,

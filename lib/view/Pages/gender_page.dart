@@ -52,7 +52,7 @@ class _GenderPageState extends State<GenderPage> {
                           color: AppColors.kBtnColor),
                     ),
                     Text(
-                      "By Chat GPT",
+                      "By GPT",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -94,8 +94,8 @@ class _GenderPageState extends State<GenderPage> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        border:MyRep.selectedGender==Gender.boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRep.selectedGender==Gender.boy ? AppColors.kPrimary:null
+                        border:MyRepo.selectedGender==Gender.boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectedGender==Gender.boy ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -107,7 +107,7 @@ class _GenderPageState extends State<GenderPage> {
                               // isGirl.value == false;
                               // print("========isBoy.value====${isBoy.value}");
                               setState(() {
-                                MyRep.selectedGender=Gender.boy;
+                                MyRepo.selectedGender=Gender.boy;
 
                               });
                               Future.delayed(const Duration(milliseconds: 100), () {
@@ -121,7 +121,7 @@ class _GenderPageState extends State<GenderPage> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color:MyRep.selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
+                                  color:MyRepo.selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kBoyBGColor, width: 2)),
                               child: Padding(
@@ -141,8 +141,8 @@ class _GenderPageState extends State<GenderPage> {
                                 fontWeight: FontWeight.bold,
                                 // color: selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                 foreground: Paint()
-                                  ..style =MyRep. selectedGender==Gender.boy ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =MyRep.selectedGender==Gender.boy ?AppColors.kWhite: AppColors.kBoyBGColor),
+                                  ..style =MyRepo. selectedGender==Gender.boy ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRepo.selectedGender==Gender.boy ?AppColors.kWhite: AppColors.kBoyBGColor),
                           )
                         ],
                       ),
@@ -152,8 +152,8 @@ class _GenderPageState extends State<GenderPage> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          border:MyRep.selectedGender==Gender.girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                          color:MyRep.selectedGender==Gender.girl ? AppColors.kPrimary:null
+                          border:MyRepo.selectedGender==Gender.girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                          color:MyRepo.selectedGender==Gender.girl ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -166,7 +166,7 @@ class _GenderPageState extends State<GenderPage> {
                               // print("========isGirl.value====${isGirl.value}");
 
                               setState(() {
-                                MyRep.selectedGender=Gender.girl;
+                                MyRepo.selectedGender=Gender.girl;
 
                               });
                               Future.delayed(const Duration(milliseconds: 100), () {
@@ -177,7 +177,7 @@ class _GenderPageState extends State<GenderPage> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color: MyRep. selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
+                                  color: MyRepo. selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kGirlBGColor, width: 2)),
                               child: Padding(
@@ -196,8 +196,8 @@ class _GenderPageState extends State<GenderPage> {
                                 fontFamily: "BalooBhai",
                                 fontWeight: FontWeight.bold,
                                 foreground: Paint()
-                                  ..style = MyRep.selectedGender==Gender.girl ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =MyRep.selectedGender==Gender.girl ?AppColors.kWhite: AppColors.kGirlBGColor),
+                                  ..style = MyRepo.selectedGender==Gender.girl ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRepo.selectedGender==Gender.girl ?AppColors.kWhite: AppColors.kGirlBGColor),
                           )
                         ],
                       ),
@@ -208,9 +208,8 @@ class _GenderPageState extends State<GenderPage> {
                 ElevatedButton(
                     onPressed: (){
                       // Get.to(const AgePage());
-                      print("=======select :${MyRep.selectedGender.name} ====");
-
-                      if(MyRep.selectedGender==Gender.notSelect){
+                      print("=======select :${MyRepo.selectedGender.name} ====");
+                      if(MyRepo.selectedGender==Gender.notSelect){
                         MySnackBar.snackBarYellow(
                             title:"Alert", message:"Please select gender");
                       }

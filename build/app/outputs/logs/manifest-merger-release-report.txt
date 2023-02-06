@@ -136,7 +136,7 @@ INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/ap
 INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
 INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:1:1-34:12
 	package
-		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:2:5-50
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:2:5-44
 		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
 	android:versionName
@@ -281,7 +281,7 @@ INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/ap
 		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
 		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml
-activity#com.americanlyceum.chat_gpt_stories.MainActivity
+activity#com.brainstormers.gpt_stories.MainActivity
 ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:7:9-27:20
 	android:launchMode
 		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:10:13-43
@@ -296,7 +296,7 @@ ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/s
 	android:theme
 		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:11:13-47
 	android:name
-		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:8:13-76
+		ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:8:13-70
 meta-data#io.flutter.embedding.android.NormalTheme
 ADDED from /Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:19:13-22:17
 	android:resource

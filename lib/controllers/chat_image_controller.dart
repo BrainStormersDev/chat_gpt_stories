@@ -55,10 +55,10 @@ class ChatImageController extends GetxController {
 
       if (response.statusCode == 200) {
         images = ImageGenerationModel.fromJson(json.decode(response.body)).data;
-        print("succccccccccccccccccccccccc ");
+        // print("succccccccccccccccccccccccc ");
         state.value = ApiState.success;
       } else {
-        print("Errorrrrrrrrrrrrrrr  ${response.body}");
+        // print("Errorrrrrrrrrrrrrrr  ${response.body}");
         // throw ServerException(message: "Image Generation Server Exception");
         if(MyRepo.count.value<5){
 
@@ -76,7 +76,7 @@ class ChatImageController extends GetxController {
         }
       }
     } catch (e) {
-      print("Errorrrrrrrrrrrrrrr  ");
+      // print("Errorrrrrrrrrrrrrrr  ");
     } finally {
      // searchTextController.clear();
       update();

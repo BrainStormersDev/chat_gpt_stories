@@ -1,6 +1,6 @@
 -keep class android.app.Application { <init>(); }
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
--keep class com.americanlyceum.chat_gpt_stories.MainActivity { <init>(); }
+-keep class com.brainstormers.gpt_stories.MainActivity { <init>(); }
 -keep class com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver { <init>(); }
 -keep class com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver { <init>(); }
 -keep class com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver { <init>(); }

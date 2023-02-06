@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.americanlyceum.chat_gpt_stories"
+3    package="com.brainstormers.gpt_stories"
 4    android:versionCode="2"
 5    android:versionName="1.0.1" >
 6
@@ -55,8 +55,8 @@
 27-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:4:9-41
 28        <activity
 28-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:7:9-27:20
-29            android:name="com.americanlyceum.chat_gpt_stories.MainActivity"
-29-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:8:13-76
+29            android:name="com.brainstormers.gpt_stories.MainActivity"
+29-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:8:13-70
 30            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 30-->/Users/thebrainstormers/StudioProjects/chat_gpt_stories/android/app/src/main/AndroidManifest.xml:12:13-163
 31            android:exported="true"
@@ -211,7 +211,7 @@
 115-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:41:9-45:38
 116            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
 116-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:42:13-102
-117            android:authorities="com.americanlyceum.chat_gpt_stories.flutterfirebasemessaginginitprovider"
+117            android:authorities="com.brainstormers.gpt_stories.flutterfirebasemessaginginitprovider"
 117-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:43:13-88
 118            android:exported="false"
 118-->[:firebase_messaging] /Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/firebase_messaging/intermediates/library_manifest/release/AndroidManifest.xml:44:13-37
@@ -343,7 +343,7 @@
 187-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:25:9-30:39
 188            android:name="com.google.firebase.provider.FirebaseInitProvider"
 188-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:26:13-77
-189            android:authorities="com.americanlyceum.chat_gpt_stories.firebaseinitprovider"
+189            android:authorities="com.brainstormers.gpt_stories.firebaseinitprovider"
 189-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:27:13-72
 190            android:directBootAware="true"
 190-->[com.google.firebase:firebase-common:20.3.0] /Users/thebrainstormers/.gradle/caches/transforms-2/files-2.1/dfdb052483c03bf4711e3fdd915d1a7c/jetified-firebase-common-20.3.0/AndroidManifest.xml:28:13-43

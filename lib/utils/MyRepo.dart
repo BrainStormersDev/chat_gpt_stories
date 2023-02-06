@@ -10,7 +10,7 @@ class MyRepo{
  static Gender selectedGender =Gender.notSelect;
  static AgeSelect selectAge=AgeSelect.notSelect;
 
-  static RxString kApiToken="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".obs;
+  static RxString kApiToken="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".obs;
 
 
 }
@@ -32,8 +32,8 @@ enum Gender {
 }
 enum AgeSelect {
   notSelect,
-  oneToThree,
-  threeToFive,
-  fiveToTen,
-  tenPlus,
+  two,
+  four,
+  seven,
+  thirteen,
 }

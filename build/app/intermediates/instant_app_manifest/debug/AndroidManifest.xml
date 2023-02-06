@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.americanlyceum.chat_gpt_stories"
+    package="com.brainstormers.gpt_stories"
     android:targetSandboxVersion="2"
     android:versionCode="2"
     android:versionName="1.0.1" >
@@ -32,7 +32,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Chat Gpt Stories" >
         <activity
-            android:name="com.americanlyceum.chat_gpt_stories.MainActivity"
+            android:name="com.brainstormers.gpt_stories.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -120,7 +120,7 @@
 
         <provider
             android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
-            android:authorities="com.americanlyceum.chat_gpt_stories.flutterfirebasemessaginginitprovider"
+            android:authorities="com.brainstormers.gpt_stories.flutterfirebasemessaginginitprovider"
             android:exported="false"
             android:initOrder="99" />
 
@@ -192,7 +192,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.americanlyceum.chat_gpt_stories.firebaseinitprovider"
+            android:authorities="com.brainstormers.gpt_stories.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />

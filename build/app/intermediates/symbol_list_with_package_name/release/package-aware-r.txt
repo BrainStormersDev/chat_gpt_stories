@@ -1,4 +1,4 @@
-com.americanlyceum.chat_gpt_stories
+com.brainstormers.gpt_stories
 attr activityAction
 attr activityName
 attr alpha

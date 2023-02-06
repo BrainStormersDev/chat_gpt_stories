@@ -37,6 +37,9 @@ class ChatTextController extends GetxController {
   var state = ApiState.notFound.obs;
 
   getTextCompletion(String query) async {
+
+
+    print("=======query:${query}=========");
     // addMyMessage();
 
     state.value = ApiState.loading;
@@ -65,7 +68,7 @@ class ChatTextController extends GetxController {
 
         headers: headerBearerOption(MyRepo.kApiToken.value),
       );
-      print("Response  body  ${response.body}");
+      print("Response  getTextCompletion  ${response.body}");
       if (response.statusCode == 200) {
         // messages =
         //     TextCompletionModel.fromJson(json.decode(response.body)).choices;

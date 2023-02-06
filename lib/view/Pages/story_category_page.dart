@@ -1,8 +1,10 @@
 import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 import '../../controllers/chat_text_controller.dart';
 import '../../model/IconModels.dart';
@@ -19,7 +21,10 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
 
   RxString selectItems="-1".obs;
+  final TextEditingController _searachController = TextEditingController();
   List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for children")];
+  // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for${GetStorage().read(kGender)} children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for  ${GetStorage().read(kGender)} children")];
+  // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old")];
   // const StoryCategoryPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -33,13 +38,13 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
           elevation: 0,
           backgroundColor: AppColors.kScreenColor,
           actions:  [
-            InkWell(
-                onTap: (){
-                  showCustomDialog( context);
-                },
-                child: Container(
-                    margin: EdgeInsets.only(right:  15.0,top: 10),
-                    child: Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))),
+            // InkWell(
+            //     onTap: (){
+            //       showCustomDialog( context);
+            //     },
+            //     child: Container(
+            //         margin: EdgeInsets.only(right:  15.0,top: 10),
+            //         child: Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))),
           ],
           leading: IconButton(
             onPressed: (){
@@ -93,8 +98,41 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
               ),
               const SizedBox(height: 20,),
 
+
+              TextField(
+                controller: _searachController,
+                onSubmitted: (value) {
+                  nextPage(text:"Story of ${_searachController.text} for children",title: _searachController.text );
+                },
+                onChanged: (value){
+                  // searchData(st = value.trim().toLowerCase());
+                  // Method For Searching
+                },
+                decoration:  InputDecoration(
+                  hintText: "Search Story...",
+                  hintStyle: TextStyle(color: AppColors.kPrimary),
+                  suffixIcon: InkWell(
+                      onTap: (){
+
+                        print("======searacb ${_searachController.text}=====");
+                        nextPage(text:"Story of ${_searachController.text} for children",title: _searachController.text );
+                      },
+
+                      child: Icon(Icons.search,color: AppColors.kPrimary,size: 40,)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.kPrimary, width: 2.0),
+                  ),
+                  border: const OutlineInputBorder(
+
+                    borderRadius:
+                    BorderRadius.all(Radius.circular(7.0),),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,),
+
               Container(
-                height: 400,
+                // height: 400,
                 child: GridView.count(
                   crossAxisCount: 3,
                   crossAxisSpacing: 4.0,
@@ -245,38 +283,38 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
               //   ],
               // ),
               // const SizedBox(height: 35,),
-              ElevatedButton(
-                  onPressed: (){
-
-
-                    // Get.to(const AgePage());
-
-                    if(selectItems.value=="-1"){
-
-                      MySnackBar.snackBarRed(
-                          title:"Alert", message:"Please select story type");
-
-                    }else{
-                      print("==========value:${title[int.parse(selectItems.value)].value}==========");
-                      Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
-                      Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
-
-
-                    }
-                    //
-                  },
-                  style: ButtonStyle(
-                      shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                      backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
-                  ),
-                  child: const SizedBox(
-                      height: 50,
-                      // width: MediaQuery.of(context).size.width/2,
-                      child: Center(
-                          child: Text("Next",
-                              style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+              // ElevatedButton(
+              //     onPressed: (){
+              //
+              //
+              //       // Get.to(const AgePage());
+              //
+              //       if(selectItems.value=="-1"){
+              //
+              //         MySnackBar.snackBarRed(
+              //             title:"Alert", message:"Please select story type");
+              //
+              //       }else{
+              //         print("==========value:${title[int.parse(selectItems.value)].value}==========");
+              //         Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
+              //         Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
+              //         Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
+              //
+              //
+              //       }
+              //       //
+              //     },
+              //     style: ButtonStyle(
+              //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
+              //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+              //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
+              //     ),
+              //     child: const SizedBox(
+              //         height: 50,
+              //         // width: MediaQuery.of(context).size.width/2,
+              //         child: Center(
+              //             child: Text("Next",
+              //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
             ],
           ),
         ),
@@ -292,7 +330,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
         selectItems.value =index.toString();
         print("========data:${selectItems.value }=======");
         // controller.getGenerateImages(data.story);
-        nextPage();
+        nextPage(text: title[int.parse(selectItems.value)].value,title: title[int.parse(selectItems.value)].title);
 
       },
       child: Container(
@@ -319,27 +357,28 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
       ),
     );
   }
-  nextPage(){
+  nextPage({required String text,required String title}){
 
 
     Future.delayed(const Duration(milliseconds: 100), () {
-      print("==========value:${title[int.parse(selectItems.value)].value}==========");
-      Get.put(ChatTextController()).getTextCompletion(title[int.parse(selectItems.value)].value);
-      Get.put(ChatImageController()).getGenerateImages(title[int.parse(selectItems.value)].value);
-
-      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title[int.parse(selectItems.value)].title,)));
+      print("==========value:${text }==========");
+      Get.put(ChatTextController()).getTextCompletion(text);
+      Get.put(ChatImageController()).getGenerateImages(text);
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title,)));
     });
   }
 
 
-  void showCustomDialog(BuildContext context) {
+  void showCustomDialog(BuildContext dialogContext) {
     showGeneralDialog(
-      context: context,
+      context: dialogContext,
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: Duration(milliseconds: 700),
-      pageBuilder: (_, __, ___) {
+      pageBuilder: (BuildContext context, __, ___) {
+
+        dialogContext = context;
         return Material(
           color: Colors.transparent,
           child: Center(
@@ -355,7 +394,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                     alignment: Alignment.topRight,
                     child: InkWell(
                         onTap: (){
-                          Navigator.pop(context);
+                          Navigator.pop(dialogContext);
                         },
                         child: const Icon(FontAwesomeIcons.circleXmark)),
                   ),

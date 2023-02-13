@@ -5,7 +5,11 @@
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":text_to_speech" />
         <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
+<<<<<<< HEAD
         <option name="LAST_KNOWN_AGP_VERSION" value="7.0.4" />
+=======
+        <option name="LAST_KNOWN_AGP_VERSION" value="4.0.1" />
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
       </configuration>
     </facet>
     <facet type="kotlin-language" name="Kotlin">
@@ -43,8 +47,13 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+<<<<<<< HEAD
         <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/main/res;file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/debug/res;file://$MODULE_DIR$/../../../../build/text_to_speech/generated/res/rs/debug;file://$MODULE_DIR$/../../../../build/text_to_speech/generated/res/resValues/debug" />
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/androidTest/res;file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/androidTestDebug/res;file://$MODULE_DIR$/../../../../build/text_to_speech/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../../build/text_to_speech/generated/res/resValues/androidTest/debug" />
+=======
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/main/res;file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/debug/res;file://$MODULE_DIR$/../../../../build/text_to_speech/generated/res/rs/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/androidTest/res;file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android/src/androidTestDebug/res;file://$MODULE_DIR$/../../../../build/text_to_speech/generated/res/rs/androidTest/debug" />
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
         <option name="PROJECT_TYPE" value="1" />
       </configuration>

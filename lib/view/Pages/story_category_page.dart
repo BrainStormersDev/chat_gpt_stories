@@ -1,5 +1,8 @@
 import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
+<<<<<<< HEAD
 import 'package:chat_gpt_stories/model/StoryCategoryModels.dart';
+=======
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +28,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
 
   RxString selectItems="-1".obs;
+<<<<<<< HEAD
   List<String> gender = ['Boy', 'Girl'];
   RxString selectedAge='${GetStorage().read(kAge)}'.obs;
   RxString selectedGender="${GetStorage().read(kGender)}".obs;
@@ -35,6 +39,10 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
   StoryCatController storyCatController =Get.put(StoryCatController());
   // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for children")];
+=======
+  final TextEditingController _searachController = TextEditingController();
+  List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for children")];
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
   // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for${GetStorage().read(kGender)} children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for  ${GetStorage().read(kGender)} children")];
   // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old")];
   // const StoryCategoryPage({Key? key}) : super(key: key);
@@ -49,6 +57,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
           toolbarHeight: 40,
           elevation: 0,
           backgroundColor: AppColors.kScreenColor,
+<<<<<<< HEAD
           actions:   [
             InkWell(
                 onTap: (){
@@ -59,6 +68,16 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                 child: Container(
                     margin: EdgeInsets.only(right:  15.0,top: 10),
                     child: Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))),
+=======
+          actions:  [
+            // InkWell(
+            //     onTap: (){
+            //       showCustomDialog( context);
+            //     },
+            //     child: Container(
+            //         margin: EdgeInsets.only(right:  15.0,top: 10),
+            //         child: Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))),
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
           ],
           leading: IconButton(
             onPressed: (){
@@ -116,7 +135,11 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
               TextField(
                 controller: _searachController,
                 onSubmitted: (value) {
+<<<<<<< HEAD
                   nextPage(data:StoryCatData(title: _searachController.text,imageUrl: []));
+=======
+                  nextPage(text:"Story of ${_searachController.text} for children",title: _searachController.text );
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
                 },
                 onChanged: (value){
                   // searchData(st = value.trim().toLowerCase());
@@ -129,11 +152,19 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                       onTap: (){
 
                         print("======searacb ${_searachController.text}=====");
+<<<<<<< HEAD
                         nextPage(data:StoryCatData(title: _searachController.text,imageUrl: []));
                       },
 
                       child: const Icon(Icons.search,color: AppColors.kPrimary,size: 40,)),
                   enabledBorder: const OutlineInputBorder(
+=======
+                        nextPage(text:"Story of ${_searachController.text} for children",title: _searachController.text );
+                      },
+
+                      child: Icon(Icons.search,color: AppColors.kPrimary,size: 40,)),
+                  enabledBorder: OutlineInputBorder(
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
                     borderSide: BorderSide(color: AppColors.kPrimary, width: 2.0),
                   ),
                   border: const OutlineInputBorder(
@@ -143,6 +174,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                   ),
                 ),
               ),
+<<<<<<< HEAD
               const SizedBox(height: 20,),
 
               storyCatController.state.value == ApiState.loading? myIndicator():  Container(
@@ -150,6 +182,13 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                 child:storyCatController.state.value == ApiState.error?
                 Container(child: Center(child: Text(storyCatController.errorMsg.value)),)
                     :GridView.count(
+=======
+              SizedBox(height: 20,),
+
+              Container(
+                // height: 400,
+                child: GridView.count(
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
                   crossAxisCount: 3,
                   crossAxisSpacing: 4.0,
                   mainAxisSpacing: 8.0,
@@ -346,8 +385,12 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
         selectItems.value =index.toString();
         print("========data:${selectItems.value }=======");
         // controller.getGenerateImages(data.story);
+<<<<<<< HEAD
         nextPage(data: data);
         // nextPage(title: title[int.parse(selectItems.value)].title);
+=======
+        nextPage(text: title[int.parse(selectItems.value)].value,title: title[int.parse(selectItems.value)].title);
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
 
       },
       child: Container(
@@ -374,6 +417,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
       ),
     );
   }
+<<<<<<< HEAD
   nextPage({required StoryCatData data}) async {
 
 
@@ -388,16 +432,29 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
       Get.put(ChatTextController()).getTextCompletion(query: searchText);
       // Get.put(ChatImageController()).getGenerateImages(searchText);
       Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(data:data ,)));
+=======
+  nextPage({required String text,required String title}){
+
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      print("==========value:${text }==========");
+      Get.put(ChatTextController()).getTextCompletion(text);
+      Get.put(ChatImageController()).getGenerateImages(text);
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(storyType: title,)));
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
     });
   }
 
 
   void showCustomDialog(BuildContext dialogContext) {
+<<<<<<< HEAD
 
     print("=========${GetStorage().read(kGender)}====");
 
 
 
+=======
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
     showGeneralDialog(
       context: dialogContext,
       barrierLabel: "Barrier",

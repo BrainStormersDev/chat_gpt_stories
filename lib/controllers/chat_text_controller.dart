@@ -39,7 +39,11 @@ class ChatTextController extends GetxController {
   Rx<GetStoryModels> getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [],storyNote: '',storyTitle: '')).obs;
   RxString errorMsg=''.obs;
 
+<<<<<<< HEAD
   getTextCompletion({required String query}) async {
+=======
+  getTextCompletion(String query) async {
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
 
 
     print("=======query:${query}=========");
@@ -81,8 +85,12 @@ class ChatTextController extends GetxController {
 
         // headers: headerBearerOption(MyRepo.kApiToken.value),
       );
+<<<<<<< HEAD
       print("Response $query  getTextCompletion====  ${response.body}");
 
+=======
+      print("Response  getTextCompletion  ${response.body}");
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
       if (response.statusCode == 200) {
         // messages =
         //     TextCompletionModel.fromJson(json.decode(response.body)).choices;

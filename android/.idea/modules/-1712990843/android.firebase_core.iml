@@ -5,7 +5,11 @@
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":firebase_core" />
         <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" />
+<<<<<<< HEAD:android/.idea/modules/-1712990843/android.firebase_core.iml
         <option name="LAST_KNOWN_AGP_VERSION" value="7.0.4" />
+=======
+        <option name="LAST_KNOWN_AGP_VERSION" value="4.0.1" />
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d:android/.idea/modules/-1723493947/android.firebase_core.iml
       </configuration>
     </facet>
     <facet type="android" name="Android">

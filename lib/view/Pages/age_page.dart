@@ -86,8 +86,16 @@ class _AgePageState extends State<AgePage> {
                   ],
                 ),
                 const SizedBox(height: 15,),
+<<<<<<< HEAD
+=======
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      MyRepo.selectAge=AgeSelect.two;
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
 
 
+<<<<<<< HEAD
                 ListView.builder(
                     itemCount: MyRepo.selectAgeList.length,
                     shrinkWrap: true,
@@ -282,6 +290,185 @@ class _AgePageState extends State<AgePage> {
                 // ),
                 // const SizedBox(height: 35,),
                 const SizedBox(height: 20,),
+=======
+
+
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border:MyRepo.selectAge==AgeSelect.two? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.two ? AppColors.kPrimary:null,
+                        borderRadius: BorderRadius.circular(10)
+
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            setState(() {
+                              MyRepo.selectAge=AgeSelect.two;
+
+                            });
+                            nextPage();
+
+
+                          },
+                          child: Container(
+                            height: 60,
+                            width: 110,
+                            decoration: ShapeDecoration(
+                              color: MyRepo.selectAge==AgeSelect.two ?AppColors.kPrimary:null,
+                                shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.two?AppColors.kWhite:AppColors.txtColor1)
+
+                            ),
+                            child:  Center(
+                              child: Text(
+                                "1 - 3",
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "BalooBhai",
+                                    color: MyRepo.selectAge==AgeSelect.two?AppColors.kWhite:AppColors.txtColor1),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/PNG/age1-3.png", scale: 0.9,),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15,),
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      MyRepo.selectAge=AgeSelect.four;
+
+                    });
+                    nextPage();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border:MyRepo.selectAge==AgeSelect.four? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.four ? AppColors.kPrimary:null,
+                      borderRadius: BorderRadius.circular(10)
+
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 110,
+                          decoration: ShapeDecoration(
+                              color:MyRepo. selectAge==AgeSelect.four ?AppColors.kPrimary:null,
+                              shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.four?AppColors.kWhite:AppColors.txtColor1)),
+                          child:  Center(
+                            child: Text(
+                              "3 - 5",
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "BalooBhai",
+                                  color:MyRepo. selectAge==AgeSelect.four?AppColors.kWhite:AppColors.txtColor1),
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/PNG/age3-5.png", scale: 0.9,),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15,),
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      MyRepo. selectAge=AgeSelect.seven;
+
+                    });
+                    nextPage();
+
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border:MyRepo.selectAge==AgeSelect.seven? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.seven ? AppColors.kPrimary:null,
+                        borderRadius: BorderRadius.circular(10)
+
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 110,
+                          decoration: ShapeDecoration(
+                            color: MyRepo.selectAge==AgeSelect.seven ?AppColors.kPrimary:null,
+                              shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.seven?AppColors.kWhite:AppColors.txtColor1)),
+                          child:  Center(
+                            child: Text(
+                              "5 - 10",
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "BalooBhai",
+                                  color: MyRepo.selectAge==AgeSelect.seven?AppColors.kWhite:AppColors.txtColor1),
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/PNG/age5-10.png", scale: 0.9,),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15,),
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      MyRepo.selectAge=AgeSelect.thirteen;
+
+                    });
+                    nextPage();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border:MyRepo.selectAge==AgeSelect.thirteen? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectAge==AgeSelect.thirteen ? AppColors.kPrimary:null,
+                        borderRadius: BorderRadius.circular(10)
+
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 110,
+                          decoration: ShapeDecoration(
+                              color:MyRepo. selectAge==AgeSelect.thirteen ?AppColors.kPrimary:null,
+                              shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.thirteen?AppColors.kWhite:AppColors.txtColor1)),
+                          child:  Center(
+                            child: Text(
+                              "10 +",
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "BalooBhai",
+                                  color: MyRepo.selectAge==AgeSelect.thirteen?AppColors.kWhite:AppColors.txtColor1),
+                            ),
+                          ),
+                        ),
+                        Image.asset("assets/PNG/age10.png", scale: 0.9,),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 35,),
+>>>>>>> 9a1319c38d69f7b41ef4b24cb570ae1f30344b0d
                 ElevatedButton(
                     onPressed: (){
                       if(selectItems.value=='-1'){

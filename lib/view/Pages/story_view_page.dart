@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,12 @@ import 'package:text_to_speech/text_to_speech.dart';
 import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
 import '../../controllers/chat_text_controller.dart';
+import '../../model/StoryCategoryModels.dart';
 import '../../utils/app_color.dart';
 
 class StoryViewPage extends StatefulWidget {
-  final String storyType;
-  const StoryViewPage({Key? key, required this.storyType}) : super(key: key);
+  final StoryCatData data;
+  const StoryViewPage({Key? key, required this.data}) : super(key: key);
 
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
@@ -23,14 +25,15 @@ class StoryViewPage extends StatefulWidget {
 
 class _StoryViewPageState extends State<StoryViewPage> {
   TextToSpeech tts = TextToSpeech();
-  ChatImageController controllerImage= Get.put(ChatImageController());
+  // ChatImageController controllerImage= Get.put(ChatImageController());
   ChatTextController controllerText= Get.put(ChatTextController());
   String mystring ='';
 
   @override
   void initState() {
     // TODO: implement initState
-    _speak(controllerText.messages[0].text);
+    _speak(controllerText.getStoryModels.value.data!.story);
+    // _speak(controllerText.messages[0].text);
 
 
 
@@ -131,7 +134,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                               child:  Padding(
                                 padding: EdgeInsets.only(left: 8.0, top: 4, bottom: 4, right: 8),
                                 child: Text(
-                                  "Story of ${widget.storyType}",
+                                  "Story of ${widget.data.title}",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
@@ -149,26 +152,37 @@ class _StoryViewPageState extends State<StoryViewPage> {
                         ],
                       ),
                       SizedBox(height: 10,),
-                      Card(
-                        child: CachedNetworkImage(
-                          imageUrl: controllerImage.images.isEmpty?"":controllerImage.images[2].url,
-                          fit: BoxFit.cover,
+                      Container(
+                        height: 220,
+                        // width: double.infinity,
+                        child:CachedNetworkImage(
+                          // imageUrl: kDemoImage,
+                          imageUrl: ""??controllerText.getStoryModels.value.data!.images![0].imageUrl! ,
+                          fit: BoxFit.fill,
                           progressIndicatorBuilder: (context, url, downloadProgress) =>
                               SizedBox(
-                                // height: 220,
-                                // width: 130,
+                                  width: double.infinity,
                                   child: Shimmer.fromColors(
                                     baseColor: Colors.grey.withOpacity(.3),
                                     highlightColor: Colors.grey,
                                     child: Container(
-                                      height: 150,
-                                      width: 130,
+                                      width: double.infinity,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.circular(4)),
                                     ),
                                   )),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                          errorWidget: (context, url, error) => Container(
+                            height: 200,
+                            width: 200,
+                            decoration:  BoxDecoration(
+                              image:DecorationImage(
+                                image: NetworkImage(
+                                    widget.data.imageUrl),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -190,6 +204,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                   children: [
 
 
+
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,22 +222,15 @@ class _StoryViewPageState extends State<StoryViewPage> {
                             style: const TextStyle(
                                 fontSize: 20.0,
                                 fontFamily: 'Bobbers',
-                                color:  AppColors.txtColor1
+                                color:  AppColors.kPrimary
                             ),
                             child: AnimatedTextKit(
-
                               animatedTexts: [
-
-                                TyperAnimatedText(controllerText.messages[0].text,
+                                TyperAnimatedText(controllerText.getStoryModels.value.data!.story!,
                                   textStyle: TextStyle(color: AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
-
                                   speed: const Duration(milliseconds: 70),
-
-
-
-
-
                                 ),
+
                               ],
                               onTap: () {
                                 print("Tap Event");

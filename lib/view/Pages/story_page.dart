@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
@@ -15,19 +16,20 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
 import '../../controllers/chat_text_controller.dart';
+import '../../model/StoryCategoryModels.dart';
 import '../../model/text_completion_model.dart';
 import '../../utils/app_color.dart';
 
 class StoryPage extends StatefulWidget {
-  final String storyType;
-  const StoryPage({Key? key, required this.storyType}) : super(key: key);
+  final StoryCatData data;
+  const StoryPage({Key? key, required this.data}) : super(key: key);
 
   @override
   State<StoryPage> createState() => _StoryPageState();
 }
 
 class _StoryPageState extends State<StoryPage> {
-  ChatImageController controllerImage= Get.put(ChatImageController());
+  // ChatImageController controllerImage= Get.put(ChatImageController());
   ChatTextController controllerText= Get.put(ChatTextController());
   late PackageInfo packageInfo;
   bool versionCheck1 = false;
@@ -54,7 +56,7 @@ class _StoryPageState extends State<StoryPage> {
 
     final response = await http.get(url);
     var data = jsonDecode(response.body);
-    print("====data: ${data}=====");
+    print("====data: ${data}  ${packageInfo.version}=====");
     if (response.statusCode == 200) {
       versionCheck1 = true;
       if (Platform.isAndroid) {
@@ -294,7 +296,7 @@ class _StoryPageState extends State<StoryPage> {
 
                 const SizedBox(height: 20,),
                // true
-                controllerImage.state.value == ApiState.loading
+                controllerText.state.value == ApiState.loading
                     ? Container(
                   child: Column(
                     children: [
@@ -318,7 +320,7 @@ class _StoryPageState extends State<StoryPage> {
                         child: AnimatedTextKit(
                           animatedTexts: [
                             TyperAnimatedText('Please wait ....'),
-                            TyperAnimatedText('While your story of ${widget.storyType} is creating'),
+                            TyperAnimatedText('While your story of ${widget.data.title} is creating'),
                           ],
                           onTap: () {
                             print("Tap Event");
@@ -340,63 +342,78 @@ class _StoryPageState extends State<StoryPage> {
                     ],
                   ),
                 )
-                    :Column(
-                      children: [
-                        InkWell(
+                    :Container(
+                      child:controllerText.state.value == ApiState.error?
+                      Container(child: Center(child: Text(controllerText.errorMsg.value)),): Column(
+                        children: [
+                          InkWell(
                   onTap: (){
 
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
 
                   },
-                  child: Card(
-                        child: CachedNetworkImage(
-                          imageUrl: controllerImage.images.isEmpty?"":controllerImage.images[0].url,
-                          fit: BoxFit.cover,
-                          progressIndicatorBuilder: (context, url, downloadProgress) =>
-                              SizedBox(
-                                  height: 220,
-                                  width: double.infinity,
-                                  child: Shimmer.fromColors(
-                                    baseColor: Colors.grey.withOpacity(.3),
-                                    highlightColor: Colors.grey,
-                                    child: Container(
-                                      height: 220,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(4)),
-                                    ),
-                                  )),
-                          errorWidget: (context, url, error) => const Icon(Icons.error),
-                        ),
-                  ),
-                ),
-                        const SizedBox(height: 35,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children:  [
-                            IconButton(
-                                onPressed: (){},
-                                icon: const Icon(Icons.skip_previous_rounded, color: AppColors.kBtnColor, size: 30,)),
-                            GestureDetector(
-                              onTap: (){
+                  child: Container(
+                      height: 220,
+                      // width: double.infinity,
 
-                                Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType:widget.storyType ,)));
-                              },
-                              child: const CircleAvatar(
-                                radius: 30,
-                                backgroundColor: AppColors.kBtnColor,
-                                child: Icon(CupertinoIcons.play_arrow_solid, color: AppColors.txtColor1,),
+                          child: CachedNetworkImage(
+                            // imageUrl: kDemoImage,
+                            imageUrl: ""??controllerText.getStoryModels.value.data!.images![0].imageUrl! ,
+                            fit: BoxFit.fill,
+                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                SizedBox(
+                                    width: double.infinity,
+                                    child: Shimmer.fromColors(
+                                      baseColor: Colors.grey.withOpacity(.3),
+                                      highlightColor: Colors.grey,
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(4)),
+                                      ),
+                                    )),
+                            errorWidget: (context, url, error) => Container(
+                              height: 200,
+                              width: 200,
+                              decoration:  BoxDecoration(
+                                image:DecorationImage(
+                                  image: NetworkImage(
+                                      widget.data.imageUrl),
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
-                            IconButton(
-                                onPressed: (){},
-                                icon: const Icon(Icons.skip_next_rounded, color: AppColors.kBtnColor, size: 30,)),
+                          ),
+                  ),
+                ),
+                          const SizedBox(height: 35,),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children:  [
+                              IconButton(
+                                  onPressed: (){},
+                                  icon: const Icon(Icons.skip_previous_rounded, color: AppColors.kBtnColor, size: 30,)),
+                              GestureDetector(
+                                onTap: (){
 
-                          ],
-                        ),
-                      ],
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data ,)));
+                                },
+                                child: const CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: AppColors.kBtnColor,
+                                  child: Icon(CupertinoIcons.play_arrow_solid, color: AppColors.txtColor1,),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: (){},
+                                  icon: const Icon(Icons.skip_next_rounded, color: AppColors.kBtnColor, size: 30,)),
+
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                 // SizedBox(
                 //     height: MediaQuery.of(context).size.height * 0.4,

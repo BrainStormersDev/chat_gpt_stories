@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,7 +22,7 @@ import 'view/Pages/splash_page.dart';
 // }
 
 
-RxInt count =0.obs;
+// RxInt count =0.obs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +58,7 @@ Future<void> messageHandler() async {
 
 
 
-    count.value++;
+    // count.value++;
 
     if(Platform.isAndroid){
       await _showNotification(event);

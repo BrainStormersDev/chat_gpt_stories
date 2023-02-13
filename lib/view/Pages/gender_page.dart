@@ -37,9 +37,9 @@ class _GenderPageState extends State<GenderPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                ),
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height * 0.06,
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -60,9 +60,6 @@ class _GenderPageState extends State<GenderPage> {
                           color: AppColors.txtColor1),
                     ),
                   ],
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
@@ -94,8 +91,8 @@ class _GenderPageState extends State<GenderPage> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        border:MyRepo.selectedGender==Gender.boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRepo.selectedGender==Gender.boy ? AppColors.kPrimary:null
+                        border:MyRepo.selectedGender==Gender.Boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectedGender==Gender.Boy ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -107,7 +104,7 @@ class _GenderPageState extends State<GenderPage> {
                               // isGirl.value == false;
                               // print("========isBoy.value====${isBoy.value}");
                               setState(() {
-                                MyRepo.selectedGender=Gender.boy;
+                                MyRepo.selectedGender=Gender.Boy;
 
                               });
                               Future.delayed(const Duration(milliseconds: 100), () {
@@ -121,7 +118,7 @@ class _GenderPageState extends State<GenderPage> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color:MyRepo.selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
+                                  color:MyRepo.selectedGender==Gender.Boy ? AppColors.kBoyBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kBoyBGColor, width: 2)),
                               child: Padding(
@@ -141,8 +138,8 @@ class _GenderPageState extends State<GenderPage> {
                                 fontWeight: FontWeight.bold,
                                 // color: selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                 foreground: Paint()
-                                  ..style =MyRepo. selectedGender==Gender.boy ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =MyRepo.selectedGender==Gender.boy ?AppColors.kWhite: AppColors.kBoyBGColor),
+                                  ..style =MyRepo. selectedGender==Gender.Boy ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRepo.selectedGender==Gender.Boy ?AppColors.kWhite: AppColors.kBoyBGColor),
                           )
                         ],
                       ),
@@ -152,8 +149,8 @@ class _GenderPageState extends State<GenderPage> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          border:MyRepo.selectedGender==Gender.girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                          color:MyRepo.selectedGender==Gender.girl ? AppColors.kPrimary:null
+                          border:MyRepo.selectedGender==Gender.Girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                          color:MyRepo.selectedGender==Gender.Girl ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -166,7 +163,7 @@ class _GenderPageState extends State<GenderPage> {
                               // print("========isGirl.value====${isGirl.value}");
 
                               setState(() {
-                                MyRepo.selectedGender=Gender.girl;
+                                MyRepo.selectedGender=Gender.Girl;
 
                               });
                               Future.delayed(const Duration(milliseconds: 100), () {
@@ -177,7 +174,7 @@ class _GenderPageState extends State<GenderPage> {
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color: MyRepo. selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
+                                  color: MyRepo. selectedGender==Gender.Girl? AppColors.kGirlBGColor : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kGirlBGColor, width: 2)),
                               child: Padding(
@@ -196,8 +193,8 @@ class _GenderPageState extends State<GenderPage> {
                                 fontFamily: "BalooBhai",
                                 fontWeight: FontWeight.bold,
                                 foreground: Paint()
-                                  ..style = MyRepo.selectedGender==Gender.girl ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =MyRepo.selectedGender==Gender.girl ?AppColors.kWhite: AppColors.kGirlBGColor),
+                                  ..style = MyRepo.selectedGender==Gender.Girl ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRepo.selectedGender==Gender.Girl ?AppColors.kWhite: AppColors.kGirlBGColor),
                           )
                         ],
                       ),

@@ -1,11 +1,19 @@
+import 'dart:async';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
+import '../../utils/app_size.dart';
+import '../../utils/mySnackBar.dart';
 import 'gender_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -15,12 +23,24 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateMixin{
+  late Connectivity _connectivity;
+  late StreamSubscription subscription;
+  bool _isNetworkConnected = true;
+  late AnimationController _animationController;
+  double? progressValue;
+
+
 
   @override
   void initState() {
     // TODO: implement initState
+    getInterNetConnections();
+    _updateProgress();
     super.initState();
+    playSound();
+
+
     SystemChrome.setPreferredOrientations(
       [
         DeviceOrientation.portraitUp,
@@ -48,6 +68,8 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: AppColors.kSplashColor,
       body: Stack(
         children: [
+
+
           Positioned(
            top: 90,
            left: 30,
@@ -56,6 +78,7 @@ class _SplashPageState extends State<SplashPage> {
              crossAxisAlignment: CrossAxisAlignment.center,
              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
+
                Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: const [
@@ -64,8 +87,38 @@ class _SplashPageState extends State<SplashPage> {
                  ],
                ),
                const SizedBox(height: 10,),
-               const Text("Welcome to new platform of \nStory Telling. Let’s Begin",
-                 style: TextStyle(color: AppColors.txtColor1, fontSize: 15), textAlign: TextAlign.center,),
+               DefaultTextStyle(
+                 style: const TextStyle(
+                     fontSize: 20.0,
+                     fontFamily: 'Bobbers',
+                     color:  AppColors.txtColor1
+                 ),
+                 child: AnimatedTextKit(
+
+                   animatedTexts: [
+
+                     TyperAnimatedText("Welcome to new platform of \n Story Telling. Let’s Begin",
+                       // TyperAnimatedText(controllerText.messages[0].text,
+                       textStyle: TextStyle(color: AppColors.txtColor1, fontSize: 15),
+
+                       speed: const Duration(milliseconds: 70),
+
+
+
+
+
+                     ),
+                   ],
+                   onTap: () {
+                     print("Tap Event");
+                   },
+                   stopPauseOnTap: true,
+                   totalRepeatCount: 1,
+
+                 ),
+               ),
+               // const Text("Welcome to new platform of \n Story Telling. Let’s Begin",
+               //   style: TextStyle(color: AppColors.txtColor1, fontSize: 15), textAlign: TextAlign.center,),
              ],
            ),),
           Positioned(
@@ -80,16 +133,28 @@ class _SplashPageState extends State<SplashPage> {
                    borderRadius: BorderRadius.only(topLeft: Radius.circular(150), topRight: Radius.circular(150))
                 ),
               )),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.63,
-            // bottom: MediaQuery.of(context).size.height * 0.63,
-            // left: 0,
-            // right: 0,
-            child: SizedBox(
-                // height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset("assets/PNG/orbit.png")),
-          ),
+          // Positioned(
+          //   top: MediaQuery.of(context).size.height * 0.63,
+          //   // bottom: MediaQuery.of(context).size.height * 0.63,
+          //   // left: 0,
+          //   // right: 0,
+          //
+          //   child: ScaleTransition(
+          //       scale: _animationController,
+          //       child: Container(
+          //         height: MediaQuery.of(context).size.height,
+          //         // width: 30,
+          //         child: Image(
+          //           image: ExactAssetImage("assets/PNG/loin.png"),
+          //         ),
+          //       )),
+          //   // child: SizedBox(
+          //   //     // height: MediaQuery.of(context).size.height,
+          //   //     width: MediaQuery.of(context).size.width,
+          //   //     child: Image.asset("assets/PNG/orbit.png")),
+          // ),
+
+
           Positioned(
             bottom: 0,
             top: 0,
@@ -100,39 +165,102 @@ class _SplashPageState extends State<SplashPage> {
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset("assets/PNG/loin.png", scale: 1.2,)),
           ),
+
+
+
+
           ///Button
+
           Positioned(
             left: 40,
             right: 40,
             bottom: 40,
-              child: ElevatedButton(
-                  onPressed: (){
+              child: Column(
+                children: [
+                  if (_isNetworkConnected)
+                    Container(
+                        margin:
+                        EdgeInsets.only(bottom: AppSizes.appVerticalMd * 0.2),
+                        child: Column(
+                          children: [
+                            const Text(
+                              "No Internet Connection",
+                              style: TextStyle(
+                                  color: AppColors.kRed, fontWeight: FontWeight.w700),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                SpinKitWave(
+                                  color:AppColors.kPrimary,
+                                  size: 20.0,
+                                ),
+                                SizedBox(width: 10,),
+                                Text("Connecting to internet...",style: TextStyle(
+                                    color: AppColors.kPrimary, fontWeight: FontWeight.w700),)
+                              ],
+                            )
+                          ],
+                        )),
+                  SizedBox(height: 10,),
+                  ElevatedButton(
+                      onPressed: () async {
 
-                    if(GetStorage().hasData(kGender) ){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
-
-                    }
-                    else{
-                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
-
-                    }
+                        if(!_isNetworkConnected){
 
 
+                          if(GetStorage().hasData(kGender) ){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
 
-                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
-                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
-                  },
-                  style: ButtonStyle(
-                    shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                    backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
-                  ),
-                  child: const SizedBox(
-                      height: 50,
-                      // width: MediaQuery.of(context).size.width/2,
-                      child: Center(
-                          child: Text("Start",
-                            style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+                          }
+                          else{
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
+
+                          }
+                          try {
+
+                            await MyRepo.assetsAudioPlayer.open(
+                              Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
+                            );
+                          } catch (t) {
+                            //mp3 unreachable
+                          }
+
+                        }
+                        else{
+
+                          MySnackBar.snackBarRed(
+                              title: "Alert",
+                              message: "Not internet connection found");
+
+                        }
+
+                        // AssetsAudioPlayer.newPlayer().open(
+                        //   Audio("assets/BG_Song/n_1.mp3"),
+                        //   autoStart: true,
+                        //   showNotification: true,
+                        // );
+
+
+
+
+
+                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
+                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
+                      },
+                      style: ButtonStyle(
+                        shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
+                        backgroundColor:  MaterialStatePropertyAll(!_isNetworkConnected?AppColors.kBtnColor:AppColors.kGrey),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
+                      ),
+                      child: const SizedBox(
+                          height: 50,
+                          // width: MediaQuery.of(context).size.width/2,
+                          child: Center(
+                              child: Text("Start",
+                                style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+                ],
+              ),
           ),
 
         ],
@@ -140,7 +268,67 @@ class _SplashPageState extends State<SplashPage> {
 
     );
   }
+
+
+  Future<void> getInterNetConnections() async {
+    _connectivity = Connectivity();
+    ConnectivityResult result = ConnectivityResult.none;
+    result = await _connectivity.checkConnectivity();
+
+    if(result != ConnectivityResult.none){
+      setState(() {
+        _isNetworkConnected = false;
+      });
+
+
+    }
+    subscription = _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.wifi ||
+          result == ConnectivityResult.mobile) {
+        setState(() {
+          print("----------------------Internet Connected-----------------");
+          _isNetworkConnected = false;
+        });
+      } else {
+        setState(() {
+          print("----------------------Internet Not Connected-----------------");
+          _isNetworkConnected = true;
+        });
+      }
+    });
+  }
+
+  void playSound() {
+
+
+    AssetsAudioPlayer.newPlayer().open(
+      Audio(kWelcomeSound),
+      autoStart: true,
+      showNotification: true,
+    );
+  }
+
+  Future<void> _updateProgress() async {
+    _animationController =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    _animationController.repeat(reverse: true);
+
+    // _animationController = AnimationController(
+    //   vsync: this,
+    //   //  duration: const Duration(milliseconds: 0),
+    //   duration: const Duration(milliseconds: 2500),
+    //   animationBehavior: AnimationBehavior.normal,
+    //   lowerBound: 0.1,
+    //   upperBound: 7.0,
+    // );
+    // _animationController.addStatusListener((status) {
+    //   if (status == AnimationStatus.completed) {}
+    // });
+    // _animationController.upperBound;
+  }
 }
+
+
 
 
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/assets_audio_player-3.0.6/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/assets_audio_player_web-3.0.6/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus-3.0.2/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-2.5.0/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-14.2.2/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-13.0.0/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/package_info_plus-2.0.0/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_android-2.0.15/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-2.2.4+1/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/text_to_speech-0.2.3/android" />
+            <option value="$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.23/android" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

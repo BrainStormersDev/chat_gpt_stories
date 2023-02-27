@@ -13,10 +13,12 @@ import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
 import '../../controllers/chat_text_controller.dart';
 import '../../model/StoryCategoryModels.dart';
+import '../../model/storyCatListModel.dart';
 import '../../utils/app_color.dart';
 
 class StoryViewPage extends StatefulWidget {
-  final StoryCatData data;
+  final DataList data;
+  // final StoryCatData data;
   const StoryViewPage({Key? key, required this.data}) : super(key: key);
 
   @override
@@ -34,14 +36,14 @@ class _StoryViewPageState extends State<StoryViewPage> {
   var styleTwo = const TextStyle(
       color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
 
+
   @override
-  void initState() {
+  initState()  {
     // TODO: implement initState
-    _speak(controllerText.getStoryModels.value.data!.story);
-    // _speak(controllerText.messages[0].text);
+    // print(controllerText.storyCategoryListModels.value.data!.first.story!+"=====Story========");
+    String character = controllerText.storyCategoryListModels.value.data!.first.story!;
 
-
-
+    _speak(character);
 
     super.initState();
   }
@@ -139,7 +141,8 @@ class _StoryViewPageState extends State<StoryViewPage> {
                               child:  Padding(
                                 padding: EdgeInsets.only(left: 8.0, top: 4, bottom: 4, right: 8),
                                 child: Text(
-                                  "Story of ${widget.data.title}",
+                                  "Story of ${widget.data.storyTitle}",
+                                  // "Story of ${widget.data.title}",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
@@ -156,40 +159,43 @@ class _StoryViewPageState extends State<StoryViewPage> {
                           //     child: Image.asset("assets/PNG/loin.png")),
                         ],
                       ),
-                      SizedBox(height: 10,),
-                      Container(
-                        height: 220,
-                        // width: double.infinity,
-                        child:CachedNetworkImage(
-                          // imageUrl: kDemoImage,
-                          imageUrl: ""??controllerText.getStoryModels.value.data!.images![0].imageUrl! ,
-                          fit: BoxFit.fill,
-                          progressIndicatorBuilder: (context, url, downloadProgress) =>
-                              SizedBox(
-                                  width: double.infinity,
-                                  child: Shimmer.fromColors(
-                                    baseColor: Colors.grey.withOpacity(.3),
-                                    highlightColor: Colors.grey,
-                                    child: Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(4)),
-                                    ),
-                                  )),
-                          errorWidget: (context, url, error) => Container(
-                            height: 200,
-                            width: 200,
-                            decoration:  BoxDecoration(
-                              image:DecorationImage(
-                                image: NetworkImage(
-                                    widget.data.imageUrl),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      const SizedBox(height: 10,),
+                      // Container(
+                      //   height: 220,
+                      //   // width: double.infinity,
+                      //   child:CachedNetworkImage(
+                      //     // imageUrl: kDemoImage,
+                      //     imageUrl: "${widget.data.images!.first.imageUrl}" ,
+                      //     // imageUrl: ""??controllerText.getStoryModels.value.data!.images![0].imageUrl! ,
+                      //     fit: BoxFit.fill,
+                      //     progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      //         SizedBox(
+                      //             width: double.infinity,
+                      //             child: Shimmer.fromColors(
+                      //               baseColor: Colors.grey.withOpacity(.3),
+                      //               highlightColor: Colors.grey,
+                      //               child: Container(
+                      //                 width: double.infinity,
+                      //                 decoration: BoxDecoration(
+                      //                     color: Colors.white,
+                      //                     borderRadius: BorderRadius.circular(4)),
+                      //               ),
+                      //             )),
+                      //     errorWidget: (context, url, error) => Container(
+                      //       height: 200,
+                      //       width: 200,
+                      //       decoration:  BoxDecoration(
+                      //         image:DecorationImage(
+                      //           image: NetworkImage(
+                      //               "${widget.data.images![0]}"
+                      //               // widget.data.imageUrl
+                      //           ),
+                      //           fit: BoxFit.fill,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -218,7 +224,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                         children: [
 
                           Text(
-                controllerText.getStoryModels.value.data!.story!,
+                            controllerText.storyCategoryListModels.value.data!.first.story!,
                                                         style: TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),
                                                         textAlign: TextAlign.start,
                                                       ),
@@ -231,10 +237,10 @@ class _StoryViewPageState extends State<StoryViewPage> {
                             ),
                             child: AnimatedTextKit(
                               animatedTexts: [
-
-                                TyperAnimatedText(controllerText.getStoryModels.value.data!.story!,
+                                TyperAnimatedText(controllerText.storyCategoryListModels.value.data!.first.story!,
                                   textStyle: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
-                                  speed: const Duration(milliseconds: 70),
+                                  speed: const Duration(milliseconds: 80),
+
                                 ),
 
                               ],
@@ -285,12 +291,16 @@ class _StoryViewPageState extends State<StoryViewPage> {
     );
   }
 
-  _speak(text) {
-    double rate = 0.8;
+
+
+  _speak(text) async {
+    double rate = 0.5;
     tts.setRate(rate);
     String language = 'en-US';
     tts.setLanguage(language);
-    tts.speak(text);
+    // tts.setPitch(3);
+    tts.speak(await text);
+
   }
 
   _stop() {

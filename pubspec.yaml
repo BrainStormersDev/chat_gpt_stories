@@ -85,6 +85,9 @@ flutter:
     - family: BalooBhai
       fonts:
         - asset: assets/Font/BalooBhai-Regular.ttf
+    - family: DMSerifDisplayRegular
+      fonts:
+        - asset: assets/Font/DMSerifDisplay-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
   assets:

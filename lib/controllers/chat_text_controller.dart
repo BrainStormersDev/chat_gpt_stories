@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:chat_gpt_stories/controllers/get_token_controller.dart';
+import 'package:chat_gpt_stories/model/storyCatListModel.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,10 +37,11 @@ class ChatTextController extends GetxController {
 
 
   var state = ApiState.notFound.obs;
-  Rx<GetStoryModels> getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [],storyNote: '',storyTitle: '')).obs;
+  Rx<StoryCatListModel> storyCategoryListModels =StoryCatListModel(status: false,message: '',data: []).obs;
+  // Rx<GetStoryModels> getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [],storyNote: '',storyTitle: '')).obs;
   RxString errorMsg=''.obs;
 
-  getTextCompletion({required String query}) async {
+  getTextCompletion({required String query, required String catId}) async {
 
 
     print("=======query:${query}=========");
@@ -60,6 +62,7 @@ class ChatTextController extends GetxController {
         Uri.parse("${kBaseUrl}get-stories"),
         body: {
           "search": query,
+          "cat_id": catId,
         },
 
         // body: json.encode({
@@ -89,9 +92,11 @@ class ChatTextController extends GetxController {
         //
         // addServerMessage(
         //     TextCompletionModel.fromJson(json.decode(response.body)).choices);
-        getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [])).obs;
+        storyCategoryListModels =StoryCatListModel(status: false,message: '',data: []).obs;
+        // getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [])).obs;
 
-        getStoryModels.value =GetStoryModels.fromJson(json.decode(response.body));
+        storyCategoryListModels.value =StoryCatListModel.fromJson(json.decode(response.body));
+        // getStoryModels.value =GetStoryModels.fromJson(json.decode(response.body));
         print("Response $query  getTextCompletion====  ${response.body}");
 
 
@@ -102,7 +107,7 @@ class ChatTextController extends GetxController {
 
 
      state.value = ApiState.error;
-     errorMsg.value = "Error :${getStoryModels.value.message}";
+     errorMsg.value = "Error :${storyCategoryListModels.value.message}";
 
 
       }

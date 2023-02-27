@@ -17,11 +17,12 @@ import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
 import '../../controllers/chat_text_controller.dart';
 import '../../model/StoryCategoryModels.dart';
+import '../../model/storyCatListModel.dart';
 import '../../model/text_completion_model.dart';
 import '../../utils/app_color.dart';
 
 class StoryPage extends StatefulWidget {
-  final StoryCatData data;
+  final DataList data;
   const StoryPage({Key? key, required this.data}) : super(key: key);
 
   @override
@@ -320,7 +321,8 @@ class _StoryPageState extends State<StoryPage> {
                         child: AnimatedTextKit(
                           animatedTexts: [
                             TyperAnimatedText('Please wait ....'),
-                            TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                            TyperAnimatedText('While your story of ${widget.data.storyTitle} is creating'),
+                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
                           ],
                           onTap: () {
                             print("Tap Event");
@@ -358,7 +360,7 @@ class _StoryPageState extends State<StoryPage> {
 
                           child: CachedNetworkImage(
                             // imageUrl: kDemoImage,
-                            imageUrl: ""??controllerText.getStoryModels.value.data!.images![0].imageUrl! ,
+                            imageUrl: "",
                             fit: BoxFit.fill,
                             progressIndicatorBuilder: (context, url, downloadProgress) =>
                                 SizedBox(
@@ -376,10 +378,13 @@ class _StoryPageState extends State<StoryPage> {
                             errorWidget: (context, url, error) => Container(
                               height: 200,
                               width: 200,
-                              decoration:  BoxDecoration(
+                              decoration:  const BoxDecoration(
                                 image:DecorationImage(
-                                  image: NetworkImage(
-                                      widget.data.imageUrl),
+                                  image: AssetImage(
+                                      "assets/PNG/img_4.png"
+                                      // "${widget.data.images!.first.imageUrl}"
+                                      // widget.data.imageUrl
+                                  ),
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -398,7 +403,7 @@ class _StoryPageState extends State<StoryPage> {
                               GestureDetector(
                                 onTap: (){
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data ,)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data,)));
                                 },
                                 child: const CircleAvatar(
                                   radius: 30,

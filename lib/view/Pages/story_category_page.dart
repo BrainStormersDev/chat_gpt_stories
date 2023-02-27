@@ -1,7 +1,9 @@
 import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
 import 'package:chat_gpt_stories/model/StoryCategoryModels.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import 'package:chat_gpt_stories/view/Pages/story_catList_page.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
+import 'package:chat_gpt_stories/view/Widgets/constWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -79,27 +81,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.06,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "Story ",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "BalooBhai",
-                        color: AppColors.kBtnColor),
-                  ),
-                  Text(
-                    "By GPT",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "BalooBhai",
-                        color: AppColors.txtColor1),
-                  ),
-                ],
-              ),
+              storyByGptWidget(),
               const SizedBox(
                 height: 20,
               ),
@@ -112,37 +94,36 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
               ),
               const SizedBox(height: 20,),
 
-
-              TextField(
-                controller: _searachController,
-                onSubmitted: (value) {
-                  nextPage(data:StoryCatData(title: _searachController.text,imageUrl: []));
-                },
-                onChanged: (value){
-                  // searchData(st = value.trim().toLowerCase());
-                  // Method For Searching
-                },
-                decoration:  InputDecoration(
-                  hintText: "Search Story...",
-                  hintStyle: TextStyle(color: AppColors.kPrimary),
-                  suffixIcon: InkWell(
-                      onTap: (){
-
-                        print("======searacb ${_searachController.text}=====");
-                        nextPage(data:StoryCatData(title: _searachController.text,imageUrl: []));
-                      },
-
-                      child: const Icon(Icons.search,color: AppColors.kPrimary,size: 40,)),
-                  enabledBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.kPrimary, width: 2.0),
-                  ),
-                  border: const OutlineInputBorder(
-
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(7.0),),
-                  ),
-                ),
-              ),
+              // TextField(
+              //   controller: _searachController,
+              //   onSubmitted: (value) {
+              //     nextPage(data:StoryCatData(title: _searachController.text,imageUrl: []));
+              //   },
+              //   onChanged: (value){
+              //     // searchData(st = value.trim().toLowerCase());
+              //     // Method For Searching
+              //   },
+              //   decoration:  InputDecoration(
+              //     hintText: "Search Story...",
+              //     hintStyle: TextStyle(color: AppColors.kPrimary),
+              //     suffixIcon: InkWell(
+              //         onTap: (){
+              //
+              //           print("======searacb ${_searachController.text}=====");
+              //           nextPage(data:StoryCatData(title: _searachController.text,imageUrl: []));
+              //         },
+              //
+              //         child: const Icon(Icons.search,color: AppColors.kPrimary,size: 40,)),
+              //     enabledBorder: const OutlineInputBorder(
+              //       borderSide: BorderSide(color: AppColors.kPrimary, width: 2.0),
+              //     ),
+              //     border: const OutlineInputBorder(
+              //
+              //       borderRadius:
+              //       BorderRadius.all(Radius.circular(7.0),),
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 20,),
 
               storyCatController.state.value == ApiState.loading? myIndicator():  Container(
@@ -343,7 +324,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
   Widget icon({required StoryCatData data, required int index}){
     return InkWell(
       onTap: (){
-        selectItems.value =index.toString();
+        selectItems.value = index.toString();
         print("========data:${selectItems.value }=======");
         // controller.getGenerateImages(data.story);
         nextPage(data: data);
@@ -377,17 +358,18 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
   nextPage({required StoryCatData data}) async {
 
 
-    String searchText ='${data.title}';
+    String searchText ='';
+    String catId = '${data.id}';
     // String searchText ='Story of ${data.title} for children';
 
 
-    await MyRepo.assetsAudioPlayer.pause();
+    // await MyRepo.assetsAudioPlayer.pause();
 
     Future.delayed(const Duration(milliseconds: 100), () {
       // print("==========value:${searchText },$title==========");
-      Get.put(ChatTextController()).getTextCompletion(query: searchText);
+      Get.put(ChatTextController()).getTextCompletion(query: searchText, catId: catId);
       // Get.put(ChatImageController()).getGenerateImages(searchText);
-      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(data:data ,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCatList(catName: data.title,)));
     });
   }
 

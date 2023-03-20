@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
@@ -15,11 +16,12 @@ import '../../controllers/chat_text_controller.dart';
 import '../../model/StoryCategoryModels.dart';
 import '../../model/storyCatListModel.dart';
 import '../../utils/app_color.dart';
+import 'share_page.dart';
 
 class StoryViewPage extends StatefulWidget {
   final DataList data;
   // final StoryCatData data;
-  const StoryViewPage({Key? key, required this.data}) : super(key: key);
+  const StoryViewPage({Key? key, required this.data,}) : super(key: key);
 
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
@@ -27,8 +29,9 @@ class StoryViewPage extends StatefulWidget {
 
 class _StoryViewPageState extends State<StoryViewPage> {
   TextToSpeech tts = TextToSpeech();
+  final SpeechToText _speech = SpeechToText();
   // ChatImageController controllerImage= Get.put(ChatImageController());
-  ChatTextController controllerText= Get.put(ChatTextController());
+  // ChatTextController controllerText= Get.put(ChatTextController());
   String mystring ='';
 
   var styleOne = const TextStyle(color: Colors.black87, fontSize: 21);
@@ -36,17 +39,60 @@ class _StoryViewPageState extends State<StoryViewPage> {
   var styleTwo = const TextStyle(
       color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
 
+  final ScrollController _scrollController = ScrollController();
+
+  bool _isListening = true;
 
   @override
   initState()  {
     // TODO: implement initState
     // print(controllerText.storyCategoryListModels.value.data!.first.story!+"=====Story========");
-    String character = controllerText.storyCategoryListModels.value.data!.first.story!;
+    String character = widget.data.story.toString();
+    // String character = controllerText.storyCategoryListModels.value.data!.first.story!;
+
+    // _listen();
 
     _speak(character);
 
+
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _scrollController.position.maxScrollExtent == _scrollController.offset
+          ? _scrollController.jumpTo(_scrollController.position.minScrollExtent)
+          : _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration:  const Duration(milliseconds: 100000), curve: Curves.linear);
+    });
+
     super.initState();
   }
+
+  void _listen() async {
+    print("_listen call");
+    if (!_isListening) {
+      print("_listen initialize");
+      bool available = await _speech.initialize(
+        onStatus: (status) => print('onStatus: $status'),
+        onError: (error) => print('onError: $error'),
+      );
+      if (available) {
+        print("_listen available");
+        setState(() => _isListening = true);
+        _speech.listen(
+          onResult: (result) => setState(() {
+            print("_listen call");
+            widget.data.story = result.recognizedWords;
+            _speak(result.recognizedWords);
+          }),
+        );
+      }
+    } else {
+      setState(() => _isListening = false);
+      _speech.stop();
+    }
+  }
+
+
   @override
   void deactivate() {
     // TODO: implement deactivate
@@ -111,6 +157,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                        Image.asset("assets/PNG/bellIcon.png",width: 20,),
                        IconButton(
                            onPressed: (){
+
                              Navigator.push(context, MaterialPageRoute(builder: (context) => const RateUsPage()));
                            },
                            icon: const Icon(CupertinoIcons.star, color: AppColors.kBtnColor,))
@@ -207,16 +254,13 @@ class _StoryViewPageState extends State<StoryViewPage> {
               alignment: Alignment.topLeft,
               padding: const EdgeInsets.only(bottom: 10,left: 15,right: 15),
               child: SingleChildScrollView(
-                reverse: true,
+                controller: _scrollController,
+                // reverse: true,
 
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-
-
-
 
                       Stack(
                     //     mainAxisAlignment: MainAxisAlignment.start,
@@ -224,10 +268,11 @@ class _StoryViewPageState extends State<StoryViewPage> {
                         children: [
 
                           Text(
-                            controllerText.storyCategoryListModels.value.data!.first.story!,
-                                                        style: TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),
-                                                        textAlign: TextAlign.start,
-                                                      ),
+                            widget.data.story.toString(),
+                            // controllerText.storyCategoryListModels.value.data!.first.story!,
+                           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),
+                           textAlign: TextAlign.start,
+                           ),
 
                           DefaultTextStyle(
                             style: const TextStyle(
@@ -237,9 +282,11 @@ class _StoryViewPageState extends State<StoryViewPage> {
                             ),
                             child: AnimatedTextKit(
                               animatedTexts: [
-                                TyperAnimatedText(controllerText.storyCategoryListModels.value.data!.first.story!,
+                                TyperAnimatedText(
+                                  widget.data.story.toString(),
+                                  // controllerText.storyCategoryListModels.value.data!.first.story!,
                                   textStyle: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
-                                  speed: const Duration(milliseconds: 80),
+                                  speed: const Duration(milliseconds: 95),
 
                                 ),
 
@@ -249,6 +296,9 @@ class _StoryViewPageState extends State<StoryViewPage> {
                               },
                               stopPauseOnTap: true,
                               totalRepeatCount: 1,
+                              onFinished: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> const SharePage()));
+                              },
 
                             ),
                           ),
@@ -300,7 +350,8 @@ class _StoryViewPageState extends State<StoryViewPage> {
     tts.setLanguage(language);
     // tts.setPitch(3);
     tts.speak(await text);
-
+    // .asStream().listen((event) {})
+    // .whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context)=> const SharePage())))
   }
 
   _stop() {

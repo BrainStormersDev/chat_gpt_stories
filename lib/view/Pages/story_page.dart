@@ -403,7 +403,7 @@ class _StoryPageState extends State<StoryPage> {
                               GestureDetector(
                                 onTap: (){
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data,)));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data, )));
                                 },
                                 child: const CircleAvatar(
                                   radius: 30,

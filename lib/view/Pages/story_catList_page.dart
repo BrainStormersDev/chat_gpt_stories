@@ -244,6 +244,7 @@ class _StoryCatListState extends State<StoryCatList> {
 
 
     String searchText ='';
+    String categId =data.id.toString();
     // String searchText ='${data.storyTitle}';
     // String searchText ='${data.title}';
     // String searchText ='Story of ${data.title} for children';
@@ -253,7 +254,7 @@ class _StoryCatListState extends State<StoryCatList> {
 
     Future.delayed(const Duration(milliseconds: 100), () {
       // print("==========value:${searchText },$title==========");
-      Get.put(ChatTextController()).getTextCompletion(query: searchText, catId: '');
+      // Get.put(ChatTextController()).getTextCompletion(query: searchText, catId: categId);
       // Get.put(ChatImageController()).getGenerateImages(searchText);
       Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(data:data,)));
     });

@@ -359,6 +359,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
 
     String searchText ='';
+    // String catId = '${data.id}';
     String catId = '${data.id}';
     // String searchText ='Story of ${data.title} for children';
 

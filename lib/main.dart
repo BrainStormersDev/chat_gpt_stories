@@ -152,13 +152,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Story Telling',
       // theme: ThemeData(
       //   primarySwatch: Colors.blue,
       // ),
-      home: GetMaterialApp(
+      scrollBehavior: ScrollConfiguration.of(context).copyWith(overscroll: false),
+      home: const GetMaterialApp(
           debugShowCheckedModeBanner: false,
 
           home:SplashPage()),

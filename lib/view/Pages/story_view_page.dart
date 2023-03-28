@@ -1,15 +1,13 @@
-import 'dart:convert';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:speech_to_text/speech_to_text.dart';
-import 'package:text_to_speech/text_to_speech.dart';
 import '../../common/headers.dart';
 import '../../controllers/chat_image_controller.dart';
 import '../../controllers/chat_text_controller.dart';
@@ -21,18 +19,19 @@ import 'share_page.dart';
 class StoryViewPage extends StatefulWidget {
   final DataList data;
   // final StoryCatData data;
-  const StoryViewPage({Key? key, required this.data,}) : super(key: key);
+  const StoryViewPage({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
 }
 
 class _StoryViewPageState extends State<StoryViewPage> {
-  TextToSpeech tts = TextToSpeech();
-  final SpeechToText _speech = SpeechToText();
   // ChatImageController controllerImage= Get.put(ChatImageController());
   // ChatTextController controllerText= Get.put(ChatTextController());
-  String mystring ='';
+  String mystring = '';
 
   var styleOne = const TextStyle(color: Colors.black87, fontSize: 21);
 
@@ -40,58 +39,70 @@ class _StoryViewPageState extends State<StoryViewPage> {
       color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
 
   final ScrollController _scrollController = ScrollController();
+  int activeIndex = 0;
 
-  bool _isListening = true;
+  FlutterTts tts = FlutterTts();
 
+  RxString nTxt = "".obs;
+  RxList<String> listTxt = <String>[].obs;
+  // RxList<String> widgetTxt = <String>[].obs;
+  List<String> widgetTxt = [];
   @override
-  initState()  {
-    // TODO: implement initState
-    // print(controllerText.storyCategoryListModels.value.data!.first.story!+"=====Story========");
-    String character = widget.data.story.toString();
-    // String character = controllerText.storyCategoryListModels.value.data!.first.story!;
-
-    // _listen();
-
-    _speak(character);
-
-
-
+  void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _scrollController.position.maxScrollExtent == _scrollController.offset
           ? _scrollController.jumpTo(_scrollController.position.minScrollExtent)
           : _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration:  const Duration(milliseconds: 100000), curve: Curves.linear);
+              _scrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 1000),
+              curve: Curves.linear);
     });
 
     super.initState();
+    tts = FlutterTts();
+    tts.speak(widget.data.story.toString());
+    tts.setProgressHandler(
+        (String text, int startOffset, int endOffset, String word) {
+      print("================== word :$word");
+      print("================== text :$text");
+      // print("================== startOffset :$startOffset");
+      // print("================== endOffset :$endOffset");
+      // nTxt.value = word;
+      listTxt.add(word);
+      widgetTxt.add(text);
+    });
   }
 
-  void _listen() async {
-    print("_listen call");
-    if (!_isListening) {
-      print("_listen initialize");
-      bool available = await _speech.initialize(
-        onStatus: (status) => print('onStatus: $status'),
-        onError: (error) => print('onError: $error'),
-      );
-      if (available) {
-        print("_listen available");
-        setState(() => _isListening = true);
-        _speech.listen(
-          onResult: (result) => setState(() {
-            print("_listen call");
-            widget.data.story = result.recognizedWords;
-            _speak(result.recognizedWords);
-          }),
-        );
-      }
-    } else {
-      setState(() => _isListening = false);
-      _speech.stop();
-    }
-  }
+  // @override
+  // initState()  {
+  //   // TODO: implement initState
+  //   // print(controllerText.storyCategoryListModels.value.data!.first.story!+"=====Story========");
+  //   String character = widget.data.story.toString();
+  //   // String character = controllerText.storyCategoryListModels.value.data!.first.story!;
+  //
+  //   // _listen();
+  //
+  //   _speak(character);
+  //
+  //
+  //
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  //     _scrollController.position.maxScrollExtent == _scrollController.offset
+  //         ? _scrollController.jumpTo(_scrollController.position.minScrollExtent)
+  //         : _scrollController.animateTo(
+  //         _scrollController.position.maxScrollExtent,
+  //         duration:  const Duration(milliseconds: 100000), curve: Curves.linear);
+  //   });
+  //
+  //   super.initState();
+  // }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _stop();
+    super.dispose();
+  }
 
   @override
   void deactivate() {
@@ -100,19 +111,44 @@ class _StoryViewPageState extends State<StoryViewPage> {
     _stop();
     super.deactivate();
   }
+
   @override
   Widget build(BuildContext context) {
+    final List<String> imgList = [
+      'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+      'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+      'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+      'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+      'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+      'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+    ];
+
+    final List<Widget> imageSliders = imgList
+        .map((item) => Container(
+          margin: const EdgeInsets.all(5.0),
+          child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
+        ))
+        .toList();
+
+    // print("===============================start loop");
+    // // for(int i=0;i<widget.data.story!.toString().split(",").length;i++){
+    // for(int i=0;i<listTxt.length;i++){
+    //
+    //   print("======= story ${listTxt}");
+    // }
+    // print("===============================end loop");
+
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
-
       body: SafeArea(
-        child:  /*(controllerText.state.value == ApiState.loading) ?const CircularProgressIndicator() : */
-        Column(
+        child: /*(controllerText.state.value == ApiState.loading) ?const CircularProgressIndicator() : */
+            Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -121,10 +157,14 @@ class _StoryViewPageState extends State<StoryViewPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: const Icon(Icons.arrow_back, color: AppColors.txtColor1,), ),
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: AppColors.txtColor1,
+                      ),
+                    ),
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -132,7 +172,9 @@ class _StoryViewPageState extends State<StoryViewPage> {
                           SizedBox(
                               height: 27,
                               child: Image.asset("assets/PNG/gridIcon.png")),
-                          SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                          ),
                           const Text(
                             "Story ",
                             style: TextStyle(
@@ -153,24 +195,33 @@ class _StoryViewPageState extends State<StoryViewPage> {
                       ),
                     ),
                     Row(
-                     children: [
-                       Image.asset("assets/PNG/bellIcon.png",width: 20,),
-                       IconButton(
-                           onPressed: (){
-
-                             Navigator.push(context, MaterialPageRoute(builder: (context) => const RateUsPage()));
-                           },
-                           icon: const Icon(CupertinoIcons.star, color: AppColors.kBtnColor,))
-                     ],
-                   )
-
+                      children: [
+                        Image.asset(
+                          "assets/PNG/bellIcon.png",
+                          width: 20,
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RateUsPage()));
+                            },
+                            icon: const Icon(
+                              CupertinoIcons.star,
+                              color: AppColors.kBtnColor,
+                            ))
+                      ],
+                    )
                   ],
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: const EdgeInsets.only(bottom: 10,left: 15,right: 15),
+                  padding:
+                      const EdgeInsets.only(bottom: 10, left: 15, right: 15),
                   child: Column(
                     children: [
                       Row(
@@ -183,10 +234,11 @@ class _StoryViewPageState extends State<StoryViewPage> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(color: AppColors.kBtnColor, width: 1)
-                              ),
-                              child:  Padding(
-                                padding: EdgeInsets.only(left: 8.0, top: 4, bottom: 4, right: 8),
+                                  border: Border.all(
+                                      color: AppColors.kBtnColor, width: 1)),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 8.0, top: 4, bottom: 4, right: 8),
                                 child: Text(
                                   "Story of ${widget.data.storyTitle}",
                                   // "Story of ${widget.data.title}",
@@ -206,7 +258,9 @@ class _StoryViewPageState extends State<StoryViewPage> {
                           //     child: Image.asset("assets/PNG/loin.png")),
                         ],
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       // Container(
                       //   height: 220,
                       //   // width: double.infinity,
@@ -246,112 +300,190 @@ class _StoryViewPageState extends State<StoryViewPage> {
                     ],
                   ),
                 ),
-
               ],
             ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.topLeft,
-              padding: const EdgeInsets.only(bottom: 10,left: 15,right: 15),
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                // reverse: true,
-
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                      Stack(
-                    //     mainAxisAlignment: MainAxisAlignment.start,
-                    // crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          Text(
-                            widget.data.story.toString(),
-                            // controllerText.storyCategoryListModels.value.data!.first.story!,
-                           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),
-                           textAlign: TextAlign.start,
-                           ),
-
-                          DefaultTextStyle(
-                            style: const TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'Bobbers',
-                                color:  AppColors.kPrimary
+            CarouselSlider(
+              options: CarouselOptions(
+                  scrollPhysics: const BouncingScrollPhysics(),
+                  viewportFraction: 1,
+                  aspectRatio: 2.0,
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                  autoPlay: true,
+                  onPageChanged: (index, CarouselPageChangedReason) {
+                    activeIndex = index;
+                  }),
+              items: imageSliders,
+            ),
+            Expanded(
+              child: Container(
+                alignment: Alignment.topLeft,
+                padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  // reverse: true,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Obx(
+                        () => Stack(
+                          children: [
+                            // Text(widgetTxt.toString().replaceAll(",","").replaceAll('[', '').replaceAll('replaceAll]','')
+                            //   ,
+                            //   style: const TextStyle(color: Colors.grey, fontSize: 25,fontWeight: FontWeight.bold),),
+                            Text(
+                              listTxt
+                                  .toString()
+                                  .replaceAll(",", "")
+                                  .replaceAll('[', '')
+                                  .replaceAll(']', ''),
+                              style: const TextStyle(
+                                  color: AppColors.kBtnColor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            child: AnimatedTextKit(
-                              animatedTexts: [
-                                TyperAnimatedText(
-                                  widget.data.story.toString(),
-                                  // controllerText.storyCategoryListModels.value.data!.first.story!,
-                                  textStyle: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
-                                  speed: const Duration(milliseconds: 95),
-
-                                ),
-
-                              ],
-                              onTap: () {
-                                print("Tap Event");
-                              },
-                              stopPauseOnTap: true,
-                              totalRepeatCount: 1,
-                              onFinished: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> const SharePage()));
-                              },
-
-                            ),
-                          ),
-                          // Card(
-                          //   child: CachedNetworkImage(
-                          //     imageUrl: controllerImage.images.isEmpty?"":controllerImage.images[3].url,
-                          //     fit: BoxFit.cover,
-                          //     progressIndicatorBuilder: (context, url, downloadProgress) =>
-                          //         SizedBox(
-                          //             height: 150,
-                          //             width: 150,
-                          //             child: Shimmer.fromColors(
-                          //               baseColor: Colors.grey.withOpacity(.3),
-                          //               highlightColor: Colors.grey,
-                          //               child: Container(
-                          //                 height: 220,
-                          //                 width: 130,
-                          //                 decoration: BoxDecoration(
-                          //                     color: Colors.white,
-                          //                     borderRadius: BorderRadius.circular(4)),
-                          //               ),
-                          //             )),
-                          //     errorWidget: (context, url, error) => const Icon(Icons.error),
-                          //   ),
-                          // ),
-                        ],
+                            ///
+                            // CarouselSlider(
+                            //   options: CarouselOptions(
+                            //     height: MediaQuery.of(context).size.height,
+                            //       // scrollPhysics: const BouncingScrollPhysics(),
+                            //       viewportFraction: widget.data.story!.length.toDouble(),
+                            //     // padEnds: false,
+                            //     // pauseAutoPlayOnManualNavigate: false,
+                            //       aspectRatio: 16/9,
+                            //       // aspectRatio: widget.data.story!.length.toDouble(),
+                            //       enlargeCenterPage: true,
+                            //       scrollDirection: Axis.vertical,
+                            //       autoPlay: true,
+                            //       enableInfiniteScroll: false,
+                            //       // onPageChanged: (index, CarouselPageChangedReason) {
+                            //       //   activeIndex = index;
+                            //       // }
+                            //       ),
+                            //   items: <Widget>[
+                            //     Padding(
+                            //       padding: const EdgeInsets.only(bottom: 16.0),
+                            //       child: Text(
+                            //         listTxt
+                            //             .toString()
+                            //             .replaceAll(",", "")
+                            //             .replaceAll('[', '')
+                            //             .replaceAll(']', ''),
+                            //         style: const TextStyle(
+                            //             color: AppColors.kBtnColor,
+                            //             fontSize: 25,
+                            //             fontWeight: FontWeight.bold),
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
+                            ///
+                            // FutureBuilder(
+                            //   future: Future.value(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']','')),
+                            //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                            //     return Text(snapshot.data.toString(),
+                            //           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),);
+                            //   },),
+                            // StreamBuilder(
+                            //   stream: Stream.value(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']','')),
+                            //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                            //     return
+                            //       Stack(
+                            //       children: [
+                            //         Text(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']',''),
+                            //           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),),
+                            //         // Text(snapshot.data.toString(), style: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),),
+                            //       ],
+                            //     );
+                            //   },),
+                          ],
+                        ),
                       ),
 
-
-
-                  ],
+                      // Obx(()=>Stack(
+                      //   //     mainAxisAlignment: MainAxisAlignment.start,
+                      //   // crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     Text(
+                      //       widget.data.story.toString(),
+                      //       // controllerText.storyCategoryListModels.value.data!.first.story!,
+                      //       style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),
+                      //       textAlign: TextAlign.start,
+                      //     ),
+                      //     StreamBuilder(
+                      //       stream: _speak(widget.data.story.toString()).s,
+                      //       // Stream.value(listTxt.value.toString().replaceAll(",","").replaceAll('[', '').replaceAll(']','')),
+                      //       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                      //         print("================ stream ${listTxt.length}");
+                      //         return DefaultTextStyle(
+                      //           style: const TextStyle(
+                      //               fontSize: 20.0,
+                      //               fontFamily: 'Bobbers',
+                      //               color:  AppColors.kPrimary
+                      //           ),
+                      //           child:
+                      //           // AnimatedTextKit(
+                      //           //   animatedTexts: [
+                      //           //     TyperAnimatedText(
+                      //           //       snapshot.data.toString(),
+                      //           //       // controllerText.storyCategoryListModels.value.data!.first.story!,
+                      //           //       textStyle: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
+                      //           //       // speed: const Duration(milliseconds: 95),
+                      //           //
+                      //           //     ),
+                      //           //
+                      //           //   ],
+                      //           //   onTap: () {
+                      //           //     print("Tap Event");
+                      //           //   },
+                      //           //   stopPauseOnTap: true,
+                      //           //   totalRepeatCount: 1,
+                      //           //   // onFinished: (){
+                      //           //   //   Navigator.push(context, MaterialPageRoute(builder: (context)=> const SharePage()));
+                      //           //   // },
+                      //           //
+                      //           // ),
+                      //         );
+                      //         // Text(snapshot.data.toString());
+                      //       },)
+                      //
+                      //
+                      //
+                      //     ///
+                      //     // Card(
+                      //     //   child: CachedNetworkImage(
+                      //     //     imageUrl: controllerImage.images.isEmpty?"":controllerImage.images[3].url,
+                      //     //     fit: BoxFit.cover,
+                      //     //     progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      //     //         SizedBox(
+                      //     //             height: 150,
+                      //     //             width: 150,
+                      //     //             child: Shimmer.fromColors(
+                      //     //               baseColor: Colors.grey.withOpacity(.3),
+                      //     //               highlightColor: Colors.grey,
+                      //     //               child: Container(
+                      //     //                 height: 220,
+                      //     //                 width: 130,
+                      //     //                 decoration: BoxDecoration(
+                      //     //                     color: Colors.white,
+                      //     //                     borderRadius: BorderRadius.circular(4)),
+                      //     //               ),
+                      //     //             )),
+                      //     //     errorWidget: (context, url, error) => const Icon(Icons.error),
+                      //     //   ),
+                      //     // ),
+                      //   ],
+                      // )),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
-
+            )
           ],
         ),
       ),
     );
-  }
-
-
-
-  _speak(text) async {
-    double rate = 0.5;
-    tts.setRate(rate);
-    String language = 'en-US';
-    tts.setLanguage(language);
-    // tts.setPitch(3);
-    tts.speak(await text);
-    // .asStream().listen((event) {})
-    // .whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context)=> const SharePage())))
   }
 
   _stop() {

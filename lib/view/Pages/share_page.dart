@@ -1,11 +1,14 @@
+import 'package:chat_gpt_stories/model/storyCatListModel.dart';
 import 'package:chat_gpt_stories/view/Pages/share.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 
 import '../../utils/app_color.dart';
 
 class SharePage extends StatelessWidget {
-  const SharePage({Key? key}) : super(key: key);
+  final DataList? shareData;
+  SharePage({Key? key, this.shareData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +80,9 @@ class SharePage extends StatelessWidget {
                 ElevatedButton(
                     onPressed: (){
                       // Get.to(const AgePage());
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Share()));
+                      String message = "Story Title: ${shareData?.storyTitle}\nStory: \n${shareData?.story}";
+                      Share.share(message);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),

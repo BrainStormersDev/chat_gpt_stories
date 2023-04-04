@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -5,6 +7,7 @@ import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
@@ -50,13 +53,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
   @override
   void initState() {
 
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _scrollController.position.maxScrollExtent == _scrollController.offset
-          ? _scrollController.jumpTo(_scrollController.position.minScrollExtent)
-          : _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration:  const Duration(milliseconds: 1000), curve: Curves.easeInOut);
-    });
     super.initState();
     tts = FlutterTts();
     tts.speak(widget.data.story.toString());
@@ -69,6 +65,17 @@ class _StoryViewPageState extends State<StoryViewPage> {
       // nTxt.value = word;
       listTxt.add(word);
       widgetTxt.add(text);
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
+
+    });
+    tts.setCompletionHandler(() {
+      // Do something when speech is complete
+      Get.to(()=>SharePage(shareData: widget.data,));
+      print('Speech completed');
     });
   }
 
@@ -100,6 +107,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
   void dispose() {
     // TODO: implement dispose
     _stop();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -133,7 +141,13 @@ class _StoryViewPageState extends State<StoryViewPage> {
               child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
         ))
         .toList();
-
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   _scrollController.position.maxScrollExtent == _scrollController.offset
+    //       ? _scrollController.jumpTo(_scrollController.position.minScrollExtent)
+    //       : _scrollController.animateTo(
+    //       _scrollController.position.maxScrollExtent,
+    //       duration:  const Duration(milliseconds: 1000), curve: Curves.easeInOut);
+    // });
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       body: SafeArea(
@@ -314,20 +328,17 @@ class _StoryViewPageState extends State<StoryViewPage> {
               child: Container(
                 alignment: Alignment.topLeft,
                 padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
-                child: ListView(
-                  controller: _scrollController,
-                  // mainAxisAlignment: MainAxisAlignment.start,
-                  // crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Obx(
+                child: Obx(
                       () => Stack(
-                        children: [
-                          // Text(widgetTxt.toString().replaceAll(",","").replaceAll('[', '').replaceAll('replaceAll]','')
-                          //   ,
-                          //   style: const TextStyle(color: Colors.grey, fontSize: 25,fontWeight: FontWeight.bold),),
+                    children: [
+                      // Text(widgetTxt.toString().replaceAll(",","").replaceAll('[', '').replaceAll('replaceAll]','')
+                      //   ,
+                      //   style: const TextStyle(color: Colors.grey, fontSize: 25,fontWeight: FontWeight.bold),),
 
-                      Text(
-                              listTxt
+                      SingleChildScrollView(
+                        controller: _scrollController,
+                        child: Text(
+                          listTxt
                               .toString()
                               .replaceAll(",", "")
                               .replaceAll('[', '')
@@ -336,141 +347,65 @@ class _StoryViewPageState extends State<StoryViewPage> {
                               color: AppColors.kBtnColor,
                               fontSize: 25,
                               fontWeight: FontWeight.bold),
-                        )
+                        ),
+                      )
 
-                          ///
-                          // CarouselSlider(
-                          //   options: CarouselOptions(
-                          //     height: MediaQuery.of(context).size.height,
-                          //       // scrollPhysics: const BouncingScrollPhysics(),
-                          //       viewportFraction: widget.data.story!.length.toDouble(),
-                          //     // padEnds: false,
-                          //     // pauseAutoPlayOnManualNavigate: false,
-                          //       aspectRatio: 16/9,
-                          //       // aspectRatio: widget.data.story!.length.toDouble(),
-                          //       enlargeCenterPage: true,
-                          //       scrollDirection: Axis.vertical,
-                          //       autoPlay: true,
-                          //       enableInfiniteScroll: false,
-                          //       // onPageChanged: (index, CarouselPageChangedReason) {
-                          //       //   activeIndex = index;
-                          //       // }
-                          //       ),
-                          //   items: <Widget>[
-                          //     Padding(
-                          //       padding: const EdgeInsets.only(bottom: 16.0),
-                          //       child: Text(
-                          //         listTxt
-                          //             .toString()
-                          //             .replaceAll(",", "")
-                          //             .replaceAll('[', '')
-                          //             .replaceAll(']', ''),
-                          //         style: const TextStyle(
-                          //             color: AppColors.kBtnColor,
-                          //             fontSize: 25,
-                          //             fontWeight: FontWeight.bold),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                          ///
-                          // FutureBuilder(
-                          //   future: Future.value(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']','')),
-                          //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                          //     return Text(snapshot.data.toString(),
-                          //           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),);
-                          //   },),
-                          // StreamBuilder(
-                          //   stream: Stream.value(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']','')),
-                          //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                          //     return
-                          //       Stack(
-                          //       children: [
-                          //         Text(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']',''),
-                          //           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),),
-                          //         // Text(snapshot.data.toString(), style: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),),
-                          //       ],
-                          //     );
-                          //   },),
-                        ],
-                      ),
-                    ),
-
-                    // Obx(()=>Stack(
-                    //   //     mainAxisAlignment: MainAxisAlignment.start,
-                    //   // crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
-                    //     Text(
-                    //       widget.data.story.toString(),
-                    //       // controllerText.storyCategoryListModels.value.data!.first.story!,
-                    //       style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),
-                    //       textAlign: TextAlign.start,
-                    //     ),
-                    //     StreamBuilder(
-                    //       stream: _speak(widget.data.story.toString()).s,
-                    //       // Stream.value(listTxt.value.toString().replaceAll(",","").replaceAll('[', '').replaceAll(']','')),
-                    //       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                    //         print("================ stream ${listTxt.length}");
-                    //         return DefaultTextStyle(
-                    //           style: const TextStyle(
-                    //               fontSize: 20.0,
-                    //               fontFamily: 'Bobbers',
-                    //               color:  AppColors.kPrimary
-                    //           ),
-                    //           child:
-                    //           // AnimatedTextKit(
-                    //           //   animatedTexts: [
-                    //           //     TyperAnimatedText(
-                    //           //       snapshot.data.toString(),
-                    //           //       // controllerText.storyCategoryListModels.value.data!.first.story!,
-                    //           //       textStyle: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),
-                    //           //       // speed: const Duration(milliseconds: 95),
-                    //           //
-                    //           //     ),
-                    //           //
-                    //           //   ],
-                    //           //   onTap: () {
-                    //           //     print("Tap Event");
-                    //           //   },
-                    //           //   stopPauseOnTap: true,
-                    //           //   totalRepeatCount: 1,
-                    //           //   // onFinished: (){
-                    //           //   //   Navigator.push(context, MaterialPageRoute(builder: (context)=> const SharePage()));
-                    //           //   // },
-                    //           //
-                    //           // ),
-                    //         );
-                    //         // Text(snapshot.data.toString());
-                    //       },)
-                    //
-                    //
-                    //
-                    //     ///
-                    //     // Card(
-                    //     //   child: CachedNetworkImage(
-                    //     //     imageUrl: controllerImage.images.isEmpty?"":controllerImage.images[3].url,
-                    //     //     fit: BoxFit.cover,
-                    //     //     progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    //     //         SizedBox(
-                    //     //             height: 150,
-                    //     //             width: 150,
-                    //     //             child: Shimmer.fromColors(
-                    //     //               baseColor: Colors.grey.withOpacity(.3),
-                    //     //               highlightColor: Colors.grey,
-                    //     //               child: Container(
-                    //     //                 height: 220,
-                    //     //                 width: 130,
-                    //     //                 decoration: BoxDecoration(
-                    //     //                     color: Colors.white,
-                    //     //                     borderRadius: BorderRadius.circular(4)),
-                    //     //               ),
-                    //     //             )),
-                    //     //     errorWidget: (context, url, error) => const Icon(Icons.error),
-                    //     //   ),
-                    //     // ),
-                    //   ],
-                    // )),
-                  ],
+                      ///
+                      // CarouselSlider(
+                      //   options: CarouselOptions(
+                      //     height: MediaQuery.of(context).size.height,
+                      //       // scrollPhysics: const BouncingScrollPhysics(),
+                      //       viewportFraction: widget.data.story!.length.toDouble(),
+                      //     // padEnds: false,
+                      //     // pauseAutoPlayOnManualNavigate: false,
+                      //       aspectRatio: 16/9,
+                      //       // aspectRatio: widget.data.story!.length.toDouble(),
+                      //       enlargeCenterPage: true,
+                      //       scrollDirection: Axis.vertical,
+                      //       autoPlay: true,
+                      //       enableInfiniteScroll: false,
+                      //       // onPageChanged: (index, CarouselPageChangedReason) {
+                      //       //   activeIndex = index;
+                      //       // }
+                      //       ),
+                      //   items: <Widget>[
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(bottom: 16.0),
+                      //       child: Text(
+                      //         listTxt
+                      //             .toString()
+                      //             .replaceAll(",", "")
+                      //             .replaceAll('[', '')
+                      //             .replaceAll(']', ''),
+                      //         style: const TextStyle(
+                      //             color: AppColors.kBtnColor,
+                      //             fontSize: 25,
+                      //             fontWeight: FontWeight.bold),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      ///
+                      // FutureBuilder(
+                      //   future: Future.value(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']','')),
+                      //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                      //     return Text(snapshot.data.toString(),
+                      //           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),);
+                      //   },),
+                      // StreamBuilder(
+                      //   stream: Stream.value(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']','')),
+                      //   builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                      //     return
+                      //       Stack(
+                      //       children: [
+                      //         Text(listTxt.toString().replaceAll(","," ").replaceAll('[', '').replaceAll(']',''),
+                      //           style: const TextStyle(color: AppColors.kWhite, fontSize: 25,fontWeight: FontWeight.bold),),
+                      //         // Text(snapshot.data.toString(), style: TextStyle(color:AppColors.txtColor2, fontSize: 25,fontWeight: FontWeight.bold),),
+                      //       ],
+                      //     );
+                      //   },),
+                    ],
+                  ),
                 ),
               ),
             )

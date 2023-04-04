@@ -106,24 +106,24 @@ class RateUsPage extends StatelessWidget {
                         child: Center(
                             child: Text("Rate Us",
                                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
-                const SizedBox(height: 35,),
-                ElevatedButton(
-                    onPressed: (){
-                      // Get.to(const AgePage());
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SharePage()));
-                    },
-                    style: ButtonStyle(
-                        shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                        backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                        fixedSize: MaterialStateProperty.all(Size(200, 50))
-                    ),
-                    child: const SizedBox(
-                        height: 50,
-                        // width: MediaQuery.of(context).size.width/2,
-                        child: Center(
-                            child: Text("Next",
-                                style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+                // const SizedBox(height: 35,),
+                // ElevatedButton(
+                //     onPressed: (){
+                //       // Get.to(const AgePage());
+                //       Navigator.push(context, MaterialPageRoute(builder: (context) => SharePage()));
+                //     },
+                //     style: ButtonStyle(
+                //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
+                //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+                //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
+                //         fixedSize: MaterialStateProperty.all(Size(200, 50))
+                //     ),
+                //     child: const SizedBox(
+                //         height: 50,
+                //         // width: MediaQuery.of(context).size.width/2,
+                //         child: Center(
+                //             child: Text("Next",
+                //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
               ],
             ),
           ),

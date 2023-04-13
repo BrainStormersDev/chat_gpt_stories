@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
 import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -47,6 +48,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
         DeviceOrientation.portraitDown,
       ]
     );
+    DynamicLinksProvider().initDynamicLink();
   }
   @override
   void dispose() {

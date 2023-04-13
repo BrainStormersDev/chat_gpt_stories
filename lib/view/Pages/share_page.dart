@@ -1,4 +1,5 @@
 import 'package:chat_gpt_stories/model/storyCatListModel.dart';
+import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
 import 'package:chat_gpt_stories/view/Pages/share.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -8,7 +9,8 @@ import '../../utils/app_color.dart';
 
 class SharePage extends StatelessWidget {
   final DataList? shareData;
-  SharePage({Key? key, this.shareData}) : super(key: key);
+  final String? catName;
+  SharePage({Key? key, this.shareData, this.catName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,16 +81,19 @@ class SharePage extends StatelessWidget {
                 const SizedBox(height: 25,),
                 ElevatedButton(
                     onPressed: (){
-                      // Get.to(const AgePage());
+                      // // Get.to(const AgePage());
                       String message = "Story Title: ${shareData?.storyTitle}\nStory: \n${shareData?.story}";
-                      Share.share(message);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
+                      // Share.share(message);
+                      // // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
+                      DynamicLinksProvider().createLink(catName.toString(), shareData!.storyTitle.toString()).then((value) =>
+                          Share.share("GPT Stories For Kids\n \nStory: ${shareData?.storyTitle}\n \nHere is a Story click on the link\n \n$value")
+                      );
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
                         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))),
-                        fixedSize: MaterialStateProperty.all(Size(200, 50))
+                        fixedSize: MaterialStateProperty.all(const Size(200, 50))
                     ),
                     child: const SizedBox(
                         height: 50,

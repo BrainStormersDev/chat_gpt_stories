@@ -135,6 +135,7 @@ class _StoryCatListState extends State<StoryCatList> {
   }
 
   Widget icon(index){
+    print( widget.catName);
     return InkWell(
       // onTap: (){
       //   selectItems.value = index.toString();
@@ -161,7 +162,7 @@ class _StoryCatListState extends State<StoryCatList> {
                 decoration: const BoxDecoration(
                   image: DecorationImage(image: AssetImage("assets/PNG/img_4.png"), fit: BoxFit.fitWidth),
                   borderRadius: BorderRadiusDirectional.only(topStart: Radius.circular(20), bottomStart: Radius.circular(20)),
-                  color: Colors.red,
+                  color: AppColors.kBtnColor,
                 ),
 
                 height: MediaQuery.of(context).size.height * 0.15,
@@ -241,8 +242,7 @@ class _StoryCatListState extends State<StoryCatList> {
     );
   }
   nextPage({required DataList data}) async {
-
-
+    print("======Data==========${data.story}");
     String searchText ='';
     String categId =data.id.toString();
     // String searchText ='${data.storyTitle}';
@@ -256,7 +256,7 @@ class _StoryCatListState extends State<StoryCatList> {
       // print("==========value:${searchText },$title==========");
       // Get.put(ChatTextController()).getTextCompletion(query: searchText, catId: categId);
       // Get.put(ChatImageController()).getGenerateImages(searchText);
-      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(data:data,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryPage(data:data, catName: widget.catName,)));
     });
   }
 

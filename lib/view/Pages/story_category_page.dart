@@ -363,7 +363,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
     // await MyRepo.assetsAudioPlayer.pause();
 
     Future.delayed(const Duration(milliseconds: 100), () {
-      // print("==========value:${searchText },$title==========");
+      print("==========searchText:$searchText ,catId  $catId==========");
       Get.put(ChatTextController()).getTextCompletion(query: searchText, catId: catId);
       // Get.put(ChatImageController()).getGenerateImages(searchText);
       Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCatList(catName: data.title,)));
@@ -490,7 +490,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                       },
                       style: ButtonStyle(
                           shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                          backgroundColor:  MaterialStatePropertyAll(AppColors.kBtnColor),
+                          backgroundColor:  const MaterialStatePropertyAll(AppColors.kBtnColor),
                           shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
                       ),
                       child: const SizedBox(

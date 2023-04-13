@@ -23,7 +23,8 @@ import '../../utils/app_color.dart';
 
 class StoryPage extends StatefulWidget {
   final DataList data;
-  const StoryPage({Key? key, required this.data}) : super(key: key);
+  final String? catName;
+  const StoryPage({Key? key, required this.data, this.catName}) : super(key: key);
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -403,7 +404,7 @@ class _StoryPageState extends State<StoryPage> {
                               GestureDetector(
                                 onTap: (){
 
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data, )));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data , catName: widget.catName,)));
                                 },
                                 child: const CircleAvatar(
                                   radius: 30,

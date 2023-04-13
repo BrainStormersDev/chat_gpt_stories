@@ -21,10 +21,12 @@ import 'share_page.dart';
 
 class StoryViewPage extends StatefulWidget {
   final DataList data;
+  final String? catName;
   // final StoryCatData data;
   const StoryViewPage({
     Key? key,
     required this.data,
+    this.catName
   }) : super(key: key);
 
   @override
@@ -67,14 +69,14 @@ class _StoryViewPageState extends State<StoryViewPage> {
       widgetTxt.add(text);
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.easeOut,
       );
 
     });
     tts.setCompletionHandler(() {
       // Do something when speech is complete
-      Get.to(()=>SharePage(shareData: widget.data,));
+      Get.to(()=>SharePage(shareData: widget.data, catName: widget.catName,));
       print('Speech completed');
     });
   }
@@ -335,18 +337,21 @@ class _StoryViewPageState extends State<StoryViewPage> {
                       //   ,
                       //   style: const TextStyle(color: Colors.grey, fontSize: 25,fontWeight: FontWeight.bold),),
 
-                      SingleChildScrollView(
-                        controller: _scrollController,
-                        child: Text(
-                          listTxt
-                              .toString()
-                              .replaceAll(",", "")
-                              .replaceAll('[', '')
-                              .replaceAll(']', ''),
-                          style: const TextStyle(
-                              color: AppColors.kBtnColor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleChildScrollView(
+                          controller: _scrollController,
+                          child: Text(
+                            listTxt
+                                .toString()
+                                .replaceAll(",", "")
+                                .replaceAll('[', '')
+                                .replaceAll(']', ''),
+                            style: const TextStyle(
+                                color: AppColors.kBtnColor,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       )
 

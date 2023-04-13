@@ -98,7 +98,7 @@ class RateUsPage extends StatelessWidget {
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
                         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
                         shape: MaterialStateProperty.all(const RoundedRectangleBorder()),
-                      fixedSize: MaterialStateProperty.all(Size(110, 50))
+                      fixedSize: MaterialStateProperty.all(const Size(110, 50))
                     ),
                     child: const SizedBox(
                         height: 50,

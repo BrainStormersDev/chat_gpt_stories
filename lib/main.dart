@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
 import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -28,6 +29,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
+  // DynamicLinksProvider().initDynamicLink();
   // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   messageHandler();
   await _localNotification();

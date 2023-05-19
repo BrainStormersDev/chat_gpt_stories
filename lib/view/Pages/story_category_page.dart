@@ -1,6 +1,8 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chat_gpt_stories/controllers/chat_image_controller.dart';
 import 'package:chat_gpt_stories/model/StoryCategoryModels.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import 'package:chat_gpt_stories/view/Pages/settings_page.dart';
 import 'package:chat_gpt_stories/view/Pages/story_catList_page.dart';
 import 'package:chat_gpt_stories/view/Pages/story_page.dart';
 import 'package:chat_gpt_stories/view/Widgets/constWidgets.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:text_to_speech/text_to_speech.dart';
 import '../../common/headers.dart';
 import '../../controllers/chat_text_controller.dart';
@@ -36,10 +39,19 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
   // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for${GetStorage().read(kGender)} children"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for  ${GetStorage().read(kGender)} children"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for  ${GetStorage().read(kGender)} children")];
   // List<IconOfStory> title=[IconOfStory(title: "Animals",url: "assets/PNG/storyLion.png",value: "Story of Animals for${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Fairy",url: "assets/PNG/storyFairy.png",value: "Fairy Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Jeannie",url: "assets/PNG/storyJeannie.png",value: " Jeannie Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Hero",url: "assets/PNG/storyHero.png",value: "Story of hero for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Prince",url: "assets/PNG/storyprince.png",value: "Story of prince for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Toy Story",url: "assets/PNG/storyToy.png",value: "Toy Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old"),IconOfStory(title: "Princes",url: "assets/PNG/storyPrinces.png",value: "Princes Story for  ${GetStorage().read(kGender)} ${GetStorage().read(kAge)} years old")];
   // const StoryCategoryPage({Key? key}) : super(key: key);
+  // RxBool isMuted = false.obs;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("========repo muted value init  =${GetStorage().read(kMute)}");
+    MyRepo.musicMuted.value = GetStorage().read(kMute);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-
-
+    print("========repo muted value  =${GetStorage().read(kMute)}");
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
         appBar: AppBar(
@@ -48,18 +60,16 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
           elevation: 0,
           backgroundColor: AppColors.kScreenColor,
           actions:   [
-            InkWell(
-                onTap: (){
-                  print("======selectedAge:${selectedAge.value}======");
-                  print("======selectedGender:${selectedGender.value}======");
-                  // showCustomDialog( context);
+            IconButton(
+                onPressed: () {
+                  showCustomDialog(context);
+                  // Get.to(const Settings());
                 },
-                child: Container(
-                    margin: EdgeInsets.only(right:  15.0,top: 10),
-                    child: Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))),
+                icon: const Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))
           ],
           leading: IconButton(
-            onPressed: (){
+            onPressed: () async {
+              MyRepo.assetsAudioPlayer.stop();
               Navigator.pop(context);
 
             },
@@ -125,8 +135,9 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
               storyCatController.state.value == ApiState.loading? myIndicator():  Container(
                 // height: 400,
                 child:storyCatController.state.value == ApiState.error?
-                Container(child: Center(child: Text(storyCatController.errorMsg.value)),)
+                Center(child: Text(storyCatController.errorMsg.value))
                     :GridView.count(
+                  childAspectRatio: 0.8,
                   crossAxisCount: 3,
                   crossAxisSpacing: 4.0,
                   mainAxisSpacing: 8.0,
@@ -329,13 +340,14 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
       },
       child: Container(
         decoration: BoxDecoration(
+          // color: Colors.red,
             color:int.parse(selectItems.value.toString())==index? AppColors.kPrimary:null,
             border:int.parse(selectItems.value.toString())==index? Border.all(color: AppColors.kBtnColor):null),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.network(data.imageUrl),
+            Image.network(data.imageUrl, height: 80,),
              Expanded(
                child: Text(
                  data.title,
@@ -391,25 +403,42 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
           child: Obx(()=>Center(
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(40)
               ),
-              height: 240,
+              // height: 240,
+              height: MediaQuery.of(context).size.height * 0.5,
               child:Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                     margin: EdgeInsets.only(top: 10),
-                    alignment: Alignment.topRight,
-                    child: InkWell(
-                        onTap: (){
-                          Navigator.pop(dialogContext);
-                        },
-                        child: const Icon(FontAwesomeIcons.circleXmark)),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(child: Text("Settings",style: GoogleFonts.balooBhai2().copyWith(
+                          fontSize: 20,
+                          color: AppColors.txtColor1,
+                          fontWeight: FontWeight.bold
+                      ),)),
+                      Container(
+                         margin: const EdgeInsets.only(top: 10),
+                        alignment: Alignment.topRight,
+                        child: GestureDetector(
+                            onTap: (){
+                              Navigator.pop(dialogContext);
+                            },
+                            child: const Icon(FontAwesomeIcons.circleXmark, size: 30,)),
+                      ),
+                    ],
                   ),
+                 SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
                  Row(
                    mainAxisAlignment: MainAxisAlignment.center,
                    children: [
-                     const Text("Age:       ",style: TextStyle(color: AppColors.kPrimary),),
+                     Expanded(child: Text("Age",style: GoogleFonts.balooBhai2().copyWith(
+                         fontSize: 20,
+                         color: AppColors.txtColor1,
+                       fontWeight: FontWeight.bold
+                     ),)),
                      Container(
                        height: 50,
                        decoration: BoxDecoration(
@@ -425,6 +454,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                          onChanged: (newValue) {
 
                            selectedAge.value = newValue!;
+                           // GetStorage().write(kAge, selectedAge.value );
 
                          },
                          items: MyRepo.ageList.map((location) {
@@ -439,11 +469,16 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                      ),
                    ],
                  ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Gender : ",style: TextStyle(color: AppColors.kPrimary),),
+                      Expanded(
+                          child: Text("Gender",style: GoogleFonts.balooBhai2().copyWith(
+                              fontSize: 20,
+                              color: AppColors.txtColor1,
+                              fontWeight: FontWeight.bold
+                          ),)),
                       Container(
                         height: 50,
                         decoration: BoxDecoration(
@@ -454,27 +489,57 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
                           underline:Container(),
                           isExpanded: false,
                           hint: const Text('Please choose a location'), // Not necessary for Option 1
-                          value: selectedGender.value,
+                          // value: selectedGender.value,
                           onChanged: (newValue) {
 
                             selectedGender.value = newValue!;
-                            GetStorage().write(kGender, selectedGender.value );
+                            // GetStorage().write(kAge, selectedAge.value );
 
                           },
-                          items: gender.map((location) {
+                          items: MyRepo.gender.map((location) {
                             return DropdownMenuItem(
                               value: location,
                               child:  Container(
-
                                   margin: EdgeInsets.only(left: 10),
-                                  child: Text(location,style: TextStyle(color: AppColors.kPrimary),)),
+                                  child: Text(location,style: TextStyle(color: AppColors.kPrimary))),
                             );
                           }).toList(),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: Text("Music",style: GoogleFonts.balooBhai2().copyWith(
+                              fontSize: 20,
+                              color: AppColors.txtColor1,
+                              fontWeight: FontWeight.bold
+                          ),)),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                          onPressed: () async {
+                            // setState(() {
+                              MyRepo.musicMuted.value = !MyRepo.musicMuted.value;
+                              print(MyRepo.musicMuted.value);
+
+                            // });
+                              MyRepo.musicMuted.value == true ?
+                            await MyRepo.assetsAudioPlayer.pause() :
+                            await MyRepo.assetsAudioPlayer.open(
+                                Playlist(
+                                    audios: [
+                                      Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
+                                    ]),
+                                loopMode: LoopMode.playlist
+                            );
+                          },
+                          icon: Icon(MyRepo.musicMuted.value == true ? Icons.volume_off : Icons.volume_up,
+                            color: AppColors.kBtnColor, size: 30,)),
+                    ],
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
                   ElevatedButton(
                       onPressed: (){
 
@@ -482,6 +547,8 @@ class _StoryCategoryPageState extends State<StoryCategoryPage> {
 
                         GetStorage().write(kAge, selectedAge.value);
                         GetStorage().write(kGender, MyRepo.selectedGender.name);
+                        GetStorage().write(kMute, MyRepo.musicMuted.value);
+                        print("========repo muted value  =${GetStorage().read(kMute)}");
                         Navigator.pop(dialogContext);
 
 

@@ -107,9 +107,9 @@ class _GenderPageState extends State<GenderPage> {
                                 MyRepo.selectedGender=Gender.Boy;
 
                               });
-                              Future.delayed(const Duration(milliseconds: 100), () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                              });
+                              // Future.delayed(const Duration(milliseconds: 100), () {
+                              //   Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                              // });
 
 
 
@@ -161,14 +161,13 @@ class _GenderPageState extends State<GenderPage> {
                               // isGirl.value == true;
                               // isBoy.value == false;
                               // print("========isGirl.value====${isGirl.value}");
-
                               setState(() {
                                 MyRepo.selectedGender=Gender.Girl;
 
                               });
-                              Future.delayed(const Duration(milliseconds: 100), () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                              });
+                              // Future.delayed(const Duration(milliseconds: 100), () {
+                              //   Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                              // });
                             },
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.25,
@@ -208,7 +207,7 @@ class _GenderPageState extends State<GenderPage> {
                       print("=======select :${MyRepo.selectedGender.name} ====");
                       if(MyRepo.selectedGender==Gender.notSelect){
                         MySnackBar.snackBarYellow(
-                            title:"Alert", message:"Please select gender");
+                            title:"Alert", message:"Please select Gender");
                       }
                       else{
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));

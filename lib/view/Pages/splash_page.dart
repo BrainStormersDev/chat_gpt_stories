@@ -220,15 +220,21 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
 
                           }
                           try {
-
+                            // await MyRepo.assetsAudioPlayer.open(
+                            //   Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
+                            // );
+                            MyRepo.musicMuted.value == false ?
                             await MyRepo.assetsAudioPlayer.open(
-                              Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
-                            );
+                                Playlist(audios: [
+                                  Audio.network(
+                                      "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                                ]),
+                                loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
                           } catch (t) {
                             //mp3 unreachable
                           }
 
-                        }
+                      }
                         else{
 
                           MySnackBar.snackBarRed(
@@ -301,8 +307,6 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   }
 
   void playSound() {
-
-
     AssetsAudioPlayer.newPlayer().open(
       Audio(kWelcomeSound),
       autoStart: true,
@@ -329,6 +333,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     // _animationController.upperBound;
   }
 }
+
 
 
 

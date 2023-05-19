@@ -55,8 +55,9 @@ class DataList {
   String? story;
   String? storyNote;
   List<Images>? images;
+  int? viewCount;
 
-  DataList({this.id, this.storyTitle, this.story, this.storyNote, this.images});
+  DataList({this.id, this.storyTitle, this.story, this.storyNote, this.images, this.viewCount});
 
   DataList.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -68,6 +69,7 @@ class DataList {
       json['images'].forEach((v) {
         images!.add(new Images.fromJson(v));
       });
+      viewCount = json['view_count'];
     }
   }
 
@@ -80,6 +82,7 @@ class DataList {
     if (this.images != null) {
       data['images'] = this.images!.map((v) => v.toJson()).toList();
     }
+    data['view_count'] = this.viewCount;
     return data;
   }
 }

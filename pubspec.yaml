@@ -59,6 +59,8 @@ dependencies:
   firebase_messaging: ^14.2.1
   carousel_slider: ^4.2.1
   firebase_dynamic_links:
+  google_fonts:
+  intl:
 dev_dependencies:
   flutter_test:
     sdk: flutter

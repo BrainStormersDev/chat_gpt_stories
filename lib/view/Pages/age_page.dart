@@ -333,7 +333,7 @@ class _AgePageState extends State<AgePage> {
     return Obx(()=>InkWell(
       onTap: (){
         selectItems.value =index.toString();
-        nextPage(age: ageLimit);
+        // nextPage(age: ageLimit);
         // setState(() {
         //   MyRepo.selectAge=AgeSelect.thirteen;
         //

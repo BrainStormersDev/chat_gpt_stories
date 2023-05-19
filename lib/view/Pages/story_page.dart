@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import 'package:chat_gpt_stories/view/Pages/settings_page.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_gpt_stories/view/Pages/story_view_page.dart';
@@ -24,7 +27,9 @@ import '../../utils/app_color.dart';
 class StoryPage extends StatefulWidget {
   final DataList data;
   final String? catName;
-  const StoryPage({Key? key, required this.data, this.catName}) : super(key: key);
+   Function()? nextStory;
+  Function? preStory;
+  StoryPage({Key? key, required this.data, this.catName, this.nextStory, this.preStory}) : super(key: key);
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -99,7 +104,7 @@ class _StoryPageState extends State<StoryPage> {
       }
     }
 
-   
+
   }
   @override
   Widget build(BuildContext context) {
@@ -227,11 +232,34 @@ class _StoryPageState extends State<StoryPage> {
         elevation: 0,
         backgroundColor: AppColors.kScreenColor,
         leading: IconButton(
-          onPressed: (){
+          onPressed: () async {
             Navigator.pop(context);
+            try {
+              await MyRepo.assetsAudioPlayer.open(
+                  Playlist(
+                      audios: [
+                        Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
+                      ]),
+                  loopMode: LoopMode.playlist
+              );
+
+              // await MyRepo.assetsAudioPlayer.open(
+              //   Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
+              // );
+            } catch (t) {
+              //mp3 unreachable
+            }
+
 
           },
           icon: const Icon(Icons.arrow_back, color: AppColors.txtColor1,), ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(const Settings());
+              },
+              icon: const Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))
+        ],
       ),
       body:SafeArea(
         child: Obx(()=>Padding(
@@ -252,9 +280,9 @@ class _StoryPageState extends State<StoryPage> {
                         height: 27,
                         child: Image.asset("assets/PNG/gridIcon.png")),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
-                     Text(
-                      "Story ${abc.value}",
-                      style: const TextStyle(
+                     const Text(
+                      "Story ",
+                      style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
                           fontFamily: "BalooBhai",
@@ -293,8 +321,37 @@ class _StoryPageState extends State<StoryPage> {
                         color: AppColors.txtColor1),
                   ),
                 ),
+                Center(
+                  child: SizedBox(
+                    width: 250.0,
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Bobbers',
+                          color:  AppColors.kBtnColor
+                      ),
+                      child: Center(
+                        child: AnimatedTextKit(
+                          // totalRepeatCount: 3,
+                          pause: const Duration(seconds: 2),
+                          repeatForever: true,
+                          animatedTexts: [
+                            TyperAnimatedText('${widget.data.storyTitle}', textStyle: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: "BalooBhai",
+                                      color: AppColors.kBtnColor),
+                              textAlign: TextAlign.center
+                            ),
+                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
 
-               
+
 
                 const SizedBox(height: 20,),
                // true
@@ -308,7 +365,7 @@ class _StoryPageState extends State<StoryPage> {
                         width: 125.0,
                       ),
 
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
 
                   Center(
                     child: SizedBox(
@@ -361,7 +418,7 @@ class _StoryPageState extends State<StoryPage> {
 
                           child: CachedNetworkImage(
                             // imageUrl: kDemoImage,
-                            imageUrl: "",
+                            imageUrl: '',
                             fit: BoxFit.fill,
                             progressIndicatorBuilder: (context, url, downloadProgress) =>
                                 SizedBox(
@@ -403,8 +460,10 @@ class _StoryPageState extends State<StoryPage> {
                                   icon: const Icon(Icons.skip_previous_rounded, color: AppColors.kBtnColor, size: 30,)),
                               GestureDetector(
                                 onTap: (){
-
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(data: widget.data , catName: widget.catName,)));
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) =>  StoryViewPage(data: widget.data , catName: widget.catName,)));
+                                  print("=========widget.data.id = ${widget.data.id}");
+                                  countViewApi(widget.data.id.toString());
                                 },
                                 child: const CircleAvatar(
                                   radius: 30,
@@ -413,9 +472,9 @@ class _StoryPageState extends State<StoryPage> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: (){},
+                                  onPressed:
+                                    widget.nextStory,
                                   icon: const Icon(Icons.skip_next_rounded, color: AppColors.kBtnColor, size: 30,)),
-
                             ],
                           ),
                         ],
@@ -447,5 +506,20 @@ class _StoryPageState extends State<StoryPage> {
         )),
       ),
     );}
+  }
+  countViewApi (var storyID) async {
+    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/count-story-view'));
+    request.fields.addAll({
+      'story_id': storyID
+    });
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+    print(response.reasonPhrase);
+    }
   }
 }

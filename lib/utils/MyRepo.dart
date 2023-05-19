@@ -10,6 +10,7 @@ class MyRepo{
 
  static final   assetsAudioPlayer = AssetsAudioPlayer();
  static  List<String> ageList = ['1-3', '3-5', '5-10', '10+'];
+ static  List<String> gender = ['Boy', 'Girl'];
 
 
  static List<SelectAgeClass> selectAgeList=[SelectAgeClass( age: '1-3', assetImage: kOneToThreeLogo),SelectAgeClass( age: '3-5', assetImage: kThreeToFiveLogo),SelectAgeClass( age: '5-10', assetImage: kFiveToTenLogo),SelectAgeClass( age: '10+', assetImage: kTenPlusLogo)];
@@ -17,7 +18,8 @@ class MyRepo{
 
   static RxString deviceToken=''.obs;
   static RxInt count=0.obs;
- static Gender selectedGender =Gender.notSelect;
+ static Gender selectedGender = Gender.notSelect;
+ static RxBool musicMuted = false.obs;
  // static AgeSelect selectAge=AgeSelect.notSelect;
 
   static RxString kApiToken="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".obs;
@@ -27,6 +29,7 @@ class MyRepo{
 
 const String kAge="AgeParam";
 const String kGender="kGender";
+const String kMute="kMute";
 const String kTokenStorage="token";
 
 

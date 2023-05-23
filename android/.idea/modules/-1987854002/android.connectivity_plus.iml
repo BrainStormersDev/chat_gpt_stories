@@ -53,7 +53,7 @@
       <sourceFolder url="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus-3.0.2/android/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$USER_HOME$/development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus-3.0.2/android/.gradle" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 33 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 31 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common-java8:2.2.0" level="project" />

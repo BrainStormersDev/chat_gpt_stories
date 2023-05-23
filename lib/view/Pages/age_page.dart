@@ -27,6 +27,7 @@ class _AgePageState extends State<AgePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("=======select 1 :${MyRepo.selectedGender.name} ====");
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -313,15 +314,10 @@ class _AgePageState extends State<AgePage> {
   }
 
   nextPage({required String age}){
-
-
     final box =GetStorage();
     box.write(kAge, age);
     box.write(kGender,  MyRepo.selectedGender.name);
     box.write(kTokenStorage, MyRepo.deviceToken.value);
-
-
-
     registrationController.getRegistration(age: age, token: MyRepo.deviceToken.value,gender: MyRepo.selectedGender.name);
     Future.delayed(const Duration(milliseconds: 100), () {
       Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));

@@ -31,56 +31,29 @@ class StoryViewPage extends StatefulWidget {
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
 }
+enum TtsState { playing, stopped, paused, continued }
 
 class _StoryViewPageState extends State<StoryViewPage> {
   // ChatImageController controllerImage= Get.put(ChatImageController());
   // ChatTextController controllerText= Get.put(ChatTextController());
   String mystring = '';
-
   var styleOne = const TextStyle(color: Colors.black87, fontSize: 21);
-
   var styleTwo = const TextStyle(
       color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
 
   final ScrollController _scrollController = ScrollController();
   int activeIndex = 0;
-
   FlutterTts tts = FlutterTts();
-
   RxString nTxt = "".obs;
   RxList<String> listTxt = <String>[].obs;
-  // RxList<String> widgetTxt = <String>[].obs;
   List<String> widgetTxt = [];
   List<String> image = [];
+  bool isPaused = false;
 
   @override
   void initState() {
     super.initState();
-    tts = FlutterTts();
-    tts.speak(widget.data.story.toString());
-    tts.setProgressHandler(
-        (String text, int startOffset, int endOffset, String word) {
-      print("================== word :$word");
-      print("================== text :$text");
-      // print("================== startOffset :$startOffset");
-      // print("================== endOffset :$endOffset");
-      // nTxt.value = word;
-      listTxt.add(word);
-      widgetTxt.add(text);
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeOut,
-      );
-    });
-    tts.setCompletionHandler(() {
-      // Do something when speech is complete
-      Get.to(() => SharePage(
-            shareData: widget.data,
-            catName: widget.catName,
-          ));
-      print('Speech completed');
-    });
+    _ttsInit();
   }
 
   @override
@@ -130,10 +103,10 @@ class _StoryViewPageState extends State<StoryViewPage> {
     //         }
     //       }
     //     : () {
-            for (int i = 0; i < imgList.length; i++) {
-              image.add(imgList[i].toString());
-            }
-          // };
+    for (int i = 0; i < imgList.length; i++) {
+      image.add(imgList[i].toString());
+    }
+    // };
 
     final List<Widget> imageSliders = image
         .map((item) => Container(
@@ -442,7 +415,46 @@ class _StoryViewPageState extends State<StoryViewPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.small(
+        backgroundColor: AppColors.kBtnColor,
+        onPressed: () {
+          setState(() {
+            print("=====before========  ${isPaused}");
+            isPaused = !isPaused;
+            print("======after=======  ${isPaused}");
+            isPaused == true ? tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+          });
+        },
+        child: isPaused ? const Icon(Icons.play_arrow) : const Icon(Icons.pause),
+      ),
     );
+  }
+
+  _ttsInit () {
+    tts = FlutterTts();
+    tts.speak(widget.data.story.toString());
+    tts.setProgressHandler(
+            (String text, int startOffset, int endOffset, String word) {
+          print("================== word :$word");
+          print("================== text :$text");
+          // print("================== startOffset :$startOffset");
+          // print("================== endOffset :$endOffset");
+          listTxt.add(word);
+          // widgetTxt.add(text);
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+          );
+        });
+    tts.setCompletionHandler(() {
+      // Do something when speech is complete
+      Get.to(() => SharePage(
+        shareData: widget.data,
+        catName: widget.catName,
+      ));
+      print('Speech completed');
+    });
   }
 
   _stop() {

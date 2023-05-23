@@ -8,13 +8,15 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1517922475/android.assets_audio_player_web.iml" filepath="$PROJECT_DIR$/.idea/modules/1517922475/android.assets_audio_player_web.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1987854002/android.connectivity_plus.iml" filepath="$PROJECT_DIR$/.idea/modules/-1987854002/android.connectivity_plus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1712990843/android.firebase_core.iml" filepath="$PROJECT_DIR$/.idea/modules/-1712990843/android.firebase_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1874608772/android.firebase_dynamic_links.iml" filepath="$PROJECT_DIR$/.idea/modules/1874608772/android.firebase_dynamic_links.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/1444195660/android.firebase_messaging.iml" filepath="$PROJECT_DIR$/.idea/modules/1444195660/android.firebase_messaging.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/412008386/android.flutter_local_notifications.iml" filepath="$PROJECT_DIR$/.idea/modules/412008386/android.flutter_local_notifications.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-10693501/android.flutter_tts.iml" filepath="$PROJECT_DIR$/.idea/modules/-10693501/android.flutter_tts.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1969504389/android.package_info_plus.iml" filepath="$PROJECT_DIR$/.idea/modules/-1969504389/android.package_info_plus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1488579892/android.path_provider_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-1488579892/android.path_provider_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-106067541/android.share_plus.iml" filepath="$PROJECT_DIR$/.idea/modules/-106067541/android.share_plus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-95393475/android.shared_preferences_android.iml" filepath="$PROJECT_DIR$/.idea/modules/-95393475/android.shared_preferences_android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1807329077/android.sqflite.iml" filepath="$PROJECT_DIR$/.idea/modules/-1807329077/android.sqflite.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1579749120/android.text_to_speech.iml" filepath="$PROJECT_DIR$/.idea/modules/-1579749120/android.text_to_speech.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2119069764/android.url_launcher_android.iml" filepath="$PROJECT_DIR$/.idea/modules/2119069764/android.url_launcher_android.iml" />
     </modules>
   </component>

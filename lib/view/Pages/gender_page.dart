@@ -210,7 +210,8 @@ class _GenderPageState extends State<GenderPage> {
                             title:"Alert", message:"Please select Gender");
                       }
                       else{
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                        print("=======select :${MyRepo.selectedGender.name} ====");
+                        Navigator.push(context, MaterialPageRoute(builder: (context) =>  AgePage()));
 
                       }
 

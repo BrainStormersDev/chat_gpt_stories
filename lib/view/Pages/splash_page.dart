@@ -41,6 +41,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     super.initState();
     playSound();
 
+    var mute=GetStorage().read(kMute);
+    if(mute!=null){
+      MyRepo.musicMuted.value=mute;
+    }
 
     SystemChrome.setPreferredOrientations(
       [
@@ -135,28 +139,6 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                    borderRadius: BorderRadius.only(topLeft: Radius.circular(150), topRight: Radius.circular(150))
                 ),
               )),
-          // Positioned(
-          //   top: MediaQuery.of(context).size.height * 0.63,
-          //   // bottom: MediaQuery.of(context).size.height * 0.63,
-          //   // left: 0,
-          //   // right: 0,
-          //
-          //   child: ScaleTransition(
-          //       scale: _animationController,
-          //       child: Container(
-          //         height: MediaQuery.of(context).size.height,
-          //         // width: 30,
-          //         child: Image(
-          //           image: ExactAssetImage("assets/PNG/loin.png"),
-          //         ),
-          //       )),
-          //   // child: SizedBox(
-          //   //     // height: MediaQuery.of(context).size.height,
-          //   //     width: MediaQuery.of(context).size.width,
-          //   //     child: Image.asset("assets/PNG/orbit.png")),
-          // ),
-
-
           Positioned(
             bottom: 0,
             top: 0,
@@ -204,20 +186,16 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             )
                           ],
                         )),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   ElevatedButton(
                       onPressed: () async {
 
                         if(!_isNetworkConnected){
-
-
                           if(GetStorage().hasData(kGender) ){
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
-
                           }
                           else{
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
-
                           }
                           try {
                             // await MyRepo.assetsAudioPlayer.open(

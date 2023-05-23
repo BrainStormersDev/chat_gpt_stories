@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/view/Pages/settings_page.dart';
+import 'package:chat_gpt_stories/view/Widgets/settingsDialog.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -25,11 +25,13 @@ import '../../model/text_completion_model.dart';
 import '../../utils/app_color.dart';
 
 class StoryPage extends StatefulWidget {
-  final DataList data;
+  DataList? data;
   final String? catName;
-   Function()? nextStory;
-  Function? preStory;
-  StoryPage({Key? key, required this.data, this.catName, this.nextStory, this.preStory}) : super(key: key);
+  StoryPage({
+    Key? key,
+    required this.data,
+    this.catName,
+  }) : super(key: key);
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -37,7 +39,7 @@ class StoryPage extends StatefulWidget {
 
 class _StoryPageState extends State<StoryPage> {
   // ChatImageController controllerImage= Get.put(ChatImageController());
-  ChatTextController controllerText= Get.put(ChatTextController());
+  ChatTextController controllerText = Get.put(ChatTextController());
   late PackageInfo packageInfo;
   bool versionCheck1 = false;
   String version = '';
@@ -50,6 +52,7 @@ class _StoryPageState extends State<StoryPage> {
     // versionCheck();
     super.initState();
   }
+
   Future<void> versionCheck() async {
     // for test
     // versionCheck1 = true;
@@ -59,7 +62,6 @@ class _StoryPageState extends State<StoryPage> {
       // version = packageInfo.version; //+'\n'+Platform.operatingSystemVersion;
     });
     url = Uri.parse("http://story-telling.eduverse.uk/api/v1/version");
-
 
     final response = await http.get(url);
     var data = jsonDecode(response.body);
@@ -99,19 +101,14 @@ class _StoryPageState extends State<StoryPage> {
             // isIOSCheck.value = false;
             // print("======isIOSCheck.value:${isIOSCheck.value}======");
           }
-
         }
       }
     }
-
-
   }
+
   @override
   Widget build(BuildContext context) {
-
-
-
-    RxString abc=''.obs;
+    RxString abc = ''.obs;
 
     if (versionCheck1) {
       return Scaffold(
@@ -142,7 +139,7 @@ class _StoryPageState extends State<StoryPage> {
                         child: const Text(
                           "Please Update your app before using it",
                           style:
-                          TextStyle(color: AppColors.kBlack, fontSize: 18),
+                              TextStyle(color: AppColors.kBlack, fontSize: 18),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -153,26 +150,19 @@ class _StoryPageState extends State<StoryPage> {
                           onTap: () {
                             print("=====playStoreUrl:$playStoreUrl=====");
                             try {
-                              launchUrl(Uri.parse(
+                              launchUrl(Uri.parse(playStoreUrl)
+                                  // playStoreUrl
 
-                                  playStoreUrl
-                              )
-                                // playStoreUrl
-
-                              );
+                                  );
                             } on PlatformException {
                               launchUrl(Uri.parse(
-                                // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
-                                  playStoreUrl
-
-                              ));
+                                  // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
+                                  playStoreUrl));
                             } finally {
-                              launchUrl(Uri.parse(
+                              launchUrl(Uri.parse(playStoreUrl
+                                  // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
 
-                                  playStoreUrl
-                                // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
-
-                              ));
+                                  ));
                             }
                           },
                           child: Container(
@@ -223,303 +213,419 @@ class _StoryPageState extends State<StoryPage> {
               ],
             )),
       );
-    }
-    else{
-    return Scaffold(
-      backgroundColor: AppColors.kScreenColor,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
+    } else {
+      return Scaffold(
         backgroundColor: AppColors.kScreenColor,
-        leading: IconButton(
-          onPressed: () async {
-            Navigator.pop(context);
-            try {
-              await MyRepo.assetsAudioPlayer.open(
-                  Playlist(
-                      audios: [
-                        Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
-                      ]),
-                  loopMode: LoopMode.playlist
-              );
-
-              // await MyRepo.assetsAudioPlayer.open(
-              //   Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
-              // );
-            } catch (t) {
-              //mp3 unreachable
-            }
-
-
-          },
-          icon: const Icon(Icons.arrow_back, color: AppColors.txtColor1,), ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.to(const Settings());
-              },
-              icon: const Icon(FontAwesomeIcons.gear ,color: AppColors.kPrimary,))
-        ],
-      ),
-      body:SafeArea(
-        child: Obx(()=>Padding(
-          padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // SizedBox(
-                //   height: MediaQuery.of(context).size.height * 0.06,
-                // ),
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 27,
-                        child: Image.asset("assets/PNG/gridIcon.png")),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.03,),
-                     const Text(
-                      "Story ",
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "BalooBhai",
-                          color: AppColors.kBtnColor),
-                    ),
-                    const Text(
-                      "By GPT",
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "BalooBhai",
-
-                          color: AppColors.txtColor1),
-                    ),
-                    const Spacer(),
-                    SizedBox(
-                        height: 30,
-                        child: Image.asset("assets/PNG/bellIcon.png")),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Center(
-                  child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.12,
-                      child: Image.asset("assets/PNG/loin.png")),
-                ),
-                const Center(
-                  child: Text(
-                    "Listen Story",
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "BalooBhai",
-                        color: AppColors.txtColor1),
-                  ),
-                ),
-                Center(
-                  child: SizedBox(
-                    width: 250.0,
-                    child: DefaultTextStyle(
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Bobbers',
-                          color:  AppColors.kBtnColor
-                      ),
-                      child: Center(
-                        child: AnimatedTextKit(
-                          // totalRepeatCount: 3,
-                          pause: const Duration(seconds: 2),
-                          repeatForever: true,
-                          animatedTexts: [
-                            TyperAnimatedText('${widget.data.storyTitle}', textStyle: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "BalooBhai",
-                                      color: AppColors.kBtnColor),
-                              textAlign: TextAlign.center
-                            ),
-                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-
-
-                const SizedBox(height: 20,),
-               // true
-                controllerText.state.value == ApiState.loading
-                    ? Container(
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        "assets/PNG/giphy2.gif",
-                        height: 125.0,
-                        width: 125.0,
-                      ),
-
-                  const SizedBox(height: 10,),
-
-                  Center(
-                    child: SizedBox(
-                      width: 250.0,
-                      child: DefaultTextStyle(
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Bobbers',
-                          color:  AppColors.txtColor1
-                        ),
-                        child: AnimatedTextKit(
-                          animatedTexts: [
-                            TyperAnimatedText('Please wait ....'),
-                            TyperAnimatedText('While your story of ${widget.data.storyTitle} is creating'),
-                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
-                          ],
-                          onTap: () {
-                            print("Tap Event");
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                      // const Text("Please wait ....",style: TextStyle(
-                      //     fontSize: 20,
-                      //
-                      //     fontFamily: "BalooBhai",
-                      //     color: AppColors.txtColor1),),
-                      // SizedBox(height: 10,),
-                      // const Text("While your strory is creating",style: TextStyle(
-                      //     fontSize: 20,
-                      //     fontFamily: "BalooBhai",
-                      //     color: AppColors.txtColor1),),
-                    ],
-                  ),
-                )
-                    :Container(
-                      child:controllerText.state.value == ApiState.error?
-                      Container(child: Center(child: Text(controllerText.errorMsg.value)),): Column(
-                        children: [
-                          InkWell(
-                  onTap: (){
-
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
-
-                  },
-                  child: Container(
-                      height: 220,
-                      // width: double.infinity,
-
-                          child: CachedNetworkImage(
-                            // imageUrl: kDemoImage,
-                            imageUrl: '',
-                            fit: BoxFit.fill,
-                            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                SizedBox(
-                                    width: double.infinity,
-                                    child: Shimmer.fromColors(
-                                      baseColor: Colors.grey.withOpacity(.3),
-                                      highlightColor: Colors.grey,
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.circular(4)),
-                                      ),
-                                    )),
-                            errorWidget: (context, url, error) => Container(
-                              height: 200,
-                              width: 200,
-                              decoration:  const BoxDecoration(
-                                image:DecorationImage(
-                                  image: AssetImage(
-                                      "assets/PNG/img_4.png"
-                                      // "${widget.data.images!.first.imageUrl}"
-                                      // widget.data.imageUrl
-                                  ),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                          ),
-                  ),
-                ),
-                          const SizedBox(height: 35,),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children:  [
-                              IconButton(
-                                  onPressed: (){},
-                                  icon: const Icon(Icons.skip_previous_rounded, color: AppColors.kBtnColor, size: 30,)),
-                              GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) =>  StoryViewPage(data: widget.data , catName: widget.catName,)));
-                                  print("=========widget.data.id = ${widget.data.id}");
-                                  countViewApi(widget.data.id.toString());
-                                },
-                                child: const CircleAvatar(
-                                  radius: 30,
-                                  backgroundColor: AppColors.kBtnColor,
-                                  child: Icon(CupertinoIcons.play_arrow_solid, color: AppColors.txtColor1,),
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed:
-                                    widget.nextStory,
-                                  icon: const Icon(Icons.skip_next_rounded, color: AppColors.kBtnColor, size: 30,)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                // SizedBox(
-                //     height: MediaQuery.of(context).size.height * 0.4,
-                //     child: Image.asset("assets/PNG/storyImg.png")),
-
-                // ElevatedButton(
-                //     onPressed: (){
-                //       // Get.to(const AgePage());
-                //       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                //     },
-                //     style: ButtonStyle(
-                //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
-                //     ),
-                //     child: const SizedBox(
-                //         height: 50,
-                //         // width: MediaQuery.of(context).size.width/2,
-                //         child: Center(
-                //             child: Text("Next",
-                //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
-              ],
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 0,
+          backgroundColor: AppColors.kScreenColor,
+          leading: IconButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              try {
+                MyRepo.musicMuted.value == false ?
+                await MyRepo.assetsAudioPlayer.open(
+                    Playlist(audios: [
+                      Audio.network(
+                          "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                    ]),
+                    loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+              } catch (t) {
+                //mp3 unreachable
+              }
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.txtColor1,
             ),
           ),
-        )),
-      ),
-    );}
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showCustomSettingDialog(context);
+                  // Get.to(const Settings());
+                },
+                icon: const Icon(
+                  FontAwesomeIcons.gear,
+                  color: AppColors.kPrimary,
+                ))
+          ],
+        ),
+        body: SafeArea(
+          child: Obx(() => Padding(
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 0.06,
+                      // ),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                              height: 27,
+                              child: Image.asset("assets/PNG/gridIcon.png")),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.03,
+                          ),
+                          const Text(
+                            "Story ",
+                            style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "BalooBhai",
+                                color: AppColors.kBtnColor),
+                          ),
+                          const Text(
+                            "By GPT",
+                            style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "BalooBhai",
+                                color: AppColors.txtColor1),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                              height: 30,
+                              child: Image.asset("assets/PNG/bellIcon.png")),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.12,
+                            child: Image.asset("assets/PNG/loin.png")),
+                      ),
+                      const Center(
+                        child: Text(
+                          "Listen Story",
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "BalooBhai",
+                              color: AppColors.txtColor1),
+                        ),
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: 250.0,
+                          child: DefaultTextStyle(
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Bobbers',
+                                color: AppColors.kBtnColor),
+                            child: Center(
+                              child: AnimatedTextKit(
+                                // totalRepeatCount: 3,
+                                pause: const Duration(seconds: 2),
+                                repeatForever: true,
+                                animatedTexts: [
+                                  TyperAnimatedText(
+                                      '${widget.data!.storyTitle}',
+                                      textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "BalooBhai",
+                                          color: AppColors.kBtnColor),
+                                      textAlign: TextAlign.center),
+                                  // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      // true
+                      controllerText.state.value == ApiState.loading
+                          ? Container(
+                              child: Column(
+                                children: [
+                                  Image.asset(
+                                    "assets/PNG/giphy2.gif",
+                                    height: 125.0,
+                                    width: 125.0,
+                                  ),
+
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+
+                                  Center(
+                                    child: SizedBox(
+                                      width: 250.0,
+                                      child: DefaultTextStyle(
+                                        style: const TextStyle(
+                                            fontSize: 20.0,
+                                            fontFamily: 'Bobbers',
+                                            color: AppColors.txtColor1),
+                                        child: AnimatedTextKit(
+                                          animatedTexts: [
+                                            TyperAnimatedText(
+                                                'Please wait ....'),
+                                            TyperAnimatedText(
+                                                'While your story of ${widget.data!.storyTitle} is creating'),
+                                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                                          ],
+                                          onTap: () {
+                                            print("Tap Event");
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  // const Text("Please wait ....",style: TextStyle(
+                                  //     fontSize: 20,
+                                  //
+                                  //     fontFamily: "BalooBhai",
+                                  //     color: AppColors.txtColor1),),
+                                  // SizedBox(height: 10,),
+                                  // const Text("While your strory is creating",style: TextStyle(
+                                  //     fontSize: 20,
+                                  //     fontFamily: "BalooBhai",
+                                  //     color: AppColors.txtColor1),),
+                                ],
+                              ),
+                            )
+                          : Container(
+                              child: controllerText.state.value ==
+                                      ApiState.error
+                                  ? Container(
+                                      child: Center(
+                                          child: Text(
+                                              controllerText.errorMsg.value)),
+                                    )
+                                  : Column(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
+                                          },
+                                          child: Container(
+                                            height: 220,
+                                            // width: double.infinity,
+
+                                            child: CachedNetworkImage(
+                                              // imageUrl: kDemoImage,
+                                              imageUrl: '',
+                                              fit: BoxFit.fill,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: Shimmer
+                                                              .fromColors(
+                                                            baseColor: Colors
+                                                                .grey
+                                                                .withOpacity(
+                                                                    .3),
+                                                            highlightColor:
+                                                                Colors.grey,
+                                                            child: Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4)),
+                                                            ),
+                                                          )),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Container(
+                                                height: 200,
+                                                width: 200,
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/PNG/img_4.png"
+                                                        // "${widget.data.images!.first.imageUrl}"
+                                                        // widget.data.imageUrl
+                                                        ),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 35,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            IconButton(
+                                                onPressed: controllerText
+                                                            .storyCategoryListModels
+                                                            .value
+                                                            .data!
+                                                            .indexWhere((element) =>
+                                                                element
+                                                                    .storyTitle ==
+                                                                widget.data!
+                                                                    .storyTitle) ==
+                                                        0
+                                                    ? null
+                                                    : () {
+                                                        int newIndex = controllerText
+                                                            .storyCategoryListModels
+                                                            .value
+                                                            .data!
+                                                            .indexWhere((element) =>
+                                                                element
+                                                                    .storyTitle ==
+                                                                widget.data!
+                                                                    .storyTitle);
+
+                                                        if (newIndex <
+                                                            controllerText
+                                                                .storyCategoryListModels
+                                                                .value
+                                                                .data!
+                                                                .length) {
+                                                          widget.data =
+                                                              controllerText
+                                                                      .storyCategoryListModels
+                                                                      .value
+                                                                      .data![
+                                                                  newIndex - 1];
+                                                          setState(() {});
+                                                        }
+                                                      },
+                                                icon: const Icon(
+                                                  Icons.skip_previous_rounded,
+                                                  color: AppColors.kBtnColor,
+                                                  size: 30,
+                                                )),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            StoryViewPage(
+                                                              data:
+                                                                  widget.data!,
+                                                              catName: widget
+                                                                  .catName,
+                                                            )));
+                                                print(
+                                                    "=========widget.data.id = ${widget.data!.id}");
+                                                countViewApi(
+                                                    widget.data!.id.toString());
+                                              },
+                                              child: const CircleAvatar(
+                                                radius: 30,
+                                                backgroundColor:
+                                                    AppColors.kBtnColor,
+                                                child: Icon(
+                                                  CupertinoIcons
+                                                      .play_arrow_solid,
+                                                  color: AppColors.txtColor1,
+                                                ),
+                                              ),
+                                            ),
+                                            IconButton(
+                                                onPressed: (controllerText
+                                                            .storyCategoryListModels
+                                                            .value
+                                                            .data!
+                                                            .lastIndexWhere((element) =>
+                                                                element
+                                                                    .storyTitle ==
+                                                                widget.data!
+                                                                    .storyTitle) ==
+                                                        controllerText
+                                                            .storyCategoryListModels
+                                                            .value
+                                                            .data!
+                                                            .length)==true
+                                                    ? null
+                                                    : () {
+                                                  print("=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
+
+                                                  int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
+
+                                                        setState(() {
+                                                          if (newIndex == controllerText.storyCategoryListModels.value.data!.length) {
+                                                            widget.data = controllerText.storyCategoryListModels.value.data![newIndex];
+                                                          }
+                                                          else{
+                                                            widget.data = controllerText.storyCategoryListModels.value.data![newIndex+1];
+                                                          }
+                                                        });
+                                                      },
+                                                // widget.nextStory,
+                                                icon: const Icon(
+                                                  Icons.skip_next_rounded,
+                                                  color: AppColors.kBtnColor,
+                                                  size: 30,
+                                                )),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                            ),
+                      // SizedBox(
+                      //     height: MediaQuery.of(context).size.height * 0.4,
+                      //     child: Image.asset("assets/PNG/storyImg.png")),
+
+                      // ElevatedButton(
+                      //     onPressed: (){
+                      //       // Get.to(const AgePage());
+                      //       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                      //     },
+                      //     style: ButtonStyle(
+                      //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
+                      //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+                      //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
+                      //     ),
+                      //     child: const SizedBox(
+                      //         height: 50,
+                      //         // width: MediaQuery.of(context).size.width/2,
+                      //         child: Center(
+                      //             child: Text("Next",
+                      //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+                    ],
+                  ),
+                ),
+              )),
+        ),
+      );
+    }
   }
-  countViewApi (var storyID) async {
-    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/count-story-view'));
-    request.fields.addAll({
-      'story_id': storyID
-    });
+
+  countViewApi(var storyID) async {
+    var request = http.MultipartRequest('POST',
+        Uri.parse('http://story-telling.eduverse.uk/api/v1/count-story-view'));
+    request.fields.addAll({'story_id': storyID});
 
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-    }
-    else {
-    print(response.reasonPhrase);
+    } else {
+      print(response.reasonPhrase);
     }
   }
 }

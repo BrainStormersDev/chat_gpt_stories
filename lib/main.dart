@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import 'package:chat_gpt_stories/utils/app_color.dart';
 import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
 import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
@@ -33,7 +35,6 @@ Future<void> main() async {
   // FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   messageHandler();
   await _localNotification();
-
   runApp(const MyApp());
 }
 
@@ -163,8 +164,8 @@ class MyApp extends StatelessWidget {
       scrollBehavior: ScrollConfiguration.of(context).copyWith(overscroll: false),
       home: const GetMaterialApp(
           debugShowCheckedModeBanner: false,
-
-          home:SplashPage()),
+          home:SplashPage(),
+      ),
     );
   }
 }

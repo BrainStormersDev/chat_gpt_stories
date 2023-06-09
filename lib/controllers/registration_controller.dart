@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import '../../../common/headers.dart';
-import '../../../model/image_generation_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/RegistrationModels.dart';

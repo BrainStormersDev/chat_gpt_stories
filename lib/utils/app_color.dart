@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppColors {
   static const kSplashColor = Color(0xFFFEF0D6);
@@ -47,4 +48,15 @@ class AppColors {
   //     fontWeight: fontWeight,
   //   );
   // }
+}
+
+changeSystemUIOverlayColor(Color statusBarColor, Color navBarColor) {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: statusBarColor, // Change status bar color
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: navBarColor, // Change navigation bar color
+      systemNavigationBarIconBrightness: Brightness.dark
+    ),
+  );
 }

@@ -518,7 +518,7 @@ class _StoryPageState extends State<StoryPage> {
                                                   size: 30,
                                                 )),
                                             GestureDetector(
-                                              onTap: () {
+                                              onTap: () async {
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(

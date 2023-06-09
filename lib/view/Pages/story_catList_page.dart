@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_gpt_stories/common/headers.dart';
 import 'package:chat_gpt_stories/controllers/chat_text_controller.dart';
 import 'package:chat_gpt_stories/model/storyCatListModel.dart';
@@ -146,7 +147,7 @@ class _StoryCatListState extends State<StoryCatList> {
                                             .data!
                                             .length, (index) {
                                   return SizedBox(
-                                      height: 100,
+                                      // height: 100,
                                       child:
                                           // Text(storyCatListController.storyCategoryListModels.value.data![index].storyTitle.toString())
                                           InkWell(
@@ -188,6 +189,7 @@ class _StoryCatListState extends State<StoryCatList> {
   Widget icon(index) {
     // print(widget.catName);
     return Container(
+      width: double.infinity,
       decoration: const BoxDecoration(
           // color: Colors.green,
           // color:int.parse(selectItems.value.toString())==index? AppColors.kPrimary:null,
@@ -203,24 +205,61 @@ class _StoryCatListState extends State<StoryCatList> {
           crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/PNG/img_4.png"),
-                    fit: BoxFit.fitWidth),
-                borderRadius: BorderRadiusDirectional.only(
-                    topStart: Radius.circular(20),
-                    bottomStart: Radius.circular(20)),
-                color: AppColors.kBtnColor,
+            CachedNetworkImage(
+              imageUrl: "",
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Container(
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.height * 0.15,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/PNG/img_4.png",),
+                      fit: BoxFit.fitWidth),
+                  borderRadius: BorderRadiusDirectional.only(
+                      topStart: Radius.circular(20),
+                      bottomStart: Radius.circular(20)),
+                  color: AppColors.kBtnColor,
+                ),
               ),
-
-              height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.height * 0.15,
-              // child: storyCatListController.storyCategoryListModels.value.data![index].images![index].imageUrl == "" ? const SizedBox() :
-              // Image.network(storyCatListController.storyCategoryListModels.value.data![index].images!.first.imageUrl.toString())
+              imageBuilder: (context, imageProvider) =>
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    width: MediaQuery.of(context).size.height * 0.15,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fitWidth),
+                      borderRadius: const BorderRadiusDirectional.only(
+                          topStart: Radius.circular(20),
+                          bottomStart: Radius.circular(20)),
+                      color: AppColors.kBtnColor,
+                    ),
+                  ),
             ),
+            // Container(
+            //   height: MediaQuery.of(context).size.height * 0.15,
+            //   width: MediaQuery.of(context).size.height * 0.15,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //         image:
+            //         storyCatListController.storyCategoryListModels.value.data![index].images!.isEmpty ?
+            //         const NetworkImage("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019") :
+            //         NetworkImage(storyCatListController.storyCategoryListModels.value.data![index].images!.first.imageUrl.toString()),
+            //         // AssetImage("assets/PNG/img_4.png"),
+            //         fit: BoxFit.fitWidth),
+            //     borderRadius: BorderRadiusDirectional.only(
+            //         topStart: Radius.circular(20),
+            //         bottomStart: Radius.circular(20)),
+            //     color: AppColors.kBtnColor,
+            //   ),
+            //
+            //
+            //   // child: storyCatListController.storyCategoryListModels.value.data![index].images![index].imageUrl == "" ? const SizedBox() :
+            //   // Image.network(storyCatListController.storyCategoryListModels.value.data![index].images!.first.imageUrl.toString())
+            //   // child: Image.asset("assets/PNG/img_4.png", fit: BoxFit.fitWidth,),
+            // ),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.07,
+              width: MediaQuery.of(context).size.width * 0.02,
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -228,7 +267,7 @@ class _StoryCatListState extends State<StoryCatList> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.2,
+                  width: MediaQuery.of(context).size.width / 2.1,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -246,29 +285,14 @@ class _StoryCatListState extends State<StoryCatList> {
                                         : Colors.grey)),
                       ),
                       // SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                      Icon(Icons.visibility,
-                          size: 15,
-                          color:
-                              int.parse(selectItems.value.toString()) == index
-                                  ? AppColors.txtColor1
-                                  : Colors.grey),
-                      Text(
-                          " ${formatLargeValue(storyCatListController.storyCategoryListModels.value.data![index].viewCount!)}",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: "BalooBhai",
-                              color: int.parse(selectItems.value.toString()) ==
-                                      index
-                                  ? AppColors.txtColor1
-                                  : Colors.grey)),
                     ],
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.2,
+                  width: MediaQuery.of(context).size.width / 2,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Text(
@@ -300,6 +324,43 @@ class _StoryCatListState extends State<StoryCatList> {
                           size: 20,
                         )),
                       ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2.1,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text("Ratting",
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: "BalooBhai",
+                                color:
+                                int.parse(selectItems.value.toString()) ==
+                                    index
+                                    ? AppColors.txtColor1
+                                    : Colors.grey)),
+                      ),
+                      // SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
+                      Icon(Icons.visibility,
+                          size: 15,
+                          color:
+                          int.parse(selectItems.value.toString()) == index
+                              ? AppColors.txtColor1
+                              : Colors.grey),
+                      Text(
+                          " ${formatLargeValue(storyCatListController.storyCategoryListModels.value.data![index].viewCount!)}",
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontFamily: "BalooBhai",
+                              color: int.parse(selectItems.value.toString()) ==
+                                  index
+                                  ? AppColors.txtColor1
+                                  : Colors.grey)),
                     ],
                   ),
                 ),

@@ -27,10 +27,10 @@ class Data {
   var androidUrl;
   int? androidVersionCheck;
   String? huaweiAppVersion;
-  Null? huaweiUrl;
+  var huaweiUrl;
   int? huaweiVersionCheck;
   String? iosAppVersion;
-  Null? iosUrl;
+  var iosUrl;
   int? iosVersionCheck;
 
   Data(

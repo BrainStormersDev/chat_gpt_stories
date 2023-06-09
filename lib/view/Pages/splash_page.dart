@@ -53,6 +53,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
       ]
     );
     DynamicLinksProvider().initDynamicLink();
+    changeSystemUIOverlayColor(AppColors.kSplashColor, AppColors.kWhite);
   }
   @override
   void dispose() {
@@ -189,38 +190,40 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                   const SizedBox(height: 10,),
                   ElevatedButton(
                       onPressed: () async {
+                        
+                        ///Start
+                      //   if(!_isNetworkConnected){
+                      //     if(GetStorage().hasData(kGender) ){
+                      //       Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
+                      //     }
+                      //     else{
+                      //       Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
+                      //     }
+                      //     try {
+                      //       // await MyRepo.assetsAudioPlayer.open(
+                      //       //   Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
+                      //       // );
+                      //       MyRepo.musicMuted.value == false ?
+                      //       await MyRepo.assetsAudioPlayer.open(
+                      //           Playlist(audios: [
+                      //             Audio.network(
+                      //                 "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                      //           ]),
+                      //           loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+                      //     } catch (t) {
+                      //       //mp3 unreachable
+                      //     }
+                      //
+                      // }
+                      //   else{
+                      //
+                      //     MySnackBar.snackBarRed(
+                      //         title: "Alert",
+                      //         message: "Not internet connection found");
+                      //
+                      //   }
 
-                        if(!_isNetworkConnected){
-                          if(GetStorage().hasData(kGender) ){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
-                          }
-                          else{
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
-                          }
-                          try {
-                            // await MyRepo.assetsAudioPlayer.open(
-                            //   Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
-                            // );
-                            MyRepo.musicMuted.value == false ?
-                            await MyRepo.assetsAudioPlayer.open(
-                                Playlist(audios: [
-                                  Audio.network(
-                                      "http://story-telling.eduverse.uk/public/s_1.mp3"),
-                                ]),
-                                loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
-                          } catch (t) {
-                            //mp3 unreachable
-                          }
-
-                      }
-                        else{
-
-                          MySnackBar.snackBarRed(
-                              title: "Alert",
-                              message: "Not internet connection found");
-
-                        }
-
+                        ///End
                         // AssetsAudioPlayer.newPlayer().open(
                         //   Audio("assets/BG_Song/n_1.mp3"),
                         //   autoStart: true,
@@ -285,6 +288,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   }
 
   void playSound() {
+    MyRepo.assetsAudioPlayer.stop();
     AssetsAudioPlayer.newPlayer().open(
       Audio(kWelcomeSound),
       autoStart: true,

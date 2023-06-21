@@ -147,9 +147,8 @@ class LogInPage extends StatelessWidget {
                                 GetStorage().write("bearerToken", jsonDecode(value["response"])["access_token"]);
                                 GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
                                 print("====read data ${GetStorage().read("userName")}===");
-
                                 MyRepo.islogInHomeScreen==true?
-                              Get.close(1):
+                                Get.close(1):
                                 Get.to(()=>  RateUsPage() );
                                 isLoading.value=true;
                               }
@@ -162,7 +161,7 @@ class LogInPage extends StatelessWidget {
                           else{
                             isLoading.value==false;
                             MySnackBar.snackBarRed(title: "Alert", message: "Email and Password Required");
-                          }
+                           }
 
                         },
                       ):myIndicator(),

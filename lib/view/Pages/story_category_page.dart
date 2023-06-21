@@ -57,6 +57,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
     changeSystemUIOverlayColor(AppColors.kScreenColor, AppColors.kWhite);
     // storyWatchedController.getWatchedStory();
     print("========== init call =====");
+    storyWatchedController.getWatchedStory();
   }
   @override
   void dispose() {
@@ -68,7 +69,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
     print("========repo muted value  =${GetStorage().read(kMute)}");
     print("====userName  =${GetStorage().read("userName") }");
     print("========selectedGender  =${MyRepo.selectedGender.name}");
-    storyWatchedController.getWatchedStory();
+
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       appBar: AppBar(
@@ -176,8 +177,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                     ),
                   ),
                 )
-              :
-                DefaultTabController(
+              : DefaultTabController(
                     length: 2, // Number of tabs
                     child: Column(
                       children: [
@@ -574,8 +574,6 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                       ],
                     ),
                   ),
-
-
           ///
           //  Column(children: [
           //
@@ -652,11 +650,26 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
           //   ],
           // ),
           ),
-      floatingActionButton:FloatingActionButton(
-        backgroundColor: AppColors.kBtnColor,
-        onPressed: (){
-          Get.to(()=>CreateNewStory());
-        },child:const Icon(Icons.create,),),
+      floatingActionButton:
+       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if(GetStorage().read("userName") == null)    Padding(
+            padding: const EdgeInsets.only(left: 32.0),
+            child: FloatingActionButton(
+              backgroundColor: AppColors.kBtnColor,
+              onPressed: (){
+                Get.to(()=>LogInPage());
+              },child:const Icon(Icons.login,),),
+          ),
+          Spacer(),
+          FloatingActionButton(
+            backgroundColor: AppColors.kBtnColor,
+            onPressed: (){
+              Get.to(()=>CreateNewStory());
+            },child:const Icon(Icons.create,),),
+        ],
+      ),
     );
   }
 

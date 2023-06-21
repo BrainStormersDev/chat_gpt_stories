@@ -30,10 +30,9 @@ class _SharePageState extends State<SharePage> {
   }
 
   getShare() async {
-    shareStoryLink = await DynamicLinksProvider().createLink(
-        widget.catName.toString(), widget.shareData!.storyTitle.toString());
-    print(
-        "=====Dynamic Link == ${await DynamicLinksProvider().createLink(widget.catName.toString(), widget.shareData!.storyTitle.toString())}");
+    // shareStoryLink = await DynamicLinksProvider().createLink(widget.catName.toString(), widget.shareData!.storyTitle.toString());
+    shareStoryLink = await DynamicLinksProvider().createLink(widget.catName.toString(), MyRepo.currentStory.storyTitle.toString());
+    // print("=====Dynamic Link == ${await DynamicLinksProvider().createLink(widget.catName.toString(), widget.shareData!.storyTitle.toString())}");
     print("======shareStoryLink== $shareStoryLink");
   }
 
@@ -49,7 +48,7 @@ class _SharePageState extends State<SharePage> {
         backgroundColor: AppColors.kScreenColor,
         leading: IconButton(
           onPressed: () {
-            Get.close(1);
+            Get.close(6);
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -118,12 +117,12 @@ class _SharePageState extends State<SharePage> {
                       "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
                   // Share.share(message);
                   // // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
-                  // Share.share("GPT Stories For Kids\n \nStory: ${widget.shareData?.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
+                   Share.share("GPT Stories For Kids\n \nStory: ${widget.shareData?.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
                   print("========before == current Story :${MyRepo.currentStory.storyTitle}");
-
-                  Share.share("GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
+                  // Share.share("GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
                   print("========after == current Story :${MyRepo.currentStory.storyTitle}");
-
+                  getShare();
+                  print("======shareStoryLink :$shareStoryLink");
                 },
                 color:AppColors.kBtnColor ,
                 // height: MediaQuery.of(context).size.height*0.17,

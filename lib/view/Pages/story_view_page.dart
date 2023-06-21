@@ -23,10 +23,10 @@ import '../../utils/app_color.dart';
 import 'share_page.dart';
 
 class StoryViewPage extends StatefulWidget {
-  final DataList data;
+    DataList data;
   final String? catName;
   // final StoryCatData data;
-  const StoryViewPage({Key? key, required this.data, this.catName})
+   StoryViewPage({Key? key, required this.data, this.catName})
       : super(key: key);
 
   @override
@@ -35,6 +35,7 @@ class StoryViewPage extends StatefulWidget {
 enum TtsState { playing, stopped, paused, continued }
 
 class _StoryViewPageState extends State<StoryViewPage> {
+  ChatTextController controllerText = Get.put(ChatTextController());
   // ChatImageController controllerImage= Get.put(ChatImageController());
   // ChatTextController controllerText= Get.put(ChatTextController());
   String mystring = '';
@@ -43,6 +44,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
       color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
 
   final ScrollController _scrollController = ScrollController();
+
   int activeIndex = 0;
   FlutterTts tts = FlutterTts();
   RxString nTxt = "".obs;
@@ -50,6 +52,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
   List<String> widgetTxt = [];
   List<String> image = [];
   bool isPaused = false;
+  bool isPlayNext = false;
 
   @override
   void initState() {
@@ -412,21 +415,120 @@ class _StoryViewPageState extends State<StoryViewPage> {
                   ),
                 ),
               ),
-            )
+            ),
+             SizedBox(height: MediaQuery.of(context).size.height*0.06,)
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.small(
-        backgroundColor: AppColors.kBtnColor,
-        onPressed: () {
-          setState(() {
-            print("=====before========  ${isPaused}");
-            isPaused = !isPaused;
-            print("======after=======  ${isPaused}");
-            isPaused == true ? tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
-          });
-        },
-        child: isPaused ? const Icon(Icons.play_arrow) : const Icon(Icons.pause),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton:
+
+
+
+      Container(
+        // color: Colors.red,
+        decoration: BoxDecoration(
+          color: AppColors.kBlack.withOpacity(0.7),
+          borderRadius: BorderRadius.circular(10)
+        ),
+        margin:const EdgeInsets.only(left: 30.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+                onPressed:
+
+                controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data.storyTitle) == 0
+                    ? null
+                    : () {
+                  int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data.storyTitle);
+
+                  if (newIndex <
+                      controllerText.storyCategoryListModels.value.data!.length) {
+                    widget.data = controllerText.storyCategoryListModels.value.data![newIndex - 1];
+                    MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex - 1];
+                    tts.stop();
+                    listTxt.clear();
+                    _ttsInit ();
+                    setState(() {});
+                  }
+                }
+                ,
+                icon: const Icon(
+                  Icons.skip_previous_rounded,
+                  color: AppColors.kBtnColor,
+                  size: 30,
+                )),
+            FloatingActionButton.small(
+              backgroundColor: AppColors.kBtnColor,
+              onPressed: () {
+                setState(() {
+                  print("=====before========  ${isPaused}");
+                  isPaused = !isPaused;
+                  print("======after=======  ${isPaused}");
+                  isPaused == true ? tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+                });
+              },
+              child: isPaused ? const Icon(Icons.play_arrow) : const Icon(Icons.pause),
+            ),
+            IconButton(
+                onPressed:
+
+                (
+                    controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data.storyTitle) ==
+                        controllerText.storyCategoryListModels.value.data!
+                            .length)==true
+                    ? null
+                    : () {
+                  print("=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
+
+                  int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data.storyTitle);
+
+                  setState(() {
+                    if (newIndex == controllerText.storyCategoryListModels.value.data!.length) {
+                      widget.data = controllerText.storyCategoryListModels.value.data![newIndex];
+                      MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex];
+                      print("========if ==  1 current Story :${MyRepo.currentStory.storyTitle}");
+
+                      // ? tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+                      tts.stop();
+                      listTxt.clear();
+                      _ttsInit ();
+                    }
+                    else{
+                      widget.data = controllerText.storyCategoryListModels.value.data![newIndex+1];
+                      MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex+1];
+                      print("========if == current Story :${MyRepo.currentStory.storyTitle}");
+
+
+                        tts.stop();
+                        listTxt.clear();
+                       _ttsInit ();
+
+
+
+                      // isPlayNext=true;
+                      // isPaused = true ;
+                      // isPlayNext == true ?(){
+                      //   listTxt.clear();
+                      // isPaused=true;
+                      // } : null;
+                      // isPaused == true ?    _ttsInit() : null;
+
+                    }
+                  });
+                },
+
+                // widget.nextStory,
+                icon: const Icon(
+                  Icons.skip_next_rounded,
+                  color: AppColors.kBtnColor,
+                  size: 30,
+                )),
+
+
+          ],
+        ),
       ),
     );
   }
@@ -434,6 +536,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
   _ttsInit () {
     tts = FlutterTts();
     tts.speak(widget.data.story.toString());
+    // listTxt.value.clear();
     tts.setProgressHandler(
             (String text, int startOffset, int endOffset, String word) {
           print("================== word :$word");

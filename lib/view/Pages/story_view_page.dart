@@ -525,8 +525,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
                   color: AppColors.kBtnColor,
                   size: 30,
                 )),
-
-
           ],
         ),
       ),

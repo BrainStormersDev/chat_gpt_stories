@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/app_color.dart';
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   TextEditingController textEditingController;
   String hintTxt;
   bool obsecureTxt;
+  bool isTrailingIcon;
    String? Function(String?)? validation;
 
-   AppTextField({Key? key,required this.textEditingController,required this.hintTxt,required this.validation,this.obsecureTxt=false}) : super(key: key);
+   AppTextField({Key? key,required this.textEditingController,required this.hintTxt,required this.validation,this.obsecureTxt=false,this.isTrailingIcon=false}) : super(key: key);
 
+  @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: textEditingController,
-      validator:validation,
-      obscureText: obsecureTxt,
+      controller: widget.textEditingController,
+      validator:widget.validation,
+      obscureText: widget.obsecureTxt,
       cursorColor: AppColors.kBtnColor,
       decoration:  InputDecoration(
-        hintText: hintTxt,
-        hintStyle:  TextStyle(color: AppColors.kGrey),
+        hintText: widget.hintTxt,
+        suffixIcon:widget.isTrailingIcon?  GestureDetector(onTap: (){
+          setState(() {
+            widget.obsecureTxt=!widget.obsecureTxt;
+            print("=====obsecureTxt ${widget.obsecureTxt}");
+          });
+
+        },child:widget.obsecureTxt? const Icon(Icons.visibility,color: AppColors.kBtnColor,) :const Icon(Icons.visibility_off,color: AppColors.kBtnColor,)):null,
+        hintStyle:  const TextStyle(color: AppColors.kGrey),
         enabledBorder:  OutlineInputBorder(
           borderSide:
           BorderSide(color: AppColors.textFieldColor, width: 2.0),

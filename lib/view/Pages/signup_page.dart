@@ -96,7 +96,7 @@ class SignInPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     const Text(
                       "Register to get started",
@@ -120,7 +120,7 @@ class SignInPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     AppTextField(
                       textEditingController: emailController,
@@ -133,7 +133,7 @@ class SignInPage extends StatelessWidget {
                       },
                     ),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     AppTextField(
                       textEditingController: passwordController,
@@ -144,9 +144,11 @@ class SignInPage extends StatelessWidget {
                         }
                         return null;
                       },
+                      isTrailingIcon: true,
+                      obsecureTxt: true,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     AppTextField(
                       textEditingController: confirmPasswordController,
@@ -157,10 +159,12 @@ class SignInPage extends StatelessWidget {
                         }
                         return null;
                       },
+                      isTrailingIcon: true,
+                      obsecureTxt: true,
                     ),
 
                     SizedBox(
-                      height: 16,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                      CustomButton(
                       text: "SignIn",
@@ -188,7 +192,7 @@ class SignInPage extends StatelessWidget {
                       }
                     ),
                     SizedBox(
-                      height: 16,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     isSkipLoading.value==false?     CustomButton(
                         text: "Skip for now",
@@ -220,7 +224,7 @@ class SignInPage extends StatelessWidget {
                         // color: AppColors.kBtnColor,
                         ):myIndicator(),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     Row(
                       children: const [
@@ -241,8 +245,8 @@ class SignInPage extends StatelessWidget {
                         ))
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
+                     SizedBox(
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -253,7 +257,7 @@ class SignInPage extends StatelessWidget {
                     ),
                     // const Spacer(),
                     SizedBox(
-                      height: 20,
+                      height: MediaQuery.of(context).size.height*0.02,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -114,6 +114,8 @@ class LogInPage extends StatelessWidget {
                           }
                           return null;
                         },
+                        isTrailingIcon: true,
+                        obsecureTxt: true,
                       ),
                     const  SizedBox(
                         height: 16,

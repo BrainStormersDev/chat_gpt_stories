@@ -5,6 +5,7 @@ import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Widgets/settingsDialog.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:chat_gpt_stories/view/Pages/story_view_page.dart';
@@ -22,7 +23,9 @@ import '../../controllers/chat_text_controller.dart';
 import '../../model/StoryCategoryModels.dart';
 import '../../model/storyCatListModel.dart';
 import '../../model/text_completion_model.dart';
+import '../../utils/apiCall.dart';
 import '../../utils/app_color.dart';
+import '../Widgets/constWidgets.dart';
 
 class StoryPage extends StatefulWidget {
   DataList? data;
@@ -218,11 +221,14 @@ class _StoryPageState extends State<StoryPage> {
         backgroundColor: AppColors.kScreenColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
+          title: storyByGptWidget(context),
+          centerTitle: true,
           elevation: 0,
           backgroundColor: AppColors.kScreenColor,
           leading: IconButton(
             onPressed: () async {
               Navigator.pop(context);
+
               try {
                 MyRepo.musicMuted.value == false ?
                 await MyRepo.assetsAudioPlayer.open(
@@ -241,6 +247,7 @@ class _StoryPageState extends State<StoryPage> {
             ),
           ),
           actions: [
+
             IconButton(
                 onPressed: () {
                   showCustomSettingDialog(context);
@@ -252,365 +259,299 @@ class _StoryPageState extends State<StoryPage> {
                 ))
           ],
         ),
-        body: SafeArea(
-          child: Obx(() => Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.06,
-                      // ),
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                              height: 27,
-                              child: Image.asset("assets/PNG/gridIcon.png")),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.03,
-                          ),
-                          const Text(
-                            "Story ",
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "BalooBhai",
-                                color: AppColors.kBtnColor),
-                          ),
-                          const Text(
-                            "By GPT",
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "BalooBhai",
-                                color: AppColors.txtColor1),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                              height: 30,
-                              child: Image.asset("assets/PNG/bellIcon.png")),
-                        ],
+        body: Obx(() => Padding(
+              padding:
+                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.12,
+                          child: Image.asset("assets/PNG/loin.png")),
+                    ),
+                    const Center(
+                      child: Text(
+                        "Listen Story",
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "BalooBhai",
+                            color: AppColors.txtColor1),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Center(
-                        child: SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.12,
-                            child: Image.asset("assets/PNG/loin.png")),
-                      ),
-                      const Center(
-                        child: Text(
-                          "Listen Story",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "BalooBhai",
-                              color: AppColors.txtColor1),
-                        ),
-                      ),
-                      Center(
-                        child: SizedBox(
-                          width: 250.0,
-                          child: DefaultTextStyle(
-                            style: const TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'Bobbers',
-                                color: AppColors.kBtnColor),
-                            child: Center(
-                              child: AnimatedTextKit(
-                                // totalRepeatCount: 3,
-                                pause: const Duration(seconds: 2),
-                                repeatForever: true,
-                                animatedTexts: [
-                                  TyperAnimatedText(
-                                      '${widget.data!.storyTitle}',
-                                      textStyle: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "BalooBhai",
-                                          color: AppColors.kBtnColor),
-                                      textAlign: TextAlign.center),
-                                  // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
-                                ],
-                              ),
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 250.0,
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'Bobbers',
+                              color: AppColors.kBtnColor),
+                          child: Center(
+                            child: AnimatedTextKit(
+                              // totalRepeatCount: 3,
+                              pause: const Duration(seconds: 2),
+                              repeatForever: true,
+                              animatedTexts: [
+                                TyperAnimatedText(
+                                    '${widget.data!.storyTitle}',
+                                    textStyle: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "BalooBhai",
+                                        color: AppColors.kBtnColor),
+                                    textAlign: TextAlign.center),
+                                // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                              ],
                             ),
                           ),
                         ),
                       ),
+                    ),
 
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      // true
-                      controllerText.state.value == ApiState.loading
-                          ? Container(
-                              child: Column(
-                                children: [
-                                  Image.asset(
-                                    "assets/PNG/giphy2.gif",
-                                    height: 125.0,
-                                    width: 125.0,
-                                  ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // true
+                    controllerText.state.value == ApiState.loading
+                        ? Container(
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  "assets/PNG/giphy2.gif",
+                                  height: 125.0,
+                                  width: 125.0,
+                                ),
 
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
 
-                                  Center(
-                                    child: SizedBox(
-                                      width: 250.0,
-                                      child: DefaultTextStyle(
-                                        style: const TextStyle(
-                                            fontSize: 20.0,
-                                            fontFamily: 'Bobbers',
-                                            color: AppColors.txtColor1),
-                                        child: AnimatedTextKit(
-                                          animatedTexts: [
-                                            TyperAnimatedText(
-                                                'Please wait ....'),
-                                            TyperAnimatedText(
-                                                'While your story of ${widget.data!.storyTitle} is creating'),
-                                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
-                                          ],
-                                          onTap: () {
-                                            print("Tap Event");
-                                          },
-                                        ),
+                                Center(
+                                  child: SizedBox(
+                                    width: 250.0,
+                                    child: DefaultTextStyle(
+                                      style: const TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Bobbers',
+                                          color: AppColors.txtColor1),
+                                      child: AnimatedTextKit(
+                                        animatedTexts: [
+                                          TyperAnimatedText(
+                                              'Please wait ....'),
+                                          TyperAnimatedText(
+                                              'While your story of ${widget.data!.storyTitle} is creating'),
+                                          // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                                        ],
+                                        onTap: () {
+                                          print("Tap Event");
+                                        },
                                       ),
                                     ),
                                   ),
-                                  // const Text("Please wait ....",style: TextStyle(
-                                  //     fontSize: 20,
-                                  //
-                                  //     fontFamily: "BalooBhai",
-                                  //     color: AppColors.txtColor1),),
-                                  // SizedBox(height: 10,),
-                                  // const Text("While your strory is creating",style: TextStyle(
-                                  //     fontSize: 20,
-                                  //     fontFamily: "BalooBhai",
-                                  //     color: AppColors.txtColor1),),
-                                ],
-                              ),
-                            )
-                          : Container(
-                              child: controllerText.state.value ==
-                                      ApiState.error
-                                  ? Container(
-                                      child: Center(
-                                          child: Text(
-                                              controllerText.errorMsg.value)),
-                                    )
-                                  : Column(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
-                                          },
-                                          child: Container(
-                                            height: 220,
-                                            // width: double.infinity,
+                                ),
+                                // const Text("Please wait ....",style: TextStyle(
+                                //     fontSize: 20,
+                                //
+                                //     fontFamily: "BalooBhai",
+                                //     color: AppColors.txtColor1),),
+                                // SizedBox(height: 10,),
+                                // const Text("While your strory is creating",style: TextStyle(
+                                //     fontSize: 20,
+                                //     fontFamily: "BalooBhai",
+                                //     color: AppColors.txtColor1),),
+                              ],
+                            ),
+                          )
+                        : Container(
+                            child: controllerText.state.value ==
+                                    ApiState.error
+                                ? Container(
+                                    child: Center(
+                                        child: Text(
+                                            controllerText.errorMsg.value)),
+                                  )
+                                : Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
+                                        },
+                                        child: Container(
+                                          height: 220,
+                                          // width: double.infinity,
 
-                                            child: CachedNetworkImage(
-                                              // imageUrl: kDemoImage,
-                                              imageUrl: '',
-                                              fit: BoxFit.fill,
-                                              progressIndicatorBuilder:
-                                                  (context, url,
-                                                          downloadProgress) =>
-                                                      SizedBox(
-                                                          width:
-                                                              double.infinity,
-                                                          child: Shimmer
-                                                              .fromColors(
-                                                            baseColor: Colors
-                                                                .grey
-                                                                .withOpacity(
-                                                                    .3),
-                                                            highlightColor:
-                                                                Colors.grey,
-                                                            child: Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              4)),
-                                                            ),
-                                                          )),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Container(
-                                                height: 200,
-                                                width: 200,
-                                                decoration: const BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: AssetImage(
-                                                        "assets/PNG/img_4.png"
-                                                        // "${widget.data.images!.first.imageUrl}"
-                                                        // widget.data.imageUrl
-                                                        ),
-                                                    fit: BoxFit.fill,
-                                                  ),
+                                          child: CachedNetworkImage(
+                                            // imageUrl: kDemoImage,
+                                            imageUrl: '',
+                                            fit: BoxFit.fill,
+                                            progressIndicatorBuilder:
+                                                (context, url,
+                                                        downloadProgress) =>
+                                                    SizedBox(
+                                                        width:
+                                                            double.infinity,
+                                                        child: Shimmer
+                                                            .fromColors(
+                                                          baseColor: Colors
+                                                              .grey
+                                                              .withOpacity(
+                                                                  .3),
+                                                          highlightColor:
+                                                              Colors.grey,
+                                                          child: Container(
+                                                            width: double
+                                                                .infinity,
+                                                            decoration: BoxDecoration(
+                                                                color: Colors
+                                                                    .white,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4)),
+                                                          ),
+                                                        )),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Container(
+                                              height: 200,
+                                              width: 200,
+                                              decoration: const BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/PNG/img_4.png"
+                                                      // "${widget.data.images!.first.imageUrl}"
+                                                      // widget.data.imageUrl
+                                                      ),
+                                                  fit: BoxFit.fill,
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 35,
-                                        ),
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            IconButton(
-                                                onPressed: controllerText
-                                                            .storyCategoryListModels
-                                                            .value
-                                                            .data!
-                                                            .indexWhere((element) =>
-                                                                element
-                                                                    .storyTitle ==
-                                                                widget.data!
-                                                                    .storyTitle) ==
-                                                        0
-                                                    ? null
-                                                    : () {
-                                                        int newIndex = controllerText
-                                                            .storyCategoryListModels
-                                                            .value
-                                                            .data!
-                                                            .indexWhere((element) =>
-                                                                element
-                                                                    .storyTitle ==
-                                                                widget.data!
-                                                                    .storyTitle);
+                                      ),
+                                      const SizedBox(
+                                        height: 35,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          IconButton(
+                                              onPressed: controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle) == 0
+                                                  ? null
+                                                  : () {
+                                                      int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
 
-                                                        if (newIndex <
-                                                            controllerText
-                                                                .storyCategoryListModels
-                                                                .value
-                                                                .data!
-                                                                .length) {
-                                                          widget.data =
-                                                              controllerText
-                                                                      .storyCategoryListModels
-                                                                      .value
-                                                                      .data![
-                                                                  newIndex - 1];
-                                                          setState(() {});
-                                                        }
-                                                      },
-                                                icon: const Icon(
-                                                  Icons.skip_previous_rounded,
-                                                  color: AppColors.kBtnColor,
-                                                  size: 30,
-                                                )),
-                                            GestureDetector(
-                                              onTap: () async {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            StoryViewPage(
-                                                              data:
-                                                                  widget.data!,
-                                                              catName: widget
-                                                                  .catName,
-                                                            )));
-                                                print(
-                                                    "=========widget.data.id = ${widget.data!.id}");
-                                                countViewApi(
-                                                    widget.data!.id.toString());
-                                              },
-                                              child: const CircleAvatar(
-                                                radius: 30,
-                                                backgroundColor:
-                                                    AppColors.kBtnColor,
-                                                child: Icon(
-                                                  CupertinoIcons
-                                                      .play_arrow_solid,
-                                                  color: AppColors.txtColor1,
-                                                ),
+                                                      if (newIndex <
+                                                          controllerText.storyCategoryListModels.value.data!.length) {
+                                                        widget.data = controllerText.storyCategoryListModels.value.data![newIndex - 1];
+                                                        MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex - 1];
+                                                        setState(() {});
+                                                      }
+                                                    },
+                                              icon: const Icon(
+                                                Icons.skip_previous_rounded,
+                                                color: AppColors.kBtnColor,
+                                                size: 30,
+                                              )),
+                                          GestureDetector(
+                                            onTap: () async {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          StoryViewPage(
+                                                            data:
+                                                                widget.data!,
+                                                            catName: widget
+                                                                .catName,
+                                                          )));
+                                              print(
+                                                  "=========widget.data.id = ${widget.data!.id}");
+                                              countViewApi(
+                                                  widget.data!.id.toString());
+                                              getStory(widget.data!.id.toString());
+                                            },
+                                            child: const CircleAvatar(
+                                              radius: 30,
+                                              backgroundColor:
+                                                  AppColors.kBtnColor,
+                                              child: Icon(
+                                                CupertinoIcons
+                                                    .play_arrow_solid,
+                                                color: AppColors.txtColor1,
                                               ),
                                             ),
-                                            IconButton(
-                                                onPressed: (controllerText
-                                                            .storyCategoryListModels
-                                                            .value
-                                                            .data!
-                                                            .lastIndexWhere((element) =>
-                                                                element
-                                                                    .storyTitle ==
-                                                                widget.data!
-                                                                    .storyTitle) ==
-                                                        controllerText
-                                                            .storyCategoryListModels
-                                                            .value
-                                                            .data!
-                                                            .length)==true
-                                                    ? null
-                                                    : () {
-                                                  print("=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
+                                          ),
+                                          IconButton(
+                                              onPressed: (
+                                                  controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) ==
+                                                      controllerText.storyCategoryListModels.value.data!
+                                                          .length)==true
+                                                  ? null
+                                                  : () {
+                                                print("=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
 
-                                                  int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
+                                                int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
 
-                                                        setState(() {
-                                                          if (newIndex == controllerText.storyCategoryListModels.value.data!.length) {
-                                                            widget.data = controllerText.storyCategoryListModels.value.data![newIndex];
-                                                          }
-                                                          else{
-                                                            widget.data = controllerText.storyCategoryListModels.value.data![newIndex+1];
-                                                          }
-                                                        });
-                                                      },
-                                                // widget.nextStory,
-                                                icon: const Icon(
-                                                  Icons.skip_next_rounded,
-                                                  color: AppColors.kBtnColor,
-                                                  size: 30,
-                                                )),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                            ),
-                      // SizedBox(
-                      //     height: MediaQuery.of(context).size.height * 0.4,
-                      //     child: Image.asset("assets/PNG/storyImg.png")),
+                                                      setState(() {
+                                                        if (newIndex == controllerText.storyCategoryListModels.value.data!.length) {
+                                                          widget.data = controllerText.storyCategoryListModels.value.data![newIndex];
+                                                          MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex];
+                                                        print("========if == current Story :${MyRepo.currentStory.storyTitle}");
+                                                        }
+                                                        else{
+                                                          widget.data = controllerText.storyCategoryListModels.value.data![newIndex+1];
+                                                          MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex+1];
+                                                          print("========if == current Story :${MyRepo.currentStory.storyTitle}");
 
-                      // ElevatedButton(
-                      //     onPressed: (){
-                      //       // Get.to(const AgePage());
-                      //       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                      //     },
-                      //     style: ButtonStyle(
-                      //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                      //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                      //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
-                      //     ),
-                      //     child: const SizedBox(
-                      //         height: 50,
-                      //         // width: MediaQuery.of(context).size.width/2,
-                      //         child: Center(
-                      //             child: Text("Next",
-                      //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
-                    ],
-                  ),
+                                                        }
+                                                      });
+                                                    },
+                                              // widget.nextStory,
+                                              icon: const Icon(
+                                                Icons.skip_next_rounded,
+                                                color: AppColors.kBtnColor,
+                                                size: 30,
+                                              )),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                          ),
+                    // SizedBox(
+                    //     height: MediaQuery.of(context).size.height * 0.4,
+                    //     child: Image.asset("assets/PNG/storyImg.png")),
+
+                    // ElevatedButton(
+                    //     onPressed: (){
+                    //       // Get.to(const AgePage());
+                    //       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                    //     },
+                    //     style: ButtonStyle(
+                    //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
+                    //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+                    //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
+                    //     ),
+                    //     child: const SizedBox(
+                    //         height: 50,
+                    //         // width: MediaQuery.of(context).size.width/2,
+                    //         child: Center(
+                    //             child: Text("Next",
+                    //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
+                  ],
                 ),
-              )),
-        ),
+              ),
+            )),
       );
     }
   }
@@ -624,8 +565,63 @@ class _StoryPageState extends State<StoryPage> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
+
+
     } else {
       print(response.reasonPhrase);
+    }
+  }
+  getStory(var storyID) async {
+    print("========= calling get story api =======");
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/get-story'));
+    request.fields.addAll({
+      'story_id': storyID.toString(),
+      'user_id': GetStorage().read("userId").toString()
+    });
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+
+
+    print("======= prob start ===");
+    var headers = {
+    'Accept': 'application/json'
+    };
+    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/get-story'));
+    request.fields.addAll({
+    'story_id': storyID,
+    'user_id': "${MyRepo.currentStory.id}"
+    });
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse responseNew = await request.send();
+
+    if (response.statusCode == 200) {
+    print(await responseNew.stream.bytesToString());
+    }
+    else {
+    print(responseNew.reasonPhrase);
+    }
+    //     var body={"story_id":"${MyRepo.currentStory.id}",
+    //               "user_id": storyID};
+    //         ApisCall.apiCall("${kBaseUrl}get-story", "post", body).then((value){
+    //           print("======= prob start ===");
+    //           if(value["isData"]==true){
+    //             print("===== watched Story is ${value["response"]["data"]["story_title"]}");
+    //           }
+    //         });
+    }
+    else {
+    print(response.reasonPhrase);
     }
   }
 }

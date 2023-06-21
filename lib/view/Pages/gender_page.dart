@@ -212,9 +212,7 @@ class _GenderPageState extends State<GenderPage> {
                       else{
                         print("=======select :${MyRepo.selectedGender.name} ====");
                         Navigator.push(context, MaterialPageRoute(builder: (context) =>  AgePage()));
-
                       }
-
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),

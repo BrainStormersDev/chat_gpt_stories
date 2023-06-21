@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
+import 'package:chat_gpt_stories/view/Pages/storyfinish_page.dart';
 import 'package:chat_gpt_stories/view/Widgets/scrolling_Text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +113,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
         .map((item) => Container(
               margin: const EdgeInsets.all(5.0),
               child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
             ))
         .toList();
@@ -182,7 +183,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const RateUsPage()));
+                                           RateUsPage()));
                             },
                             icon: const Icon(
                               CupertinoIcons.star,
@@ -449,10 +450,11 @@ class _StoryViewPageState extends State<StoryViewPage> {
         });
     tts.setCompletionHandler(() {
       // Do something when speech is complete
-      Get.to(() => SharePage(
-        shareData: widget.data,
-        catName: widget.catName,
-      ));
+      Get.to(()=>StoryFinish(data: widget.data,catName: widget.catName));
+      // Get.to(() => SharePage(
+      //   shareData: widget.data,
+      //   catName: widget.catName,
+      // ));
       print('Speech completed');
     });
   }

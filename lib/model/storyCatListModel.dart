@@ -56,6 +56,7 @@ class DataList {
   String? storyNote;
   List<Images>? images;
   int? viewCount;
+  int? averageRating;
 
   DataList({this.id, this.storyTitle, this.story, this.storyNote, this.images, this.viewCount});
 
@@ -64,6 +65,7 @@ class DataList {
     storyTitle = json['story_title'];
     story = json['story'];
     storyNote = json['story_note'];
+    averageRating = json['average_rating'];
     if (json['images'] != null) {
       images = <Images>[];
       json['images'].forEach((v) {
@@ -79,6 +81,7 @@ class DataList {
     data['story_title'] = this.storyTitle;
     data['story'] = this.story;
     data['story_note'] = this.storyNote;
+    data['average_rating'] = this.averageRating;
     if (this.images != null) {
       data['images'] = this.images!.map((v) => v.toJson()).toList();
     }

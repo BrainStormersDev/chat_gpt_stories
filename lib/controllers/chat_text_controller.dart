@@ -12,7 +12,8 @@ import '../model/GetStroyModels.dart';
 
 class ChatTextController extends GetxController {
   //TODO: Implement ChatTextController
-
+  // RxList<DataList> product = <DataList>[].obs;
+  RxString filter = ''.obs;
   @override
   void onInit() {
     print("========fff========");
@@ -38,8 +39,27 @@ class ChatTextController extends GetxController {
 
   var state = ApiState.notFound.obs;
   Rx<StoryCatListModel> storyCategoryListModels =StoryCatListModel(status: false,message: '',data: []).obs;
+
+
+
+
+
+
   // Rx<GetStoryModels> getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [],storyNote: '',storyTitle: '')).obs;
   RxString errorMsg=''.obs;
+
+  void setFilter(String value) {
+    filter.value = value.toLowerCase();
+  }
+
+  Object get filteredList {
+    if (filter.value=="") {
+      return storyCategoryListModels.value;
+    } else {
+      return storyCategoryListModels.value.data!.where((element) => element.storyTitle!.toString().toLowerCase().contains(filter.value)|| element.storyTitle.toString().toLowerCase().contains(filter.value)).toList();
+    }
+  }
+
 
   getTextCompletion({required String query, required String catId}) async {
 
@@ -98,9 +118,6 @@ class ChatTextController extends GetxController {
         storyCategoryListModels.value =StoryCatListModel.fromJson(json.decode(response.body));
         // getStoryModels.value =GetStoryModels.fromJson(json.decode(response.body));
         print("Response $query  getTextCompletion====  ${response.body}");
-
-
-
         state.value = ApiState.success;
       } else {
         // throw ServerException(message: "Image Generation Server Exception");

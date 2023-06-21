@@ -43,9 +43,6 @@ class StoryCatController extends GetxController {
 
     try {
 
-
-
-
       final response = await http.get(
         Uri.parse("${kBaseUrl}get-category"),
         // body: encodedParams,

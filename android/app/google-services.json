@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
+          "client_id": "123364940719-uov8bluuscmmmbjg24j055dbef1kcdnl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.americanlyceum.chat_gpt_stories",
+            "certificate_hash": "c6626ff85e79f57b3d429d8b7aca4b3299298d08"
+          }
+        },
+        {
+          "client_id": "123364940719-u39aokm5ujl5kobt7eucu7vhjot5j6ij.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -50,7 +58,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
+          "client_id": "123364940719-5seamkhd6dtuag4d8qiv5qu0i0o5vcnv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainstormers.gpt_stories",
+            "certificate_hash": "c6626ff85e79f57b3d429d8b7aca4b3299298d08"
+          }
+        },
+        {
+          "client_id": "123364940719-u39aokm5ujl5kobt7eucu7vhjot5j6ij.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

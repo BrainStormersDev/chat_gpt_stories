@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:chat_gpt_stories/utils/app_color.dart';
@@ -21,30 +20,51 @@ import '../../utils/MyRepo.dart';
 import '../../utils/apiCall.dart';
 import 'forgotpassword_page.dart';
 
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
+import 'dart:async';
+import 'dart:developer';
+
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+
+
+
+
+
+
+
 class LogInPage extends StatelessWidget {
   LogInPage({Key? key}) : super(key: key);
-  LoginController logInContoller =Get.put(LoginController());
+  LoginController logInContoller = Get.put(LoginController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  RxBool isLoading=false.obs;
 
-  final _formKey=GlobalKey<FormState>();
+  RxBool isLoading = false.obs;
+
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         // SystemNavigator.pop();
         Get.back();
         return true;
       },
-      child:
-      Scaffold(
+      child: Scaffold(
         backgroundColor: AppColors.kSplashColor,
-        body: Obx(()=>
-           SafeArea(
+        body: Obx(
+          () => SafeArea(
             child:
-            // logInContoller.isLoading.value==false?myIndicator():
-            Padding(
+                // logInContoller.isLoading.value==false?myIndicator():
+                Padding(
               padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
                 child: Form(
@@ -56,7 +76,7 @@ class LogInPage extends StatelessWidget {
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               // SystemNavigator.pop();
                               Get.back();
                             },
@@ -67,8 +87,8 @@ class LogInPage extends StatelessWidget {
                                   border: Border.all(color: AppColors.kGrey)),
                               child: const Center(
                                 child: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 6, vertical: 6),
                                   child: Icon(
                                     Icons.arrow_back_ios_sharp,
                                   ),
@@ -95,8 +115,8 @@ class LogInPage extends StatelessWidget {
                       AppTextField(
                         textEditingController: emailController,
                         hintTxt: "Enter your email",
-                        validation: (val){
-                          if(val!.isEmpty || val==""){
+                        validation: (val) {
+                          if (val!.isEmpty || val == "") {
                             return "required";
                           }
                           return null;
@@ -108,8 +128,8 @@ class LogInPage extends StatelessWidget {
                       AppTextField(
                         textEditingController: passwordController,
                         hintTxt: "Enter your password",
-                        validation: (val){
-                          if(val!.isEmpty || val==""){
+                        validation: (val) {
+                          if (val!.isEmpty || val == "") {
                             return "required";
                           }
                           return null;
@@ -117,61 +137,77 @@ class LogInPage extends StatelessWidget {
                         isTrailingIcon: true,
                         obsecureTxt: true,
                       ),
-                    const  SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: GestureDetector (onTap: (){Get.to(()=>ForgotPasswordPage());}, child: Text("Forgot Password?")),
+                        child: GestureDetector(
+                            onTap: () {
+                              Get.to(() => ForgotPasswordPage());
+                            },
+                            child: Text("Forgot Password?")),
                       ),
-                     const SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
-                      isLoading.value==false?
-                      CustomButton(
-                        text: "LogIn",
-                        height: MediaQuery.of(context).size.height * 0.08,
-                        textSize:18.0 ,
-                        color: AppColors.kBtnColor,
-                        onTap: (){
-                          // isLoading.value=true;
-                          if(_formKey.currentState!.validate()){
-                            isLoading.value=true;
-                            // logInContoller.getLogin(emailController.text.trim(),passwordController.text.trim());
-                            var body={"email":emailController.text.trim(),
-                              "password":passwordController.text.trim()
-                            };
-                            ApisCall.apiCall("${kBaseUrl}login","post",body).then((value) {
-                              if(value["isData"]==true){
-
-                                print("====Login btn clicked===");
-                                GetStorage().write("userName", jsonDecode(value["response"])["data"]["email"]);
-                                GetStorage().write("bearerToken", jsonDecode(value["response"])["access_token"]);
-                                GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
-                                print("====read data ${GetStorage().read("userName")}===");
-                                MyRepo.islogInHomeScreen==true?
-                                Get.close(1):
-                                Get.to(()=>  RateUsPage() );
-                                isLoading.value=true;
-                              }
-                              else if(value["isData"]==false){
-                                isLoading.value=false;
-                              }
-                              print("====== ${isLoading.value}");
-                            });
-                          }
-                          else{
-                            isLoading.value==false;
-                            MySnackBar.snackBarRed(title: "Alert", message: "Email and Password Required");
-                           }
-
-                        },
-                      ):myIndicator(),
-                     const SizedBox(
+                      isLoading.value == false
+                          ? CustomButton(
+                              text: "LogIn",
+                              height: MediaQuery.of(context).size.height * 0.08,
+                              textSize: 18.0,
+                              color: AppColors.kBtnColor,
+                              onTap: () {
+                                // isLoading.value=true;
+                                if (_formKey.currentState!.validate()) {
+                                  isLoading.value = true;
+                                  // logInContoller.getLogin(emailController.text.trim(),passwordController.text.trim());
+                                  var body = {
+                                    "email": emailController.text.trim(),
+                                    "password": passwordController.text.trim()
+                                  };
+                                  ApisCall.apiCall(
+                                          "${kBaseUrl}login", "post", body)
+                                      .then((value) {
+                                    if (value["isData"] == true) {
+                                      print("====Login btn clicked===");
+                                      GetStorage().write(
+                                          "userName",
+                                          jsonDecode(value["response"])["data"]
+                                              ["email"]);
+                                      GetStorage().write(
+                                          "bearerToken",
+                                          jsonDecode(value["response"])[
+                                              "access_token"]);
+                                      GetStorage().write(
+                                          "userId",
+                                          jsonDecode(value["response"])["data"]
+                                              ["id"]);
+                                      print(
+                                          "====read data ${GetStorage().read("userName")}===");
+                                      MyRepo.islogInHomeScreen == true
+                                          ? Get.close(1)
+                                          : Get.to(() => RateUsPage());
+                                      isLoading.value = true;
+                                    } else if (value["isData"] == false) {
+                                      isLoading.value = false;
+                                    }
+                                    print("====== ${isLoading.value}");
+                                  });
+                                } else {
+                                  isLoading.value == false;
+                                  MySnackBar.snackBarRed(
+                                      title: "Alert",
+                                      message: "Email and Password Required");
+                                }
+                              },
+                            )
+                          : myIndicator(),
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
-                        children:const [
+                        children: const [
                           Expanded(
                               child: Divider(
                             color: AppColors.kGrey,
@@ -195,9 +231,26 @@ class LogInPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                       Expanded(child: GestureDetector(onTap: (){},child: Image.asset("assets/PNG/facebook_btn.png",height: 60,))),
-                       Expanded(child: GestureDetector(onTap: (){},child: Image.asset("assets/PNG/google_btn.png",height: 60,))),
-                      ],),
+                          Expanded(
+                              child: GestureDetector(
+                                  onTap: () {
+                                    _handleFaceBookSignIn();
+                                  },
+                                  child: Image.asset(
+                                    "assets/PNG/facebook_btn.png",
+                                    height: 60,
+                                  ))),
+                          Expanded(
+                              child: GestureDetector(
+                                  onTap: () {
+                                    handleSignIn();
+                                  },
+                                  child: Image.asset(
+                                    "assets/PNG/google_btn.png",
+                                    height: 60,
+                                  ))),
+                        ],
+                      ),
                       // const Spacer(),
                       SizedBox(
                         height: 20,
@@ -208,8 +261,13 @@ class LogInPage extends StatelessWidget {
                         children: [
                           Text("Don’t have an account?"),
                           GestureDetector(
-                              onTap: (){Get.to(()=>SignInPage());},
-                              child: Text(" Register Now",style: TextStyle(color: AppColors.kBtnTxtColor),))
+                              onTap: () {
+                                Get.to(() => SignInPage());
+                              },
+                              child: Text(
+                                " Register Now",
+                                style: TextStyle(color: AppColors.kBtnTxtColor),
+                              ))
                         ],
                       )
                     ],
@@ -221,5 +279,22 @@ class LogInPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+
+
+  Future<void> _handleFaceBookSignIn() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      if (result.status == LoginStatus.success) {
+        final AccessToken accessToken = result.accessToken!;
+        // TODO: Handle signed in user
+      } else {
+        print('Facebook sign-in failed');
+      }
+    } catch (error) {
+      print("===== error $error");
+    }
   }
 }

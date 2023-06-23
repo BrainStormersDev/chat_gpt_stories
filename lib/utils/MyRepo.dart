@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../model/selectAgeModel.dart';
 import '../model/storyCatListModel.dart';
@@ -51,7 +52,8 @@ const String kAge = "AgeParam";
 const String kGender = "kGender";
 const String kMute = "kMute";
 const String kTokenStorage = "token";
-const String userEmail = "";
+ String userEmail = "";
+bool isSignedInUser=false;
 
 const String kBaseUrl = "http://story-telling.eduverse.uk/api/v1/";
 const String kLogoAsset = "assets/PNG/loin.png";
@@ -71,4 +73,29 @@ enum AgeSelect {
   four,
   seven,
   thirteen,
+}
+Future<void> handleSignIn() async {
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  try {
+    // final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    // final GoogleSignInAuthentication googleSignInAuthentication = await googleUser!.authentication;
+    //
+    // _googleSignIn.currentUser!.authentication;
+    // _googleSignIn.isSignedIn();
+
+   bool isSignedIn=  await  _googleSignIn.isSignedIn();
+   if(isSignedIn){
+     isSignedInUser=true;
+     print("===== fetch data against email ====");
+   }
+   else{
+     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+     userEmail=  googleUser!.email.toString();
+   }
+    print("========== google email  ${await  _googleSignIn.isSignedIn()}=== ");
+    // final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
+    // TODO: Handle signed in user
+  } catch (error) {
+    print(error);
+  }
 }

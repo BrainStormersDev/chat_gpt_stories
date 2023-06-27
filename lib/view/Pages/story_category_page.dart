@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chat_gpt_stories/controllers/create_new_story.dart';
+import 'package:chat_gpt_stories/view/Pages/create_new_story.dart';
 import 'package:chat_gpt_stories/controllers/story_watched_controller.dart';
 import 'package:chat_gpt_stories/model/StoryCategoryModels.dart';
 import 'package:chat_gpt_stories/utils/MyRepo.dart';
@@ -66,9 +66,12 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
   }
   @override
   Widget build(BuildContext context) {
+
     print("========repo muted value  =${GetStorage().read(kMute)}");
     print("====userName  =${GetStorage().read("userName") }");
     print("========selectedGender  =${MyRepo.selectedGender.name}");
+    print("========islogIn  =${MyRepo.islogIn}");
+    print("========isEmpty  =${GetStorage().read("userName").toString().isEmpty}");
 
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
@@ -110,7 +113,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
             return false;
           },
           // child: GetStorage().read("userName") == null
-          child: GetStorage().read("userName") == null
+          child: GetStorage().read("userName").toString().isEmpty
               ? Obx(
                   () => Padding(
                     padding: const EdgeInsets.only(
@@ -654,24 +657,29 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
        Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          if(GetStorage().read("userName") == null)    Padding(
+          // if(GetStorage().read("userName").toString().isEmpty)    Padding(
+          if(GetStorage().read("userName").toString().isEmpty)    Padding(
             padding: const EdgeInsets.only(left: 32.0),
             child: FloatingActionButton(
               backgroundColor: AppColors.kBtnColor,
               onPressed: (){
+
                 Get.to(()=>LogInPage());
+
               },child:const Icon(Icons.login,),),
           ),
-          if( MyRepo.islogIn )    Padding(
+          if(GetStorage().read("userName").toString().isNotEmpty )    Padding(
             padding: const EdgeInsets.only(left: 32.0),
             child: FloatingActionButton(
               backgroundColor: AppColors.kBtnColor,
               onPressed: (){
-                GetStorage().write("userName","");
-              },child:const Icon(Icons.login_outlined,),),
+                setState((){
+                  GetStorage().write("userName","");
+                });
+              },child:const Icon(Icons.logout_sharp,),),
           ),
+          const  Spacer(),
 
-          Spacer(),
           FloatingActionButton(
             backgroundColor: AppColors.kBtnColor,
             onPressed: (){

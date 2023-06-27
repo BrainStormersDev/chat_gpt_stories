@@ -1,11 +1,16 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../model/selectAgeModel.dart';
 import '../model/storyCatListModel.dart';
+import 'apiCall.dart';
 
 class MyRepo {
   static final assetsAudioPlayer = AssetsAudioPlayer();
@@ -99,4 +104,71 @@ Future<void> handleSignIn() async {
   } catch (error) {
     print(error);
   }
+}
+Future<void> signInWithGoogle(context) async {
+  var auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  print("======== prob 1======== ${await GoogleSignIn().signIn()}");
+  print("======== prob auth======== ${await auth.currentUser}");
+  // try {1
+  // final QuerySnapshot snapshot = await firestore.collection('Users').get();
+  // final List<String> documents = snapshot.docs.map((e) => e.id).toList();
+
+  final GoogleSignInAccount? googleSignOutAccount;
+  googleSignOutAccount= await _googleSignIn.signOut();
+
+  final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  print("======== prob =====2=== '");
+
+  // if(await _googleSignIn.isSignedIn()){
+  //   print("======== ifffffffff ========");
+  //   MySnackBar.snackBarYellow(title: "LogIn", message: "Already Logged In");
+  //   Get.close(2);
+  // }
+  // else{
+  print("======== elseeeee ========");
+  final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+  final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
+  final UserCredential userCredential = await auth.signInWithCredential(credential);
+  final User? user = userCredential.user;
+  var body={
+    "name":"${user!.displayName}",
+    "email":"${user.email}",
+    "auth_type":"google",
+  };
+
+  ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value){
+    if(value["isData"]==true){
+      GetStorage().write(
+          "userName",
+          jsonDecode(value["response"])["data"]
+          ["email"]);
+      MyRepo.islogIn=true;
+    }
+
+  });
+
+  log("User signed in with Google: $user'");
+  print("User signed in with Google: ${user.email}'");
+  // }
+
+
+
+  // documents.removeWhere((element) => element==user!.email.toString());
+
+  // final signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(user!.email.toString());
+
+  // if (signInMethods.isNotEmpty) {
+  //   // User already exists.
+  //   return true;
+  // } else {
+  //   // User does not exist.
+  //   return false;
+  // }
+
+
+  //   }
+  // catch (e){
+  //     print("======= error $e");
+  // }
 }

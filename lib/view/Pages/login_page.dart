@@ -98,9 +98,9 @@ class LogInPage extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height*0.02,
+              ),
                       const Text(
                         "Welcome back! We are happy to see you, Again!",
                         style: TextStyle(
@@ -110,7 +110,7 @@ class LogInPage extends StatelessWidget {
                             color: AppColors.txtColor1),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       AppTextField(
                         textEditingController: emailController,
@@ -123,7 +123,7 @@ class LogInPage extends StatelessWidget {
                         },
                       ),
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       AppTextField(
                         textEditingController: passwordController,
@@ -137,8 +137,8 @@ class LogInPage extends StatelessWidget {
                         isTrailingIcon: true,
                         obsecureTxt: true,
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       Align(
                         alignment: Alignment.centerRight,
@@ -146,10 +146,10 @@ class LogInPage extends StatelessWidget {
                             onTap: () {
                               Get.to(() => ForgotPasswordPage());
                             },
-                            child: Text("Forgot Password?")),
+                            child: const Text("Forgot Password?")),
                       ),
-                      const SizedBox(
-                        height: 16,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       isLoading.value == false
                           ? CustomButton(
@@ -171,7 +171,8 @@ class LogInPage extends StatelessWidget {
                                       .then((value) {
                                     if (value["isData"] == true) {
 
-                                      print("====Login btn clicked===");
+                                      print("====Login btn clicked = user email ${ jsonDecode(value["response"])["data"]
+                                      ["email"]}==");
                                       GetStorage().write(
                                           "userName",
                                           jsonDecode(value["response"])["data"]
@@ -186,9 +187,10 @@ class LogInPage extends StatelessWidget {
                                               ["id"]);
                                       print(
                                           "====read data ${GetStorage().read("userName")}===");
-                                      MyRepo.islogInHomeScreen == true
-                                          ? Get.close(1)
-                                          : Get.to(() => RateUsPage());
+                                      // MyRepo.islogInHomeScreen == true
+                                      //     ?
+                                      Get.close(1);
+                                          // : Get.to(() => RateUsPage());
                                       isLoading.value = true;
                                      MyRepo.islogIn=true;
                                     } else if (value["isData"] == false) {
@@ -205,8 +207,8 @@ class LogInPage extends StatelessWidget {
                               },
                             )
                           : myIndicator(),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       Row(
                         children: const [
@@ -228,7 +230,7 @@ class LogInPage extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: 20,
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,8 +246,9 @@ class LogInPage extends StatelessWidget {
                                   ))),
                           Expanded(
                               child: GestureDetector(
-                                  onTap: () {
-                                    handleSignIn();
+                                  onTap: () async {
+                                    // handleSignIn();
+                                    await signInWithGoogle(context);
                                   },
                                   child: Image.asset(
                                     "assets/PNG/google_btn.png",
@@ -254,8 +257,8 @@ class LogInPage extends StatelessWidget {
                         ],
                       ),
                       // const Spacer(),
-                    const  SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

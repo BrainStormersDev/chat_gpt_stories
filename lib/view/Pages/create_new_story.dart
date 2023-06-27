@@ -1,14 +1,15 @@
 import 'dart:ffi';
 
 import 'package:chat_gpt_stories/controllers/CreateStoryController.dart';
+import 'package:chat_gpt_stories/utils/my_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 
-import '../common/headers.dart';
-import '../utils/app_color.dart';
-import '../view/Widgets/constWidgets.dart';
+import '../../common/headers.dart';
+import '../../utils/app_color.dart';
+import '../Widgets/constWidgets.dart';
 ///test
 // import 'dart:convert';
 // import 'package:flutter/material.dart';
@@ -173,7 +174,7 @@ class CreateNewStory extends StatelessWidget {
                     ),
                   ),
                   controller.state.value == ApiState.loading
-                      ? const Center(child: CircularProgressIndicator())
+                      ?  Center(child: myIndicator())
                       : const SizedBox(),
                        const SizedBox(height: 12),
                         SearchTextFieldWidget(

@@ -356,7 +356,6 @@ class SignInPage extends StatelessWidget {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth =
       await googleUser!.authentication;
-
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -378,18 +377,36 @@ class SignInPage extends StatelessWidget {
   Future<void> _signInWithGoogle(context) async {
     var auth = FirebaseAuth.instance;
     print("======== prob 1======== ${await GoogleSignIn().signIn()}");
+    print("======== prob auth======== ${await auth.currentUser}");
     // try {1
       // final QuerySnapshot snapshot = await firestore.collection('Users').get();
       // final List<String> documents = snapshot.docs.map((e) => e.id).toList();
+
+      final GoogleSignInAccount? googleSignOutAccount;
+      googleSignOutAccount= await _googleSignIn.signOut();
+
       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
     print("======== prob =====2=== '");
+
+    // if(await _googleSignIn.isSignedIn()){
+    //   print("======== ifffffffff ========");
+    //   MySnackBar.snackBarYellow(title: "LogIn", message: "Already Logged In");
+    //   Get.close(2);
+    // }
+    // else{
+      print("======== elseeeee ========");
       final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
       final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
       final UserCredential userCredential = await auth.signInWithCredential(credential);
       final User? user = userCredential.user;
-      print("======== prob ========");
-      // documents.removeWhere((element) => element==user!.email.toString());
       log("User signed in with Google: $user'");
+      print("User signed in with Google: ${user!.email}'");
+    // }
+
+
+
+      // documents.removeWhere((element) => element==user!.email.toString());
+
       // final signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(user!.email.toString());
 
       // if (signInMethods.isNotEmpty) {

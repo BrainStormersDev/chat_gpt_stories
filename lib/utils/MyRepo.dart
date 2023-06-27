@@ -46,6 +46,7 @@ class MyRepo {
   static String bearerToken = "";
   static String userID = "";
   static bool islogInHomeScreen=false;
+  static bool islogIn=false;
 }
 
 const String kAge = "AgeParam";

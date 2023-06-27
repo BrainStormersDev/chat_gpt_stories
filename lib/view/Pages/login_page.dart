@@ -170,6 +170,7 @@ class LogInPage extends StatelessWidget {
                                           "${kBaseUrl}login", "post", body)
                                       .then((value) {
                                     if (value["isData"] == true) {
+
                                       print("====Login btn clicked===");
                                       GetStorage().write(
                                           "userName",
@@ -189,6 +190,7 @@ class LogInPage extends StatelessWidget {
                                           ? Get.close(1)
                                           : Get.to(() => RateUsPage());
                                       isLoading.value = true;
+                                     MyRepo.islogIn=true;
                                     } else if (value["isData"] == false) {
                                       isLoading.value = false;
                                     }
@@ -252,19 +254,19 @@ class LogInPage extends StatelessWidget {
                         ],
                       ),
                       // const Spacer(),
-                      SizedBox(
+                    const  SizedBox(
                         height: 20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text("Don’t have an account?"),
+                        const  Text("Don’t have an account?"),
                           GestureDetector(
                               onTap: () {
                                 Get.to(() => SignInPage());
                               },
-                              child: Text(
+                              child:const Text(
                                 " Register Now",
                                 style: TextStyle(color: AppColors.kBtnTxtColor),
                               ))

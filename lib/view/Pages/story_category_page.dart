@@ -662,6 +662,15 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                 Get.to(()=>LogInPage());
               },child:const Icon(Icons.login,),),
           ),
+          if( MyRepo.islogIn )    Padding(
+            padding: const EdgeInsets.only(left: 32.0),
+            child: FloatingActionButton(
+              backgroundColor: AppColors.kBtnColor,
+              onPressed: (){
+                GetStorage().write("userName","");
+              },child:const Icon(Icons.login_outlined,),),
+          ),
+
           Spacer(),
           FloatingActionButton(
             backgroundColor: AppColors.kBtnColor,

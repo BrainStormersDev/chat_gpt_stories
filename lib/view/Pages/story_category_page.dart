@@ -654,7 +654,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
        Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          if(GetStorage().read("userName") != null)    Padding(
+          if(GetStorage().read("userName") == null)    Padding(
             padding: const EdgeInsets.only(left: 32.0),
             child: FloatingActionButton(
               backgroundColor: AppColors.kBtnColor,

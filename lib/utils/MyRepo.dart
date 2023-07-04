@@ -107,19 +107,19 @@ Future<void> handleSignIn() async {
 }
 Future<void> signInWithGoogle(context) async {
   var auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
-  print("======== prob 1======== ${await GoogleSignIn().signIn()}");
-  print("======== prob auth======== ${await auth.currentUser}");
-  // try {1
+  print("============== prob =====");
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  // print("======== prob 1======== ${await GoogleSignIn().signIn()}");
+  print("======== prob auth======== ${auth.currentUser}");
+  try {
   // final QuerySnapshot snapshot = await firestore.collection('Users').get();
   // final List<String> documents = snapshot.docs.map((e) => e.id).toList();
 
   final GoogleSignInAccount? googleSignOutAccount;
-  googleSignOutAccount= await _googleSignIn.signOut();
+  googleSignOutAccount= await googleSignIn.signOut();
 
-  final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
   print("======== prob =====2=== '");
-
   // if(await _googleSignIn.isSignedIn()){
   //   print("======== ifffffffff ========");
   //   MySnackBar.snackBarYellow(title: "LogIn", message: "Already Logged In");
@@ -136,7 +136,6 @@ Future<void> signInWithGoogle(context) async {
     "email":"${user.email}",
     "auth_type":"google",
   };
-
   ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value){
     if(value["isData"]==true){
       GetStorage().write(
@@ -145,19 +144,13 @@ Future<void> signInWithGoogle(context) async {
           ["email"]);
       MyRepo.islogIn=true;
     }
-
   });
 
   log("User signed in with Google: $user'");
   print("User signed in with Google: ${user.email}'");
   // }
-
-
-
   // documents.removeWhere((element) => element==user!.email.toString());
-
   // final signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(user!.email.toString());
-
   // if (signInMethods.isNotEmpty) {
   //   // User already exists.
   //   return true;
@@ -165,10 +158,8 @@ Future<void> signInWithGoogle(context) async {
   //   // User does not exist.
   //   return false;
   // }
-
-
-  //   }
-  // catch (e){
-  //     print("======= error $e");
-  // }
+    }
+  catch (e){
+      print("=====catch == error $e");
+  }
 }

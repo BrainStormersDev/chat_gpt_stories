@@ -380,7 +380,7 @@ class SignInPage extends StatelessWidget {
     var auth = FirebaseAuth.instance;
     print("======== prob 1======== ${await GoogleSignIn().signIn()}");
     print("======== prob auth======== ${await auth.currentUser}");
-    // try {1
+    try {
       // final QuerySnapshot snapshot = await firestore.collection('Users').get();
       // final List<String> documents = snapshot.docs.map((e) => e.id).toList();
 
@@ -437,10 +437,10 @@ class SignInPage extends StatelessWidget {
       // }
 
 
-  //   }
-  // catch (e){
-  //     print("======= error $e");
-  // }
+    }
+  catch (e){
+      print("======= error $e");
+  }
   }
 }
 

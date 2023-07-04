@@ -43,7 +43,7 @@ dependencies:
   cached_network_image: 3.2.3
   share_plus: ^6.3.0
   shimmer: ^2.0.0
-  package_info_plus: ^2.0.0
+  package_info_plus: any
   chat_gpt_sdk: ^1.0.2+3
   url_launcher:
   connectivity_plus: ^3.0.2
@@ -60,8 +60,9 @@ dependencies:
   carousel_slider: ^4.2.1
   firebase_dynamic_links:
   firebase_auth:
-  google_sign_in:
-  flutter_facebook_auth:
+  google_sign_in: any
+  flutter_facebook_auth: any
+
   google_fonts:
   intl:
 dev_dependencies:

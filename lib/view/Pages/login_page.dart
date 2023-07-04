@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:chat_gpt_stories/test.dart';
 import 'package:chat_gpt_stories/utils/app_color.dart';
 import 'package:chat_gpt_stories/utils/app_size.dart';
 import 'package:chat_gpt_stories/utils/mySnackBar.dart';
@@ -238,7 +239,9 @@ class LogInPage extends StatelessWidget {
                           Expanded(
                               child: GestureDetector(
                                   onTap: () {
-                                    _handleFaceBookSignIn();
+                                    // _handleFaceBookSignIn();
+                                    // facebookLogin();
+                                  Get.to(MyNewApp());
                                   },
                                   child: Image.asset(
                                     "assets/PNG/facebook_btn.png",
@@ -300,6 +303,20 @@ class LogInPage extends StatelessWidget {
       }
     } catch (error) {
       print("===== error $error");
+    }
+  }
+
+  facebookLogin() async {
+    print("=============> FaceBook <============");
+    try {
+      final result =
+      await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
+      if (result.status == LoginStatus.success) {
+        final userData = await FacebookAuth.i.getUserData();
+        print(userData);
+      }
+    } catch (error) {
+      print("===========> error $error");
     }
   }
 }

@@ -52,7 +52,7 @@ class CreateStoryController extends GetxController {
       final response = await http.post(
         Uri.parse(endPoint("completions")),
         body: encodedParams,
-        headers: headerBearerOption("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"),
+        headers: headerBearerOption("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"),
       );
       print("Response  body  ${response.body}");
       print("Response  status  ${response.statusCode}");

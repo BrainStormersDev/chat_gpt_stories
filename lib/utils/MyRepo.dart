@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -142,6 +143,7 @@ Future<void> signInWithGoogle(context) async {
           "userName",
           jsonDecode(value["response"])["data"]
           ["email"]);
+      Get.close(1);
       MyRepo.islogIn=true;
     }
   });

@@ -62,7 +62,7 @@ dependencies:
   firebase_auth:
   google_sign_in: any
   flutter_facebook_auth: any
-
+#  flutter_login_facebook: 1.8.0
   google_fonts:
   intl:
 dev_dependencies:

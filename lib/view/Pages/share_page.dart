@@ -117,7 +117,7 @@ class _SharePageState extends State<SharePage> {
                       "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
                   // Share.share(message);
                   // // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
-                   Share.share("GPT Stories For Kids\n \nStory: ${widget.shareData?.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
+                   Share.share("GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
                   print("========before == current Story :${MyRepo.currentStory.storyTitle}");
                   // Share.share("GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
                   print("========after == current Story :${MyRepo.currentStory.storyTitle}");

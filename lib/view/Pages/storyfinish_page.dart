@@ -1,3 +1,4 @@
+import 'package:chat_gpt_stories/utils/MyRepo.dart';
 import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
 import 'package:chat_gpt_stories/view/Pages/share_page.dart';
 import 'package:chat_gpt_stories/view/Widgets/customButton.dart';
@@ -26,6 +27,8 @@ class StoryFinish extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
+
+            MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
             Get.close(2);
           },
           icon: const Icon(
@@ -35,8 +38,8 @@ class StoryFinish extends StatelessWidget {
         ),
       ),
       body: WillPopScope(
-
         onWillPop: () async{
+          MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
           Get.close(2);
           return false;
         },
@@ -58,7 +61,9 @@ class StoryFinish extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: CustomButton(
-                      onTap:()=> Get.close(4),
+                      onTap:() async {
+                        MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
+                        Get.close(4);},
                       height: MediaQuery.of(context).size.height*0.17,
                       width: MediaQuery.of(context).size.height * 0.45,
                       radius: 5.0,

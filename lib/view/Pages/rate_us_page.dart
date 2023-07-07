@@ -90,7 +90,7 @@ class RateUsPage extends StatelessWidget {
                                             ),
                                             child: Image.asset(
                                               MyRepo.emojiList[index],
-                                              height: 60,
+                                              height: 40,
                                             ),
                                           ),
                                         ),

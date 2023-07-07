@@ -416,7 +416,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                 ),
               ),
             ),
-             SizedBox(height: MediaQuery.of(context).size.height*0.06,)
+             SizedBox(height: MediaQuery.of(context).size.height*0.08,)
           ],
         ),
       ),

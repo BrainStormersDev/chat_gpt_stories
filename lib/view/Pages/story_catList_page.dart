@@ -104,7 +104,7 @@ class _StoryCatListState extends State<StoryCatList> {
 
                 TextField(
                   controller: _searachController,
-cursorColor: AppColors.kBtnColor,
+                  cursorColor: AppColors.kBtnColor,
                   onSubmitted: (value) {
                     // nextPage(data:Data(storyTitle: _searachController.text,images: []));
                     _searachController.text=value;
@@ -121,9 +121,7 @@ cursorColor: AppColors.kBtnColor,
                     // storyCatListController.setFilter(value);
                     // searchData(st = value.trim().toLowerCase());
                     // Method For Searching
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   decoration: InputDecoration(
                     hintText: "Search Story...",
@@ -176,11 +174,9 @@ cursorColor: AppColors.kBtnColor,
                           // height: 400,
                           child: storyCatListController.state.value ==
                                   ApiState.error
-                              ? Container(
-                                  child: Center(
-                                      child: Text(
-                                          storyCatListController.errorMsg.value)),
-                                )
+                              ? Center(
+                                  child: Text(
+                                      storyCatListController.errorMsg.value))
                               : SingleChildScrollView(
                                   child: Column(
                                       children: List.generate(
@@ -460,7 +456,6 @@ cursorColor: AppColors.kBtnColor,
     // String searchText ='${data.title}';
     // String searchText ='Story of ${data.title} for children';
 
-    await MyRepo.assetsAudioPlayer.pause();
 
     Future.delayed(const Duration(milliseconds: 100), () {
       print("========== List =========");

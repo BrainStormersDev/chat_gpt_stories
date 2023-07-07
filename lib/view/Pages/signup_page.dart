@@ -10,6 +10,7 @@ import 'package:chat_gpt_stories/utils/my_indicator.dart';
 import 'package:chat_gpt_stories/view/Pages/login_page.dart';
 import 'package:chat_gpt_stories/view/Pages/otp_page.dart';
 import 'package:chat_gpt_stories/view/Pages/story_catList_page.dart';
+import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:chat_gpt_stories/view/Widgets/appTextField.dart';
 import 'package:chat_gpt_stories/view/Widgets/customButton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -413,9 +414,22 @@ class SignInPage extends StatelessWidget {
               "userName",
               jsonDecode(value["response"])["data"]
               ["email"]);
-          MyRepo.islogIn=true;
-        }
-
+          ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value) {
+            if (value["isData"] == true) {
+              GetStorage().write(
+                  "userName",
+                  jsonDecode(value["response"])["data"]
+                  ["email"]);
+              GetStorage().write(
+                  "bearerToken",
+                  jsonDecode(value["response"])[
+                  "access_token"]);
+              Get.close(3);
+              MyRepo.islogIn = true;
+              Get.to(StoryCategoryPage());
+            }
+            MyRepo.islogIn = true;
+          });}
       });
       
       log("User signed in with Google: $user'");

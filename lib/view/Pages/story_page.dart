@@ -465,21 +465,23 @@ class _StoryPageState extends State<StoryPage> {
                                               )),
                                           GestureDetector(
                                             onTap: () async {
+                                              print("=========widget.data.id = ${widget.data!.id}");
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           StoryViewPage(
                                                             data:
-                                                                widget.data!,
+                                                            widget.data!,
                                                             catName: widget
                                                                 .catName,
                                                           )));
-                                              print(
-                                                  "=========widget.data.id = ${widget.data!.id}");
-                                              countViewApi(
-                                                  widget.data!.id.toString());
-                                              getStory(widget.data!.id.toString());
+                                              await MyRepo.assetsAudioPlayer.pause();
+                                              Future.delayed(const Duration(microseconds: 500)).then((value) {
+                                                getStory(widget.data!.id.toString());
+                                              });
+                                              countViewApi(widget.data!.id.toString());
+
                                             },
                                             child: const CircleAvatar(
                                               radius: 30,
@@ -528,26 +530,6 @@ class _StoryPageState extends State<StoryPage> {
                                     ],
                                   ),
                           ),
-                    // SizedBox(
-                    //     height: MediaQuery.of(context).size.height * 0.4,
-                    //     child: Image.asset("assets/PNG/storyImg.png")),
-
-                    // ElevatedButton(
-                    //     onPressed: (){
-                    //       // Get.to(const AgePage());
-                    //       // Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                    //     },
-                    //     style: ButtonStyle(
-                    //         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                    //         backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
-                    //         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
-                    //     ),
-                    //     child: const SizedBox(
-                    //         height: 50,
-                    //         // width: MediaQuery.of(context).size.width/2,
-                    //         child: Center(
-                    //             child: Text("Next",
-                    //                 style: TextStyle(color: AppColors.kBtnTxtColor, fontWeight: FontWeight.bold, fontSize: 18))))),
                   ],
                 ),
               ),
@@ -565,63 +547,35 @@ class _StoryPageState extends State<StoryPage> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-
+      // getStory(storyID);
 
     } else {
       print(response.reasonPhrase);
     }
   }
   getStory(var storyID) async {
-    print("========= calling get story api =======");
+    print("========= story id :$storyID");
+    print("=========user id :${ GetStorage().read("userId").toString()}");
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
     var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/get-story'));
     request.fields.addAll({
-      'story_id': storyID.toString(),
+      // 'story_id': '33',
+      // 'user_id': '102'
+      'story_id': '$storyID',
       'user_id': GetStorage().read("userId").toString()
     });
 
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-
-
-    print("======= prob start ===");
-    var headers = {
-    'Accept': 'application/json'
-    };
-    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/get-story'));
-    request.fields.addAll({
-    'story_id': storyID,
-    'user_id': "${MyRepo.currentStory.id}"
-    });
-
-    request.headers.addAll(headers);
-
-    http.StreamedResponse responseNew = await request.send();
-
-    if (response.statusCode == 200) {
-    print(await responseNew.stream.bytesToString());
     }
     else {
-    print(responseNew.reasonPhrase);
+      print(response.reasonPhrase);
     }
-    //     var body={"story_id":"${MyRepo.currentStory.id}",
-    //               "user_id": storyID};
-    //         ApisCall.apiCall("${kBaseUrl}get-story", "post", body).then((value){
-    //           print("======= prob start ===");
-    //           if(value["isData"]==true){
-    //             print("===== watched Story is ${value["response"]["data"]["story_title"]}");
-    //           }
-    //         });
-    }
-    else {
-    print(response.reasonPhrase);
-    }
+
   }
 }

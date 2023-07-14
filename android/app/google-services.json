@@ -14,11 +14,55 @@
       },
       "oauth_client": [
         {
-          "client_id": "123364940719-uov8bluuscmmmbjg24j055dbef1kcdnl.apps.googleusercontent.com",
+          "client_id": "123364940719-sijdce9t5p38nffrkpdbf1q71amju7lr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.americanlyceum.chat_gpt_stories",
-            "certificate_hash": "c6626ff85e79f57b3d429d8b7aca4b3299298d08"
+            "certificate_hash": "97b1d53a334f201a81283abd60411d96d695111e"
+          }
+        },
+        {
+          "client_id": "123364940719-u39aokm5ujl5kobt7eucu7vhjot5j6ij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDezKt8owdX11OjGQeWIG4tyAFcVIOjzOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "123364940719-3ofot003plh9lgukqrgq59mechpaipsf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.americanlyceum.chatGptStories"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123364940719:android:ec2ffa8ed5fe51c06bed5a",
+        "android_client_info": {
+          "package_name": "com.brainstormers.gpt_kids_stories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123364940719-uhivhe23qf4vlk89q2bnulueri040fbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainstormers.gpt_kids_stories",
+            "certificate_hash": "35bb110745f6ae9e8775b664e31ce6cd513a6964"
           }
         },
         {
@@ -58,11 +102,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "123364940719-5seamkhd6dtuag4d8qiv5qu0i0o5vcnv.apps.googleusercontent.com",
+          "client_id": "123364940719-m3t94te6imt502msdj19uqppp55fcgi0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.brainstormers.gpt_stories",
-            "certificate_hash": "c6626ff85e79f57b3d429d8b7aca4b3299298d08"
+            "certificate_hash": "97b1d53a334f201a81283abd60411d96d695111e"
           }
         },
         {

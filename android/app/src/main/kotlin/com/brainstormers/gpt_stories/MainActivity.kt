@@ -1,4 +1,4 @@
-package com.brainstormers.gpt_stories
+package com.brainstormers.gpt_kids_stories
 
 import io.flutter.embedding.android.FlutterActivity
 

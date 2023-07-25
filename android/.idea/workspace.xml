@@ -5,122 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb551d67-11d0-4a2f-83ac-32ef7427a129" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1147001107/android.shared_preferences_android.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1147001107/android.shared_preferences_android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1147001107/android.shared_preferences_android.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1147001107/android.shared_preferences_android.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1414710259/android.flutter_tts.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1414710259/android.flutter_tts.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1414710259/android.flutter_tts.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1414710259/android.flutter_tts.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1641346208/android.firebase_auth.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1641346208/android.firebase_auth.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1641346208/android.firebase_auth.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1641346208/android.firebase_auth.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1875736281/android.firebase_dynamic_links.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1875736281/android.firebase_dynamic_links.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1875736281/android.firebase_dynamic_links.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-1875736281/android.firebase_dynamic_links.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-306121186/android.connectivity_plus.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-306121186/android.connectivity_plus.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-306121186/android.connectivity_plus.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-306121186/android.connectivity_plus.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-523127356/android.google_sign_in_android.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-523127356/android.google_sign_in_android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-523127356/android.google_sign_in_android.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-523127356/android.google_sign_in_android.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-570923899/android.path_provider_android.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-570923899/android.path_provider_android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-570923899/android.path_provider_android.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-570923899/android.path_provider_android.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-933180386/android.firebase_messaging.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-933180386/android.firebase_messaging.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-933180386/android.firebase_messaging.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/-933180386/android.firebase_messaging.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1098148706/android.share_plus.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1098148706/android.share_plus.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1098148706/android.share_plus.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1098148706/android.share_plus.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1236782987/android.package_info_plus.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1236782987/android.package_info_plus.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1236782987/android.package_info_plus.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1236782987/android.package_info_plus.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1402474358/android.flutter_local_notifications.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1402474358/android.flutter_local_notifications.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1402474358/android.flutter_local_notifications.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1402474358/android.flutter_local_notifications.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1425464153/android.flutter_secure_storage.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1425464153/android.flutter_secure_storage.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1425464153/android.flutter_secure_storage.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1425464153/android.flutter_secure_storage.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1452111262/android.sqflite.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1452111262/android.sqflite.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1452111262/android.sqflite.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1452111262/android.sqflite.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1505032587/android.firebase_core.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1505032587/android.firebase_core.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1505032587/android.firebase_core.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1505032587/android.firebase_core.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1531928882/android.url_launcher_android.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1531928882/android.url_launcher_android.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1531928882/android.url_launcher_android.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1531928882/android.url_launcher_android.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1951529530/android.flutter_facebook_auth.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1951529530/android.flutter_facebook_auth.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1951529530/android.flutter_facebook_auth.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/1951529530/android.flutter_facebook_auth.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/883054711/android.assets_audio_player_web.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/883054711/android.assets_audio_player_web.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/883054711/android.assets_audio_player_web.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/883054711/android.assets_audio_player_web.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/891264930/android.assets_audio_player.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/891264930/android.assets_audio_player.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/891264930/android.assets_audio_player.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/891264930/android.assets_audio_player.unitTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/android.app.androidTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/android.app.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/android.app.unitTest.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/chat_gpt_stories.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/chat_gpt_stories.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/kotlin/com/brainstormers/gpt_stories/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/kotlin/com/brainstormers/gpt_stories/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/profile/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/profile/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_gpt_stories_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/chat_gpt_stories_android.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/controllers/CreateStoryController.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/controllers/CreateStoryController.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/utils/dynamic_link_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utils/dynamic_link_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/view/Pages/create_new_story.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/Pages/create_new_story.dart" afterDir="false" />
@@ -129,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/../lib/view/Pages/signup_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/Pages/signup_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/view/Pages/story_category_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/Pages/story_category_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lib/view/Widgets/appTextField.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/view/Widgets/appTextField.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +24,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RZ8M828F3AD]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\The Brain Stormers\.android\avd\Nexus_6_API_28.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

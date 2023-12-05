@@ -23,50 +23,50 @@ class AppVersionModels {
 }
 
 class Data {
-  int? id;
-  String? androidAppVersion;
+  var androidAppVersion;
+  var androidUrl;
   int? androidVersionCheck;
   String? huaweiAppVersion;
+  var huaweiUrl;
   int? huaweiVersionCheck;
   String? iosAppVersion;
+  var iosUrl;
   int? iosVersionCheck;
-  String? createdAt;
-  String? updatedAt;
 
   Data(
-      {this.id,
-        this.androidAppVersion,
+      {this.androidAppVersion,
+        this.androidUrl,
         this.androidVersionCheck,
         this.huaweiAppVersion,
+        this.huaweiUrl,
         this.huaweiVersionCheck,
         this.iosAppVersion,
-        this.iosVersionCheck,
-        this.createdAt,
-        this.updatedAt});
+        this.iosUrl,
+        this.iosVersionCheck});
 
   Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
     androidAppVersion = json['android_app_version'];
+    androidUrl = json['android_url'];
     androidVersionCheck = json['android_version_check'];
     huaweiAppVersion = json['huawei_app_version'];
+    huaweiUrl = json['huawei_url'];
     huaweiVersionCheck = json['huawei_version_check'];
     iosAppVersion = json['ios_app_version'];
+    iosUrl = json['ios_url'];
     iosVersionCheck = json['ios_version_check'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     data['android_app_version'] = this.androidAppVersion;
+    data['android_url'] = this.androidUrl;
     data['android_version_check'] = this.androidVersionCheck;
     data['huawei_app_version'] = this.huaweiAppVersion;
+    data['huawei_url'] = this.huaweiUrl;
     data['huawei_version_check'] = this.huaweiVersionCheck;
     data['ios_app_version'] = this.iosAppVersion;
+    data['ios_url'] = this.iosUrl;
     data['ios_version_check'] = this.iosVersionCheck;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

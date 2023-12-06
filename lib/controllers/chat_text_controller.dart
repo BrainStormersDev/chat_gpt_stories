@@ -11,12 +11,9 @@ import '../../../model/text_completion_model.dart';
 import '../model/GetStroyModels.dart';
 
 class ChatTextController extends GetxController {
-  //TODO: Implement ChatTextController
-  // RxList<DataList> product = <DataList>[].obs;
   RxString filter = ''.obs;
   @override
   void onInit() {
-    print("========fff========");
     super.onInit();
   }
 
@@ -29,29 +26,12 @@ class ChatTextController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  // List<TextCompletionData> messages = [TextCompletionData(
-  //   text: '',
-  //   index:2,
-  //   finish_reason: '',
-  // )];
-
-
   var state = ApiState.notFound.obs;
   Rx<StoryCatListModel> storyCategoryListModels =StoryCatListModel(status: false,message: '',data: []).obs;
-
-
-
-
-
-
-  // Rx<GetStoryModels> getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [],storyNote: '',storyTitle: '')).obs;
-  RxString errorMsg=''.obs;
-
+ RxString errorMsg=''.obs;
   void setFilter(String value) {
     filter.value = value.toLowerCase();
   }
-
   Object get filteredList {
     if (filter.value=="") {
       return storyCategoryListModels.value;
@@ -59,85 +39,75 @@ class ChatTextController extends GetxController {
       return storyCategoryListModels.value.data!.where((element) => element.storyTitle!.toString().toLowerCase().contains(filter.value)|| element.storyTitle.toString().toLowerCase().contains(filter.value)).toList();
     }
   }
-
-
   getTextCompletion({required String query, required String catId}) async {
-
-
-    print("=======query:${query}=========");
-    // addMyMessage();
-
     state.value = ApiState.loading;
-
     try {
-      // Map<String, String> rowParams = {
-      //   "model": "text-curie-001",
-      //   // "model": "text-davinci-003",
-      //   "prompt": query,
-      // };
-
-      // final encodedParams = json.encode(rowParams);
-
       final response = await http.post(
         Uri.parse("${kBaseUrl}get-stories"),
         body: {
           "search": query,
           "cat_id": catId,
-        },
-
-        // body: json.encode({
-        //   "search": 'Princes',
-        // }),
-
-
-
-        // body: json.encode({
-        //   "model": "text-davinci-003",
-        //   "prompt": query,
-        //   'temperature': 0,
-        //   'max_tokens': 4000,
-        //   'top_p': 1,
-        //   'frequency_penalty': 0.0,
-        //   'presence_penalty': 0.0,
-        // }),
-        // body: encodedParams,
-
-        // headers: headerBearerOption(MyRepo.kApiToken.value),
-      );
-      print("Response $query  getTextCompletion====  ${response.body}");
-
+        }, );
       if (response.statusCode == 200) {
-        // messages =
-        //     TextCompletionModel.fromJson(json.decode(response.body)).choices;
-        //
-        // addServerMessage(
-        //     TextCompletionModel.fromJson(json.decode(response.body)).choices);
         storyCategoryListModels =StoryCatListModel(status: false,message: '',data: []).obs;
-        // getStoryModels =GetStoryModels(status: false,message: '',data: DataOfStory(story: '',images: [])).obs;
-
         storyCategoryListModels.value =StoryCatListModel.fromJson(json.decode(response.body));
-        // getStoryModels.value =GetStoryModels.fromJson(json.decode(response.body));
-        print("Response $query  getTextCompletion====  ${response.body}");
+// logger.e(storyCategoryListModels.value.data![0].images![0].imageUrl);
         state.value = ApiState.success;
       } else {
-        // throw ServerException(message: "Image Generation Server Exception");
-
-
-     state.value = ApiState.error;
-     errorMsg.value = "Error :${storyCategoryListModels.value.message}";
-
-
+        logger.e(response.statusCode);
+        state.value = ApiState.error;
+        errorMsg.value = "Error :${storyCategoryListModels.value.message}";
       }
     } catch (e) {
-      print("Errorrrrrrrrrrrrrrr  ");
-
       state.value = ApiState.error;
       errorMsg.value = "Error :$e";
-    } finally {
-      // searchTextController.clear();
+    } finally {;
       update();
     }
   }
+  // getTextCompletions({required String query}) async {
+  //   state.value = ApiState.loading;
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse("${kBaseUrl}get-stories"),
+  //       body: {
+  //         "search": query,
+  //       },
+  //     );
+  //
+  //
+  //     if (response.statusCode == 200) {
+  //       // logger.i("Response $query  getTextCompletion====  ${response.body}");
+  //       getStoryModels =GetStoryModels(status: false,message: '',data:[]).obs;
+  //       getStoryModels.value =GetStoryModels.fromJson(json.decode(response.body));
+  //       state.value = ApiState.success;
+  //     } else {
+  //       state.value = ApiState.error;
+  //       errorMsg.value = "Error :${getStoryModels.value.message}";
+  //     }
+  //   } catch (e) {
+  //     // logger.e("Errorrrrrrrrrrrrrrr  ");
+  //
+  //     state.value = ApiState.error;
+  //     errorMsg.value = "Error :$e";
+  //   } finally {
+  //     // searchTextController.clear();
+  //     update();
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // addServerMessage(List<TextCompletionData> choices) {
   //   for (int i = 0; i < choices.length; i++) {

@@ -1,4 +1,0 @@
-#Tue Jan 31 08:17:42 EST 2023
-base.0=/Users/thebrainstormers/StudioProjects/chat_gpt_stories/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

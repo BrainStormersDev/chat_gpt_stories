@@ -45,9 +45,6 @@ class _StoryPageState extends State<StoryPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-
-    // versionCheck();
     super.initState();
   }
 
@@ -75,17 +72,6 @@ class _StoryPageState extends State<StoryPage> {
             });
           }
         }
-        // if (packageInfo.version != data['data']["staff_huawei_app_version"]) {
-        //   if ((data['data']["staff_huawei_status"] == 0)) {
-        //     setState(() {
-        //       versionCheck1 = true;
-        //       // playStoreUrl = "https://appgallery.huawei.com/app/C104569603";
-        //       // playStoreUrl = data['data']["staff_app_url"];
-        //       playStoreUrl = data['data']["staff_huawei_app_url"];
-        //       // print("=====huawei playStoreUrl: $playStoreUrl========");
-        //     });
-        //   }
-        // }
       } else if (Platform.isIOS) {
         if (packageInfo.version != data['data']["staff_iphone_app_version"]) {
           if (data['data']["staff_ios_status"] == 0) {
@@ -96,8 +82,6 @@ class _StoryPageState extends State<StoryPage> {
             });
           }
           if (data['data']["staff_ios_status"] == 3) {
-            // isIOSCheck.value = false;
-            // print("======isIOSCheck.value:${isIOSCheck.value}======");
           }
         }
       }
@@ -351,16 +335,6 @@ class _StoryPageState extends State<StoryPage> {
                                     ),
                                   ),
                                 ),
-                                // const Text("Please wait ....",style: TextStyle(
-                                //     fontSize: 20,
-                                //
-                                //     fontFamily: "BalooBhai",
-                                //     color: AppColors.txtColor1),),
-                                // SizedBox(height: 10,),
-                                // const Text("While your strory is creating",style: TextStyle(
-                                //     fontSize: 20,
-                                //     fontFamily: "BalooBhai",
-                                //     color: AppColors.txtColor1),),
                               ],
                             ),
                           )
@@ -384,7 +358,10 @@ class _StoryPageState extends State<StoryPage> {
 
                                           child: CachedNetworkImage(
                                             // imageUrl: kDemoImage,
-                                            imageUrl: '',
+                                            imageUrl:
+                                            widget.data!.images!.isEmpty
+                                              ? '' :
+                                            widget.data!.images![0].imageUrl.toString(),
                                             fit: BoxFit.fill,
                                             progressIndicatorBuilder:
                                                 (context, url,
@@ -468,8 +445,6 @@ class _StoryPageState extends State<StoryPage> {
                                                           StoryViewPage(
                                                             data:
                                                             widget.data!,
-                                                            catName: widget
-                                                                .catName,
                                                           )));
                                               await MyRepo.assetsAudioPlayer.pause();
                                               Future.delayed(const Duration(microseconds: 500)).then((value) {

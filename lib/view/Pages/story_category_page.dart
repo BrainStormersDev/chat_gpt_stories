@@ -39,18 +39,14 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
   @override
   void initState() {
     // TODO: implement initState
-
     tabController = TabController(length: 2, vsync: this);
-
     var mute = GetStorage().read(kMute);
     if (mute != null) {
       MyRepo.musicMuted.value = mute;
     }
     print("========repo muted value init  =${GetStorage().read(kMute)}");
-    // MyRepo.musicMuted.value = GetStorage().read(kMute);
     super.initState();
     changeSystemUIOverlayColor(AppColors.kScreenColor, AppColors.kWhite);
-    // storyWatchedController.getWatchedStory();
     print("========== init call =====");
     storyWatchedController.getWatchedStory();
   }
@@ -61,15 +57,6 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
   }
   @override
   Widget build(BuildContext context) {
-
-    print("========repo muted value  =${GetStorage().read(kMute)}");
-    print("====userName  =${GetStorage().read("userName") }");
-    print("====user id  =${GetStorage().read("userId").toString() }");
-    print("========selectedGender  =${MyRepo.selectedGender.name}");
-    print("========islogIn  =${MyRepo.islogIn}");
-    print("======== length   =${storyWatchedController.storyCategoryModels.value.data!.length}");
-    print("========isEmpty  =${GetStorage().read("userName").toString().isEmpty}");
-
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       appBar: AppBar(
@@ -90,17 +77,6 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                 color: AppColors.kPrimary,
               ))
         ],
-        // leading: IconButton(
-        //   onPressed: () async {
-        //     MyRepo.assetsAudioPlayer.stop();
-        //     changeSystemUIOverlayColor(AppColors.kSplashColor, AppColors.kWhite);
-        //     Navigator.pop(context);
-        //   },
-        //   icon: const Icon(
-        //     Icons.arrow_back,
-        //     color: AppColors.txtColor1,
-        //   ),
-        // ),
       ),
       body: WillPopScope(
           onWillPop: () async {
@@ -285,34 +261,9 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                                   }
 
                                 ),
-                                // Content for Child 2
-                                ///tab two my stories
-                                ///
-                                // GetStorage().read("userName")==null
-
-                                // storyWatchedController.storyCategoryModels.value.status == false
-                                //     ?  Column(
-                                //     mainAxisAlignment: MainAxisAlignment.center,
-                                //     crossAxisAlignment: CrossAxisAlignment.center,
-                                //     children: [const Text("Session Out, Please Login Your \nAccount To See Watched Story"),
-                                //     SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
-                                //     CustomButton(
-                                //     text: "LogIn",
-                                //     height: MediaQuery.of(context).size.height * 0.08,
-                                //     width: MediaQuery.of(context).size.width * 0.3 ,
-                                //     textSize:18.0 ,
-                                //     color: AppColors.kBtnColor,
-                                //     onTap: (){
-                                //       MyRepo.islogInHomeScreen=true;
-                                //       Get.to(()=>LogInPage());
-                                //
-                                //     },
-                                //   ),]):
-                                //     storyWatchedController.storyCategoryModels.value.status==false?const Center(child: Text("No Watched Story Found"),):
-                                storyWatchedController.storyCategoryModels.value.data!.length==0?const Center(child: Text("No Watched Story Found"),):
+                         storyWatchedController.storyCategoryModels.value.data!.length==0?const Center(child: Text("No Watched Story Found"),):
                                     ListView.builder(itemCount: storyWatchedController.storyCategoryModels.value.data!.length, itemBuilder: (context,index){
                                   print("===== rating => ${storyWatchedController.storyCategoryModels.value.data!
-                                  // .where((element) => element.storyTitle!.toString().toLowerCase().contains(_searachController.text.trim())).toList()
                                   [index]
                                       .story!.averageRating
                                       .toString()}");
@@ -432,16 +383,10 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                                                 child: Row(
                                                   crossAxisAlignment:
                                                   CrossAxisAlignment.center,
-                                                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Expanded(
                                                       child: Text(
-                                                        // "Large Title here The Story",
-                                                        // storyCatListController.storyCategoryListModels.value
-                                                        //     .data![index].storyTitle
-                                                        //     .toString()
-                                                        storyWatchedController.storyCategoryModels.value.data!
-                                                        // .where((element) => element.storyTitle!.toString().toLowerCase().contains(_searachController.text.trim())).toList()
+                                                   storyWatchedController.storyCategoryModels.value.data!
                                                         [index]
                                                             .story!.storyTitle
                                                             .toString(),
@@ -461,35 +406,6 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                                                       ),
                                                     ),
                                                     SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                                                    /// play button
-                                                    // InkWell(
-                                                    //   onTap:(){
-                                                    //
-                                                    //     Get.to(()=>StoryPage(data: null,catName: storyWatchedController.storyCategoryModels.value.data!
-                                                    //     [index]
-                                                    //         .story!.storyTitle,));
-                                                    //
-                                                    //
-                                                    //
-                                                    //   },
-                                                    //   child: CircleAvatar(
-                                                    //     radius: 20,
-                                                    //
-                                                    //     backgroundColor: int.parse(
-                                                    //         selectItems.value
-                                                    //             .toString()) ==
-                                                    //         index
-                                                    //         ? AppColors.kWhite
-                                                    //         : AppColors.kBtnColor,
-                                                    //     child: const Center(
-                                                    //         child: Icon(
-                                                    //           CupertinoIcons
-                                                    //               .play_arrow_solid,
-                                                    //           color: AppColors.txtColor1,
-                                                    //           size: 20,
-                                                    //         )),
-                                                    //   ),
-                                                    // ),
                                                   ],
                                                 ),
                                               ),
@@ -577,81 +493,6 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                       ],
                     ),
                   ),
-          ///
-          //  Column(children: [
-          //
-          //    Container(color: Colors.red,
-          //    height: 50,
-          //  child:  TabBar(
-          //              controller:  tabController,
-          //              indicator: BoxDecoration(
-          //                borderRadius: BorderRadius.circular(
-          //                  15.0,
-          //                ),
-          //                color: AppColors.kBtnColor,
-          //              ),
-          //              labelColor: AppColors.kBtnColor,
-          //              unselectedLabelColor: AppColors.kGrey,
-          //              tabs:  const [
-          //                Tab(
-          //                  text:"Add Request",
-          //                ),
-          //
-          //                Tab(
-          //                  text: 'Pending',
-          //                ),Tab(
-          //                  text: 'Pending',
-          //                ),
-          //
-          //              ],
-          //            ),
-          //    ),
-          //    SizedBox(
-          //      height: 200,
-          //      child: TabBarView(
-          //          controller: tabController,
-          //          children: [Text("data"),Text("2"),Text("2")]),
-          //    )
-          //
-          //  ],)
-          ///
-          // Column(
-          //   children: [
-          //     Container(
-          //       // height: 50,
-          //       margin: const EdgeInsets.symmetric(
-          //           horizontal: 10, vertical: 20),
-          //       child: TabBar(
-          //         controller:  tabController,
-          //         indicator: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(
-          //             15.0,
-          //           ),
-          //           color: AppColors.kBtnColor,
-          //         ),
-          //         labelColor: AppColors.kBtnColor,
-          //         unselectedLabelColor: AppColors.kGrey,
-          //         tabs:  [
-          //           Tab(
-          //             text:"Add Request",
-          //           ),
-          //
-          //           Tab(
-          //             text: 'Pending',
-          //           ),
-          //
-          //         ],
-          //       ),
-          //     ),
-          //     // Expanded(
-          //     //   child: TabBarView(
-          //     //       controller: tabController,
-          //     //       children: [
-          //     //     Text("data"),
-          //     //   Text("data")]),
-          //     // )
-          //   ],
-          // ),
           ),
       floatingActionButton:
        Row(
@@ -695,10 +536,9 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
       onTap: () {
         selectItems.value = index.toString();
         print("========data:${selectItems.value}=======");
-        // controller.getGenerateImages(data.story);
         MyRepo.storyCat = data.title;
         nextPage(data: data);
-        // nextPage(title: title[int.parse(selectItems.value)].title);
+
       },
       child: Container(
         decoration: BoxDecoration(
@@ -737,22 +577,16 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
 
   nextPage({required StoryCatData data}) async {
     String searchText = '';
-    // String catId = '${data.id}';
     String catId = '${data.id}';
-    // String searchText ='Story of ${data.title} for children';
-
-    // await MyRepo.assetsAudioPlayer.pause();
-
     Future.delayed(const Duration(milliseconds: 100), () {
-      print("==========searchText:$searchText ,catId  $catId==========");
       Get.put(ChatTextController())
           .getTextCompletion(query: searchText, catId: catId);
-      // Get.put(ChatImageController()).getGenerateImages(searchText);
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => StoryCatList(
                     catName: data.title,
+                    data: data,
                   )));
     });
   }

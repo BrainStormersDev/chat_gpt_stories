@@ -8,12 +8,14 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
 
 import '../model/selectAgeModel.dart';
 import '../model/storyCatListModel.dart';
 import 'apiCall.dart';
-
+Logger logger=Logger();
 class MyRepo {
+
   static final assetsAudioPlayer = AssetsAudioPlayer();
   static List<String> ageList = ['1-3', '3-5', '5-10', '10+'];
   static List<String> gender = ['Boy', 'Girl'];

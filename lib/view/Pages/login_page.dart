@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:chat_gpt_stories/utils/app_color.dart';
-import 'package:chat_gpt_stories/utils/app_size.dart';
 import 'package:chat_gpt_stories/utils/mySnackBar.dart';
 import 'package:chat_gpt_stories/utils/my_indicator.dart';
-import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
 import 'package:chat_gpt_stories/view/Pages/signup_page.dart';
 import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
 import 'package:chat_gpt_stories/view/Widgets/appTextField.dart';
@@ -19,17 +16,12 @@ import '../../controllers/nLogin_controller.dart';
 import '../../utils/MyRepo.dart';
 import '../../utils/apiCall.dart';
 import 'forgotpassword_page.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'dart:async';
 import 'dart:developer';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 class LogInPage extends StatelessWidget {
   LogInPage({Key? key}) : super(key: key);
   LoginController logInContoller = Get.put(LoginController());
@@ -223,17 +215,17 @@ class LogInPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                              child: GestureDetector(
-                                  onTap: () {
-                                    // _handleFaceBookSignIn();
-                                    // facebookLogin();
-
-                                  },
-                                  child: Image.asset(
-                                    "assets/PNG/facebook_btn.png",
-                                    height: 60,
-                                  ))),
+                          // Expanded(
+                          //     child: GestureDetector(
+                          //         onTap: () async {
+                          //            await signInWithFacebook();
+                          //           // facebookLogin();
+                          //
+                          //         },
+                          //         child: Image.asset(
+                          //           "assets/PNG/facebook_btn.png",
+                          //           height: 60,
+                          //         ))),
                           Expanded(
                               child: GestureDetector(
                                   onTap: () async {
@@ -293,7 +285,26 @@ class LogInPage extends StatelessWidget {
       print("===== error $error");
     }
   }
+  Future signInWithFacebook() async {
+    // Trigger the sign-in flow
 
+    final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ['public_profile', 'email']);
+    // Create a credential from the access token
+    final AccessToken accessToken = loginResult.accessToken!;
+    try{
+      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+
+    }
+  catch(e){
+      // return FirebaseAuth.instance.app.name;
+
+    print('erorr maryam =================================================');
+    }
+
+    // Once signed in, return the UserCredential
+
+  }
   facebookLogin() async {
     print("=============> FaceBook <============");
     try {

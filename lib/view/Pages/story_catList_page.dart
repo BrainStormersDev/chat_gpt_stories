@@ -13,11 +13,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../model/StoryCategoryModels.dart';
 import 'story_page.dart';
 
 class StoryCatList extends StatefulWidget {
   final String catName;
-  StoryCatList({required this.catName});
+  final StoryCatData? data;
+  StoryCatList({required this.catName, this.data});
   @override
   State<StoryCatList> createState() => _StoryCatListState();
 }
@@ -32,6 +34,7 @@ class _StoryCatListState extends State<StoryCatList> {
   void initState() {
     // TODO: implement initState
     super.initState();
+     storyCatListController = Get.put(ChatTextController());
   }
 
   String formatLargeValue(int value) {
@@ -41,14 +44,17 @@ class _StoryCatListState extends State<StoryCatList> {
 
   @override
   Widget build(BuildContext context) {
-    print("=== search story ${    storyCatListController
-        .storyCategoryListModels
-        .value
-        .data!.where((element) => element.storyTitle!.toString().contains("")).toList().length}");
 
-        print("=============== Data ID: ${storyCatListController.storyCategoryListModels.value.data}");
-    // RxString initialVal="initial Value".obs;
-    // _searachController.text=initialVal.value;
+    // if(storyCatListController.storyCategoryListModels.value.data!=null && storyCatListController.storyCategoryListModels.value.data![0].images!=[])
+    //   {
+    //     logger.i(storyCatListController.storyCategoryListModels.value.data![0].id);
+    //     logger.i(storyCatListController.storyCategoryListModels.value.data![0].images![0].imageUrl);
+    //   }
+    // else
+    // logger.e("=== search story ${    storyCatListController
+    //     .storyCategoryListModels
+    //     .value
+    //     .data!.where((element) => element.storyTitle!.toString().contains("")).toList().length}");
     return WillPopScope(
       onWillPop: ()async{
         Get.close(2);
@@ -96,7 +102,6 @@ class _StoryCatListState extends State<StoryCatList> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(
                   height: 20,
@@ -106,7 +111,6 @@ class _StoryCatListState extends State<StoryCatList> {
                   controller: _searachController,
                   cursorColor: AppColors.kBtnColor,
                   onSubmitted: (value) {
-                    // nextPage(data:Data(storyTitle: _searachController.text,images: []));
                     _searachController.text=value;
                   },
                   onChanged: (value) {
@@ -118,41 +122,25 @@ class _StoryCatListState extends State<StoryCatList> {
                             .storyCategoryListModels
                             .value
                             .data!.where((element) => element.storyTitle!.toString().toLowerCase().contains(value)).toList().length}");
-                    // storyCatListController.setFilter(value);
-                    // searchData(st = value.trim().toLowerCase());
-                    // Method For Searching
                     setState(() {});
                   },
                   decoration: InputDecoration(
                     hintText: "Search Story...",
-                    hintStyle: const TextStyle(color: AppColors.kPrimary),
+                    hintStyle:  TextStyle(color: AppColors.kPrimary),
                     suffixIcon: InkWell(
                         onTap: () {
-                          print("======searacb ${_searachController.text}=====");
+                          // print("======searacb ${_searachController.text}=====");
                           // nextPage(data:Data(storyTitle: _searachController.text,images: []));
                         },
-                        child: const Icon(
+                        child:  Icon(
                           Icons.search,
                           color: AppColors.kPrimary,
                           size: 40,
                         )),
-                    // enabledBorder: const OutlineInputBorder(
-                    //   borderSide:
-                    //       BorderSide(color: AppColors.kPrimary, width: 2.0),
-                    // ),
-                    // border: const OutlineInputBorder(
-                    //   borderRadius: BorderRadius.all(
-                    //     Radius.circular(7.0),
-                    //   ),
-                    // ),
-
-
                     enabledBorder:const  OutlineInputBorder(
                       borderSide:
                       BorderSide(color: AppColors.kBtnColor, width: 2.0),
                     ),
-                    // filled: true,
-                    // fillColor: AppColors.textFieldColor,
                     focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.kBtnColor)),
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -169,18 +157,13 @@ class _StoryCatListState extends State<StoryCatList> {
                     ? myIndicator()
                     : Expanded(
                         child: Container(
-                          // height: 300,
-                          // color: Colors.red,
-                          // height: 400,
                           child: storyCatListController.state.value ==
                                   ApiState.error
                               ? Center(
-                                  child: Text(
-                                      storyCatListController.errorMsg.value))
+                                  child: Text(storyCatListController.errorMsg.value))
                               : SingleChildScrollView(
                                   child: Column(
                                       children: List.generate(
-                                          // storyCatListController.storyCategoryListModels.value.data!.length
                                           storyCatListController
                                               .storyCategoryListModels
                                               .value
@@ -188,25 +171,12 @@ class _StoryCatListState extends State<StoryCatList> {
                                               .where((element) => element.storyTitle!.toString().toLowerCase().contains(_searachController.text.trim())).toList()
                                               .length
                                           , (index) {
-
-                                            print("====================== ${_searachController.text}");
-
                                     return SizedBox(
                                         // height: 100,
                                         child:
-                                            // Text(storyCatListController.storyCategoryListModels.value.data![index].storyTitle.toString())
                                             InkWell(
                                                 onTap: () {
-                                                  print(
-                                                      "=========== on tap before =======${index} ======");
-                                                  // index= newVal.value;
-                                                  print(
-                                                      "=========== on tap after =======${index} ======");
                                                   selectItems.value = index.toString();
-                                                  //   print("========data:${selectItems.value }=======");
-                                                  //   // controller.getGenerateImages(data.story);
-                                                  //   // nextPage(data: data);
-                                                  //   // nextPage(title: title[int.parse(selectItems.value)].title);
                                                   MyRepo.currentStory=storyCatListController
                                                       .storyCategoryListModels
                                                       .value
@@ -217,9 +187,7 @@ class _StoryCatListState extends State<StoryCatList> {
                                                       data: storyCatListController
                                                           .storyCategoryListModels
                                                           .value
-                                                          .data!
-                                                           .where((element) => element.storyTitle!.toString().toLowerCase().contains(_searachController.text.trim())).toList()
-                                                      [index]);
+                                                          .data![index]);
 
                                                 },
                                                 child: icon(index)));
@@ -237,13 +205,9 @@ class _StoryCatListState extends State<StoryCatList> {
   }
 
   Widget icon(index) {
-    // print(widget.catName);
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-          // color: Colors.green,
-          // color:int.parse(selectItems.value.toString())==index? AppColors.kPrimary:null,
-          // border:int.parse(selectItems.value.toString())==index? Border.all(color: AppColors.kBtnColor):null,
           ),
       child: Card(
         color: int.parse(selectItems.value.toString()) == index
@@ -255,36 +219,56 @@ class _StoryCatListState extends State<StoryCatList> {
           crossAxisAlignment: CrossAxisAlignment.center,
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CachedNetworkImage(
-              imageUrl: "",
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.height * 0.15,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/PNG/img_4.png",),
-                      fit: BoxFit.fitWidth),
-                  borderRadius: BorderRadiusDirectional.only(
-                      topStart: Radius.circular(20),
-                      bottomStart: Radius.circular(20)),
-                  color: AppColors.kBtnColor,
-                ),
-              ),
-              imageBuilder: (context, imageProvider) =>
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    width: MediaQuery.of(context).size.height * 0.15,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.fitWidth),
-                      borderRadius: const BorderRadiusDirectional.only(
-                          topStart: Radius.circular(20),
-                          bottomStart: Radius.circular(20)),
-                      color: AppColors.kBtnColor,
-                    ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.height * 0.15,
+              child: CachedNetworkImage(
+                imageUrl: "",
+                placeholder: (context, url) => const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Container(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: MediaQuery.of(context).size.height * 0.15,
+                  decoration:  BoxDecoration(
+                    image:
+                    storyCatListController.storyCategoryListModels.value.data![index].images!.isEmpty
+
+                        ?
+                    DecorationImage(
+
+                        image:
+                        AssetImage("assets/PNG/img_4.png",),
+
+                        fit: BoxFit.fill)
+
+                        :
+                      DecorationImage(
+
+                      image:
+
+                      NetworkImage(storyCatListController.storyCategoryListModels.value.data![index].images![0].imageUrl.toString()),
+
+                  fit: BoxFit.fill),
+                    borderRadius: BorderRadiusDirectional.only(
+                        topStart: Radius.circular(20),
+                        bottomStart: Radius.circular(20)),
+                    color: AppColors.kBtnColor,
                   ),
+                ),
+                imageBuilder: (context, imageProvider) =>
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      width: MediaQuery.of(context).size.height * 0.15,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.fitWidth),
+                        borderRadius: const BorderRadiusDirectional.only(
+                            topStart: Radius.circular(20),
+                            bottomStart: Radius.circular(20)),
+                        color: AppColors.kBtnColor,
+                      ),
+                    ),
+              ),
             ),
             // Container(
             //   height: MediaQuery.of(context).size.height * 0.15,
@@ -324,7 +308,7 @@ class _StoryCatListState extends State<StoryCatList> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: Text(widget.catName,
+                        child: Text(widget.data==null? '':widget.data!.title,
                             style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: "BalooBhai",
@@ -334,7 +318,6 @@ class _StoryCatListState extends State<StoryCatList> {
                                         ? AppColors.txtColor1
                                         : Colors.grey)),
                       ),
-                      // SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
                     ],
                   ),
                 ),
@@ -346,10 +329,6 @@ class _StoryCatListState extends State<StoryCatList> {
                     children: [
                       Expanded(
                         child: Text(
-                          // "Large Title here The Story",
-                          // storyCatListController.storyCategoryListModels.value
-                          //     .data![index].storyTitle
-                          //     .toString()
                           storyCatListController
                               .storyCategoryListModels
                               .value

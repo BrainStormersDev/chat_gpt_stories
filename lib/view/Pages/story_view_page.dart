@@ -29,7 +29,7 @@ enum TtsState { playing, stopped, paused, continued }
 class _StoryViewPageState extends State<StoryViewPage> {
   FlutterTts tt = FlutterTts();
   RxList<String> listTxt = <String>[].obs;
-  TextToSpeech tts = TextToSpeech();
+  // TextToSpeech tts = TextToSpeech();
   ChatTextController controllerText = Get.put(ChatTextController());
   final ScrollController _scrollController = ScrollController();
   String mystring = '';
@@ -45,7 +45,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
   @override
   void initState() {
     // TODO: implement initState
-    _speak(controllerText.storyCategoryListModels.value.data![0].story);
+    // _speak(controllerText.storyCategoryListModels.value.data![0].story);
     // _speak(widget.data.story);
     super.didChangeDependencies();
     _ttsInit();
@@ -56,7 +56,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
   void deactivate() {
     // TODO: implement deactivate
 
-    _stop();
+    // _stop();
     super.deactivate();
   }
   @override
@@ -105,7 +105,8 @@ class _StoryViewPageState extends State<StoryViewPage> {
     ))
         .toList();
 
-
+logger.i( controllerText
+    .storyCategoryListModels.value.data![0].story!);
 
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
@@ -291,7 +292,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
             Expanded(
               child: Container(
                 alignment: Alignment.topLeft,
-                padding: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                padding:  EdgeInsets.only(bottom: 10, left: 15, right: 15),
                 child: SingleChildScrollView(
                   reverse: true,
                   child: Column(
@@ -301,7 +302,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                       Stack(
                         children: [
                           DefaultTextStyle(
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontSize: 20.0,
                                 fontFamily: 'Bobbers',
                                 color: AppColors.kPrimary),
@@ -314,7 +315,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                                       color: AppColors.txtColor2,
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold),
-                                  speed: const Duration(milliseconds: 70),
+                                  speed:  Duration(milliseconds: 70),
                                 ),
                               ],
                               onTap: () {
@@ -357,7 +358,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                       controllerText.storyCategoryListModels.value.data!.length) {
                     widget.data = controllerText.storyCategoryListModels.value.data![newIndex - 1];
                     MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex - 1];
-                    tts.stop();
+                    tt.stop();
                     listTxt.clear();
                     _ttsInit ();
                     setState(() {});
@@ -372,11 +373,17 @@ class _StoryViewPageState extends State<StoryViewPage> {
             FloatingActionButton.small(
               backgroundColor: AppColors.kBtnColor,
               onPressed: () {
-                setState(() {
-                  print("=====before========  ${isPaused}");
+                setState(() async {
                   isPaused = !isPaused;
-                  print("======after=======  ${isPaused}");
-                  isPaused == true ? tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+
+                  isPaused == true ?   await tt.pause().then((value) =>
+                  // logger.i(value.toString())
+                  listTxt.removeLast()
+                  )
+                 :
+                  // tt.resume();
+                  _ttsInit();
+                  // isPaused == true ? tt.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
                 });
               },
               child: isPaused ? const Icon(Icons.play_arrow) : const Icon(Icons.pause),
@@ -402,7 +409,8 @@ class _StoryViewPageState extends State<StoryViewPage> {
                       MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex];
                       print("========if ==  1 current Story :${MyRepo.currentStory.storyTitle}");
 
-                      // ? tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+                      // ?
+                    // tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
                       tt.stop();
                       listTxt.clear();
                       _ttsInit ();
@@ -443,16 +451,17 @@ class _StoryViewPageState extends State<StoryViewPage> {
     );
   }
 
-  _speak(text) {
-    double rate = 0.8;
-    tts.setRate(rate);
-    String language = 'en-US';
-    tts.setLanguage(language);
-    tts.speak(text);
-  }
+  // _speak(text) {
+  //   double rate = 0.8;
+  //   tts.setRate(rate);
+  //   String language = 'en-US';
+  //   tts.setLanguage(language);
+  //   tts.speak(text);
+  // }
 
   _ttsInit () {
     tt = FlutterTts();
+    // _speak(widget.data.story.toString());
     tt.speak(widget.data.story.toString());
     // listTxt.value.clear();
     tt.setProgressHandler(
@@ -480,7 +489,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
     });
   }
 
-  _stop() {
-    tts.stop();
-  }
+  // _stop() {
+  //   tts.stop();
+  // }
 }

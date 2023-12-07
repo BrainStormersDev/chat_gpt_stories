@@ -1,14 +1,13 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:async';
+import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
 import 'package:chat_gpt_stories/view/Pages/storyfinish_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:text_to_speech/text_to_speech.dart';
 import '../../controllers/chat_text_controller.dart';
 import '../../model/storyCatListModel.dart';
 import '../../utils/MyRepo.dart';
@@ -17,41 +16,62 @@ import '../../utils/app_color.dart';
 class StoryViewPage extends StatefulWidget {
   DataList data;
   final String? catName;
-  // final StoryCatData data;
-  StoryViewPage({Key? key, required this.data, this.catName})
-      : super(key: key);
-
+  StoryViewPage({Key? key, required this.data, this.catName}) : super(key: key);
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
-
 }
 enum TtsState { playing, stopped, paused, continued }
 class _StoryViewPageState extends State<StoryViewPage> {
   FlutterTts tt = FlutterTts();
   RxList<String> listTxt = <String>[].obs;
-  // TextToSpeech tts = TextToSpeech();
   ChatTextController controllerText = Get.put(ChatTextController());
   final ScrollController _scrollController = ScrollController();
-  String mystring = '';
   List<String> image = [];
   int activeIndex = 0;
   bool isPaused = false;
   bool isPlayNext = false;
-
+  late FlutterTts flutterTts;
   var styleOne = const TextStyle(color: Colors.black87, fontSize: 21);
-  var styleTwo = const TextStyle(
-      color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
+  var styleTwo = const TextStyle( color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
+  String _text = '';
+      int _currentWordIndex = 0;
+  List<String> _words = [];
 
+  void _playTextWithDelay() {
+    const Duration wordDelay = const Duration(milliseconds: 300); // Change this value
+    Duration totalElapsedTime = Duration(); // Track total elapsed time
+
+    Future<void> playWord(int index) async {
+      await Future.delayed(wordDelay);
+      if (mounted && !isPaused) {
+        setState(() {
+          _currentWordIndex = index;
+        });
+        totalElapsedTime = Duration(); // Reset the total elapsed time
+        if (index < _words.length - 1) {
+          await playWord(index + 1);
+        }
+      }
+    }
+
+    playWord(_currentWordIndex);
+  }
   @override
   void initState() {
-    // TODO: implement initState
-    // _speak(controllerText.storyCategoryListModels.value.data![0].story);
-    // _speak(widget.data.story);
+    _text=widget.data.story.toString();
+    _words = _text.split(' ');
+    _playTextWithDelay();
     super.didChangeDependencies();
     _ttsInit();
     super.initState();
   }
 
+
+  @override
+  void dispose() {
+    super.dispose();
+    tt.stop();
+  }
   @override
   void deactivate() {
     // TODO: implement deactivate
@@ -71,9 +91,10 @@ class _StoryViewPageState extends State<StoryViewPage> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
-
+    String displayText = _words.take(_currentWordIndex).join(' ');
     final List<String> imgList = [
       'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
       'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -84,35 +105,28 @@ class _StoryViewPageState extends State<StoryViewPage> {
     ];
 
     image.clear();
-      if(widget.data.images!.isNotEmpty)
-        {
-          for (int i = 0; i < widget.data.images!.length; i++) {
-            image.add( widget.data.images![i].imageUrl.toString());
-          }
-        }
-      else
-
-  { for (int i = 0; i < imgList.length; i++) {
-    image.add(imgList[i].toString());
-  }}
+    if (widget.data.images!.isNotEmpty) {
+      for (int i = 0; i < widget.data.images!.length; i++) {
+        image.add(widget.data.images![i].imageUrl.toString());
+      }
+    } else {
+      for (int i = 0; i < imgList.length; i++) {
+        image.add(imgList[i].toString());
+      }
+    }
 
     final List<Widget> imageSliders = image
         .map((item) => Container(
-      margin: const EdgeInsets.all(5.0),
-      child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
-    ))
+              margin: const EdgeInsets.all(5.0),
+              child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                  child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
+            ))
         .toList();
-
-logger.i( controllerText
-    .storyCategoryListModels.value.data![0].story!);
-
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       body: SafeArea(
-        child:
-        Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
@@ -126,6 +140,7 @@ logger.i( controllerText
                   children: [
                     IconButton(
                       onPressed: () {
+                        // flutterTts.stop();
                         Navigator.pop(context);
                       },
                       icon: const Icon(
@@ -173,8 +188,7 @@ logger.i( controllerText
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                       RateUsPage()));
+                                      builder: (context) => RateUsPage()));
                             },
                             icon: const Icon(
                               CupertinoIcons.star,
@@ -189,7 +203,7 @@ logger.i( controllerText
                 ),
                 Container(
                   padding:
-                  const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                      const EdgeInsets.only(bottom: 10, left: 15, right: 15),
                   child: Column(
                     children: [
                       Row(
@@ -263,27 +277,30 @@ logger.i( controllerText
                       //     ),
                       //   ),
                       // ),
-                      imageSliders!=null
-                      ?
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
-                        child: CarouselSlider(
-                          options: CarouselOptions(
-                              scrollPhysics: const BouncingScrollPhysics(),
-                              viewportFraction: 1,
-                              aspectRatio: 2.0,
-                              enlargeCenterPage: true,
-                              scrollDirection: Axis.horizontal,
-                              autoPlay: true,
-                              onPageChanged: (index, CarouselPageChangedReason) {
-                                activeIndex = index;
-                              }),
-                          items: imageSliders,
-                        ),
-                      )
-                      :
-                      SizedBox(),
 
+
+
+                      imageSliders != null
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              child: CarouselSlider(
+                                options: CarouselOptions(
+                                    scrollPhysics:
+                                        const BouncingScrollPhysics(),
+                                    viewportFraction: 1,
+                                    aspectRatio: 2.0,
+                                    enlargeCenterPage: true,
+                                    scrollDirection: Axis.horizontal,
+                                    autoPlay: true,
+                                    onPageChanged:
+                                        (index, CarouselPageChangedReason) {
+                                      activeIndex = index;
+                                    }),
+                                items: imageSliders,
+                              ),
+                            )
+                          : SizedBox(),
                     ],
                   ),
                 ),
@@ -292,7 +309,7 @@ logger.i( controllerText
             Expanded(
               child: Container(
                 alignment: Alignment.topLeft,
-                padding:  EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                padding: EdgeInsets.only(bottom: 10, left: 15, right: 15),
                 child: SingleChildScrollView(
                   reverse: true,
                   child: Column(
@@ -302,28 +319,41 @@ logger.i( controllerText
                       Stack(
                         children: [
                           DefaultTextStyle(
-                            style:  TextStyle(
+                            style: TextStyle(
                                 fontSize: 20.0,
                                 fontFamily: 'Bobbers',
                                 color: AppColors.kPrimary),
-                            child: AnimatedTextKit(
-                              animatedTexts: [
-                                TyperAnimatedText(
-                                  controllerText
-                                      .storyCategoryListModels.value.data![0].story!,
-                                  textStyle: TextStyle(
-                                      color: AppColors.txtColor2,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold),
-                                  speed:  Duration(milliseconds: 70),
-                                ),
-                              ],
-                              onTap: () {
-                                print("Tap Event");
-                              },
-                              stopPauseOnTap: true,
-                              totalRepeatCount: 1,
+                            child:
+                            Text(
+                              displayText,
+                              style:
+                              TextStyle(
+                                          color: AppColors.txtColor2,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                              // TextStyle(fontSize: 18.0),
+                              // textAlign: TextAlign.center,
                             ),
+
+                            // AnimatedTextKit(
+                            //   animatedTexts: [
+                            //     TyperAnimatedText(
+                            //       widget.data.story!,
+                            //       textStyle: TextStyle(
+                            //           color: AppColors.txtColor2,
+                            //           fontSize: 25,
+                            //           fontWeight: FontWeight.bold),
+                            //       speed: Duration(milliseconds: 70),
+                            //     ),
+                            //   ],
+                            //
+                            //     pause: Duration(milliseconds: 70),
+                            //   onTap: () {
+                            //     print("Tap Event");
+                            //   },
+                            //   stopPauseOnTap: false,
+                            //   totalRepeatCount: 1,
+                            // ),
                           ),
                         ],
                       ),
@@ -335,121 +365,143 @@ logger.i( controllerText
           ],
         ),
       ),
-      floatingActionButton:
-      Container(
+      floatingActionButton: Container(
         // color: Colors.red,
         decoration: BoxDecoration(
             color: AppColors.kBlack.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(10)
-        ),
-        margin:const EdgeInsets.only(left: 30.0),
+            borderRadius: BorderRadius.circular(10)),
+        margin: const EdgeInsets.only(left: 30.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-                onPressed:
-
-                controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data.storyTitle) == 0
-                    ? null
-                    : () {
-                  int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data.storyTitle);
-
-                  if (newIndex <
-                      controllerText.storyCategoryListModels.value.data!.length) {
-                    widget.data = controllerText.storyCategoryListModels.value.data![newIndex - 1];
-                    MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex - 1];
-                    tt.stop();
-                    listTxt.clear();
-                    _ttsInit ();
-                    setState(() {});
-                  }
-                }
-                ,
-                icon: const Icon(
-                  Icons.skip_previous_rounded,
-                  color: AppColors.kBtnColor,
-                  size: 30,
-                )),
+            // IconButton(
+            //     onPressed: controllerText.storyCategoryListModels.value.data!
+            //                 .indexWhere((element) =>
+            //                     element.storyTitle == widget.data.storyTitle) ==
+            //             0
+            //         ? null
+            //         : () {
+            //             int newIndex = controllerText
+            //                 .storyCategoryListModels.value.data!
+            //                 .indexWhere((element) =>
+            //                     element.storyTitle == widget.data.storyTitle);
+            //
+            //             if (newIndex <
+            //                 controllerText
+            //                     .storyCategoryListModels.value.data!.length) {
+            //               widget.data = controllerText.storyCategoryListModels
+            //                   .value.data![newIndex - 1];
+            //               MyRepo.currentStory = controllerText
+            //                   .storyCategoryListModels
+            //                   .value
+            //                   .data![newIndex - 1];
+            //               tt.stop();
+            //               listTxt.clear();
+            //               _ttsInit();
+            //               setState(() {});
+            //             }
+            //           },
+            //     icon: const Icon(
+            //       Icons.skip_previous_rounded,
+            //       color: AppColors.kBtnColor,
+            //       size: 30,
+            //     )),
             FloatingActionButton.small(
               backgroundColor: AppColors.kBtnColor,
               onPressed: () {
-                setState(() async {
+                setState(() {
                   isPaused = !isPaused;
+                  _playTextWithDelay();
+                 if(isPaused)
+                   {
+                     tt.pause();
+                         // .then((value) =>
+                       // listTxt.removeLast());
+                   }
+                 else
+                   {
 
-                  isPaused == true ?   await tt.pause().then((value) =>
-                  // logger.i(value.toString())
-                  listTxt.removeLast()
-                  )
-                 :
-                  // tt.resume();
-                  _ttsInit();
-                  // isPaused == true ? tt.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+                     _ttsInit();
+
+                   }
                 });
               },
-              child: isPaused ? const Icon(Icons.play_arrow) : const Icon(Icons.pause),
+              child: isPaused
+                  ? const Icon(Icons.play_arrow)
+                  : const Icon(Icons.pause),
             ),
-            IconButton(
-                onPressed:
-                (
-
-    controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data.storyTitle) ==
-                        controllerText.storyCategoryListModels.value.data!.length) ==true
-                    ? null
-                    : () {
-
-
-
-                  print("=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
-
-                  int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data.storyTitle);
-
-                  setState(() {
-                    if (newIndex == controllerText.storyCategoryListModels.value.data!.length) {
-                      widget.data = controllerText.storyCategoryListModels.value.data![newIndex];
-                      MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex];
-                      print("========if ==  1 current Story :${MyRepo.currentStory.storyTitle}");
-
-                      // ?
-                    // tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
-                      tt.stop();
-                      listTxt.clear();
-                      _ttsInit ();
-                    }
-                    else{
-                      widget.data = controllerText.storyCategoryListModels.value.data![newIndex+1];
-                      MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex+1];
-                      print("========if == current Story :${MyRepo.currentStory.storyTitle}");
-
-
-                      tt.stop();
-                      listTxt.clear();
-                      _ttsInit ();
-
-
-
-                      // isPlayNext=true;
-                      // isPaused = true ;
-                      // isPlayNext == true ?(){
-                      //   listTxt.clear();
-                      // isPaused=true;
-                      // } : null;
-                      // isPaused == true ?    _ttsInit() : null;
-
-                    }
-                  });
-                },
-
-                // widget.nextStory,
-                icon: const Icon(
-                  Icons.skip_next_rounded,
-                  color: AppColors.kBtnColor,
-                  size: 30,
-                )),
+            // IconButton(
+            //     onPressed: (controllerText.storyCategoryListModels.value.data!
+            //                     .lastIndexWhere((element) =>
+            //                         element.storyTitle ==
+            //                         widget.data.storyTitle) ==
+            //                 controllerText
+            //                     .storyCategoryListModels.value.data!.length) ==
+            //             true
+            //         ? null
+            //         : () {
+            //             print(
+            //                 "=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
+            //
+            //             int newIndex = controllerText
+            //                 .storyCategoryListModels.value.data!
+            //                 .indexWhere((element) =>
+            //                     element.storyTitle == widget.data.storyTitle);
+            //
+            //             setState(() {
+            //               if (newIndex ==
+            //                   controllerText
+            //                       .storyCategoryListModels.value.data!.length) {
+            //                 widget.data = controllerText
+            //                     .storyCategoryListModels.value.data![newIndex];
+            //                 MyRepo.currentStory = controllerText
+            //                     .storyCategoryListModels.value.data![newIndex];
+            //                 print(
+            //                     "========if ==  1 current Story :${MyRepo.currentStory.storyTitle}");
+            //
+            //                 // ?
+            //                 // tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
+            //                 tt.stop();
+            //                 listTxt.clear();
+            //                 _ttsInit();
+            //               } else {
+            //                 widget.data = controllerText.storyCategoryListModels
+            //                     .value.data![newIndex + 1];
+            //                 MyRepo.currentStory = controllerText
+            //                     .storyCategoryListModels
+            //                     .value
+            //                     .data![newIndex + 1];
+            //                 print(
+            //                     "========if == current Story :${MyRepo.currentStory.storyTitle}");
+            //
+            //                 tt.stop();
+            //                 listTxt.clear();
+            //                 _ttsInit();
+            //
+            //                 // isPlayNext=true;
+            //                 // isPaused = true ;
+            //                 // isPlayNext == true ?(){
+            //                 //   listTxt.clear();
+            //                 // isPaused=true;
+            //                 // } : null;
+            //                 // isPaused == true ?    _ttsInit() : null;
+            //               }
+            //             });
+            //           },
+            //
+            //     // widget.nextStory,
+            //     icon: const Icon(
+            //       Icons.skip_next_rounded,
+            //       color: AppColors.kBtnColor,
+            //       size: 30,
+            //     )),
           ],
         ),
       ),
     );
   }
+
+
 
   // _speak(text) {
   //   double rate = 0.8;
@@ -458,38 +510,42 @@ logger.i( controllerText
   //   tts.setLanguage(language);
   //   tts.speak(text);
   // }
+  Future _speak() async{
+    var result = await flutterTts.speak("Hello World");
+    if (result == 1) setState(() => ttsState = TtsState.playing);
+  }
+  TtsState ttsState = TtsState.stopped;
+  Future _stop() async{
+    var result = await flutterTts.stop();
+    if (result == 1) setState(() => ttsState = TtsState.stopped);
+  }
+  _ttsInit() async {
+    // tt = FlutterTts();
+    await tt.speak(widget.data.story.toString());
 
-  _ttsInit () {
-    tt = FlutterTts();
-    // _speak(widget.data.story.toString());
-    tt.speak(widget.data.story.toString());
-    // listTxt.value.clear();
-    tt.setProgressHandler(
-            (String text, int startOffset, int endOffset, String word) {
-          print("================== word :$word");
-          print("================== text :$text");
-          // print("================== startOffset :$startOffset");
-          // print("================== endOffset :$endOffset");
-          listTxt.add(word);
-          // widgetTxt.add(text);
-          _scrollController.animateTo(
-            _scrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeOut,
-          );
-        });
+    tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
+
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+      );
+    });
+    tt.setContinueHandler((){
+
+      setState(() {
+        ttsState = TtsState.continued;
+      });
+
+    });
     tt.setCompletionHandler(() {
       // Do something when speech is complete
-      Get.to(()=>StoryFinish(data: widget.data,catName: widget.catName));
-      // Get.to(() => SharePage(
-      //   shareData: widget.data,
-      //   catName: widget.catName,
-      // ));
+      Get.to(() => StoryFinish(data: widget.data, catName: widget.catName));
       print('Speech completed');
     });
   }
 
-  // _stop() {
-  //   tts.stop();
-  // }
+// _stop() {
+//   tts.stop();
+// }
 }

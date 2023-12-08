@@ -138,10 +138,8 @@ class LogInPage extends StatelessWidget {
                               textSize: 18.0,
                               color: AppColors.kBtnColor,
                               onTap: () {
-                                // isLoading.value=true;
                                 if (_formKey.currentState!.validate()) {
                                   isLoading.value = true;
-                                  // logInContoller.getLogin(emailController.text.trim(),passwordController.text.trim());
                                   var body = {
                                     "email": emailController.text.trim(),
                                     "password": passwordController.text.trim()
@@ -167,8 +165,6 @@ class LogInPage extends StatelessWidget {
                                               ["id"]);
                                       print(
                                           "====read data ${GetStorage().read("userName")}===");
-                                      // MyRepo.islogInHomeScreen == true
-                                      //     ?
                                       Get.close(2);
                                       Get.to(()=>StoryCategoryPage());
                                           // : Get.to(() => RateUsPage());
@@ -216,22 +212,10 @@ class LogInPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // Expanded(
-                          //     child: GestureDetector(
-                          //         onTap: () async {
-                          //            await signInWithFacebook();
-                          //           // facebookLogin();
-                          //
-                          //         },
-                          //         child: Image.asset(
-                          //           "assets/PNG/facebook_btn.png",
-                          //           height: 60,
-                          //         ))),
+
                           Expanded(
                               child: GestureDetector(
                                   onTap: () async {
-                                    // handleSignIn();
-                                    // await signInWithGoogle(context);
                                     _signInWithGoogle(context);
                                   },
                                   child: Image.asset(
@@ -280,10 +264,8 @@ class LogInPage extends StatelessWidget {
         final AccessToken accessToken = result.accessToken!;
         // TODO: Handle signed in user
       } else {
-        print('Facebook sign-in failed');
       }
     } catch (error) {
-      print("===== error $error");
     }
   }
   Future signInWithFacebook() async {
@@ -295,19 +277,11 @@ class LogInPage extends StatelessWidget {
     try{
       final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
     return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-
     }
   catch(e){
-      // return FirebaseAuth.instance.app.name;
-
-    print('erorr maryam =================================================');
     }
-
-    // Once signed in, return the UserCredential
-
   }
   facebookLogin() async {
-    print("=============> FaceBook <============");
     try {
       final result =
       await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
@@ -316,7 +290,6 @@ class LogInPage extends StatelessWidget {
         print(userData);
       }
     } catch (error) {
-      print("===========> error $error");
     }
   }
 

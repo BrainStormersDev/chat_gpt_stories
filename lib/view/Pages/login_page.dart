@@ -33,6 +33,7 @@ class LogInPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    logger.e(MyRepo.deviceToken.value);
     return WillPopScope(
       onWillPop: () async {
         // SystemNavigator.pop();
@@ -254,7 +255,7 @@ class LogInPage extends StatelessWidget {
                               },
                               child:const Text(
                                 " Register Now",
-                                style: TextStyle(color: AppColors.kBtnTxtColor),
+                                style: TextStyle(color: AppColors.kBtnTxtColor,),
                               ))
                         ],
                       )
@@ -321,25 +322,11 @@ class LogInPage extends StatelessWidget {
 
   Future<void> _signInWithGoogle(context) async {
     var auth = FirebaseAuth.instance;
-    print("======== prob 1======== ${await GoogleSignIn().signIn()}");
-    print("======== prob auth======== ${await auth.currentUser}");
     try {
-      // final QuerySnapshot snapshot = await firestore.collection('Users').get();
-      // final List<String> documents = snapshot.docs.map((e) => e.id).toList();
-
       final GoogleSignInAccount? googleSignOutAccount;
       googleSignOutAccount= await _googleSignIn.signOut();
 
       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-      print("======== prob =====2=== '");
-
-      // if(await _googleSignIn.isSignedIn()){
-      //   print("======== ifffffffff ========");
-      //   MySnackBar.snackBarYellow(title: "LogIn", message: "Already Logged In");
-      //   Get.close(2);
-      // }
-      // else{
-      print("======== elseeeee ========");
       final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
       final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
       final UserCredential userCredential = await auth.signInWithCredential(credential);

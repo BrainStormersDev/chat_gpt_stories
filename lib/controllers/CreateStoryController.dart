@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../../common/headers.dart';
 import '../../../model/text_completion_model.dart';
+import '../utils/MyRepo.dart';
 
 class CreateStoryController extends GetxController {
   //TODO: Implement ChatTextController
@@ -52,19 +53,14 @@ class CreateStoryController extends GetxController {
       final response = await http.post(
         Uri.parse(endPoint("completions")),
         body: encodedParams,
-        headers: headerBearerOption("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"),
+        headers: headerBearerOption("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"),
       );
-      print("Response  body  ${response.body}");
-      print("Response  status  ${response.statusCode}");
+      logger.e("Response  body  ${response.body}");
       if (response.statusCode == 200) {
-        // messages =
-        //     TextCompletionModel.fromJson(json.decode(response.body)).choices;
-        //
         addServerMessage(
             TextCompletionModel.fromJson(json.decode(response.body)).choices);
         state.value = ApiState.success;
       } else {
-        // throw ServerException(message: "Image Generation Server Exception");
         state.value = ApiState.error;
       }
     } catch (e) {

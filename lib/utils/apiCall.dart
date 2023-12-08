@@ -110,9 +110,7 @@ class ApisCall {
           )
               .timeout(const Duration(seconds: 20), onTimeout: () {
                return http.Response('Error', 503);
-               // return  MySnackBar.snackBarRed(title:snackTitle, message:"Time Out Slow Internet");
           });
-          // print("======rresponse.statusCode ====:${response.statusCode}=======");
         } else if (method == "get") {
           response = await http.get(
             url,

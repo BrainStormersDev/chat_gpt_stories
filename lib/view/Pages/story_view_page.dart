@@ -53,7 +53,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
         }
       }
     }
-
     playWord(_currentWordIndex);
   }
   @override
@@ -65,8 +64,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
     _ttsInit();
     super.initState();
   }
-
-
   @override
   void dispose() {
     super.dispose();
@@ -91,7 +88,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
-
   @override
   Widget build(BuildContext context) {
     String displayText = _words.take(_currentWordIndex).join(' ');
@@ -103,7 +99,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
       'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
       'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
     ];
-
     image.clear();
     if (widget.data.images!.isNotEmpty) {
       for (int i = 0; i < widget.data.images!.length; i++) {
@@ -114,7 +109,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
         image.add(imgList[i].toString());
       }
     }
-
     final List<Widget> imageSliders = image
         .map((item) => Container(
               margin: const EdgeInsets.all(5.0),
@@ -374,38 +368,46 @@ class _StoryViewPageState extends State<StoryViewPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // IconButton(
-            //     onPressed: controllerText.storyCategoryListModels.value.data!
-            //                 .indexWhere((element) =>
-            //                     element.storyTitle == widget.data.storyTitle) ==
-            //             0
-            //         ? null
-            //         : () {
-            //             int newIndex = controllerText
-            //                 .storyCategoryListModels.value.data!
-            //                 .indexWhere((element) =>
-            //                     element.storyTitle == widget.data.storyTitle);
-            //
-            //             if (newIndex <
-            //                 controllerText
-            //                     .storyCategoryListModels.value.data!.length) {
-            //               widget.data = controllerText.storyCategoryListModels
-            //                   .value.data![newIndex - 1];
-            //               MyRepo.currentStory = controllerText
-            //                   .storyCategoryListModels
-            //                   .value
-            //                   .data![newIndex - 1];
-            //               tt.stop();
-            //               listTxt.clear();
-            //               _ttsInit();
-            //               setState(() {});
-            //             }
-            //           },
-            //     icon: const Icon(
-            //       Icons.skip_previous_rounded,
-            //       color: AppColors.kBtnColor,
-            //       size: 30,
-            //     )),
+            IconButton(
+                onPressed: controllerText.storyCategoryListModels.value.data!
+                            .indexWhere((element) =>
+                 element.storyTitle == widget.data.storyTitle) ==
+                        0
+                    ? null
+                    : () {
+                        int newIndex = controllerText
+                            .storyCategoryListModels.value.data!
+                            .indexWhere((element) =>
+                                element.storyTitle == widget.data.storyTitle);
+logger.e(newIndex);
+                        if (newIndex <
+                            controllerText
+                                .storyCategoryListModels.value.data!.length) {
+                          widget.data = controllerText.storyCategoryListModels
+                              .value.data![newIndex - 1];
+                          MyRepo.currentStory = controllerText
+                              .storyCategoryListModels
+                              .value
+                              .data![newIndex - 1];
+                          _text=widget.data.story.toString();
+                          _currentWordIndex = 0;
+                          _words = [];
+                          _words = _text.split(' ');
+                          isPaused=false;
+                          displayText = _words.take(_currentWordIndex).join(' ');
+                          _playTextWithDelay();
+                          tt.stop();
+                          listTxt.clear();
+                          _ttsInit();
+                          setState(() {  logger.i(_text);});
+                        }
+
+                      },
+                icon: const Icon(
+                  Icons.skip_previous_rounded,
+                  color: AppColors.kBtnColor,
+                  size: 30,
+                )),
             FloatingActionButton.small(
               backgroundColor: AppColors.kBtnColor,
               onPressed: () {
@@ -415,14 +417,10 @@ class _StoryViewPageState extends State<StoryViewPage> {
                  if(isPaused)
                    {
                      tt.pause();
-                         // .then((value) =>
-                       // listTxt.removeLast());
                    }
                  else
                    {
-
                      _ttsInit();
-
                    }
                 });
               },
@@ -430,101 +428,67 @@ class _StoryViewPageState extends State<StoryViewPage> {
                   ? const Icon(Icons.play_arrow)
                   : const Icon(Icons.pause),
             ),
-            // IconButton(
-            //     onPressed: (controllerText.storyCategoryListModels.value.data!
-            //                     .lastIndexWhere((element) =>
-            //                         element.storyTitle ==
-            //                         widget.data.storyTitle) ==
-            //                 controllerText
-            //                     .storyCategoryListModels.value.data!.length) ==
-            //             true
-            //         ? null
-            //         : () {
-            //             print(
-            //                 "=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
-            //
-            //             int newIndex = controllerText
-            //                 .storyCategoryListModels.value.data!
-            //                 .indexWhere((element) =>
-            //                     element.storyTitle == widget.data.storyTitle);
-            //
-            //             setState(() {
-            //               if (newIndex ==
-            //                   controllerText
-            //                       .storyCategoryListModels.value.data!.length) {
-            //                 widget.data = controllerText
-            //                     .storyCategoryListModels.value.data![newIndex];
-            //                 MyRepo.currentStory = controllerText
-            //                     .storyCategoryListModels.value.data![newIndex];
-            //                 print(
-            //                     "========if ==  1 current Story :${MyRepo.currentStory.storyTitle}");
-            //
-            //                 // ?
-            //                 // tts.pause().then((value) =>  listTxt.removeLast()) : _ttsInit();
-            //                 tt.stop();
-            //                 listTxt.clear();
-            //                 _ttsInit();
-            //               } else {
-            //                 widget.data = controllerText.storyCategoryListModels
-            //                     .value.data![newIndex + 1];
-            //                 MyRepo.currentStory = controllerText
-            //                     .storyCategoryListModels
-            //                     .value
-            //                     .data![newIndex + 1];
-            //                 print(
-            //                     "========if == current Story :${MyRepo.currentStory.storyTitle}");
-            //
-            //                 tt.stop();
-            //                 listTxt.clear();
-            //                 _ttsInit();
-            //
-            //                 // isPlayNext=true;
-            //                 // isPaused = true ;
-            //                 // isPlayNext == true ?(){
-            //                 //   listTxt.clear();
-            //                 // isPaused=true;
-            //                 // } : null;
-            //                 // isPaused == true ?    _ttsInit() : null;
-            //               }
-            //             });
-            //           },
-            //
-            //     // widget.nextStory,
-            //     icon: const Icon(
-            //       Icons.skip_next_rounded,
-            //       color: AppColors.kBtnColor,
-            //       size: 30,
-            //     )),
+            IconButton(
+                onPressed: (controllerText.storyCategoryListModels.value.data!
+                                .lastIndexWhere((element) =>
+                                    element.storyTitle ==
+                                    widget.data.storyTitle) ==
+                            controllerText
+                                .storyCategoryListModels.value.data!.length) ==
+                        true
+                    ? null
+                    : () {
+                        int newIndex = controllerText
+                            .storyCategoryListModels.value.data!
+                            .indexWhere((element) =>
+                                element.storyTitle == widget.data.storyTitle);
+                        setState(() {
+                          if (newIndex ==
+                              controllerText
+                                  .storyCategoryListModels.value.data!.length) {
+                            widget.data = controllerText
+                                .storyCategoryListModels.value.data![newIndex];
+                            MyRepo.currentStory = controllerText
+                                .storyCategoryListModels.value.data![newIndex];
+                            tt.stop();
+                            listTxt.clear();
+                            _ttsInit();
+                          } else {
+                            widget.data = controllerText.storyCategoryListModels
+                                .value.data![newIndex + 1];
+                            MyRepo.currentStory = controllerText
+                                .storyCategoryListModels
+                                .value
+                                .data![newIndex + 1];
+                            _text=widget.data.story.toString();
+                            _currentWordIndex = 0;
+                            _words = [];
+                            _words = _text.split(' ');
+                            isPaused=false;
+                            displayText = _words.take(_currentWordIndex).join(' ');
+                            _playTextWithDelay();
+                            tt.stop();
+                            listTxt.clear();
+                            _ttsInit();
+                          }
+                        });
+                      },
+
+                // widget.nextStory,
+                icon: const Icon(
+                  Icons.skip_next_rounded,
+                  color: AppColors.kBtnColor,
+                  size: 30,
+                )),
           ],
         ),
       ),
     );
   }
-
-
-
-  // _speak(text) {
-  //   double rate = 0.8;
-  //   tts.setRate(rate);
-  //   String language = 'en-US';
-  //   tts.setLanguage(language);
-  //   tts.speak(text);
-  // }
-  Future _speak() async{
-    var result = await flutterTts.speak("Hello World");
-    if (result == 1) setState(() => ttsState = TtsState.playing);
-  }
   TtsState ttsState = TtsState.stopped;
-  Future _stop() async{
-    var result = await flutterTts.stop();
-    if (result == 1) setState(() => ttsState = TtsState.stopped);
-  }
   _ttsInit() async {
-    // tt = FlutterTts();
     await tt.speak(widget.data.story.toString());
-
     tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
-
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 200),
@@ -532,7 +496,6 @@ class _StoryViewPageState extends State<StoryViewPage> {
       );
     });
     tt.setContinueHandler((){
-
       setState(() {
         ttsState = TtsState.continued;
       });
@@ -544,8 +507,4 @@ class _StoryViewPageState extends State<StoryViewPage> {
       print('Speech completed');
     });
   }
-
-// _stop() {
-//   tts.stop();
-// }
 }

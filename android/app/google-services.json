@@ -1,79 +1,26 @@
 {
   "project_info": {
-    "project_number": "123364940719",
-    "project_id": "chat-gpt-stories",
-    "storage_bucket": "chat-gpt-stories.appspot.com"
+    "project_number": "293681038098",
+    "project_id": "chat-story-app-6e202",
+    "storage_bucket": "chat-story-app-6e202.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123364940719:android:b97b46a29e4bd0926bed5a",
-        "android_client_info": {
-          "package_name": "com.americanlyceum.chat_gpt_stories"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDezKt8owdX11OjGQeWIG4tyAFcVIOjzOE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "123364940719-3ofot003plh9lgukqrgq59mechpaipsf.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.americanlyceum.chatGptStories"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:123364940719:android:d760f63ff3e7b43d6bed5a",
+        "mobilesdk_app_id": "1:293681038098:android:84c0f198dbf88489f769cb",
         "android_client_info": {
           "package_name": "com.brainstormers.gpt_stories"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDezKt8owdX11OjGQeWIG4tyAFcVIOjzOE"
+          "current_key": "AIzaSyAYRFQbdHmG3DQ49EMVPWHitgH1pkpnosg"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "123364940719-pu2of0lkh5cgpiotn2ruim98f8d3dpp6.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "123364940719-3ofot003plh9lgukqrgq59mechpaipsf.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.americanlyceum.chatGptStories"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

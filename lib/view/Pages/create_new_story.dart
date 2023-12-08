@@ -8,6 +8,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 
 import '../../common/headers.dart';
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
 ///test
@@ -158,15 +159,12 @@ class CreateNewStory extends StatelessWidget {
                   ),
                   Expanded(
                     child: controller.messages.isEmpty? const Center(child: Text("No Story Created Yet",    style: TextStyle(
-                        // fontSize: 20,
-                        // fontWeight: FontWeight.bold,
                         fontFamily: "BalooBhai",
                         color: AppColors.kGrey),),) : ListView.builder(
                       reverse: true,
                       itemCount: controller.messages.length,
                       itemBuilder: (BuildContext context, int index) {
                         final textData = controller.messages[index];
-                        print("==== ${textData.index}");
                         return textData.index == -999999
                             ? MyTextCard(textData: textData)
                             : TextCard(textData: textData);
@@ -181,7 +179,7 @@ class CreateNewStory extends StatelessWidget {
                       color: AppColors.kBtnColor.withOpacity(0.8),
                       textEditingController: controller.searchTextController,
                       onTap: () {
-                        print("=======${controller.searchTextController.text}=======");
+                        logger.e("=======${controller.searchTextController.text}=======");
                         controller.getTextCompletion(controller.searchTextController.text);
                         controller.searchTextController.clear();
                       }),

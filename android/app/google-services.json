@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:293681038098:android:84c0f198dbf88489f769cb",
+        "mobilesdk_app_id": "1:293681038098:android:501b3b95a2d23876f769cb",
         "android_client_info": {
-          "package_name": "com.brainstormers.gpt_stories"
+          "package_name": "com.brainstormers.gpt_chat_stories"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "293681038098-n53q2qn7ptpst0oghtfncn4f61e9ct40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brainstormers.gpt_chat_stories",
+            "certificate_hash": "2c5a3ff265ec0f374064f731afc51d29c950db96"
+          }
+        },
+        {
+          "client_id": "293681038098-ncff84jdomlk14q5g0dv8m733edlni54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAYRFQbdHmG3DQ49EMVPWHitgH1pkpnosg"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293681038098-ncff84jdomlk14q5g0dv8m733edlni54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

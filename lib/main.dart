@@ -1,20 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/utils/app_color.dart';
-import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
-import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import '../../utils/MyRepo.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-
-
-
 import 'view/Pages/splash_page.dart';
 
 Future<void> main() async {

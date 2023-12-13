@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:chat_gpt_stories/model/login_model.dart';
-import 'package:chat_gpt_stories/view/Pages/login_page.dart';
+import '../../model/login_model.dart';
+import '../../view/Pages/login_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

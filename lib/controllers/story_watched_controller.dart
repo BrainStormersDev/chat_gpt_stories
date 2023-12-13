@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:chat_gpt_stories/controllers/get_token_controller.dart';
-import 'package:chat_gpt_stories/model/storyCatListModel.dart';
-import 'package:chat_gpt_stories/model/story_watched_model.dart';
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/utils/apiCall.dart';
+import '../../controllers/get_token_controller.dart';
+import '../../model/storyCatListModel.dart';
+import '../../model/story_watched_model.dart';
+import '../../utils/MyRepo.dart';
+import '../../utils/apiCall.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';

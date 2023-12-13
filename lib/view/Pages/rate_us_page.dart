@@ -1,9 +1,9 @@
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/utils/apiCall.dart';
-import 'package:chat_gpt_stories/utils/my_indicator.dart';
-import 'package:chat_gpt_stories/view/Pages/login_page.dart';
-import 'package:chat_gpt_stories/view/Pages/share_page.dart';
-import 'package:chat_gpt_stories/view/Pages/story_view_page.dart';
+import '../../utils/MyRepo.dart';
+import '../../utils/apiCall.dart';
+import '../../utils/my_indicator.dart';
+import '../../view/Pages/login_page.dart';
+import '../../view/Pages/share_page.dart';
+import '../../view/Pages/story_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

@@ -1,4 +1,4 @@
-name: chat_gpt_stories
+name: gpt_chat_stories
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -58,10 +58,11 @@ dependencies:
   flutter_tts: ^3.8.5
   logger:
   intl: ^0.18.1
-  text_to_speech: ^0.2.3
+#  text_to_speech: ^0.2.3
   firebase_auth: ^4.15.0
   google_sign_in: ^6.1.6
   flutter_facebook_auth: 6.0.3
+  change_app_package_name: ^1.1.0
   share_plus: ^7.2.1
   carousel_slider: ^4.2.1
   google_fonts:

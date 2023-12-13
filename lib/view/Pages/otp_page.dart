@@ -1,5 +1,5 @@
-import 'package:chat_gpt_stories/utils/app_size.dart';
-import 'package:chat_gpt_stories/view/Pages/createPassword_page.dart';
+import '../../utils/app_size.dart';
+import '../../view/Pages/createPassword_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

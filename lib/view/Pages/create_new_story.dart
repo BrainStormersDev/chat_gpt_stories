@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
-import 'package:chat_gpt_stories/controllers/CreateStoryController.dart';
-import 'package:chat_gpt_stories/utils/my_indicator.dart';
+import '../../controllers/CreateStoryController.dart';
+import '../../utils/my_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';

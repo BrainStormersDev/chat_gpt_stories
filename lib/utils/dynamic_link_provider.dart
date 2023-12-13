@@ -1,7 +1,7 @@
 
-import 'package:chat_gpt_stories/controllers/story_cat_controller.dart';
-import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
-import 'package:chat_gpt_stories/view/Pages/story_catList_page.dart';
+import '../../controllers/story_cat_controller.dart';
+import '../../view/Pages/rate_us_page.dart';
+import '../../view/Pages/story_catList_page.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

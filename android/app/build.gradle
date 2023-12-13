@@ -1,3 +1,9 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -6,33 +12,21 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
-
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '3'
+    flutterVersionCode = '1'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.4'
+    flutterVersionName = '1.0'
 }
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
-
+apply plugin: 'com.android.application'
 android {
+    namespace "com.brainstormers.gpt_chat_stories"
     compileSdkVersion 33
     ndkVersion flutter.ndkVersion
-
-    aaptOptions {
-        cruncherEnabled = false
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -48,23 +42,14 @@ android {
     }
 
     defaultConfig {
-        multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.brainstormers.gpt_stories"
+        applicationId "com.brainstormers.gpt_chat_stories"
         // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 23
+        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+        minSdkVersion 21
         targetSdkVersion 33
-//        targetSdkVersion flutter.targetSdkVersion
-        versionCode 3
-//        versionCode flutterVersionCode.toInteger()
+        versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-    }
-    lintOptions {
-        disable 'InvalidPackage'
-        disable "Instantiatable"
-        checkReleaseBuilds false
-        abortOnError false
     }
 
     buildTypes {
@@ -82,9 +67,9 @@ flutter {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:31.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.facebook.android:facebook-login:latest.release'
+
 }

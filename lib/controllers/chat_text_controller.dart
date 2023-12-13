@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:chat_gpt_stories/controllers/get_token_controller.dart';
-import 'package:chat_gpt_stories/model/storyCatListModel.dart';
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import '../../controllers/get_token_controller.dart';
+import '../../model/storyCatListModel.dart';
+import '../../utils/MyRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

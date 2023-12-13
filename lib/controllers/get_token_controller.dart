@@ -69,7 +69,7 @@ class TokenController extends GetxController {
         print("succccccccccccccccccccccccc ");
         state.value = ApiState.success;
       } else {
-        print("Errorrrrrrrrrrrrrrr  ${response.body}");
+        print("Errorrrrrrrrrrrrrrr  ${response.body} token controller");
         // throw ServerException(message: "Image Generation Server Exception");
         state.value = ApiState.error;
       }

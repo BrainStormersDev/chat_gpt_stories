@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
-import 'package:chat_gpt_stories/view/Pages/storyfinish_page.dart';
+import '../../view/Pages/rate_us_page.dart';
+import '../../view/Pages/storyfinish_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

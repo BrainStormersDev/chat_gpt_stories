@@ -1,7 +1,7 @@
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/view/Pages/rate_us_page.dart';
-import 'package:chat_gpt_stories/view/Pages/share_page.dart';
-import 'package:chat_gpt_stories/view/Widgets/customButton.dart';
+import '../../utils/MyRepo.dart';
+import '../../view/Pages/rate_us_page.dart';
+import '../../view/Pages/share_page.dart';
+import '../../view/Widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';

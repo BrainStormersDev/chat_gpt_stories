@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
-import 'package:chat_gpt_stories/view/Pages/login_page.dart';
-import 'package:chat_gpt_stories/view/Pages/signup_page.dart';
-import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
+import '../../utils/dynamic_link_provider.dart';
+import '../../view/Pages/login_page.dart';
+import '../../view/Pages/signup_page.dart';
+import '../../view/Pages/story_category_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';

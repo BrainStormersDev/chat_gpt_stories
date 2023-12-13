@@ -1,7 +1,7 @@
-import 'package:chat_gpt_stories/model/storyCatListModel.dart';
-import 'package:chat_gpt_stories/utils/dynamic_link_provider.dart';
-import 'package:chat_gpt_stories/view/Pages/story_catList_page.dart';
-import 'package:chat_gpt_stories/view/Pages/story_category_page.dart';
+import '../../model/storyCatListModel.dart';
+import '../../utils/dynamic_link_provider.dart';
+import '../../view/Pages/story_catList_page.dart';
+import '../../view/Pages/story_category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';

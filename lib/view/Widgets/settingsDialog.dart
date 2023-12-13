@@ -1,6 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/utils/app_color.dart';
+import '../../utils/MyRepo.dart';
+import '../../utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

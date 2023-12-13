@@ -1,4 +1,4 @@
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
+import '../../utils/MyRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
@@ -61,8 +61,9 @@ class RegistrationController extends GetxController {
         registrationModels = RegistrationModels.fromJson(jsonDecode(response.body));
         print("succccccccccccccccccccccccc ");
         state.value = ApiState.success;
-      } else {
-        print("Errorrrrrrrrrrrrrrr  ${response.body}");
+      }
+      else {
+        print("Errorrrrrrrrrrrrrrr  ${response.body} registratio_controller");
         // throw ServerException(message: "Image Generation Server Exception");
         state.value = ApiState.error;
       }

@@ -1,5 +1,5 @@
-import 'package:chat_gpt_stories/model/login_model.dart';
-import 'package:chat_gpt_stories/utils/apiCall.dart';
+import '../../model/login_model.dart';
+import '../../utils/apiCall.dart';
 import 'package:get/get.dart';
 
 import '../common/headers.dart';

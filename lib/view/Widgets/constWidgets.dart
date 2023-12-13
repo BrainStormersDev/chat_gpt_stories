@@ -1,4 +1,4 @@
-import 'package:chat_gpt_stories/utils/app_color.dart';
+import '../../utils/app_color.dart';
 import 'package:flutter/cupertino.dart';
 
 Widget storyByGptWidget (BuildContext context) {

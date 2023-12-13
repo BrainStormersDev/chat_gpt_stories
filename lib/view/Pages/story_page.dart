@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/view/Widgets/settingsDialog.dart';
+import '../../utils/MyRepo.dart';
+import '../../view/Widgets/settingsDialog.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:chat_gpt_stories/view/Pages/story_view_page.dart';
+import '../../view/Pages/story_view_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';

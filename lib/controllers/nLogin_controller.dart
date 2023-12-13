@@ -1,6 +1,6 @@
-import 'package:chat_gpt_stories/utils/MyRepo.dart';
-import 'package:chat_gpt_stories/utils/apiCall.dart';
-import 'package:chat_gpt_stories/utils/app_color.dart';
+import '../../utils/MyRepo.dart';
+import '../../utils/apiCall.dart';
+import '../../utils/app_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

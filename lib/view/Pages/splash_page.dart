@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../utils/dynamic_link_provider.dart';
 import '../../view/Pages/login_page.dart';
 import '../../view/Pages/signup_page.dart';
@@ -208,9 +209,6 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
                           }
                           try {
-                            // await MyRepo.assetsAudioPlayer.open(
-                            //   Audio.network("http://story-telling.eduverse.uk/public/s_1.mp3"),
-                            // );
                             MyRepo.musicMuted.value == false ?
                             await MyRepo.assetsAudioPlayer.open(
                                 Playlist(audios: [
@@ -219,6 +217,15 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                 ]),
                                 loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
                           } catch (t) {
+                            Fluttertoast.showToast(
+                                msg: "Something Wrong",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
                             //mp3 unreachable
                           }
 

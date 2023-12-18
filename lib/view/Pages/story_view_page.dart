@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../view/Pages/rate_us_page.dart';
 import '../../view/Pages/storyfinish_page.dart';
@@ -21,9 +22,9 @@ class StoryViewPage extends StatefulWidget {
   State<StoryViewPage> createState() => _StoryViewPageState();
 }
 enum TtsState { playing, stopped, paused, continued }
-class _StoryViewPageState extends State<StoryViewPage> {
+class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateMixin {
   FlutterTts tt = FlutterTts();
-  RxList<String> listTxt = <String>[].obs;
+  // RxList<String> listTxt = <String>[].obs;
   ChatTextController controllerText = Get.put(ChatTextController());
   final ScrollController _scrollController = ScrollController();
   List<String> image = [];
@@ -34,13 +35,12 @@ class _StoryViewPageState extends State<StoryViewPage> {
   var styleOne = const TextStyle(color: Colors.black87, fontSize: 21);
   var styleTwo = const TextStyle( color: Colors.black87, fontWeight: FontWeight.w800, fontSize: 24);
   String _text = '';
-      int _currentWordIndex = 0;
+  int _currentWordIndex = 0;
   List<String> _words = [];
 
   void _playTextWithDelay() {
     const Duration wordDelay = const Duration(milliseconds: 300); // Change this value
     Duration totalElapsedTime = Duration(); // Track total elapsed time
-
     Future<void> playWord(int index) async {
       await Future.delayed(wordDelay);
       if (mounted && !isPaused) {
@@ -111,11 +111,11 @@ class _StoryViewPageState extends State<StoryViewPage> {
     }
     final List<Widget> imageSliders = image
         .map((item) => Container(
-              margin: const EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
-            ))
+      margin: const EdgeInsets.all(5.0),
+      child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
+    ))
         .toList();
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
@@ -197,7 +197,7 @@ class _StoryViewPageState extends State<StoryViewPage> {
                 ),
                 Container(
                   padding:
-                      const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                  const EdgeInsets.only(bottom: 10, left: 15, right: 15),
                   child: Column(
                     children: [
                       Row(
@@ -271,29 +271,26 @@ class _StoryViewPageState extends State<StoryViewPage> {
                       //     ),
                       //   ),
                       // ),
-
-
-
                       imageSliders != null
                           ? Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15, right: 15),
-                              child: CarouselSlider(
-                                options: CarouselOptions(
-                                    scrollPhysics:
-                                        const BouncingScrollPhysics(),
-                                    viewportFraction: 1,
-                                    aspectRatio: 2.0,
-                                    enlargeCenterPage: true,
-                                    scrollDirection: Axis.horizontal,
-                                    autoPlay: true,
-                                    onPageChanged:
-                                        (index, CarouselPageChangedReason) {
-                                      activeIndex = index;
-                                    }),
-                                items: imageSliders,
-                              ),
-                            )
+                        padding:
+                        const EdgeInsets.only(left: 15, right: 15),
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                              scrollPhysics:
+                              const BouncingScrollPhysics(),
+                              viewportFraction: 1,
+                              aspectRatio: 2.0,
+                              enlargeCenterPage: true,
+                              scrollDirection: Axis.horizontal,
+                              autoPlay: true,
+                              onPageChanged:
+                                  (index, CarouselPageChangedReason) {
+                                activeIndex = index;
+                              }),
+                          items: imageSliders,
+                        ),
+                      )
                           : SizedBox(),
                     ],
                   ),
@@ -322,11 +319,9 @@ class _StoryViewPageState extends State<StoryViewPage> {
                               displayText,
                               style:
                               TextStyle(
-                                          color: AppColors.txtColor2,
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.bold),
-                              // TextStyle(fontSize: 18.0),
-                              // textAlign: TextAlign.center,
+                                  color: AppColors.txtColor2,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold),
                             ),
 
                             // AnimatedTextKit(
@@ -337,20 +332,24 @@ class _StoryViewPageState extends State<StoryViewPage> {
                             //           color: AppColors.txtColor2,
                             //           fontSize: 25,
                             //           fontWeight: FontWeight.bold),
-                            //       speed: Duration(milliseconds: 70),
+                            //       speed: Duration(milliseconds: 65),
                             //     ),
                             //   ],
                             //
-                            //     pause: Duration(milliseconds: 70),
+                            //     pause: Duration(milliseconds: 80),
                             //   onTap: () {
                             //     print("Tap Event");
                             //   },
+                            //
                             //   stopPauseOnTap: false,
                             //   totalRepeatCount: 1,
+                            //   // isRepeatingAnimation: isAnimationRunning,
+                            //   key: ValueKey<bool>(isAnimationRunning),
                             // ),
                           ),
+
                         ],
-                      ),
+                      ), SizedBox(height: 60,),
                     ],
                   ),
                 ),
@@ -370,39 +369,39 @@ class _StoryViewPageState extends State<StoryViewPage> {
           children: [
             IconButton(
                 onPressed: controllerText.storyCategoryListModels.value.data!
-                            .indexWhere((element) =>
-                 element.storyTitle == widget.data.storyTitle) ==
-                        0
+                    .indexWhere((element) =>
+                element.storyTitle == widget.data.storyTitle) ==
+                    0
                     ? null
                     : () {
-                        int newIndex = controllerText
-                            .storyCategoryListModels.value.data!
-                            .indexWhere((element) =>
-                                element.storyTitle == widget.data.storyTitle);
-logger.e(newIndex);
-                        if (newIndex <
-                            controllerText
-                                .storyCategoryListModels.value.data!.length) {
-                          widget.data = controllerText.storyCategoryListModels
-                              .value.data![newIndex - 1];
-                          MyRepo.currentStory = controllerText
-                              .storyCategoryListModels
-                              .value
-                              .data![newIndex - 1];
-                          _text=widget.data.story.toString();
-                          _currentWordIndex = 0;
-                          _words = [];
-                          _words = _text.split(' ');
-                          isPaused=false;
-                          displayText = _words.take(_currentWordIndex).join(' ');
-                          _playTextWithDelay();
-                          tt.stop();
-                          listTxt.clear();
-                          _ttsInit();
-                          setState(() {  logger.i(_text);});
-                        }
+                  int newIndex = controllerText
+                      .storyCategoryListModels.value.data!
+                      .indexWhere((element) =>
+                  element.storyTitle == widget.data.storyTitle);
+                  logger.e(newIndex);
+                  if (newIndex <
+                      controllerText
+                          .storyCategoryListModels.value.data!.length) {
+                    widget.data = controllerText.storyCategoryListModels
+                        .value.data![newIndex - 1];
+                    MyRepo.currentStory = controllerText
+                        .storyCategoryListModels
+                        .value
+                        .data![newIndex - 1];
+                    _text=widget.data.story.toString();
+                    _currentWordIndex = 0;
+                    _words = [];
+                    _words = _text.split(' ');
+                    isPaused=false;
+                    displayText = _words.take(_currentWordIndex).join(' ');
+                    _playTextWithDelay();
+                    tt.stop();
+                    // listTxt.clear();
+                    _ttsInit();
+                    setState(() {  logger.i(_text);});
+                  }
 
-                      },
+                },
                 icon: const Icon(
                   Icons.skip_previous_rounded,
                   color: AppColors.kBtnColor,
@@ -414,14 +413,14 @@ logger.e(newIndex);
                 setState(() {
                   isPaused = !isPaused;
                   _playTextWithDelay();
-                 if(isPaused)
-                   {
-                     tt.pause();
-                   }
-                 else
-                   {
-                     _ttsInit();
-                   }
+                  if(isPaused)
+                  {
+                    tt.pause();
+                  }
+                  else
+                  {
+                    _ttsInit();
+                  }
                 });
               },
               child: isPaused
@@ -430,49 +429,49 @@ logger.e(newIndex);
             ),
             IconButton(
                 onPressed: (controllerText.storyCategoryListModels.value.data!
-                                .lastIndexWhere((element) =>
-                                    element.storyTitle ==
-                                    widget.data.storyTitle) ==
-                            controllerText
-                                .storyCategoryListModels.value.data!.length) ==
-                        true
+                    .lastIndexWhere((element) =>
+                element.storyTitle ==
+                    widget.data.storyTitle) ==
+                    controllerText
+                        .storyCategoryListModels.value.data!.length) ==
+                    true
                     ? null
                     : () {
-                        int newIndex = controllerText
-                            .storyCategoryListModels.value.data!
-                            .indexWhere((element) =>
-                                element.storyTitle == widget.data.storyTitle);
-                        setState(() {
-                          if (newIndex ==
-                              controllerText
-                                  .storyCategoryListModels.value.data!.length) {
-                            widget.data = controllerText
-                                .storyCategoryListModels.value.data![newIndex];
-                            MyRepo.currentStory = controllerText
-                                .storyCategoryListModels.value.data![newIndex];
-                            tt.stop();
-                            listTxt.clear();
-                            _ttsInit();
-                          } else {
-                            widget.data = controllerText.storyCategoryListModels
-                                .value.data![newIndex + 1];
-                            MyRepo.currentStory = controllerText
-                                .storyCategoryListModels
-                                .value
-                                .data![newIndex + 1];
-                            _text=widget.data.story.toString();
-                            _currentWordIndex = 0;
-                            _words = [];
-                            _words = _text.split(' ');
-                            isPaused=false;
-                            displayText = _words.take(_currentWordIndex).join(' ');
-                            _playTextWithDelay();
-                            tt.stop();
-                            listTxt.clear();
-                            _ttsInit();
-                          }
-                        });
-                      },
+                  int newIndex = controllerText
+                      .storyCategoryListModels.value.data!
+                      .indexWhere((element) =>
+                  element.storyTitle == widget.data.storyTitle);
+                  setState(() {
+                    if (newIndex ==
+                        controllerText
+                            .storyCategoryListModels.value.data!.length) {
+                      widget.data = controllerText
+                          .storyCategoryListModels.value.data![newIndex];
+                      MyRepo.currentStory = controllerText
+                          .storyCategoryListModels.value.data![newIndex];
+                      tt.stop();
+                      // listTxt.clear();
+                      _ttsInit();
+                    } else {
+                      widget.data = controllerText.storyCategoryListModels
+                          .value.data![newIndex + 1];
+                      MyRepo.currentStory = controllerText
+                          .storyCategoryListModels
+                          .value
+                          .data![newIndex + 1];
+                      _text=widget.data.story.toString();
+                      _currentWordIndex = 0;
+                      _words = [];
+                      _words = _text.split(' ');
+                      isPaused=false;
+                      displayText = _words.take(_currentWordIndex).join(' ');
+                      _playTextWithDelay();
+                      tt.stop();
+                      // listTxt.clear();
+                      _ttsInit();
+                    }
+                  });
+                },
 
                 // widget.nextStory,
                 icon: const Icon(
@@ -493,14 +492,11 @@ logger.e(newIndex);
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOut,
-      );
-    });
+      );});
     tt.setContinueHandler((){
       setState(() {
         ttsState = TtsState.continued;
-      });
-
-    });
+      });});
     tt.setCompletionHandler(() {
       // Do something when speech is complete
       Get.to(() => StoryFinish(data: widget.data, catName: widget.catName));

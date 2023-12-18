@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import '../../main2.dart';
 import '../../utils/MyRepo.dart';
 import '../../view/Widgets/settingsDialog.dart';
 import 'package:flutter/services.dart';
@@ -445,7 +446,10 @@ class _StoryPageState extends State<StoryPage> {
                                                           StoryViewPage(
                                                             data:
                                                             widget.data!,
-                                                          )));
+                                                          )
+                                                      // MyHomePage()
+                                                  )
+                                              );
                                               await MyRepo.assetsAudioPlayer.pause();
                                               Future.delayed(const Duration(microseconds: 500)).then((value) {
                                                 getStory(widget.data!.id.toString());

@@ -1,3 +1,6 @@
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:gpt_chat_stories/view/Pages/storyfinish_page.dart';
+
 import '../../model/storyCatListModel.dart';
 import '../../utils/dynamic_link_provider.dart';
 import '../../view/Pages/story_catList_page.dart';
@@ -9,16 +12,20 @@ import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
 import '../Widgets/customButton.dart';
+
 class SharePage extends StatefulWidget {
   final DataList? shareData;
   final String? catName;
+
   const SharePage({Key? key, this.shareData, this.catName}) : super(key: key);
 
   @override
   State<SharePage> createState() => _SharePageState();
 }
+
 class _SharePageState extends State<SharePage> {
   var shareStoryLink;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -27,9 +34,10 @@ class _SharePageState extends State<SharePage> {
   }
 
   getShare() async {
-    // shareStoryLink = await DynamicLinksProvider().createLink(widget.catName.toString(), widget.shareData!.storyTitle.toString());
-    shareStoryLink = await DynamicLinksProvider().createLink(widget.catName.toString(), MyRepo.currentStory.storyTitle.toString());
-    // print("=====Dynamic Link == ${await DynamicLinksProvider().createLink(widget.catName.toString(), widget.shareData!.storyTitle.toString())}");
+
+
+    shareStoryLink = await DynamicLinksProvider().createLink(
+        widget.catName.toString(), MyRepo.currentStory.storyTitle.toString());
     print("======shareStoryLink== $shareStoryLink");
   }
 
@@ -43,18 +51,17 @@ class _SharePageState extends State<SharePage> {
         title: storyByGptWidget(context),
         centerTitle: true,
         backgroundColor: AppColors.kScreenColor,
-        leading: IconButton(
-          onPressed: () {
-            Get.close(6);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: AppColors.txtColor1,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Get.close(6);
+        //   },
+        //   icon: const Icon(
+        //     Icons.arrow_back,
+        //     color: AppColors.txtColor1,
+        //   ),
+        // ),
       ),
-      body:
-      Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,28 +113,45 @@ class _SharePageState extends State<SharePage> {
             //                     fontWeight: FontWeight.bold,
             //                     fontSize: 18))))),
 
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: CustomButton(
-                onTap: (){
-                  String message =
-                      "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
-                  // Share.share(message);
-                  // // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
-                   Share.share("GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
-                  print("========before == current Story :${MyRepo.currentStory.storyTitle}");
-                  // Share.share("GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
-                  print("========after == current Story :${MyRepo.currentStory.storyTitle}");
-                  getShare();
-                  print("======shareStoryLink :$shareStoryLink");
-                },
-                color:AppColors.kBtnColor ,
-                // height: MediaQuery.of(context).size.height*0.17,
-                width: MediaQuery.of(context).size.height * 0.2,
-                text: "Share",
-                textSize: 20.0,
-                txtcolor: AppColors.kBtnTxtColor,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: CustomButton(
+                    onTap: () {
+                      String message =
+                          "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
+                      getShare();
+                      Share.share(
+                          "GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
+
+                    },
+                    color: AppColors.kBtnColor,
+                    // height: MediaQuery.of(context).size.height*0.17,
+                    width: MediaQuery.of(context).size.height * 0.2,
+                    text: "Share",
+                    textSize: 20.0,
+                    txtcolor: AppColors.kBtnTxtColor,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: CustomButton(
+                    onTap: () {
+
+                      Get.close(6);
+
+                    },
+                    color: AppColors.emoji2Color,
+                    // height: MediaQuery.of(context).size.height*0.17,
+                    width: MediaQuery.of(context).size.height * 0.2,
+                    text: "No Thanks",
+                    textSize: 20.0,
+                    txtcolor: AppColors.kBtnTxtColor,
+                  ),
+                ),
+              ],
             ),
 
             // ElevatedButton(

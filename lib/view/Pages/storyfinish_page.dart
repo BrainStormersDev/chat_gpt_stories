@@ -1,20 +1,12 @@
 import '../../utils/MyRepo.dart';
 import '../../view/Pages/rate_us_page.dart';
-import '../../view/Pages/share_page.dart';
 import '../../view/Widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import '../../model/storyCatListModel.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
-
 class StoryFinish extends StatelessWidget {
-  final DataList data;
-  final String? catName;
-   StoryFinish({required this.data, this.catName});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +19,6 @@ class StoryFinish extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-
             MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
             Get.close(2);
           },
@@ -63,7 +54,8 @@ class StoryFinish extends StatelessWidget {
                     child: CustomButton(
                       onTap:() async {
                         MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
-                        Get.close(4);},
+                        Get.close(3);
+                        },
                       height: MediaQuery.of(context).size.height*0.17,
                       width: MediaQuery.of(context).size.height * 0.45,
                       radius: 5.0,

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
+
 import '../../view/Pages/rate_us_page.dart';
 import '../../view/Pages/storyfinish_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -49,6 +51,11 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         });
         totalElapsedTime = Duration(); // Reset the total elapsed time
         if (index < _words.length - 1) {
+          if(_words[_currentWordIndex].endsWith('.')){
+            print(_words[_currentWordIndex]);
+            Future.delayed(Duration(milliseconds: 200));
+          }
+
           await playWord(index + 1);
         }
       }
@@ -486,6 +493,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   }
   TtsState ttsState = TtsState.stopped;
   _ttsInit() async {
+    WakelockPlus.enable();
     await tt.speak(widget.data.story.toString());
     tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
       _scrollController.animateTo(
@@ -499,7 +507,9 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
       });});
     tt.setCompletionHandler(() {
       // Do something when speech is complete
-      Get.to(() => StoryFinish(data: widget.data, catName: widget.catName));
+      // Get.to(() => RateUsPage());
+      Get.to(() => StoryFinish());
+      WakelockPlus.disable();
       print('Speech completed');
     });
   }

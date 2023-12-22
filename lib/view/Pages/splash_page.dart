@@ -1,25 +1,18 @@
 import 'dart:async';
-
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../utils/dynamic_link_provider.dart';
-import '../../view/Pages/login_page.dart';
-import '../../view/Pages/signup_page.dart';
 import '../../view/Pages/story_category_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import '../../utils/app_size.dart';
 import '../../utils/mySnackBar.dart';
-import 'forgotpassword_page.dart';
 import 'gender_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -44,7 +37,8 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     getInterNetConnections();
     _updateProgress();
     super.initState();
-    playSound();
+
+    // playSound();
 
     var mute=GetStorage().read(kMute);
     if(mute!=null){
@@ -154,12 +148,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset("assets/PNG/loin.png", scale: 1.2,)),
           ),
-
-
-
-
           ///Button
-
           Positioned(
             left: 40,
             right: 40,
@@ -196,10 +185,6 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                         onPressed:
                         // _isNetworkConnected==false?null:
                             () async {
-                        print("========== clicked on start=====");
-                        // Get.to(()=>LogInPage());
-                        // Get.to(()=>SignInPage());
-                        // Get.to(()=>ForgotPasswordPage());
                         ///Start
                         if(!_isNetworkConnected){
                           if(GetStorage().hasData(kGender) ){
@@ -209,16 +194,27 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
                           }
                           try {
+
                             MyRepo.musicMuted.value == false ?
                             await MyRepo.assetsAudioPlayer.open(
                                 Playlist(audios: [
                                   Audio.network(
                                       "http://story-telling.eduverse.uk/public/s_1.mp3"),
                                 ]),
-                                loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+                                loopMode: LoopMode.playlist) :
+                            await MyRepo.assetsAudioPlayer.stop();
+                            Fluttertoast.showToast(
+                                msg: "Trying ${MyRepo.musicMuted.value}",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
                           } catch (t) {
                             Fluttertoast.showToast(
-                                msg: "Something Wrong",
+                                msg: "Something Wrong ${MyRepo.musicMuted.value}",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 1,
@@ -228,22 +224,13 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             );
                             //mp3 unreachable
                           }
-
                       }
                         else{
-
                           MySnackBar.snackBarRed(
                               title: "Alert",
                               message: "Not internet connection found");
                         }
                         ///End
-                        // AssetsAudioPlayer.newPlayer().open(
-                        //   Audio("assets/BG_Song/n_1.mp3"),
-                        //   autoStart: true,
-                        //   showNotification: true,
-                        // );
-                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
-                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => GenderPage()), (route) => false);
                       },
                       style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
@@ -293,14 +280,14 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     });
   }
 
-  void playSound() {
-    MyRepo.assetsAudioPlayer.stop();
-    AssetsAudioPlayer.newPlayer().open(
-      Audio(kWelcomeSound),
-      autoStart: true,
-      showNotification: true,
-    );
-  }
+  // void playSound() {
+  //   MyRepo.assetsAudioPlayer.stop();
+  //   AssetsAudioPlayer.newPlayer().open(
+  //     Audio(kWelcomeSound),
+  //     autoStart: true,
+  //     showNotification: true,
+  //   );
+  // }
 
   Future<void> _updateProgress() async {
     _animationController =

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../../utils/MyRepo.dart';
@@ -12,6 +13,7 @@ import 'view/Pages/splash_page.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseDynamicLinks.instance;
   await GetStorage.init();
   messageHandler();
   await _localNotification();

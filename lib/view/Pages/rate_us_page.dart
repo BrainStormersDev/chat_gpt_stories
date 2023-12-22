@@ -12,7 +12,6 @@ import 'package:get_storage/get_storage.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
 import '../Widgets/customButton.dart';
-import 'story_catList_page.dart';
 
 class RateUsPage extends StatelessWidget {
    RateUsPage({Key? key}) : super(key: key);
@@ -131,11 +130,8 @@ class RateUsPage extends StatelessWidget {
                   child: CustomButton(
                     onTap: () {
                       MyRepo.rating = (colorNum.value+1).toString();
-                      print("======== clicked rate btn : ${MyRepo.rating}");
-                      // Get.to(() => LogInPage());
                     isLoading.value=true;
-                    print("=====userName=== ${GetStorage().read("userName").toString()}");
-                    if (GetStorage().read("userName")==null) {
+                    if (GetStorage().read("userName")==null || GetStorage().read("userName")=="") {
                       MyRepo.islogInHomeScreen=false;
                       Get.to(() => LogInPage());
                     } else {
@@ -145,15 +141,15 @@ class RateUsPage extends StatelessWidget {
                       };
                       ApisCall.apiCall("${kBaseUrl}story/rate", "post", body).then((value) {
                         if(value["isData"]){
-                          Get.close(5);
-                          Get.to(StoryCatList(catName: MyRepo.storyCat.toString(),));
+                          // Get.close(5);
+                          Get.to(SharePage(catName: MyRepo.storyCat.toString(),));
                           isLoading.value=false;
                         }
                         else if(value["isData"]==false){
                         isLoading.value=false;
                          }
                       });
-                      print("====== rate us api calling todo ==> rate =${colorNum.value+1}===");
+
                     }
                     },
                     color: AppColors.kBtnColor,

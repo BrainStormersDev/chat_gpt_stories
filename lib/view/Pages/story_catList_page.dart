@@ -45,16 +45,6 @@ class _StoryCatListState extends State<StoryCatList> {
   @override
   Widget build(BuildContext context) {
 
-    // if(storyCatListController.storyCategoryListModels.value.data!=null && storyCatListController.storyCategoryListModels.value.data![0].images!=[])
-    //   {
-    //     logger.i(storyCatListController.storyCategoryListModels.value.data![0].id);
-    //     logger.i(storyCatListController.storyCategoryListModels.value.data![0].images![0].imageUrl);
-    //   }
-    // else
-    // logger.e("=== search story ${    storyCatListController
-    //     .storyCategoryListModels
-    //     .value
-    //     .data!.where((element) => element.storyTitle!.toString().contains("")).toList().length}");
     return WillPopScope(
       onWillPop: ()async{
         Get.close(2);

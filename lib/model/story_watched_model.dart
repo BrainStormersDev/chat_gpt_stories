@@ -57,7 +57,7 @@ class Data {
 class Story {
   int? id;
   String? storyTitle;
-  String? createdBy;
+  int? createdBy;
   int? viewCount;
   String? created;
  var averageRating;

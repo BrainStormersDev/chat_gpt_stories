@@ -32,8 +32,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
 
   RxString selectItems = "-1".obs;
   StoryCatController storyCatController = Get.put(StoryCatController());
-  StoryWatchedController storyWatchedController =
-      Get.put(StoryWatchedController());
+  StoryWatchedController storyWatchedController = Get.put(StoryWatchedController());
   TabController? tabController;
 
   @override
@@ -261,8 +260,11 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                                   }
 
                                 ),
-                         storyWatchedController.storyCategoryModels.value.data!.length==0?const Center(child: Text("No Watched Story Found"),):
-                                    ListView.builder(itemCount: storyWatchedController.storyCategoryModels.value.data!.length, itemBuilder: (context,index){
+                         storyWatchedController.storyCategoryModels.value.data!.length==0
+                             ?
+                         const Center(child: Text("No Watched Story Found"),)
+                             :
+                         ListView.builder(itemCount: storyWatchedController.storyCategoryModels.value.data!.length, itemBuilder: (context,index){
                                   print("===== rating => ${storyWatchedController.storyCategoryModels.value.data!
                                   [index]
                                       .story!.averageRating
@@ -504,7 +506,9 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
             child: FloatingActionButton(
               backgroundColor: AppColors.kBtnColor,
               onPressed: (){
-
+                // setState((){
+                //   GetStorage().write("userName",null);
+                // });
                 Get.to(()=>LogInPage());
 
               },child:const Icon(Icons.login,),),
@@ -515,7 +519,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
               backgroundColor: AppColors.kBtnColor,
               onPressed: (){
                 setState((){
-                  GetStorage().write("userName","");
+                  GetStorage().write("userName",'');
                 });
               },child:const Icon(Icons.logout_sharp,),),
           ),

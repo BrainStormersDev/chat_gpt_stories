@@ -17,6 +17,7 @@ Future<void> main() async {
   await GetStorage.init();
   messageHandler();
   await _localNotification();
+
   runApp(const MyApp());
 }
 

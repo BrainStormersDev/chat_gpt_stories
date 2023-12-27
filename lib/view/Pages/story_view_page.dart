@@ -26,7 +26,6 @@ class StoryViewPage extends StatefulWidget {
 enum TtsState { playing, stopped, paused, continued }
 class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateMixin {
   FlutterTts tt = FlutterTts();
-  // RxList<String> listTxt = <String>[].obs;
   ChatTextController controllerText = Get.put(ChatTextController());
   final ScrollController _scrollController = ScrollController();
   List<String> image = [];
@@ -40,9 +39,9 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   int _currentWordIndex = 0;
   List<String> _words = [];
 
-  void _playTextWithDelay() {
-    const Duration wordDelay = const Duration(milliseconds: 300); // Change this value
-    Duration totalElapsedTime = Duration(); // Track total elapsed time
+  Future<void> _playTextWithDelay() async {
+    const Duration wordDelay =  Duration(milliseconds: 310); // Change this value
+    Duration totalElapsedTime = const Duration(); // Track total elapsed time
     Future<void> playWord(int index) async {
       await Future.delayed(wordDelay);
       if (mounted && !isPaused) {
@@ -51,16 +50,18 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         });
         totalElapsedTime = Duration(); // Reset the total elapsed time
         if (index < _words.length - 1) {
-          if(_words[_currentWordIndex].endsWith('.')){
+          if(_words[_currentWordIndex].endsWith('.') || _words[_currentWordIndex].endsWith(',') ){
             print(_words[_currentWordIndex]);
-            Future.delayed(Duration(milliseconds: 200));
+            await Future.delayed(const Duration(milliseconds: 290));
+            print(_words[_currentWordIndex]);
+
           }
 
           await playWord(index + 1);
         }
       }
     }
-    playWord(_currentWordIndex);
+    await playWord(_currentWordIndex);
   }
   @override
   void initState() {
@@ -78,9 +79,6 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   }
   @override
   void deactivate() {
-    // TODO: implement deactivate
-
-    // _stop();
     super.deactivate();
   }
   @override
@@ -243,41 +241,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                       SizedBox(
                         height: 10,
                       ),
-                      // Container(
-                      //   height: 220,
-                      //   // width: double.infinity,
-                      //   child: CachedNetworkImage(
-                      //     // imageUrl: kDemoImage,
-                      //     imageUrl: "" ??
-                      //         controllerText.storyCategoryListModels.value.data![0]
-                      //             .images![0].imageUrl!,
-                      //     fit: BoxFit.fill,
-                      //     progressIndicatorBuilder:
-                      //         (context, url, downloadProgress) => SizedBox(
-                      //         width: double.infinity,
-                      //         child: Shimmer.fromColors(
-                      //           baseColor: Colors.grey.withOpacity(.3),
-                      //           highlightColor: Colors.grey,
-                      //           child: Container(
-                      //             width: double.infinity,
-                      //             decoration: BoxDecoration(
-                      //                 color: Colors.white,
-                      //                 borderRadius:
-                      //                 BorderRadius.circular(4)),
-                      //           ),
-                      //         )),
-                      //     errorWidget: (context, url, error) => Container(
-                      //       height: 200,
-                      //       width: 200,
-                      //       decoration: BoxDecoration(
-                      //         image: DecorationImage(
-                      //           image: NetworkImage(widget.data.images![0].imageUrl.toString()),
-                      //           fit: BoxFit.fill,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+
                       imageSliders != null
                           ? Padding(
                         padding:
@@ -495,7 +459,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   _ttsInit() async {
     WakelockPlus.enable();
     await tt.speak(widget.data.story.toString());
-    tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
+     tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 200),

@@ -318,8 +318,9 @@ class _AgePageState extends State<AgePage> {
     box.write(kAge, age);
     box.write(kGender,  MyRepo.selectedGender.name);
     box.write(kTokenStorage, MyRepo.deviceToken.value);
-    registrationController.getRegistration(age: age, token: MyRepo.deviceToken.value,gender: MyRepo.selectedGender.name);
+    // registrationController.getRegistration(age: age, token: MyRepo.deviceToken.value,gender: MyRepo.selectedGender.name);
     Future.delayed(const Duration(milliseconds: 100), () {
+      GetStorage().write("userName",'');
       Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));
     });
   }
@@ -329,12 +330,6 @@ class _AgePageState extends State<AgePage> {
     return Obx(()=>InkWell(
       onTap: (){
         selectItems.value =index.toString();
-        // nextPage(age: ageLimit);
-        // setState(() {
-        //   MyRepo.selectAge=AgeSelect.thirteen;
-        //
-        // });
-        // nextPage();
       },
       child: Container(
         margin: const EdgeInsets.only(top: 10),

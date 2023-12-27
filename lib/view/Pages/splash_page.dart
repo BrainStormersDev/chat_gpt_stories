@@ -114,8 +114,6 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                      ),
                    ],
                    onTap: () {
-                     print("Tap Event");
-                     print("Tap Event");
                    },
                    stopPauseOnTap: true,
                    totalRepeatCount: 1,
@@ -203,18 +201,18 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                                 ]),
                                 loopMode: LoopMode.playlist) :
                             await MyRepo.assetsAudioPlayer.stop();
-                            Fluttertoast.showToast(
-                                msg: "Trying ${MyRepo.musicMuted.value}",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0
-                            );
+                            // Fluttertoast.showToast(
+                            //     msg: "Trying ${MyRepo.musicMuted.value}",
+                            //     toastLength: Toast.LENGTH_SHORT,
+                            //     gravity: ToastGravity.BOTTOM,
+                            //     timeInSecForIosWeb: 1,
+                            //     backgroundColor: Colors.red,
+                            //     textColor: Colors.white,
+                            //     fontSize: 16.0
+                            // );
                           } catch (t) {
                             Fluttertoast.showToast(
-                                msg: "Something Wrong ${MyRepo.musicMuted.value}",
+                                msg: "Music can't Play ${MyRepo.musicMuted.value}",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 1,

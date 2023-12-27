@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 import 'app_color.dart';
 
 class MySnackBar {
-  static snackBarPrimary({required String title,required String message,}) {
+  static snackBarPrimary({
+    required String title,
+    required String message,
+  }) {
     // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     //   duration: Duration(seconds: 3),
     //   content: Text(message),
@@ -17,12 +20,14 @@ class MySnackBar {
         colorText: AppColors.kWhite,
         backgroundColor: AppColors.kPrimary,
         snackPosition: SnackPosition.BOTTOM,
-        isDismissible:true,
-        margin: EdgeInsets.only(bottom: 10,left: 10,right: 10)
-
-    );
+        isDismissible: true,
+        margin: EdgeInsets.only(bottom: 10, left: 10, right: 10));
   }
-  static snackBarSessionOut({required String title,required String message,}) {
+
+  static snackBarSessionOut({
+    required String title,
+    required String message,
+  }) {
     // Get.snackbar(title, message,
     //     colorText: AppColors.kWhite,
     //     backgroundColor: AppColors.red,
@@ -43,31 +48,28 @@ class MySnackBar {
     // );
     Get.defaultDialog(
         title: title,
-        middleText:message,
+        middleText: message,
         backgroundColor: AppColors.kWhite,
         titleStyle: TextStyle(color: AppColors.kPrimary),
-        middleTextStyle: TextStyle(color: AppColors.kPrimary,),
+        middleTextStyle: TextStyle(
+          color: AppColors.kPrimary,
+        ),
         radius: 30,
         textCancel: "OK",
-        buttonColor:AppColors.kPrimary ,
-        cancelTextColor:AppColors.kPrimary ,
-        onCancel: (){
+        buttonColor: AppColors.kPrimary,
+        cancelTextColor: AppColors.kPrimary,
+        onCancel: () {
           // GetStorage().erase();
           // Get.offAll(SplashScreen());
-        }
-    );
+        });
   }
 
-  static snackBarRed({required String title,required String message}) {
-
+  static snackBarRed({required String title, required String message}) {
     Get.snackbar(title, message,
         colorText: AppColors.kWhite,
-
         backgroundColor: AppColors.kRed,
-
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.only(bottom: 10,left: 10,right: 10)
-    );
+        margin: EdgeInsets.only(bottom: 10, left: 10, right: 10));
 
     // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     //   duration: Duration(seconds: 3),
@@ -79,16 +81,12 @@ class MySnackBar {
     // ));
   }
 
-  static snackBarYellow({required String title,required String message}) {
-
+  static snackBarYellow({required String title, required String message}) {
     Get.snackbar(title, message,
         colorText: AppColors.kWhite,
-
         backgroundColor: AppColors.kPrimary,
-
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.only(bottom: 10,left: 10,right: 10)
-    );
+        margin: EdgeInsets.only(bottom: 10, left: 10, right: 10));
 
     // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     //   duration: Duration(seconds: 3),

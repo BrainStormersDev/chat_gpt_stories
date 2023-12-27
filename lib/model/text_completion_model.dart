@@ -5,6 +5,18 @@ class TextCompletionModel {
   final num created;
   final List<TextCompletionData> choices;
 
+
+
+
+  // {
+  // "error": {
+  // "message": "Incorrect API key provided: sk-cYSKi***************************************Pjaz. You can find your API key at https://platform.openai.com/account/api-keys.",
+  // "type": "invalid_request_error",
+  // "param": null,
+  // "code": "invalid_api_key"
+  // }
+  // }
+
   TextCompletionModel({required this.created, required this.choices});
 
   factory TextCompletionModel.fromJson(Map<String, dynamic> json) {

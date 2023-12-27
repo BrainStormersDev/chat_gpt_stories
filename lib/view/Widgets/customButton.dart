@@ -1,37 +1,41 @@
-// import 'package:flutter/material.dart';
-// import 'package:local_db/utils/app_color.dart';
-//
-// class CustomButton extends StatelessWidget {
-//   var height;
-//   var width;
-//   var color;
-//   var text;
-//   var onTap;
-//   var shape;
-//   var radius;
-//   var textSize;
-//
-//    CustomButton({this.height, this.color, this.onTap, this.shape, this.text, this.width, this.radius, this.textSize});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return  Container(
-//       height: height,
-//       width: width,
-//       color: color,
-//       child: ElevatedButton(
-//           onPressed: onTap,
-//           style: ButtonStyle(
-//               shadowColor:  MaterialStatePropertyAll(color),
-//               backgroundColor:  MaterialStatePropertyAll(color),
-//               shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)))
-//           ),
-//           child: SizedBox(
-//               height: height,
-//               width: width,
-//               child: Center(
-//                   child: Text(text.toString(),
-//                       style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: textSize))))),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+
+import '../../utils/app_color.dart';
+
+class CustomButton extends StatelessWidget {
+  var height;
+  var width;
+  var color;
+  var txtcolor;
+  var text;
+  var onTap;
+  var shape;
+  var radius;
+  var bordercolor;
+  var textSize;
+
+   CustomButton({this.height, this.color, this.txtcolor, this.onTap, this.shape, this.bordercolor, this.text, this.width, this.radius=5.0, this.textSize});
+
+  @override
+  Widget build(BuildContext context) {
+    return  InkWell(
+      onTap:onTap ,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: color,
+          border: Border.all(color: bordercolor?? AppColors.kBtnColor),
+          borderRadius: BorderRadius.circular(radius)
+        ),
+        child: Padding(
+          padding:const EdgeInsets.all(8),
+            child: Center(
+              child: Text(text.toString(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: txtcolor, fontWeight: FontWeight.bold, fontSize: textSize,fontFamily: "BalooBhai",)),
+            )),
+      ),
+    );
+  }
+}

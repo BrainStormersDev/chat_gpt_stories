@@ -1,12 +1,8 @@
 
-
-
-
-
-const String OPEN_AI_KEY = "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";
-// const String OPEN_AI_KEY = "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";
-const String baseURL = "https://api.openai.com/v1";
-String endPoint(String endPoint) => "$baseURL/$endPoint";
+// const String kOPEN_AI_KEY = "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";
+const String OPEN_AI_KEY = "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";
+const String baseURLOpen = "https://api.openai.com/v1";
+String endPoint(String endPoint) => "$baseURLOpen/$endPoint";
 
 
 

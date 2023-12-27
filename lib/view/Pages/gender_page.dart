@@ -2,22 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import '../../utils/mySnackBar.dart';
 import 'age_page.dart';
 
-enum Gender {
-  notSelect,
-  boy,
-  girl
-}
-enum AgeSelect {
-  notSelect,
-  oneToThree,
-  threeToFive,
-  fiveToTen,
-  tenPlus,
-}
+
 
 class GenderPage extends StatefulWidget {
   @override
@@ -26,7 +16,7 @@ class GenderPage extends StatefulWidget {
 
 
 class _GenderPageState extends State<GenderPage> {
-  Gender selectedGender =Gender.notSelect;
+
   // const GenderPage({Key? key}) : super(key: key);
   //
   // RxBool isBoy = false.obs;
@@ -47,9 +37,9 @@ class _GenderPageState extends State<GenderPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                ),
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height * 0.06,
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -62,7 +52,7 @@ class _GenderPageState extends State<GenderPage> {
                           color: AppColors.kBtnColor),
                     ),
                     Text(
-                      "By Chat GPT",
+                      "By GPT",
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -70,9 +60,6 @@ class _GenderPageState extends State<GenderPage> {
                           color: AppColors.txtColor1),
                     ),
                   ],
-                ),
-                const SizedBox(
-                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
@@ -102,92 +89,114 @@ class _GenderPageState extends State<GenderPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            // isBoy.value == true;
-                            // isGirl.value == false;
-                            // print("========isBoy.value====${isBoy.value}");
-                            setState(() {
-                              selectedGender=Gender.boy;
+                    Container(
+                      decoration: BoxDecoration(
+                        border:MyRepo.selectedGender==Gender.Boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        color:MyRepo.selectedGender==Gender.Boy ? AppColors.kPrimary:null
 
-                            });
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                              // isBoy.value == true;
+                              // isGirl.value == false;
+                              // print("========isBoy.value====${isBoy.value}");
+                              setState(() {
+                                MyRepo.selectedGender=Gender.Boy;
 
-                          },
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            decoration: BoxDecoration(
-                                color:selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
-                                border: Border.all(
-                                    color: AppColors.kBoyBGColor, width: 2)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset("assets/PNG/boy.png"),
+                              });
+                              // Future.delayed(const Duration(milliseconds: 100), () {
+                              //   Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                              // });
+
+
+
+                            },
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              decoration: BoxDecoration(
+                                  color:MyRepo.selectedGender==Gender.Boy ? AppColors.kBoyBGColor : Colors.transparent,
+                                  border: Border.all(
+                                      color: AppColors.kBoyBGColor, width: 2)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/PNG/boy.png"),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Boy",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontFamily: "BalooBhai",
-                              fontWeight: FontWeight.bold,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..color = AppColors.kBoyBGColor),
-                        )
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Boy",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: "BalooBhai",
+                                fontWeight: FontWeight.bold,
+                                // color: selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
+                                foreground: Paint()
+                                  ..style =MyRepo. selectedGender==Gender.Boy ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRepo.selectedGender==Gender.Boy ?AppColors.kWhite: AppColors.kBoyBGColor),
+                          )
+                        ],
+                      ),
                     ),
                     const SizedBox(
-                      width: 30,
+                      width: 20,
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            // isGirl.value == true;
-                            // isBoy.value == false;
-                            // print("========isGirl.value====${isGirl.value}");
+                    Container(
+                      decoration: BoxDecoration(
+                          border:MyRepo.selectedGender==Gender.Girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                          color:MyRepo.selectedGender==Gender.Girl ? AppColors.kPrimary:null
 
-                            setState(() {
-                              selectedGender=Gender.girl;
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                              // isGirl.value == true;
+                              // isBoy.value == false;
+                              // print("========isGirl.value====${isGirl.value}");
+                              setState(() {
+                                MyRepo.selectedGender=Gender.Girl;
 
-                            });
-                          },
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            decoration: BoxDecoration(
-                                color:  selectedGender==Gender.girl? AppColors.kGirlBGColor : Colors.transparent,
-                                border: Border.all(
-                                    color: AppColors.kGirlBGColor, width: 2)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset("assets/PNG/girl.png"),
+                              });
+                              // Future.delayed(const Duration(milliseconds: 100), () {
+                              //   Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
+                              // });
+                            },
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              decoration: BoxDecoration(
+                                  color: MyRepo. selectedGender==Gender.Girl? AppColors.kGirlBGColor : Colors.transparent,
+                                  border: Border.all(
+                                      color: AppColors.kGirlBGColor, width: 2)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset("assets/PNG/girl.png"),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Girl",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontFamily: "BalooBhai",
-                              fontWeight: FontWeight.bold,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..color = AppColors.kGirlBGColor),
-                        )
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Girl",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontFamily: "BalooBhai",
+                                fontWeight: FontWeight.bold,
+                                foreground: Paint()
+                                  ..style = MyRepo.selectedGender==Gender.Girl ? PaintingStyle.fill : PaintingStyle.stroke
+                                  ..color =MyRepo.selectedGender==Gender.Girl ?AppColors.kWhite: AppColors.kGirlBGColor),
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -195,17 +204,15 @@ class _GenderPageState extends State<GenderPage> {
                 ElevatedButton(
                     onPressed: (){
                       // Get.to(const AgePage());
-                      print("=======select :${selectedGender.name} ====");
-
-                      if(selectedGender==Gender.notSelect){
+                      print("=======select :${MyRepo.selectedGender.name} ====");
+                      if(MyRepo.selectedGender==Gender.notSelect){
                         MySnackBar.snackBarYellow(
-                            title:"Alert", message:"Please select gender");
+                            title:"Alert", message:"Please select Gender");
                       }
                       else{
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-
+                        print("=======select :${MyRepo.selectedGender.name} ====");
+                        Navigator.push(context, MaterialPageRoute(builder: (context) =>  AgePage()));
                       }
-
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),

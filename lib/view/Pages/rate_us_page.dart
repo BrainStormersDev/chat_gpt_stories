@@ -27,17 +27,17 @@ class RateUsPage extends StatelessWidget {
         title: storyByGptWidget(context),
         centerTitle: true,
         backgroundColor: AppColors.kScreenColor,
-        leading: IconButton(
-          onPressed: () {
-            // Navigator.pop(context);
-            // Get.close(1);
-            Get.off(()=>StoryViewPage(data: MyRepo.currentStory));
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: AppColors.txtColor1,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     // Navigator.pop(context);
+        //     // Get.close(1);
+        //     Get.off(()=>StoryViewPage(data: MyRepo.currentStory));
+        //   },
+        //   icon: const Icon(
+        //     Icons.arrow_back,
+        //     color: AppColors.txtColor1,
+        //   ),
+        // ),
       ),
       body: Obx(()=>
          Padding(
@@ -47,9 +47,6 @@ class RateUsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // const SizedBox(
-                //   height: 20,
-                // ),
                 const Text(
                   "Did you like your story",
                   style: TextStyle(
@@ -106,9 +103,6 @@ class RateUsPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                // SizedBox(
-                //   child: Image.asset("assets/PNG/rateus.png"),
-                // ),
                 SizedBox(
                   child: Image.asset("assets/PNG/people.png"),
                 ),
@@ -133,6 +127,7 @@ class RateUsPage extends StatelessWidget {
                     isLoading.value=true;
                     if (GetStorage().read("userName")==null || GetStorage().read("userName")=="") {
                       MyRepo.islogInHomeScreen=false;
+                      isLoading.value=false;
                       Get.to(() => LogInPage());
                     } else {
                       var body={

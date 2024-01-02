@@ -130,9 +130,15 @@ class CreateNewStory extends StatelessWidget {
             // Get.close(1);
             // Get.off(()=>StoryViewPage(data: MyRepo.currentStory));
           },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: AppColors.txtColor1,
+          icon: InkWell(
+            onTap: (){
+              tts.stop();
+              Get.back();
+            },
+            child: const Icon(
+              Icons.arrow_back,
+              color: AppColors.txtColor1,
+            ),
           ),
         ),
       ),
@@ -158,16 +164,25 @@ class CreateNewStory extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: controller.messages.isEmpty? const Center(child: Text("No Story Created Yet",    style: TextStyle(
+                    child: controller.allStoryData.isEmpty
+                        ?
+                    const Center(child: Text("No Story Created Yet",    style: TextStyle(
                         fontFamily: "BalooBhai",
-                        color: AppColors.kGrey),),) : ListView.builder(
+                        color: AppColors.kGrey),),)
+                        :
+                    ListView.builder(
                       reverse: true,
-                      itemCount: controller.messages.length,
+                      itemCount: controller.allStoryData.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
-                        final textData = controller.messages[index];
-                        return textData.index == -999999
-                            ? MyTextCard(textData: textData)
-                            : TextCard(textData: textData);
+                        final textData = controller.allStoryData[index];
+                        final title = controller.storyTitle[index];
+                        // logger.e(title);
+                        return
+                          textData.id==null
+                            ?
+                          MyTextCard(title: title)
+                            :
+                          TextCard(textData: textData);
                       },
                     ),
                   ),
@@ -179,9 +194,9 @@ class CreateNewStory extends StatelessWidget {
                       color: AppColors.kBtnColor.withOpacity(0.8),
                       textEditingController: controller.searchTextController,
                       onTap: () {
-                        logger.e("=======${controller.searchTextController.text}=======");
-                        controller.getTextCompletion(controller.searchTextController.text);
+                        controller.createStory(controller.searchTextController.text);
                         controller.searchTextController.clear();
+
                       }),
                   const SizedBox(height: 20),
 
@@ -205,7 +220,7 @@ class TextCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       InkWell(
-        onTap: (){    tts.speak(textData.text);},
+        onTap: (){    tts.speak(textData.story);},
         onDoubleTap: (){
           tts.stop();
         },
@@ -232,7 +247,7 @@ class TextCard extends StatelessWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        textData.text.toString(),
+                        textData.story??"No Story Found",
                         style: const TextStyle(fontSize: 18),
                       ),
                     ),
@@ -250,7 +265,7 @@ class TextCard extends StatelessWidget {
                     const SizedBox(width: 20),
                     InkWell(
                         onTap: () {
-                          Clipboard.setData(ClipboardData(text: textData.text));
+                          Clipboard.setData(ClipboardData(text: textData.story.toString()));
                         },
                         child: const Icon(Icons.copy, size: 28)),
                     const SizedBox(width: 20),
@@ -275,9 +290,9 @@ class TextCard extends StatelessWidget {
 }
 
 class MyTextCard extends StatelessWidget {
-  MyTextCard({Key? key, this.textData}) : super(key: key);
+  MyTextCard({Key? key, this.title}) : super(key: key);
 
-  var textData;
+  var title;
 
   @override
   Widget build(BuildContext context) {
@@ -300,7 +315,8 @@ class MyTextCard extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              textData.text.toString(),
+             // controller.searchTextController.text,
+              title ?? "No Title Found!",
               style: const TextStyle(fontSize: 18),
             ),
           ),
@@ -376,6 +392,11 @@ class SearchTextFieldWidget extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           InkWell(
+            // onTap:(){
+            //
+            //   controller.createStory();
+            //
+            // },
             onTap:onTap,
             child: Container(
               decoration: BoxDecoration(

@@ -294,6 +294,7 @@ class LogInPage extends StatelessWidget {
   }
 
   Future<void> _signInWithGoogle(context) async {
+    isLoading.value=true;
     var auth = FirebaseAuth.instance;
     try {
       final GoogleSignInAccount? googleSignOutAccount;
@@ -340,7 +341,7 @@ class LogInPage extends StatelessWidget {
         }
       });
       log("User signed in with Google: $user'");
-      print("User signed in with Google: ${user.email}'");
+      logger.i("User signed in with Google: ${user.email}'");
       // }
 
 

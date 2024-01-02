@@ -526,8 +526,13 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
           FloatingActionButton(
             backgroundColor: AppColors.kBtnColor,
             onPressed: (){
+            if(GetStorage().read("userName").toString().isEmpty)
+              { Get.to(()=>LogInPage());}
+            else
               Get.to(()=>CreateNewStory());
-            },child:const Icon(Icons.create,),),
+            },
+
+            child:const Icon(Icons.create,),),
         ],
       ),
     );

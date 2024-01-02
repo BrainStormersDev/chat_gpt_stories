@@ -34,10 +34,8 @@ class _SharePageState extends State<SharePage> {
   }
 
   getShare() async {
-
-
     shareStoryLink = await DynamicLinksProvider().createLink(
-        widget.catName.toString(), MyRepo.currentStory.storyTitle.toString());
+        MyRepo.storyCat.toString(), MyRepo.currentStory.storyTitle.toString());
     print("======shareStoryLink== $shareStoryLink");
   }
 

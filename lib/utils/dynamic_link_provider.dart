@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 // import 'package:share_plus/share_plus.dart';
 
 import '../controllers/chat_text_controller.dart';
+import 'MyRepo.dart';
 
 StoryCatController dynamicStoryCatController =Get.put(StoryCatController());
 class DynamicLinksProvider {
@@ -15,21 +16,54 @@ class DynamicLinksProvider {
 
 
   ///Create Link
-  Future<String> createLink (String catName, String name) async{
-    final String url = "https://brainstormers.gpt_stories?catName=$catName&name=$name";
+  Future<String> createLink (String catName, String name) async {
+    final String url = "https://gptstoriesforkids.page.link?catName=${catName ??
+        ''}&name=${name ?? ''}";
+
+    // final String url = "https://brainstormers.gpt_stories?catName=$catName&name=$name";
 
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      androidParameters: const AndroidParameters(packageName: 'com.brainstormers.gpt_chat_stories', minimumVersion: 0),
-        iosParameters: const IOSParameters(bundleId: 'com.brainstormers.gpt_chat_stories', minimumVersion: "0"),
-        link: Uri.parse(url), uriPrefix: "https://brainstormers.page.link");
-        // link: Uri.parse(url), uriPrefix: "https://gptstoriesforkids.page.link");
+        androidParameters: const AndroidParameters(
+            packageName: 'com.brainstormers.gpt_chat_stories',
+            minimumVersion: 0),
+        iosParameters: const IOSParameters(
+            bundleId: 'com.brainstormers.gpt_chat_stories',
+            minimumVersion: "0"),
+        link: Uri.parse(url),
+        uriPrefix: "https://gptstoriesforkids.page.link" // Remove the semicolon here
+    );
+
     final FirebaseDynamicLinks links = FirebaseDynamicLinks.instance;
     final refLink = await links.buildShortLink(parameters);
 
+    logger.i(refLink.shortUrl.toString());
     return refLink.shortUrl.toString();
   }
-  ///init Dynamic Link
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///init Dynamic Link
+
 
 
   void initDynamicLink () async{

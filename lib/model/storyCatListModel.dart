@@ -55,6 +55,7 @@ class DataList {
   String? story;
   String? storyNote;
   List<Images>? images;
+  dynamic category;
   int? viewCount;
   int? averageRating;
 
@@ -66,6 +67,7 @@ class DataList {
     story = json['story'];
     storyNote = json['story_note'];
     averageRating = json['average_rating'];
+    category = json['category']??'';
     if (json['images'] != null) {
       images = <Images>[];
       json['images'].forEach((v) {
@@ -73,6 +75,7 @@ class DataList {
       });
       viewCount = json['view_count'];
     }
+
   }
 
   Map<String, dynamic> toJson() {
@@ -82,6 +85,7 @@ class DataList {
     data['story'] = this.story;
     data['story_note'] = this.storyNote;
     data['average_rating'] = this.averageRating;
+    data['category'] = this.category;
     if (this.images != null) {
       data['images'] = this.images!.map((v) => v.toJson()).toList();
     }

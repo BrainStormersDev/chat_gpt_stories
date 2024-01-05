@@ -53,7 +53,7 @@ class StoryFinish extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: CustomButton(
                       onTap:() async {
-                        MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
+                        MyRepo.musicMuted.value == false ? MyRepo.assetsAudioPlayer.play():null;
                         Get.close(4);
                         },
                       height: MediaQuery.of(context).size.height*0.17,

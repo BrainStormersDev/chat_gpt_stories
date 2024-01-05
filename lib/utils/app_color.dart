@@ -23,6 +23,7 @@ class AppColors {
   static Color emoji3Color = Color(0xFFF3C700);
   static Color emoji4Color = Color(0xFF9AC765);
   static Color emoji5Color = Color(0xFF9AC765);
+  static Color dropDownColor = Color(0xFF7F8F9);
   // static  LinearGradient kScreenColor = const LinearGradient(begin: Alignment.topRight, end: Alignment.bottomLeft, colors: [Color(0xFFFEF0D6), Color(0xFFF5F5F5)]);
 
   // static ThemeData lightTheme = ThemeData(

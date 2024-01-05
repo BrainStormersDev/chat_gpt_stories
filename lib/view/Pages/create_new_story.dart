@@ -1,5 +1,4 @@
-import 'dart:ffi';
-
+import 'package:get_storage/get_storage.dart';
 import '../../controllers/CreateStoryController.dart';
 import '../../utils/my_indicator.dart';
 import 'package:flutter/material.dart';
@@ -116,6 +115,8 @@ class CreateNewStory extends StatelessWidget {
   CreateStoryController controller =Get.put(CreateStoryController());
   @override
   Widget build(BuildContext context) {
+    logger.i(GetStorage().read("bearerToken"));
+
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
       appBar: AppBar(
@@ -187,14 +188,24 @@ class CreateNewStory extends StatelessWidget {
                     ),
                   ),
                   controller.state.value == ApiState.loading
-                      ?  Center(child: myIndicator())
-                      : const SizedBox(),
-                       const SizedBox(height: 12),
+                      ?
+                  Center(child: myIndicator())
+                  :
+                  controller.state.value == ApiState.error
+                  ?
+                  Container(child: Text('Something went wrong.Try again', style: TextStyle(
+                      color: Colors.red
+                  ),),)
+                      :
+                  const SizedBox(height: 12),
+
+
+                  const SizedBox(height: 12),
                         SearchTextFieldWidget(
                       color: AppColors.kBtnColor.withOpacity(0.8),
                       textEditingController: controller.searchTextController,
                       onTap: () {
-                        controller.createStory(controller.searchTextController.text);
+                        controller.createStory();
                         controller.searchTextController.clear();
 
                       }),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
@@ -65,6 +66,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   }
   @override
   void initState() {
+
     _text=widget.data.story.toString();
     _words = _text.split(' ');
     _playTextWithDelay();
@@ -138,8 +140,18 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {
-                        // flutterTts.stop();
+                      onPressed: () async {
+                        try {
+                          MyRepo.musicMuted.value == false ?
+                          await MyRepo.assetsAudioPlayer.open(
+                              Playlist(audios: [
+                                Audio.network(
+                                    "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                              ]),
+                              loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+                        } catch (t) {
+                        //mp3 unreachable
+                        }
                         Navigator.pop(context);
                       },
                       icon: const Icon(

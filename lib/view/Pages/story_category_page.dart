@@ -18,6 +18,7 @@ import '../../controllers/story_cat_controller.dart';
 import '../../utils/app_color.dart';
 import '../../utils/my_indicator.dart';
 import 'login_page.dart';
+import 'new_story.dart';
 
 class StoryCategoryPage extends StatefulWidget {
   @override
@@ -529,7 +530,10 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
             if(GetStorage().read("userName").toString().isEmpty)
               { Get.to(()=>LogInPage());}
             else
-              Get.to(()=>CreateNewStory());
+              Get.to(()=>NewStoryCreate(
+                  catData:storyCatController.storyCategoryModels.value
+                  .data!));
+              // Get.to(()=>CreateNewStory());
             },
 
             child:const Icon(Icons.create,),),

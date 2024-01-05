@@ -137,6 +137,7 @@ class _SharePageState extends State<SharePage> {
                   padding: const EdgeInsets.all(16.0),
                   child: CustomButton(
                     onTap: () {
+                      MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
 
                       Get.close(6);
 

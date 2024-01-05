@@ -7,7 +7,9 @@ import 'package:http/http.dart' as http;
 import '../../../common/headers.dart';
 import '../../../model/text_completion_model.dart';
 import '../model/new_story_create_model.dart';
+import '../model/storyCatListModel.dart';
 import '../utils/MyRepo.dart';
+import '../view/Pages/story_view_page.dart';
 
 class CreateStoryController extends GetxController {
   //TODO: Implement ChatTextController
@@ -109,12 +111,16 @@ class CreateStoryController extends GetxController {
   ///
 
 
+  String? selectedCategory;
+  String? selectedCategoryId;
 
   List<StoryData> allStoryData = [];
   List<String?> storyTitle = [];
   CreateStory storyCreateResponse = CreateStory();
+  List<DataList>? storyCreateDataResponse = [];
   String? story= '';
-  createStory(String title) async {
+  Future<void> createStory() async {
+
     storyTitle.add(searchTextController.text);
     addMyStory();
 
@@ -127,8 +133,8 @@ class CreateStoryController extends GetxController {
      'Authorization': 'Bearer ${GetStorage().read("bearerToken")}' };
    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/user/story/create'));
    request.fields.addAll({
-     'cat_id': '14',
-     'story_title': title
+     'cat_id': selectedCategoryId!,
+     'story_title': searchTextController.text
    });
 
    request.headers.addAll(headers);
@@ -140,18 +146,24 @@ class CreateStoryController extends GetxController {
      storyCreateResponse= createStoryFromJson(body);
      if(storyCreateResponse.data!=null)
      {
-       addStoryMessages(
-           storyCreateResponse.data
-       );
-       logger.i(body);
        state.value = ApiState.success;
+
+       // addStoryMessages(
+       //     storyCreateResponse.data
+       // );
+       // logger.i(body);
+       storyCreateDataResponse=StoryCatListModel.fromJson(json.decode(body)).data;
+       Get.to(StoryViewPage(data: storyCreateDataResponse![0],));
      }
      else
      {state.value = ApiState.error;}
    }
    else {
      state.value = ApiState.error;
-     logger.e(response.reasonPhrase);
+     // logger.e(response.reasonPhrase);
+     var body=await response.stream.bytesToString();
+
+     logger.e(jsonDecode(body)['message']);
    }}
     catch (e) {
       logger.e("Error $e");

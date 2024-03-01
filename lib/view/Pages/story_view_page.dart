@@ -145,14 +145,15 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                           MyRepo.musicMuted.value == false ?
                           await MyRepo.assetsAudioPlayer.open(
                               Playlist(audios: [
-                                Audio.network(
-                                    "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                                Audio.network("${audioLink}"),
                               ]),
                               loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
                         } catch (t) {
                         //mp3 unreachable
                         }
-                        Navigator.pop(context);
+                          // Get.back();
+                       Navigator.pop(context);
+
                       },
                       icon: const Icon(
                         Icons.arrow_back,
@@ -350,46 +351,46 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(
-                onPressed: controllerText.storyCategoryListModels.value.data!
-                    .indexWhere((element) =>
-                element.storyTitle == widget.data.storyTitle) ==
-                    0
-                    ? null
-                    : () {
-                  int newIndex = controllerText
-                      .storyCategoryListModels.value.data!
-                      .indexWhere((element) =>
-                  element.storyTitle == widget.data.storyTitle);
-                  logger.e(newIndex);
-                  if (newIndex <
-                      controllerText
-                          .storyCategoryListModels.value.data!.length) {
-                    widget.data = controllerText.storyCategoryListModels
-                        .value.data![newIndex - 1];
-                    MyRepo.currentStory = controllerText
-                        .storyCategoryListModels
-                        .value
-                        .data![newIndex - 1];
-                    _text=widget.data.story.toString();
-                    _currentWordIndex = 0;
-                    _words = [];
-                    _words = _text.split(' ');
-                    isPaused=false;
-                    displayText = _words.take(_currentWordIndex).join(' ');
-                    _playTextWithDelay();
-                    tt.stop();
-                    // listTxt.clear();
-                    _ttsInit();
-                    setState(() {  logger.i(_text);});
-                  }
-
-                },
-                icon: const Icon(
-                  Icons.skip_previous_rounded,
-                  color: AppColors.kBtnColor,
-                  size: 30,
-                )),
+            // IconButton(
+            //     onPressed: controllerText.storyCategoryListModels.value.data!
+            //         .indexWhere((element) =>
+            //     element.storyTitle == widget.data.storyTitle) ==
+            //         0
+            //         ? null
+            //         : () {
+            //       int newIndex = controllerText
+            //           .storyCategoryListModels.value.data!
+            //           .indexWhere((element) =>
+            //       element.storyTitle == widget.data.storyTitle);
+            //       logger.e(newIndex);
+            //       if (newIndex <
+            //           controllerText
+            //               .storyCategoryListModels.value.data!.length) {
+            //         widget.data = controllerText.storyCategoryListModels
+            //             .value.data![newIndex - 1];
+            //         MyRepo.currentStory = controllerText
+            //             .storyCategoryListModels
+            //             .value
+            //             .data![newIndex - 1];
+            //         _text=widget.data.story.toString();
+            //         _currentWordIndex = 0;
+            //         _words = [];
+            //         _words = _text.split(' ');
+            //         isPaused=false;
+            //         displayText = _words.take(_currentWordIndex).join(' ');
+            //         _playTextWithDelay();
+            //         tt.stop();
+            //         // listTxt.clear();
+            //         _ttsInit();
+            //         setState(() {  logger.i(_text);});
+            //       }
+            //
+            //     },
+            //     icon: const Icon(
+            //       Icons.skip_previous_rounded,
+            //       color: AppColors.kBtnColor,
+            //       size: 30,
+            //     )),
             FloatingActionButton.small(
               backgroundColor: AppColors.kBtnColor,
               onPressed: () {
@@ -410,58 +411,58 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                   ? const Icon(Icons.play_arrow)
                   : const Icon(Icons.pause),
             ),
-            IconButton(
-                onPressed: (controllerText.storyCategoryListModels.value.data!
-                    .lastIndexWhere((element) =>
-                element.storyTitle ==
-                    widget.data.storyTitle) ==
-                    controllerText
-                        .storyCategoryListModels.value.data!.length) ==
-                    true
-                    ? null
-                    : () {
-                  int newIndex = controllerText
-                      .storyCategoryListModels.value.data!
-                      .indexWhere((element) =>
-                  element.storyTitle == widget.data.storyTitle);
-                  setState(() {
-                    if (newIndex ==
-                        controllerText
-                            .storyCategoryListModels.value.data!.length) {
-                      widget.data = controllerText
-                          .storyCategoryListModels.value.data![newIndex];
-                      MyRepo.currentStory = controllerText
-                          .storyCategoryListModels.value.data![newIndex];
-                      tt.stop();
-                      // listTxt.clear();
-                      _ttsInit();
-                    } else {
-                      widget.data = controllerText.storyCategoryListModels
-                          .value.data![newIndex + 1];
-                      MyRepo.currentStory = controllerText
-                          .storyCategoryListModels
-                          .value
-                          .data![newIndex + 1];
-                      _text=widget.data.story.toString();
-                      _currentWordIndex = 0;
-                      _words = [];
-                      _words = _text.split(' ');
-                      isPaused=false;
-                      displayText = _words.take(_currentWordIndex).join(' ');
-                      _playTextWithDelay();
-                      tt.stop();
-                      // listTxt.clear();
-                      _ttsInit();
-                    }
-                  });
-                },
-
-                // widget.nextStory,
-                icon: const Icon(
-                  Icons.skip_next_rounded,
-                  color: AppColors.kBtnColor,
-                  size: 30,
-                )),
+            // IconButton(
+            //     onPressed: (controllerText.storyCategoryListModels.value.data!
+            //         .lastIndexWhere((element) =>
+            //     element.storyTitle ==
+            //         widget.data.storyTitle) ==
+            //         controllerText
+            //             .storyCategoryListModels.value.data!.length) ==
+            //         true
+            //         ? null
+            //         : () {
+            //       int newIndex = controllerText
+            //           .storyCategoryListModels.value.data!
+            //           .indexWhere((element) =>
+            //       element.storyTitle == widget.data.storyTitle);
+            //       setState(() {
+            //         if (newIndex ==
+            //             controllerText
+            //                 .storyCategoryListModels.value.data!.length) {
+            //           widget.data = controllerText
+            //               .storyCategoryListModels.value.data![newIndex];
+            //           MyRepo.currentStory = controllerText
+            //               .storyCategoryListModels.value.data![newIndex];
+            //           tt.stop();
+            //           // listTxt.clear();
+            //           _ttsInit();
+            //         } else {
+            //           widget.data = controllerText.storyCategoryListModels
+            //               .value.data![newIndex + 1];
+            //           MyRepo.currentStory = controllerText
+            //               .storyCategoryListModels
+            //               .value
+            //               .data![newIndex + 1];
+            //           _text=widget.data.story.toString();
+            //           _currentWordIndex = 0;
+            //           _words = [];
+            //           _words = _text.split(' ');
+            //           isPaused=false;
+            //           displayText = _words.take(_currentWordIndex).join(' ');
+            //           _playTextWithDelay();
+            //           tt.stop();
+            //           // listTxt.clear();
+            //           _ttsInit();
+            //         }
+            //       });
+            //     },
+            //
+            //     // widget.nextStory,
+            //     icon: const Icon(
+            //       Icons.skip_next_rounded,
+            //       color: AppColors.kBtnColor,
+            //       size: 30,
+            //     )),
           ],
         ),
       ),
@@ -484,7 +485,11 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
     tt.setCompletionHandler(() {
       // Do something when speech is complete
       // Get.to(() => RateUsPage());
-      Get.to(() => StoryFinish());
+      Navigator.of(Get.context!).push(
+          MaterialPageRoute(
+              builder: (context) =>
+                  StoryFinish()));
+      // Get.to(() => StoryFinish());
       WakelockPlus.disable();
       print('Speech completed');
     });

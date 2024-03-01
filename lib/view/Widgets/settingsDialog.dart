@@ -180,7 +180,7 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                                   : await MyRepo.assetsAudioPlayer.open(
                                   Playlist(audios: [
                                     Audio.network(
-                                        "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                                        "${audioLink}"),
                                   ]),
                                   loopMode: LoopMode.playlist
                               );

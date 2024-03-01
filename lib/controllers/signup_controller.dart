@@ -11,18 +11,16 @@ class SignUpController extends GetxController {
   RxBool isLoading = true.obs;
   signUpUser(name, email, password) async {
     var body = {
-      "email": "$email",
-      "name": "$email",
-      "password": password
+      "email": "${email.toString()}",
+      "name": "${name.toString()}",
+      "password": "${password.toString()}"
     };
-    // isLoading.isTrue
-    //     ? Get.defaultDialog(
-    //         backgroundColor: Colors.transparent,
-    //         content: const CircularProgressIndicator(
-    //           color: AppColors.kBtnColor,
-    //         ))
-    //     : null;
-    ApisCall.apiCall("${kBaseUrl}register", "post", body).then((value) {
+
+    ApisCall.multiPartApiCall("${kBaseUrl}api/v1/register", "post", body,header: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+
+    }).then((value) {
       if (value["isData"] == true) {
         isLoading.value = false;
         Get.offAll(() => StoryCategoryPage());
@@ -31,4 +29,5 @@ class SignUpController extends GetxController {
       }
     });
   }
+
 }

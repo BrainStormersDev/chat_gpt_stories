@@ -102,9 +102,6 @@ class ForgotPasswordPage extends StatelessWidget {
                                 }).then((value) {
                                   isLoading.value=true;
                                   if (value["isData"] == true) {
-                                    // MySnackBar.snackBarYellow(
-                                    //     title: "Successfully",
-                                    //     message: value["message"]);
                                     Get.to(() => CreatePasswordPage());
                                     isLoading.value=false;
                                   }

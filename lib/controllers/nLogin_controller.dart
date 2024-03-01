@@ -14,13 +14,6 @@ class LoginController extends GetxController{
     "password":password
     };
     print("====== ${isLoading.value}");
-    // isLoading.value==true?
-    //     CircularProgressIndicator():
-    // // Get.defaultDialog(
-    // //     backgroundColor: Colors.transparent,
-    // //     title: "",
-    // //     content:const CircularProgressIndicator(color: AppColors.kBtnColor,)):
-    // SizedBox();
     ApisCall.apiCall("${kBaseUrl}login","post",body).then((value) {
       if(value["isData"]==true){
         isLoading.value=false;

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../controllers/musicController.dart';
 import '../../utils/dynamic_link_provider.dart';
 import '../../view/Pages/story_category_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -197,19 +198,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             await MyRepo.assetsAudioPlayer.open(
                                 Playlist(audios: [
                                   Audio.network(
-                                      "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                                      "${audioLink}"),
                                 ]),
                                 loopMode: LoopMode.playlist) :
                             await MyRepo.assetsAudioPlayer.stop();
-                            // Fluttertoast.showToast(
-                            //     msg: "Trying ${MyRepo.musicMuted.value}",
-                            //     toastLength: Toast.LENGTH_SHORT,
-                            //     gravity: ToastGravity.BOTTOM,
-                            //     timeInSecForIosWeb: 1,
-                            //     backgroundColor: Colors.red,
-                            //     textColor: Colors.white,
-                            //     fontSize: 16.0
-                            // );
                           } catch (t) {
                             Fluttertoast.showToast(
                                 msg: "Music can't Play ${MyRepo.musicMuted.value}",
@@ -222,6 +214,10 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             );
                             //mp3 unreachable
                           }
+
+                          // BackgroundMusicManager().playMusic('https://gptstory.thebrainstormers.org/public/s_1.mp3');
+                          // BackgroundMusicManager().playMusic();
+
                       }
                         else{
                           MySnackBar.snackBarRed(

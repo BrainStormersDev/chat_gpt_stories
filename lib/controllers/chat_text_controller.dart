@@ -43,7 +43,7 @@ class ChatTextController extends GetxController {
     state.value = ApiState.loading;
     try {
       final response = await http.post(
-        Uri.parse("${kBaseUrl}get-stories"),
+        Uri.parse("${kBaseUrl}api/v1/get-stories"),
         body: {
           "search": query,
           "cat_id": catId,

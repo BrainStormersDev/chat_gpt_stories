@@ -37,21 +37,18 @@ class StoryCatController extends GetxController {
 
   var state = ApiState.notFound.obs;
 
-  getCat() async {
+   Future<void>getCat() async {
     state.value = ApiState.loading;
-    // images.clear();
 
     try {
-
+     logger.e("${kBaseUrl}api/v1/get-category");
       final response = await http.get(
-        Uri.parse("${kBaseUrl}get-category"),
-        // body: encodedParams,
-        // headers: headerBearerOption(MyRepo.kApiToken.value),
+        Uri.parse("${kBaseUrl}api/v1/get-category"),
       );
       storyCategoryModels.value = StoryCategoryModels.fromJson(json.decode(response.body));
 
       if (storyCategoryModels.value.status!) {
-        print("=====storyCategoryModels: ${storyCategoryModels.value.data!.length},${storyCategoryModels.value.message}=========");
+        print("storyCategoryModels: ${storyCategoryModels.value.data!.length},${storyCategoryModels.value.message}=========");
 
 
         if(storyCategoryModels.value.data!.isEmpty) {
@@ -68,8 +65,8 @@ class StoryCatController extends GetxController {
     } catch (e) {
       state.value = ApiState.error;
       errorMsg.value = "Error :$e";
-      print("=====Errorrrrrrrrrrrrrrr$e====");
-      // print("Errorrrrrrrrrrrrrrr  ");
+      print("=====Error story category $e====");
+
     } finally {
      // searchTextController.clear();
       update();

@@ -131,9 +131,8 @@ class LogInPage extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height*0.02,
                       ),
-                      isLoading.value == false
-                          ? CustomButton(
-                              text: "LogIn",
+                     CustomButton(
+                              text: "Sign In",
                               height: MediaQuery.of(context).size.height * 0.08,
                               textSize: 18.0,
                               color: AppColors.kBtnColor,
@@ -144,8 +143,16 @@ class LogInPage extends StatelessWidget {
                                     "email": emailController.text.trim(),
                                     "password": passwordController.text.trim()
                                   };
-                                  ApisCall.apiCall(
-                                          "${kBaseUrl}login", "post", body)
+                                  print("${emailController.text.trim()} password ${passwordController.text.trim()}");
+                                  ApisCall.multiPartApiCall("${kBaseUrl}api/v1/login", "post", {
+                                    "email": emailController.text.trim(),
+                                    "password": passwordController.text.trim()
+                                  },
+                                  header: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                  }
+                                  )
                                       .then((value) {
                                     if (value["isData"] == true) {
 
@@ -182,8 +189,8 @@ class LogInPage extends StatelessWidget {
                                       message: "Email and Password Required");
                                 }
                               },
-                            )
-                          : myIndicator(),
+                            ),
+
                       SizedBox(
                         height: MediaQuery.of(context).size.height*0.02,
                       ),
@@ -311,53 +318,35 @@ class LogInPage extends StatelessWidget {
         "auth_type":"google",
       };
 
-      ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value){
+      ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value){
         if(value["isData"]==true){
           GetStorage().write(
               "userName",
               jsonDecode(value["response"])["data"]
               ["email"]);
-          ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value) {
-            if (value["isData"] == true) {
-              GetStorage().write(
-                  "userName",
-                  jsonDecode(value["response"])["data"]
-                  ["email"]);
-            GetStorage().write(
-            "userId",
-            jsonDecode(value["response"])["data"]
-            ["id"]);
-              print("================ <login token > ${jsonDecode(value["response"])["access_token"]}");
-              GetStorage().write(
-                  "bearerToken",
-                  jsonDecode(value["response"])[
-                  "access_token"]);
-              Get.close(2);
-              MyRepo.islogIn = true;
-              Get.to(StoryCategoryPage());
-            }
-            MyRepo.islogIn = true;
-          });
+          GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
+          GetStorage().write(
+              "bearerToken",
+              jsonDecode(value["response"])[
+              "access_token"]);
+          MyRepo.islogIn = true;
+          Get.to(StoryCategoryPage());
+          // ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value) {
+          //   if (value["isData"] == true) {
+          //     GetStorage().write(
+          //         "userName",
+          //         jsonDecode(value["response"])["data"]
+          //         ["email"]);
+          //   GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
+          //     print("================ <login token > ${jsonDecode(value["response"])["access_token"]}");
+          //
+          //   }
+          //   MyRepo.islogIn = true;
+          // });
         }
       });
-      log("User signed in with Google: $user'");
-      logger.i("User signed in with Google: ${user.email}'");
-      // }
-
-
-
-      // documents.removeWhere((element) => element==user!.email.toString());
-
-      // final signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(user!.email.toString());
-
-      // if (signInMethods.isNotEmpty) {
-      //   // User already exists.
-      //   return true;
-      // } else {
-      //   // User does not exist.
-      //   return false;
-      // }
-
+      // log("User signed in with Google: $user'");
+      // logger.i("User signed in with Google: ${user.email}'");
 
     }
     catch (e){

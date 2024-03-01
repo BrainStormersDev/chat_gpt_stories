@@ -16,8 +16,7 @@ class CreateStoryController extends GetxController {
 
   @override
   void onInit() {
-
-    print("=======ffff==========");
+    print("Create Story Controller");
     super.onInit();
   }
 
@@ -31,7 +30,6 @@ class CreateStoryController extends GetxController {
     super.onClose();
   }
 
-  // List<Message> messages = [];
   List<Choice> messageChoice = [];
 
   var state = ApiState.notFound.obs;
@@ -41,35 +39,7 @@ class CreateStoryController extends GetxController {
 
     state.value = ApiState.loading;
     try {
-    //   Map<String, dynamic> rowParams = {
-    //     "model": "gpt-3.5-turbo",
-    //   "messages": [
-    // {
-    // "role": "user",
-    // "content": query
-    // }
-    // ],
-    //     // 'max_tokens': 1000,
-    //     // 'max_tokens': 200,
-    //     // 'temperature': 0.5,
-    //     // 'top_p': 1.0,
-    //     // 'n': 1,
-    //     // 'stop': '\n',
-    //
-    //   };
 
-      // final encodedParams = json.encode(rowParams);
-      // print("======== encodedParams :$encodedParams");
-      // http.Request('POST', Uri.parse('https://api.openai.com/v1/chat/completions'));
-      // request.body = json.encode({
-      //   "model": "gpt-3.5-turbo",
-      //   "messages": [
-      //     {
-      //       "role": "user",
-      //       "content": "Thirsty crow story"
-      //     }
-      //   ]
-      // });
       final response = await http.post(
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         body: json.encode({
@@ -85,8 +55,6 @@ class CreateStoryController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        // logger.i("Response  body  ${response.body}");
-        // logger.f("Response  body  ${(json.decode(response.body)["choices"])}");
         var textCompilation= textCompletionModelFromJson(response.body);
         if(textCompilation.choices!=null)
           {
@@ -120,47 +88,42 @@ class CreateStoryController extends GetxController {
   List<DataList>? storyCreateDataResponse = [];
   String? story= '';
   Future<void> createStory() async {
-
+    print("base url is ${kBaseUrl}");
     storyTitle.add(searchTextController.text);
     addMyStory();
-
     state.value = ApiState.loading;
-    // print("========= MyRepo.bearerToken :${GetStorage().read("bearerToken")}");
-
     try {var headers = {
      'Accept': 'application/json',
      'Content-Type': 'application/json',
      'Authorization': 'Bearer ${GetStorage().read("bearerToken")}' };
-   var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/user/story/create'));
+   var request = http.MultipartRequest('POST',
+       Uri.parse( "${kBaseUrl}api/v1/user/story/create"));
    request.fields.addAll({
      'cat_id': selectedCategoryId!,
      'story_title': searchTextController.text
    });
-
    request.headers.addAll(headers);
-
    http.StreamedResponse response = await request.send();
-
    if (response.statusCode == 200) {
      var body=await response.stream.bytesToString();
      storyCreateResponse= createStoryFromJson(body);
      if(storyCreateResponse.data!=null)
      {
        state.value = ApiState.success;
-
-       // addStoryMessages(
-       //     storyCreateResponse.data
-       // );
-       // logger.i(body);
        storyCreateDataResponse=StoryCatListModel.fromJson(json.decode(body)).data;
-       Get.to(StoryViewPage(data: storyCreateDataResponse![0],));
+print(state.value);
+       Navigator.of(Get.context!).push(
+           MaterialPageRoute(
+               builder: (context) =>
+                StoryViewPage(data: storyCreateDataResponse![0],)));
+       // Get.to(() => StoryViewPage(data: storyCreateDataResponse![0],));
+       // Get.to(StoryViewPage(data: storyCreateDataResponse![0],));
      }
      else
      {state.value = ApiState.error;}
    }
    else {
      state.value = ApiState.error;
-     // logger.e(response.reasonPhrase);
      var body=await response.stream.bytesToString();
 
      logger.e(jsonDecode(body)['message']);

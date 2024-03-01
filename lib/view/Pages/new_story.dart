@@ -26,7 +26,7 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
 
   @override
   Widget build(BuildContext context) {
-    // logger.i(GetStorage().read("bearerToken"));
+    logger.i(controller.state.value);
 
     return Scaffold(
       backgroundColor: AppColors.kScreenColor,
@@ -49,7 +49,7 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                 await MyRepo.assetsAudioPlayer.open(
                     Playlist(audios: [
                       Audio.network(
-                          "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                          "${audioLink}"),
                     ]),
                     loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
               } catch (t) {
@@ -69,7 +69,8 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
         child:
         controller.state.value == ApiState.loading
         ?
-            Center(child: myIndicator(),):
+            Center(child: myIndicator(),)
+            :
 
         Stack(
           children: [
@@ -110,6 +111,10 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                // controller.state.value ==ApiState.notFound
+                // ?
+                //     Container(child: Text('No Categories Available'),)
+                // :
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -182,6 +187,10 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                       setState(() {
 
                       });
+                      await controller.createStory();
+                      setState(() {
+
+                      });
                       try {
 
                         await MyRepo.assetsAudioPlayer.pause();
@@ -189,7 +198,6 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                       catch (t) {
                         //mp3 unreachable
                       }
-                      await controller.createStory();
                       // controller.searchTextController.clear();
                       // controller.selectedCategoryId = null;
                     } else {

@@ -42,7 +42,7 @@ class TokenController extends GetxController {
 
     try {
       final response = await http.get(
-        Uri.parse("${kBaseUrl}getOpenAiKey"),
+        Uri.parse("${kBaseUrl}api/v1/getOpenAiKey"),
       );
 
       if(MyRepo.count.value ==5){
@@ -66,15 +66,15 @@ class TokenController extends GetxController {
         print("=========after token: ${MyRepo.kApiToken.value}======");
 
 
-        print("succccccccccccccccccccccccc ");
+        print("success ");
         state.value = ApiState.success;
       } else {
-        print("Errorrrrrrrrrrrrrrr  ${response.body} token controller");
+        print("Error in token controller  ${response.body} ");
         // throw ServerException(message: "Image Generation Server Exception");
         state.value = ApiState.error;
       }
     } catch (e) {
-      print("Errorrrrrrrrrrrrrrr  ");
+      print("Error in catch area $e ");
     } finally {
      // searchTextController.clear();
       update();

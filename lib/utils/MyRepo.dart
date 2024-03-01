@@ -45,8 +45,7 @@ class MyRepo {
   static RxBool musicMuted = false.obs;
   // static AgeSelect selectAge=AgeSelect.notSelect;
 
-  static RxString kApiToken =
-      "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".obs;
+  static RxString kApiToken = "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".obs;
 
   static DataList currentStory = DataList();
   static String storyCat="";
@@ -64,15 +63,16 @@ const String kTokenStorage = "token";
  String userEmail = "";
 bool isSignedInUser=false;
 
-const String kBaseUrl = "http://story-telling.eduverse.uk/api/v1/";
+const String kBaseUrl = "https://gptstory.thebrainstormers.org/";
+const String v1 = "https://gptstory.thebrainstormers.org/api/v1/";
+const String audioLink = "${kBaseUrl}/public/s_1.mp3";
 const String kLogoAsset = "assets/PNG/loin.png";
 const String kOneToThreeLogo = "assets/PNG/age1-3.png";
 const String kThreeToFiveLogo = "assets/PNG/age3-5.png";
 const String kFiveToTenLogo = "assets/PNG/age5-10.png";
 const String kTenPlusLogo = "assets/PNG/age10.png";
 const String kWelcomeSound = "assets/audio/welcome_sound.mp3";
-const String kDemoImage =
-    "https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/playlists/playlist_62/how_to_tell_a_story_update.jpg?u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=82&w=600c=1050%2C550&w=1050";
+const String kDemoImage = "https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/playlists/playlist_62/how_to_tell_a_story_update.jpg?u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=82&w=600c=1050%2C550&w=1050";
 
 enum Gender { notSelect, Boy, Girl }
 
@@ -86,23 +86,14 @@ enum AgeSelect {
 Future<void> handleSignIn() async {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   try {
-    // final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    // final GoogleSignInAuthentication googleSignInAuthentication = await googleUser!.authentication;
-    //
-    // _googleSignIn.currentUser!.authentication;
-    // _googleSignIn.isSignedIn();
-
    bool isSignedIn=  await  _googleSignIn.isSignedIn();
    if(isSignedIn){
      isSignedInUser=true;
-     print("===== fetch data against email ====");
    }
    else{
      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
      userEmail=  googleUser!.email.toString();
    }
-    print("========== google email  ${await  _googleSignIn.isSignedIn()}=== ");
-    // final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
     // TODO: Handle signed in user
   } catch (error) {
     print(error);
@@ -126,7 +117,7 @@ Future<void> signInWithGoogle(context) async {
     "email":"${user.email}",
     "auth_type":"google",
   };
-  ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value){
+  ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value){
     if(value["isData"]==true){
       GetStorage().write(
           "userName",

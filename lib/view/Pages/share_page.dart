@@ -109,45 +109,49 @@ class _SharePageState extends State<SharePage> {
             //                 style: TextStyle(
             //                     color: AppColors.kBtnTxtColor,
             //                     fontWeight: FontWeight.bold,
-            //                     fontSize: 18))))),
+            //                                                                                                fontSiz e: 18))))),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CustomButton(
-                    onTap: () {
-                      String message =
-                          "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
-                      getShare();
-                      Share.share(
-                          "GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: CustomButton(
+                      onTap: () {
+                        String message =
+                            "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
+                        getShare();
+                        Share.share(
+                            "GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
 
-                    },
-                    color: AppColors.kBtnColor,
-                    // height: MediaQuery.of(context).size.height*0.17,
-                    width: MediaQuery.of(context).size.height * 0.2,
-                    text: "Share",
-                    textSize: 20.0,
-                    txtcolor: AppColors.kBtnTxtColor,
+                      },
+                      color: AppColors.kBtnColor,
+                      // height: MediaQuery.of(context).size.height*0.17,
+                      width: MediaQuery.of(context).size.height * 0.2,
+                      text: "Share",
+                      textSize: 20.0,
+                      txtcolor: AppColors.kBtnTxtColor,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CustomButton(
-                    onTap: () {
-                      MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: CustomButton(
+                      onTap: () {
+                        MyRepo.musicMuted.value == false? MyRepo.assetsAudioPlayer.play():null;
 
-                      Get.close(6);
+                        Get.close(5);
 
-                    },
-                    color: AppColors.emoji2Color,
-                    // height: MediaQuery.of(context).size.height*0.17,
-                    width: MediaQuery.of(context).size.height * 0.2,
-                    text: "No Thanks",
-                    textSize: 20.0,
-                    txtcolor: AppColors.kBtnTxtColor,
+                      },
+                      color: AppColors.emoji2Color,
+                      // height: MediaQuery.of(context).size.height*0.17,
+                      width: MediaQuery.of(context).size.height * 0.2,
+                      text: "No Thanks",
+                      textSize: 20.0,
+                      txtcolor: AppColors.kBtnTxtColor,
+                    ),
                   ),
                 ),
               ],

@@ -1,3 +1,5 @@
+import 'package:gpt_chat_stories/utils/mySnackBar.dart';
+
 import '../../utils/MyRepo.dart';
 import '../../utils/apiCall.dart';
 import '../../utils/my_indicator.dart';
@@ -12,6 +14,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
 import '../Widgets/customButton.dart';
+import 'package:http/http.dart' as http;
 
 class RateUsPage extends StatelessWidget {
    RateUsPage({Key? key}) : super(key: key);
@@ -122,30 +125,58 @@ class RateUsPage extends StatelessWidget {
                 isLoading.value==true?myIndicator():  Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: CustomButton(
-                    onTap: () {
+                    onTap: () async {
                       MyRepo.rating = (colorNum.value+1).toString();
                     isLoading.value=true;
                     if (GetStorage().read("userName")==null || GetStorage().read("userName")=="") {
                       MyRepo.islogInHomeScreen=false;
                       isLoading.value=false;
                       Get.to(() => LogInPage());
-                    } else {
-                      var body={
-                        "story_id":"${MyRepo.currentStory.id}",
-                        "rating": "${colorNum.value+1}"
-                      };
-                      ApisCall.apiCall("${kBaseUrl}story/rate", "post", body).then((value) {
-                        if(value["isData"]){
-                          // Get.close(5);
-                          Get.to(SharePage(catName: MyRepo.storyCat.toString(),));
-                          isLoading.value=false;
-                        }
-                        else if(value["isData"]==false){
-                        isLoading.value=false;
-                         }
-                      });
+                    } else
+{
+  var token = GetStorage().read("bearerToken");
 
-                    }
+ try{
+   ApisCall.multiPartApiCall("https://gptstory.thebrainstormers.org/api/v1/story/rate", "post", {
+     "story_id":"${MyRepo.currentStory.id}",
+     "rating": "${colorNum.value+1}"
+
+   },
+   header:  {
+     'Accept': 'application/json',
+     'Content-Type': 'application/json',
+     'Authorization': 'Bearer $token'
+   }
+   ).then((value) {
+     if(value['isData'])
+     {
+isLoading.value=false;
+Get.to(SharePage());
+
+print('story rated');
+
+
+     }
+     else
+     {
+
+       print('error in rate story');
+
+     }
+
+
+   });
+
+ }
+ catch(e){
+   MySnackBar.snackBarRed(title: 'Error', message: 'Some thing went wrong!');
+
+   print('error in rate story $e');
+
+
+ }
+
+}
                     },
                     color: AppColors.kBtnColor,
                     // height: MediaQuery.of(context).size.height*0.17,

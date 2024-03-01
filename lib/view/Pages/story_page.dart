@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
-import '../../main2.dart';
 import '../../utils/MyRepo.dart';
 import '../../view/Widgets/settingsDialog.dart';
 import 'package:flutter/services.dart';
@@ -57,7 +56,7 @@ class _StoryPageState extends State<StoryPage> {
     setState(() {
       // version = packageInfo.version; //+'\n'+Platform.operatingSystemVersion;
     });
-    url = Uri.parse("http://story-telling.eduverse.uk/api/v1/version");
+    url = Uri.parse("${kBaseUrl}/api/v1/version");
 
     final response = await http.get(url);
     var data = jsonDecode(response.body);
@@ -214,7 +213,7 @@ class _StoryPageState extends State<StoryPage> {
                 await MyRepo.assetsAudioPlayer.open(
                     Playlist(audios: [
                       Audio.network(
-                          "http://story-telling.eduverse.uk/public/s_1.mp3"),
+                          "${audioLink}"),
                     ]),
                     loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
               } catch (t) {
@@ -514,7 +513,7 @@ class _StoryPageState extends State<StoryPage> {
 
   countViewApi(var storyID) async {
     var request = http.MultipartRequest('POST',
-        Uri.parse('http://story-telling.eduverse.uk/api/v1/count-story-view'));
+        Uri.parse('${kBaseUrl}/api/v1/count-story-view'));
     request.fields.addAll({'story_id': storyID});
 
     http.StreamedResponse response = await request.send();
@@ -534,7 +533,7 @@ class _StoryPageState extends State<StoryPage> {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
-    var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/get-story'));
+    var request = http.MultipartRequest('POST', Uri.parse('${kBaseUrl}/api/v1/get-story'));
     request.fields.addAll({
       // 'story_id': '33',
       // 'user_id': '102'

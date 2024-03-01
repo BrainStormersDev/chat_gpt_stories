@@ -72,7 +72,7 @@ class SignInPage extends StatelessWidget {
       //   ) ,
       // ),
       body: SafeArea(
-        child: Obx(()=>
+        child:
            Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
@@ -177,8 +177,9 @@ class SignInPage extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height*0.02,
                     ),
+
                      CustomButton(
-                      text: "SignIn",
+                      text: "Sign Up",
                       height: MediaQuery.of(context).size.height * 0.08,
                       textSize: 18.0,
                       color: AppColors.kBtnColor,
@@ -201,39 +202,24 @@ class SignInPage extends StatelessWidget {
                           MySnackBar.snackBarRed(title: "Alert", message: "all Fields are required");
                         }
                       }
-                    ),
+                    )
+                       ,
                     SizedBox(
                       height: MediaQuery.of(context).size.height*0.02,
                     ),
-                    isSkipLoading.value==false?     CustomButton(
+
+                    CustomButton(
                         text: "Skip for now",
                         textSize: 18.0,
                         height: MediaQuery.of(context).size.height * 0.08,
                         txtcolor: AppColors.kBtnTxtColor,
                         bordercolor: AppColors.kBtnTxtColor,
                         onTap: (){
-                          isSkipLoading.value=true;
-                          print("+======= aa ${MyRepo.rating}");
-                          var body={
-                            "story_id":"${MyRepo.currentStory.id}",
-                            "rating": MyRepo.rating.toString()
-                          };
-                          ApisCall.apiCall("${kBaseUrl}story/rate", "post", body).then((value) {
-                            if(value["isData"]){
-                              isSkipLoading.value=true;
-                              Get.close(4);
-                              Get.to(StoryCatList(catName: MyRepo.storyCat.toString(),));
-                              isSkipLoading.value=false;
-                            }
-                            else if(value["isData"]==false){
-                              isSkipLoading.value=false;
-                            }
-                          });
-                          print("====== rate us api calling todo ==> rate =${MyRepo.rating}===");
+                          Get.offAll(() => StoryCategoryPage());
 
                         },
                         // color: AppColors.kBtnColor,
-                        ):myIndicator(),
+                        ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height*0.02,
                     ),
@@ -264,63 +250,7 @@ class SignInPage extends StatelessWidget {
                       children: [
                         // Expanded(child: GestureDetector(onTap: (){},child: Image.asset("assets/PNG/facebook_btn.png",height: 60,))),
                         Expanded(child: GestureDetector(onTap: () async {
-                          _signInWithGoogle(context);
-                          // _handleSignIn();
-                          // final GoogleSignIn googleSignIn = GoogleSignIn();
-                          //
-                          // final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-                          // print("===== googleUser ${googleUser!.email}");
-
-                          //
-                          // try {
-                          //
-                          //
-                          //
-                          // //   var headers = {
-                          // //     'Accept': 'application/json'
-                          // //   };
-                          // //   var request = http.MultipartRequest('POST', Uri.parse('http://story-telling.eduverse.uk/api/v1/social-auth'));
-                          // //   request.fields.addAll({
-                          // //     'name': googleSignIn.currentUser!.displayName.toString(),
-                          // //     'email': googleSignIn.currentUser!.email.toString(),
-                          // //     'auth_type': 'google'
-                          // //   });
-                          // //   request.headers.addAll(headers);
-                          // //   http.StreamedResponse response = await request.send();
-                          // //   if (response.statusCode == 200) {
-                          // //     Get.close(1);
-                          // //     print( await response.stream.bytesToString() );
-                          // //
-                          // //   }
-                          // //   else {
-                          // //     print(response.reasonPhrase);
-                          // //   }
-                          //   // final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-                          //   // final GoogleSignInAuthentication googleSignInAuthentication = await googleUser!.authentication;
-                          //   //
-                          //   // _googleSignIn.currentUser!.authentication;
-                          //   // _googleSignIn.isSignedIn();
-                          //
-                          //   bool isSignedIn=  await  googleSignIn.isSignedIn();
-                          //   if(isSignedIn){
-                          //     // print("===== fetch data against email ====");
-                          //   }
-                          //   else{
-                          //     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-                          //     GoogleSignInAuthentication auth=await googleUser!.authentication;
-                          //     FirebaseAuth.instance.signInWithCredential(GoogleAuthProvider.credential(accessToken: auth.accessToken,idToken: auth.idToken));
-                          //     userEmail= await googleUser.email.toString();
-                          //     print(  userEmail);
-                          //   }
-                          //   // print("========== google email  ${await  googleSignIn.isSignedIn()}=== ");
-                          //   // final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
-                          //   // TODO: Handle signed in user
-                          //
-                          // } catch (error) {
-                          //   print("===== error ${error}===");
-                          //   print(error);
-                          // }
-
+                          await _signUpWithGoogle(context);
                         },child: Image.asset("assets/PNG/google_btn.png",height: 60,width: MediaQuery.of(context).size.width,))),
                       ],
                     ),
@@ -349,7 +279,7 @@ class SignInPage extends StatelessWidget {
               ),
             ),
           ),
-        ),
+
       ),
     );
   }
@@ -377,27 +307,48 @@ class SignInPage extends StatelessWidget {
       print(error);
     }
   }
-  Future<void> _signInWithGoogle(context) async {
+  // Future<void> _signInWithGoogle(context) async {
+  //   isLoading.value=true;
+  //   var auth = FirebaseAuth.instance;
+  //   await GoogleSignIn().signIn();
+  //   await auth.currentUser;
+  //   try {
+  //     final GoogleSignInAccount? googleSignOutAccount;
+  //     googleSignOutAccount= await _googleSignIn.signOut();
+  //     final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  //   print("======== prob =====2=== '");
+  //     print("======== elseeeee ========");
+  //     final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+  //     final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
+  //     final UserCredential userCredential = await auth.signInWithCredential(credential);
+  //     final User? user = userCredential.user;
+  //     var body={
+  //       "name":"${user!.displayName}",
+  //       "email":"${user.email}",
+  //       "auth_type":"google",
+  //     };
+  //     ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value){
+  //       if(value["isData"]==true)
+  //       {GetStorage().write("userName", jsonDecode(value["response"])["data"]["email"]);
+  //       Get.close(3);
+  //       MyRepo.islogIn = true;
+  //       Get.offAll(StoryCategoryPage());
+  //
+  //       }
+  //     });
+  //   }
+  // catch (e){
+  //     print("======= error $e");
+  // }
+  // }
+  Future<void> _signUpWithGoogle(context) async {
+    isLoading.value=true;
     var auth = FirebaseAuth.instance;
-    print("======== prob 1======== ${await GoogleSignIn().signIn()}");
-    print("======== prob auth======== ${await auth.currentUser}");
     try {
-      // final QuerySnapshot snapshot = await firestore.collection('Users').get();
-      // final List<String> documents = snapshot.docs.map((e) => e.id).toList();
-
       final GoogleSignInAccount? googleSignOutAccount;
       googleSignOutAccount= await _googleSignIn.signOut();
 
       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-    print("======== prob =====2=== '");
-
-    // if(await _googleSignIn.isSignedIn()){
-    //   print("======== ifffffffff ========");
-    //   MySnackBar.snackBarYellow(title: "LogIn", message: "Already Logged In");
-    //   Get.close(2);
-    // }
-    // else{
-      print("======== elseeeee ========");
       final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
       final OAuthCredential credential = GoogleAuthProvider.credential(accessToken: googleSignInAuthentication.accessToken, idToken: googleSignInAuthentication.idToken,);
       final UserCredential userCredential = await auth.signInWithCredential(credential);
@@ -408,54 +359,42 @@ class SignInPage extends StatelessWidget {
         "auth_type":"google",
       };
 
-      ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value){
+      ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value){
         if(value["isData"]==true){
           GetStorage().write(
               "userName",
               jsonDecode(value["response"])["data"]
               ["email"]);
-          ApisCall.apiCall("http://story-telling.eduverse.uk/api/v1/social-auth", "post", body).then((value) {
-            if (value["isData"] == true) {
-              GetStorage().write(
-                  "userName",
-                  jsonDecode(value["response"])["data"]
-                  ["email"]);
-              GetStorage().write(
-                  "bearerToken",
-                  jsonDecode(value["response"])[
-                  "access_token"]);
-              Get.close(3);
-              MyRepo.islogIn = true;
-              Get.to(StoryCategoryPage());
-            }
-            MyRepo.islogIn = true;
-          });}
+          GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
+          GetStorage().write(
+              "bearerToken",
+              jsonDecode(value["response"])[
+              "access_token"]);
+          MyRepo.islogIn = true;
+          Get.to(StoryCategoryPage());
+          // ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value) {
+          //   if (value["isData"] == true) {
+          //     GetStorage().write(
+          //         "userName",
+          //         jsonDecode(value["response"])["data"]
+          //         ["email"]);
+          //   GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
+          //     print("================ <login token > ${jsonDecode(value["response"])["access_token"]}");
+          //
+          //   }
+          //   MyRepo.islogIn = true;
+          // });
+        }
       });
-      
-      log("User signed in with Google: $user'");
-      print("User signed in with Google: ${user.email}'");
-    // }
-
-
-
-      // documents.removeWhere((element) => element==user!.email.toString());
-
-      // final signInMethods = await FirebaseAuth.instance.fetchSignInMethodsForEmail(user!.email.toString());
-
-      // if (signInMethods.isNotEmpty) {
-      //   // User already exists.
-      //   return true;
-      // } else {
-      //   // User does not exist.
-      //   return false;
-      // }
-
+      // log("User signed in with Google: $user'");
+      // logger.i("User signed in with Google: ${user.email}'");
 
     }
-  catch (e){
+    catch (e){
       print("======= error $e");
+    }
   }
-  }
+
 }
 
 

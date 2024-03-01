@@ -24,7 +24,8 @@ class DynamicLinksProvider {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
         androidParameters: const AndroidParameters(packageName: 'com.brainstormers.gpt_chat_stories', minimumVersion: 0),
         iosParameters: const IOSParameters(bundleId: 'com.brainstormers.gpt_chat_stories', minimumVersion: "0"),
-        link: Uri.parse(url), uriPrefix: "https://brainstormers.page.link");
+        link: Uri.parse(url),
+        uriPrefix: "https://brainstormers.page.link");
     // link: Uri.parse(url), uriPrefix: "https://gptstoriesforkids.page.link");
     final FirebaseDynamicLinks links = FirebaseDynamicLinks.instance;
     final refLink = await links.buildShortLink(parameters);

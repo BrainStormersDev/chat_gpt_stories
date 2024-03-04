@@ -192,31 +192,31 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                           else{
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
                           }
-                          try {
-
-                            MyRepo.musicMuted.value == false ?
-                            await MyRepo.assetsAudioPlayer.open(
-                                Playlist(audios: [
-                                  Audio.network(
-                                      "${audioLink}"),
-                                ]),
-                                loopMode: LoopMode.playlist) :
-                            await MyRepo.assetsAudioPlayer.stop();
-                          } catch (t) {
-                            Fluttertoast.showToast(
-                                msg: "Music can't Play ${MyRepo.musicMuted.value}",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0
-                            );
-                            //mp3 unreachable
-                          }
+                          // try {
+                          //
+                          //   MyRepo.musicMuted.value == false ?
+                          //   await MyRepo.assetsAudioPlayer.open(
+                          //       Playlist(audios: [
+                          //         Audio.network(
+                          //             "${audioLink}"),
+                          //       ]),
+                          //       loopMode: LoopMode.playlist) :
+                          //   await MyRepo.assetsAudioPlayer.stop();
+                          // } catch (t) {
+                          //   Fluttertoast.showToast(
+                          //       msg: "Music can't Play ${MyRepo.musicMuted.value}",
+                          //       toastLength: Toast.LENGTH_SHORT,
+                          //       gravity: ToastGravity.BOTTOM,
+                          //       timeInSecForIosWeb: 1,
+                          //       backgroundColor: Colors.red,
+                          //       textColor: Colors.white,
+                          //       fontSize: 16.0
+                          //   );
+                          //   //mp3 unreachable
+                          // }
+                          BackgroundMusicManager().playMusic();
 
                           // BackgroundMusicManager().playMusic('https://gptstory.thebrainstormers.org/public/s_1.mp3');
-                          // BackgroundMusicManager().playMusic();
 
                       }
                         else{

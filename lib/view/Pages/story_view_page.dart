@@ -5,6 +5,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import '../../controllers/musicController.dart';
 import '../../view/Pages/rate_us_page.dart';
 import '../../view/Pages/storyfinish_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,16 +67,19 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   }
   @override
   void initState() {
-
+    MyRepo.isStoryReading.value=true;
     _text=widget.data.story.toString();
     _words = _text.split(' ');
     _playTextWithDelay();
     super.didChangeDependencies();
+
+
     _ttsInit();
     super.initState();
   }
   @override
   void dispose() {
+    // MyRepo.isStoryReading.value=false;
     super.dispose();
     tt.stop();
   }
@@ -142,12 +146,11 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                     IconButton(
                       onPressed: () async {
                         try {
-                          MyRepo.musicMuted.value == false ?
-                          await MyRepo.assetsAudioPlayer.open(
-                              Playlist(audios: [
-                                Audio.network("${audioLink}"),
-                              ]),
-                              loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+                          MyRepo.isStoryReading.value=false;
+                          if(MyRepo.musicMuted.value == false )
+                            {
+                              BackgroundMusicManager().resumeMusic();
+                            }
                         } catch (t) {
                         //mp3 unreachable
                         }
@@ -485,6 +488,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
     tt.setCompletionHandler(() {
       // Do something when speech is complete
       // Get.to(() => RateUsPage());
+      MyRepo.isStoryReading.value=false;
       Navigator.of(Get.context!).push(
           MaterialPageRoute(
               builder: (context) =>

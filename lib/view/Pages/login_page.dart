@@ -42,10 +42,8 @@ class LogInPage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: AppColors.kSplashColor,
-        body: Obx(
-          () => SafeArea(
+        body: SafeArea(
             child:
-                // logInContoller.isLoading.value==false?myIndicator():
                 Padding(
               padding: const EdgeInsets.all(8.0),
                  child: SingleChildScrollView(
@@ -256,7 +254,7 @@ class LogInPage extends StatelessWidget {
               ),
             ),
           ),
-        ),
+
       ),
     );
   }

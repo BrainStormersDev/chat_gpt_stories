@@ -1,10 +1,5 @@
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:gpt_chat_stories/view/Pages/storyfinish_page.dart';
-
 import '../../model/storyCatListModel.dart';
 import '../../utils/dynamic_link_provider.dart';
-import '../../view/Pages/story_catList_page.dart';
-import '../../view/Pages/story_category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
@@ -82,35 +77,6 @@ class _SharePageState extends State<SharePage> {
               height: 25,
             ),
 
-            // ElevatedButton(
-            //     onPressed: () async {
-            //       // // Get.to(const AgePage());
-            //       String message =
-            //           "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
-            //       // Share.share(message);
-            //       // // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Share()));
-            //       Share.share(
-            //           "GPT Stories For Kids\n \nStory: ${widget.shareData?.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
-            //     },
-            //     style: ButtonStyle(
-            //         shadowColor:
-            //             MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-            //         backgroundColor:
-            //             const MaterialStatePropertyAll(AppColors.kBtnColor),
-            //         shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(15))),
-            //         fixedSize:
-            //             MaterialStateProperty.all(const Size(200, 50))),
-            //     child: const SizedBox(
-            //         height: 50,
-            //         // width: MediaQuery.of(context).size.width/2,
-            //         child: Center(
-            //             child: Text("Share",
-            //                 style: TextStyle(
-            //                     color: AppColors.kBtnTxtColor,
-            //                     fontWeight: FontWeight.bold,
-            //                                                                                                fontSiz e: 18))))),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -157,29 +123,6 @@ class _SharePageState extends State<SharePage> {
               ],
             ),
 
-            // ElevatedButton(
-            //     onPressed: () {
-            //       // Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));
-            //       Get.close(4);
-            //     },
-            //     style: ButtonStyle(
-            //         shadowColor:
-            //             MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-            //         backgroundColor:
-            //             const MaterialStatePropertyAll(AppColors.kBtnColor),
-            //         shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(15))),
-            //         fixedSize:
-            //             MaterialStateProperty.all(const Size(200, 50))),
-            //     child: const SizedBox(
-            //         height: 50,
-            //         // width: MediaQuery.of(context).size.width/2,
-            //         child: Center(
-            //             child: Text("More Stories",
-            //                 style: TextStyle(
-            //                     color: AppColors.kBtnTxtColor,
-            //                     fontWeight: FontWeight.bold,
-            //                     fontSize: 18))))),
           ],
         ),
       ),

@@ -1,8 +1,9 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter/widgets.dart';
 
 import '../utils/MyRepo.dart';
 
-class BackgroundMusicManager {
+class BackgroundMusicManager with WidgetsBindingObserver{
   static final BackgroundMusicManager _instance = BackgroundMusicManager._internal();
   factory BackgroundMusicManager() => _instance;
 
@@ -14,7 +15,7 @@ class BackgroundMusicManager {
 
   void _init() {
     playMusic();
-
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   void playMusic() async {
@@ -23,7 +24,7 @@ class BackgroundMusicManager {
           Audio.network(
               "${audioLink}"),
         ]),
-        loopMode: LoopMode.playlist);
+        loopMode: LoopMode.playlist, autoStart: true);
   }
 
   void pauseMusic() {
@@ -34,5 +35,29 @@ class BackgroundMusicManager {
   void resumeMusic() {
     // Resume the paused audio
     _assetsAudioPlayer.play();
+  }
+  void toggleMute() {
+    if (MyRepo.musicMuted.value) {
+      pauseMusic();
+    } else {
+      resumeMusic();
+    }
+  }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.paused:
+        if(!MyRepo.musicMuted.value){pauseMusic();}
+
+        break;
+      case AppLifecycleState.resumed:
+        if(!MyRepo.musicMuted.value && !MyRepo.isStoryReading.value){
+          resumeMusic();
+        }
+        break;
+      default:
+        break;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import '../../controllers/musicController.dart';
 import '../../utils/MyRepo.dart';
 import '../../view/Widgets/settingsDialog.dart';
 import 'package:flutter/services.dart';
@@ -36,7 +37,6 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
-  // ChatImageController controllerImage= Get.put(ChatImageController());
   ChatTextController controllerText = Get.put(ChatTextController());
   late PackageInfo packageInfo;
   bool versionCheck1 = false;
@@ -49,7 +49,6 @@ class _StoryPageState extends State<StoryPage> {
   }
 
   Future<void> versionCheck() async {
-    // for test
     // versionCheck1 = true;
     packageInfo = await PackageInfo.fromPlatform();
     var url;
@@ -209,13 +208,11 @@ class _StoryPageState extends State<StoryPage> {
               Navigator.pop(context);
 
               try {
-                MyRepo.musicMuted.value == false ?
-                await MyRepo.assetsAudioPlayer.open(
-                    Playlist(audios: [
-                      Audio.network(
-                          "${audioLink}"),
-                    ]),
-                    loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+                if(MyRepo.musicMuted.value == false )
+                  {
+                    BackgroundMusicManager().resumeMusic();
+                  }
+
               } catch (t) {
                 //mp3 unreachable
               }
@@ -437,7 +434,15 @@ class _StoryPageState extends State<StoryPage> {
                                               )),
                                           GestureDetector(
                                             onTap: () async {
+                                              BackgroundMusicManager().pauseMusic();
+                                              // if(MyRepo.musicMuted.value==false)
+                                              // {
+                                              //   print("Music muted");
+                                              //   BackgroundMusicManager().pauseMusic();}
                                               print("=========widget.data.id = ${widget.data!.id}");
+                                              await countViewApi(widget.data!.id.toString());
+
+
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
@@ -449,11 +454,10 @@ class _StoryPageState extends State<StoryPage> {
                                                       // MyHomePage()
                                                   )
                                               );
-                                              await MyRepo.assetsAudioPlayer.pause();
                                               Future.delayed(const Duration(microseconds: 500)).then((value) {
                                                 getStory(widget.data!.id.toString());
                                               });
-                                              countViewApi(widget.data!.id.toString());
+
 
                                             },
                                             child: const CircleAvatar(

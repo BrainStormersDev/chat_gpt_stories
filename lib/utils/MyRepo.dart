@@ -43,6 +43,7 @@ class MyRepo {
   static RxInt count = 0.obs;
   static Gender selectedGender = Gender.notSelect;
   static RxBool musicMuted = false.obs;
+  static RxBool isStoryReading = false.obs;
   // static AgeSelect selectAge=AgeSelect.notSelect;
 
   static RxString kApiToken = "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".obs;

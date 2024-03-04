@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gpt_chat_stories/controllers/musicController.dart';
 import 'package:gpt_chat_stories/model/StoryCategoryModels.dart';
 import 'package:gpt_chat_stories/utils/mySnackBar.dart';
 import '../../common/headers.dart';
@@ -39,19 +40,15 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
-            // Get.close(1);
-            // Get.off(()=>StoryViewPage(data: MyRepo.currentStory));
           },
           icon: InkWell(
             onTap: () async {
               try {
-                MyRepo.musicMuted.value == false ?
-                await MyRepo.assetsAudioPlayer.open(
-                    Playlist(audios: [
-                      Audio.network(
-                          "${audioLink}"),
-                    ]),
-                    loopMode: LoopMode.playlist) : await MyRepo.assetsAudioPlayer.stop();
+                if(MyRepo.musicMuted.value == false)
+                  {
+                    BackgroundMusicManager().resumeMusic();
+                  }
+
               } catch (t) {
               //mp3 unreachable
               }
@@ -193,7 +190,7 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                       });
                       try {
 
-                        await MyRepo.assetsAudioPlayer.pause();
+                        BackgroundMusicManager().pauseMusic();
                       }
                       catch (t) {
                         //mp3 unreachable

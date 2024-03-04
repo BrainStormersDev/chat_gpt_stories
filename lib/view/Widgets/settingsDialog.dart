@@ -1,4 +1,5 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import '../../controllers/musicController.dart';
 import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import 'package:flutter/material.dart';
@@ -170,20 +171,13 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                             padding: EdgeInsets.zero,
                             onPressed: () async {
                               // setState(() {
-                              MyRepo.musicMuted.value =
-                              !MyRepo.musicMuted.value;
+                              MyRepo.musicMuted.value = !MyRepo.musicMuted.value;
                               print(MyRepo.musicMuted.value);
 
                               // });
                               MyRepo.musicMuted.value
-                                  ? await MyRepo.assetsAudioPlayer.pause()
-                                  : await MyRepo.assetsAudioPlayer.open(
-                                  Playlist(audios: [
-                                    Audio.network(
-                                        "${audioLink}"),
-                                  ]),
-                                  loopMode: LoopMode.playlist
-                              );
+                                  ?  BackgroundMusicManager().toggleMute()
+                                  :  BackgroundMusicManager().playMusic();
                             },
                             icon: Icon(
                               MyRepo.musicMuted.value == true
@@ -199,8 +193,6 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          // GetStorage().erase();
-
                           GetStorage().write(kAge, selectedAge.value);
                           GetStorage().write(kGender, selectedGender.value);
                           GetStorage().write(kMute, MyRepo.musicMuted.value);

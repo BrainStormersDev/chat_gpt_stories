@@ -14,7 +14,9 @@ class AppColors {
   static  Color kBtnShadowColor = const Color(0xFFFFBA17).withOpacity(0.5);
   static const kBtnTxtColor = Color(0xFF580600);
   static const kBoyBGColor = Color(0xFF4EA6FF);
+  static Color kBoyBGColorShade = Color(0xFF4EA6FF).withOpacity(0.5);
   static const kGirlBGColor = Color(0xFFFF499E);
+  static Color kGirlBGColorShade = Color(0xFFFF499E).withOpacity(0.5);
   static const txtColor1 = Color(0xFF021E40);
   static Color txtColor2 = Color(0xFF021E40).withOpacity(0.5);
   static Color textFieldColor = Color(0xFFE8ECF4);

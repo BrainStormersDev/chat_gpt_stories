@@ -44,15 +44,6 @@ class _SharePageState extends State<SharePage> {
         title: storyByGptWidget(context),
         centerTitle: true,
         backgroundColor: AppColors.kScreenColor,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Get.close(6);
-        //   },
-        //   icon: const Icon(
-        //     Icons.arrow_back,
-        //     color: AppColors.txtColor1,
-        //   ),
-        // ),
       ),
       body: Center(
         child: Column(

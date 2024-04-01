@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,12 +62,63 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
           ),
         ),
       ),
-      body: Padding(
+      body:
+      Obx(()=>
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child:
         controller.state.value == ApiState.loading
         ?
-            Center(child: myIndicator(),)
+            Center(
+              child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/PNG/giphy2.gif",
+                    height: 125.0,
+                    width: 125.0,
+                  ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  SizedBox(
+                    width: 250.0,
+                    child: DefaultTextStyle(
+                      style: const TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Bobbers',
+                          color: AppColors.txtColor1),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TyperAnimatedText(
+                              'Please wait ....', textStyle: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold,fontFamily: "BalooBhai",color: AppColors.kPrimary,
+
+                          )),
+                          TyperAnimatedText(
+                              'While your story of ${controller.searchTextController.text} is creating...',
+                              textStyle: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold,fontFamily: "BalooBhai",color: AppColors.kPrimary,
+
+                              )
+                          ),
+                        ],
+                        onTap: () {
+                          print("Tap Event");
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 100,
+                  ),
+                ],
+              ),
+            ),
+            )
             :
 
         Stack(
@@ -108,10 +160,6 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // controller.state.value ==ApiState.notFound
-                // ?
-                //     Container(child: Text('No Categories Available'),)
-                // :
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -193,10 +241,7 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
                         BackgroundMusicManager().pauseMusic();
                       }
                       catch (t) {
-                        //mp3 unreachable
                       }
-                      // controller.searchTextController.clear();
-                      // controller.selectedCategoryId = null;
                     } else {
                       MySnackBar.snackBarRed(
                           title: 'Error',
@@ -225,6 +270,6 @@ class _NewStoryCreateState extends State<NewStoryCreate> {
           ],
         ),
       ),
-    );
+    ),    );
   }
 }

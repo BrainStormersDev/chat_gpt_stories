@@ -27,7 +27,7 @@ class _AgePageState extends State<AgePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("=======select 1 :${MyRepo.selectedGender.name} ====");
+    print(" select 1 :${MyRepo.selectedGender.name}");
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -90,198 +90,32 @@ class _AgePageState extends State<AgePage> {
 
 
                 ListView.builder(
-                    itemCount: MyRepo.selectAgeList.length,
+                    itemCount:
+                    MyRepo.selectedGender.name=="Girl"
+                    ?
+                    MyRepo.selectGirlAgeList.length
+                        :
+                    MyRepo.selectBoyAgeList.length,
                     shrinkWrap: true,
                     itemBuilder: (context,index){
 
-                  return ageItem(imageUrl: MyRepo.selectAgeList[index].assetImage,ageLimit: MyRepo.selectAgeList[index].age,index: index);
+                  return ageItem(imageUrl:
+                  MyRepo.selectedGender.name=="Girl"
+                      ?
+                  MyRepo.selectGirlAgeList[index].assetImage
+                      :
+                  MyRepo.selectBoyAgeList[index].assetImage,
+                      ageLimit:
+                      MyRepo.selectedGender.name=="Girl"
+                          ?
+                  MyRepo.selectGirlAgeList[index].age
+                      :
+                  MyRepo.selectBoyAgeList[index].age
+
+
+                      ,index: index);
 
                 }),
-                // InkWell(
-                //   onTap: (){
-                //     setState(() {
-                //       MyRepo.selectAge=AgeSelect.two;
-                //
-                //     });
-                //     nextPage();
-                //
-                //
-                //
-                //   },
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         border:MyRepo.selectAge==AgeSelect.two? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                //         color:MyRepo.selectAge==AgeSelect.two ? AppColors.kPrimary:null,
-                //         borderRadius: BorderRadius.circular(10)
-                //
-                //     ),
-                //     child: Row(
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //       children: [
-                //         InkWell(
-                //           onTap: (){
-                //             setState(() {
-                //               MyRepo.selectAge=AgeSelect.two;
-                //
-                //             });
-                //             nextPage();
-                //
-                //
-                //           },
-                //           child: Container(
-                //             height: 60,
-                //             width: 110,
-                //             decoration: ShapeDecoration(
-                //               color: MyRepo.selectAge==AgeSelect.two ?AppColors.kPrimary:null,
-                //                 shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.two?AppColors.kWhite:AppColors.txtColor1)
-                //
-                //             ),
-                //             child:  Center(
-                //               child: Text(
-                //                 "1 - 3",
-                //                 style: TextStyle(
-                //                     fontSize: 30,
-                //                     fontWeight: FontWeight.bold,
-                //                     fontFamily: "BalooBhai",
-                //                     color: MyRepo.selectAge==AgeSelect.two?AppColors.kWhite:AppColors.txtColor1),
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //         Image.asset("assets/PNG/age1-3.png", scale: 0.9,),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 15,),
-                // InkWell(
-                //   onTap: (){
-                //     setState(() {
-                //       MyRepo.selectAge=AgeSelect.four;
-                //
-                //     });
-                //     nextPage();
-                //   },
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         border:MyRepo.selectAge==AgeSelect.four? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                //         color:MyRepo.selectAge==AgeSelect.four ? AppColors.kPrimary:null,
-                //       borderRadius: BorderRadius.circular(10)
-                //
-                //     ),
-                //     child: Row(
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //       children: [
-                //         Container(
-                //           height: 60,
-                //           width: 110,
-                //           decoration: ShapeDecoration(
-                //               color:MyRepo. selectAge==AgeSelect.four ?AppColors.kPrimary:null,
-                //               shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.four?AppColors.kWhite:AppColors.txtColor1)),
-                //           child:  Center(
-                //             child: Text(
-                //               "3 - 5",
-                //               style: TextStyle(
-                //                   fontSize: 30,
-                //                   fontWeight: FontWeight.bold,
-                //                   fontFamily: "BalooBhai",
-                //                   color:MyRepo. selectAge==AgeSelect.four?AppColors.kWhite:AppColors.txtColor1),
-                //             ),
-                //           ),
-                //         ),
-                //         Image.asset("assets/PNG/age3-5.png", scale: 0.9,),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 15,),
-                // InkWell(
-                //   onTap: (){
-                //     setState(() {
-                //       MyRepo. selectAge=AgeSelect.seven;
-                //
-                //     });
-                //     nextPage();
-                //
-                //   },
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         border:MyRepo.selectAge==AgeSelect.seven? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                //         color:MyRepo.selectAge==AgeSelect.seven ? AppColors.kPrimary:null,
-                //         borderRadius: BorderRadius.circular(10)
-                //
-                //     ),
-                //     child: Row(
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //       children: [
-                //         Container(
-                //           height: 60,
-                //           width: 110,
-                //           decoration: ShapeDecoration(
-                //             color: MyRepo.selectAge==AgeSelect.seven ?AppColors.kPrimary:null,
-                //               shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.seven?AppColors.kWhite:AppColors.txtColor1)),
-                //           child:  Center(
-                //             child: Text(
-                //               "5 - 10",
-                //               style: TextStyle(
-                //                   fontSize: 30,
-                //                   fontWeight: FontWeight.bold,
-                //                   fontFamily: "BalooBhai",
-                //                   color: MyRepo.selectAge==AgeSelect.seven?AppColors.kWhite:AppColors.txtColor1),
-                //             ),
-                //           ),
-                //         ),
-                //         Image.asset("assets/PNG/age5-10.png", scale: 0.9,),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 15,),
-                // InkWell(
-                //   onTap: (){
-                //     setState(() {
-                //       MyRepo.selectAge=AgeSelect.thirteen;
-                //
-                //     });
-                //     nextPage();
-                //   },
-                //   child: Container(
-                //     decoration: BoxDecoration(
-                //         border:MyRepo.selectAge==AgeSelect.thirteen? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                //         color:MyRepo.selectAge==AgeSelect.thirteen ? AppColors.kPrimary:null,
-                //         borderRadius: BorderRadius.circular(10)
-                //
-                //     ),
-                //     child: Row(
-                //       crossAxisAlignment: CrossAxisAlignment.center,
-                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //       children: [
-                //         Container(
-                //           height: 60,
-                //           width: 110,
-                //           decoration: ShapeDecoration(
-                //               color:MyRepo. selectAge==AgeSelect.thirteen ?AppColors.kPrimary:null,
-                //               shape: polygonAgeContainer(bordColor:MyRepo.selectAge==AgeSelect.thirteen?AppColors.kWhite:AppColors.txtColor1)),
-                //           child:  Center(
-                //             child: Text(
-                //               "10 +",
-                //               style: TextStyle(
-                //                   fontSize: 30,
-                //                   fontWeight: FontWeight.bold,
-                //                   fontFamily: "BalooBhai",
-                //                   color: MyRepo.selectAge==AgeSelect.thirteen?AppColors.kWhite:AppColors.txtColor1),
-                //             ),
-                //           ),
-                //         ),
-                //         Image.asset("assets/PNG/age10.png", scale: 0.9,),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 35,),
                 const SizedBox(height: 20,),
                 ElevatedButton(
                     onPressed: (){
@@ -290,7 +124,7 @@ class _AgePageState extends State<AgePage> {
                             title:"Alert", message:"Please select Age limit");
 
                       }else{
-                        nextPage(age: MyRepo.selectAgeList[int.parse(selectItems.value)].age);
+                        nextPage(age: MyRepo.selectBoyAgeList[int.parse(selectItems.value)].age);
                       }
 
                     },
@@ -318,7 +152,6 @@ class _AgePageState extends State<AgePage> {
     box.write(kAge, age);
     box.write(kGender,  MyRepo.selectedGender.name);
     box.write(kTokenStorage, MyRepo.deviceToken.value);
-    // registrationController.getRegistration(age: age, token: MyRepo.deviceToken.value,gender: MyRepo.selectedGender.name);
     Future.delayed(const Duration(milliseconds: 100), () {
       GetStorage().write("userName",'');
       Navigator.push(context, MaterialPageRoute(builder: (context) => StoryCategoryPage()));
@@ -332,36 +165,42 @@ class _AgePageState extends State<AgePage> {
         selectItems.value =index.toString();
       },
       child: Container(
-        margin: const EdgeInsets.only(top: 10),
+
         decoration: BoxDecoration(
             border:int.parse(selectItems.value.toString())==index? Border.all(color:AppColors.kPrimary,width: 5 ):null,
             color:int.parse(selectItems.value.toString())==index? AppColors.kPrimary:null,
             borderRadius: BorderRadius.circular(10)
 
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              height: 60,
-              width: 110,
-              decoration: ShapeDecoration(
-                  color:int.parse(selectItems.value.toString())==index?AppColors.kPrimary:null,
-                  shape: polygonAgeContainer(bordColor:int.parse(selectItems.value.toString())==index?AppColors.kWhite:AppColors.txtColor1)),
-              child:  Center(
-                child: Text(
-                  ageLimit,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "BalooBhai",
-                      color: int.parse(selectItems.value.toString())==index?AppColors.kWhite:AppColors.txtColor1),
+        child: Padding(
+          padding: const EdgeInsets.only(left:50.0, right:50,top:10),
+          child: Container(
+            height: 90,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 60,
+                  width: 110,
+                  decoration: ShapeDecoration(
+                      color:int.parse(selectItems.value.toString())==index?AppColors.kPrimary:null,
+                      shape: polygonAgeContainer(bordColor:int.parse(selectItems.value.toString())==index?AppColors.kWhite:AppColors.txtColor1)),
+                  child:  Center(
+                    child: Text(
+                      ageLimit,
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "BalooBhai",
+                          color: int.parse(selectItems.value.toString())==index?AppColors.kWhite:AppColors.txtColor1),
+                    ),
+                  ),
                 ),
-              ),
+                Image.asset(imageUrl, scale: 0.9,),
+              ],
             ),
-            Image.asset(imageUrl, scale: 0.9,),
-          ],
+          ),
         ),
       ),
     ));

@@ -3,12 +3,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gpt_chat_stories/utils/apiCall.dart';
+import 'package:gpt_chat_stories/utils/mySnackBar.dart';
 import 'package:http/http.dart' as http;
 import '../../../common/headers.dart';
 import '../../../model/text_completion_model.dart';
+import '../model/newStoryCreated.dart';
 import '../model/new_story_create_model.dart';
 import '../model/storyCatListModel.dart';
 import '../utils/MyRepo.dart';
+import '../view/Pages/rate_us_page.dart';
 import '../view/Pages/story_view_page.dart';
 
 class CreateStoryController extends GetxController {
@@ -31,144 +35,174 @@ class CreateStoryController extends GetxController {
   }
 
   List<Choice> messageChoice = [];
-
+  RxBool isNewStory = false.obs;
   var state = ApiState.notFound.obs;
-  Message? messageData= Message();
+  Message? messageData = Message();
+
   getTextCompletion(String query) async {
     addMyMessage();
 
     state.value = ApiState.loading;
     try {
-
       final response = await http.post(
         Uri.parse('https://api.openai.com/v1/chat/completions'),
         body: json.encode({
           "model": "gpt-3.5-turbo",
           "messages": [
-            {
-              "role": "user",
-              "content": searchTextController.text
-            }
+            {"role": "user", "content": searchTextController.text}
           ]
         }),
-        headers: headerBearerOption("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"),
+        headers: headerBearerOption(
+            "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"),
       );
 
       if (response.statusCode == 200) {
-        var textCompilation= textCompletionModelFromJson(response.body);
-        if(textCompilation.choices!=null)
-          {
-            addServerMessage(
-                textCompilation.choices
-            );
-          }
+        var textCompilation = textCompletionModelFromJson(response.body);
+        if (textCompilation.choices != null) {
+          addServerMessage(textCompilation.choices);
+        }
         state.value = ApiState.success;
-      }
-      else {
+      } else {
         state.value = ApiState.error;
       }
-    }
-    catch (e) {
+    } catch (e) {
       // logger.e("Errorrrrrrrrrrrrrrr ");
     } finally {
       // searchTextController.clear();
       update();
     }
   }
- ///
-  ///
 
+  ///
+  ///
 
   String? selectedCategory;
   String? selectedCategoryId;
 
-  List<StoryData> allStoryData = [];
+  // List<StoryData> allStoryData = [];
   List<String?> storyTitle = [];
-  CreateStory storyCreateResponse = CreateStory();
-  List<DataList>? storyCreateDataResponse = [];
-  String? story= '';
+
+  // CreateStory storyCreateResponse = CreateStory();
+  NewStoryCreatedModel? newStoryCreatedResponse;
+
+  String? story = '';
+
   Future<void> createStory() async {
     print("base url is ${kBaseUrl}");
-    storyTitle.add(searchTextController.text);
-    addMyStory();
     state.value = ApiState.loading;
-    try {var headers = {
-     'Accept': 'application/json',
-     'Content-Type': 'application/json',
-     'Authorization': 'Bearer ${GetStorage().read("bearerToken")}' };
-   var request = http.MultipartRequest('POST',
-       Uri.parse( "${kBaseUrl}api/v1/user/story/create"));
-   request.fields.addAll({
-     'cat_id': selectedCategoryId!,
-     'story_title': searchTextController.text
-   });
-   request.headers.addAll(headers);
-   http.StreamedResponse response = await request.send();
-   if (response.statusCode == 200) {
-     var body=await response.stream.bytesToString();
-     storyCreateResponse= createStoryFromJson(body);
-     if(storyCreateResponse.data!=null)
-     {
-       state.value = ApiState.success;
-       storyCreateDataResponse=StoryCatListModel.fromJson(json.decode(body)).data;
-print(state.value);
-       Navigator.of(Get.context!).push(
-           MaterialPageRoute(
-               builder: (context) =>
-                StoryViewPage(data: storyCreateDataResponse![0],)));
-       // Get.to(() => StoryViewPage(data: storyCreateDataResponse![0],));
-       // Get.to(StoryViewPage(data: storyCreateDataResponse![0],));
-     }
-     else
-     {state.value = ApiState.error;}
-   }
-   else {
-     state.value = ApiState.error;
-     var body=await response.stream.bytesToString();
+    try {
+      var headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${GetStorage().read("bearerToken")}'
+      };
 
-     logger.e(jsonDecode(body)['message']);
-   }}
-    catch (e) {
+      ApisCall.multiPartApiCall(
+              "${kBaseUrl}api/v1/user/story/fetch",
+              "post",
+              {
+                'cat_id': selectedCategoryId!,
+                'story_title': searchTextController.text
+              },
+              header: headers)
+          .then((value) {
+        if (value["isData"]) {
+          newStoryCreatedResponse =
+              newStoryCreatedModelFromJson(value['response']);
+
+          state.value = ApiState.success;
+          if (newStoryCreatedResponse != null &&
+              newStoryCreatedResponse!.data != null) {
+            isNewStory = true.obs;
+            Navigator.push(
+                Get.context!,
+                MaterialPageRoute(
+                    builder: (context) => StoryViewPage(
+                          story:
+                              newStoryCreatedResponse!.data!.story.toString(),
+                          storyTitle:
+                              newStoryCreatedResponse!.data!.title.toString(),
+                          images: newStoryCreatedResponse!.data!.images,
+                        )));
+          } else {
+            MySnackBar.snackBarRed(
+                title: 'Sorry', message: 'Something went wrong!');
+          }
+        } else {
+          state.value = ApiState.error;
+        }
+      });
+    } catch (e) {
       logger.e("Error $e");
+      state.value = ApiState.error;
     } finally {
       // searchTextController.clear();
       update();
     }
   }
 
+  Future<void> saveStory() async {
+    print("base url is ${kBaseUrl}");
+    state.value = ApiState.loading;
+    try {
+      var headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${GetStorage().read("bearerToken")}'
+      };
 
-  addStoryMessages(List<StoryData>? storyData) {
-    for (int i = 0; i < storyData!.length; i++) {
-      allStoryData.insert(i, storyData[i]);
-      // logger.i(messageChoice[i].message);
-      story=allStoryData[i].story;
-      storyTitle.insert(i,allStoryData[i].storyTitle);
+      await ApisCall.multiPartApiCall(
+              "${kBaseUrl}api/v1/user/story/save",
+              "post",
+              {
+                'cat_id': selectedCategoryId!,
+                // 'title': "ioioio",
+                'title': newStoryCreatedResponse!.data!.title.toString(),
+                // 'story': "nmnkjkjkjkji  kjkjkjkjkj"
+                'story': newStoryCreatedResponse!.data!.story.toString()
+              },
+              header: headers)
+          .then((value) {
+        if (value["isData"]) {
+          state.value = ApiState.success;
+          print(jsonDecode(value["response"])["data"]["story_id"]);
 
+          MyRepo.currentStory.id = int.parse(
+              jsonDecode(value["response"])["data"]["story_id"].toString());
+          Navigator.push(Get.context!,
+              MaterialPageRoute(builder: (context) => RateUsPage()));
+        } else {
+          print("response");
+          print(jsonDecode(value["response"]));
+
+          MySnackBar.snackBarYellow(title: 'Oh!', message: value["message"]);
+
+          state.value = ApiState.error;
+        }
+      });
+    } catch (e) {
+      logger.e("Error $e");
+      state.value = ApiState.error;
+    } finally {
+      // searchTextController.clear();
+      update();
     }
   }
+
   addServerMessage(List<Choice>? choices) {
     for (int i = 0; i < choices!.length; i++) {
       messageChoice.insert(i, choices[i]);
-      // logger.i(messageChoice[i].message);
-      messageData=messageChoice[i].message;
+
+      messageData = messageChoice[i].message;
     }
-
   }
-
-
 
   TextEditingController searchTextController = TextEditingController();
 
   addMyMessage() {
     // {"text":":\n\nWell, there are a few things that you can do to increase","index":0,"logprobs":null,"finish_reason":"length"}
-    Choice text = Choice( message: messageData, index: -999999, finishReason: "");
+    Choice text =
+        Choice(message: messageData, index: -999999, finishReason: "");
     messageChoice.insert(0, text);
   }
-  addMyStory() {
-    // {"text":":\n\nWell, there are a few things that you can do to increase","index":0,"logprobs":null,"finish_reason":"length"}
-    // CreateStory text = CreateStory( status: false, message:'', data: allStoryData);
-    allStoryData.insert(0,StoryData());
-  }
-
-
 }

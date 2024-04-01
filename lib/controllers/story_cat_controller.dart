@@ -1,15 +1,10 @@
+import 'package:gpt_chat_stories/utils/apiCall.dart';
+
 import '../../model/StoryCategoryModels.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:convert';
 import '../../../common/headers.dart';
-import '../../../model/image_generation_model.dart';
-import 'package:http/http.dart' as http;
-
 import '../utils/MyRepo.dart';
-import 'chat_text_controller.dart';
-import 'get_token_controller.dart';
-
 class StoryCatController extends GetxController {
   //TODO: Implement ChatImageController
 
@@ -29,9 +24,6 @@ class StoryCatController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  // List<ImageGenerationData> images = [];
-
    Rx<StoryCategoryModels> storyCategoryModels =StoryCategoryModels(status: false,message: '',data: []).obs;
   RxString errorMsg=''.obs;
 
@@ -39,29 +31,35 @@ class StoryCatController extends GetxController {
 
    Future<void>getCat() async {
     state.value = ApiState.loading;
-
+    var headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
     try {
-     logger.e("${kBaseUrl}api/v1/get-category");
-      final response = await http.get(
-        Uri.parse("${kBaseUrl}api/v1/get-category"),
-      );
-      storyCategoryModels.value = StoryCategoryModels.fromJson(json.decode(response.body));
+      await ApisCall.multiPartApiCall("${kBaseUrl}api/v1/get-category", "get", {},
+      header: headers
+      ).then((value)
+      {
+        if(value["isData"])
+          {
+            storyCategoryModels.value =storyCategoryModelsFromJson(value["response"]);
 
-      if (storyCategoryModels.value.status!) {
-        print("storyCategoryModels: ${storyCategoryModels.value.data!.length},${storyCategoryModels.value.message}=========");
+            if (storyCategoryModels.value.status!) {
+              print("storyCategoryModels: ${storyCategoryModels.value.data!.length},${storyCategoryModels.value.message}=========");
 
 
-        if(storyCategoryModels.value.data!.isEmpty) {
-          state.value = ApiState.notFound;
-        }
-        else
-        state.value = ApiState.success;
-      }
-
-      else {
-        print("=====fffff====");
-        state.value = ApiState.error;
-      }
+              if(storyCategoryModels.value.data!.isEmpty) {
+                state.value = ApiState.notFound;
+              }
+              else
+                state.value = ApiState.success;
+            }
+            else {
+              print("error in getting categories (status false): ${storyCategoryModels.value.message}");
+              state.value = ApiState.error;
+            }
+          }
+      });
     } catch (e) {
       state.value = ApiState.error;
       errorMsg.value = "Error :$e";

@@ -1,28 +1,24 @@
-// To parse this JSON data, do
-//
-//     final storyCatListModel = storyCatListModelFromJson(jsonString);
-
 import 'dart:convert';
 
-StoryCatListModel storyCatListModelFromJson(String str) => StoryCatListModel.fromJson(json.decode(str));
+MyStoriesModel myStoriesModelFromJson(String str) => MyStoriesModel.fromJson(json.decode(str));
 
-String storyCatListModelToJson(StoryCatListModel data) => json.encode(data.toJson());
+String myStoriesModelToJson(MyStoriesModel data) => json.encode(data.toJson());
 
-class StoryCatListModel {
+class MyStoriesModel {
   bool? status;
   String? message;
-  List<DataList>? data;
+  List<MyStoriesData>? data;
 
-  StoryCatListModel({
+  MyStoriesModel({
     this.status,
     this.message,
     this.data,
   });
 
-  factory StoryCatListModel.fromJson(Map<String, dynamic> json) => StoryCatListModel(
+  factory MyStoriesModel.fromJson(Map<String, dynamic> json) => MyStoriesModel(
     status: json["status"],
     message: json["message"],
-    data: json["data"] == null ? [] : List<DataList>.from(json["data"]!.map((x) => DataList.fromJson(x))),
+    data: json["data"] == null ? [] : List<MyStoriesData>.from(json["data"]!.map((x) => MyStoriesData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -32,7 +28,7 @@ class StoryCatListModel {
   };
 }
 
-class DataList {
+class MyStoriesData {
   int? id;
   String? storyTitle;
   String? story;
@@ -42,7 +38,7 @@ class DataList {
   int? averageRating;
   String? featuredImage;
 
-  DataList({
+  MyStoriesData({
     this.id,
     this.storyTitle,
     this.story,
@@ -53,7 +49,7 @@ class DataList {
     this.featuredImage,
   });
 
-  factory DataList.fromJson(Map<String, dynamic> json) => DataList(
+  factory MyStoriesData.fromJson(Map<String, dynamic> json) => MyStoriesData(
     id: json["id"],
     storyTitle: json["story_title"],
     story: json["story"],

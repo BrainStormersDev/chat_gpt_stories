@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import '../../controllers/musicController.dart';
 import '../../utils/dynamic_link_provider.dart';
 import '../../view/Pages/story_category_page.dart';
@@ -182,15 +180,16 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                   const SizedBox(height: 10,),
                   ElevatedButton(
                         onPressed:
-                        // _isNetworkConnected==false?null:
                             () async {
                         ///Start
                         if(!_isNetworkConnected){
                           if(GetStorage().hasData(kGender) ){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryCategoryPage( )));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                StoryCategoryPage( )));
                           }
                           else{
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>  GenderPage( )));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                GenderPage( )));
                           }
                           // try {
                           //
@@ -274,42 +273,12 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     });
   }
 
-  // void playSound() {
-  //   MyRepo.assetsAudioPlayer.stop();
-  //   AssetsAudioPlayer.newPlayer().open(
-  //     Audio(kWelcomeSound),
-  //     autoStart: true,
-  //     showNotification: true,
-  //   );
-  // }
 
   Future<void> _updateProgress() async {
     _animationController =
         AnimationController(duration: const Duration(seconds: 3), vsync: this);
     _animationController.repeat(reverse: true);
 
-    // _animationController = AnimationController(
-    //   vsync: this,
-    //   //  duration: const Duration(milliseconds: 0),
-    //   duration: const Duration(milliseconds: 2500),
-    //   animationBehavior: AnimationBehavior.normal,
-    //   lowerBound: 0.1,
-    //   upperBound: 7.0,
-    // );
-    // _animationController.addStatusListener((status) {
-    //   if (status == AnimationStatus.completed) {}
-    // });
-    // _animationController.upperBound;
   }
 }
 
-
-
-
-
-
-// SizedBox(
-// height: MediaQuery.of(context).size.height* 0.65,
-// width: MediaQuery.of(context).size.width,
-// child: Image.asset("assets/PNG/splash_vector.png"),
-// )

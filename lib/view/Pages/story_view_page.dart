@@ -1,10 +1,6 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
-
 import '../../controllers/musicController.dart';
 import '../../view/Pages/rate_us_page.dart';
 import '../../view/Pages/storyfinish_page.dart';
@@ -13,26 +9,29 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import '../../controllers/chat_text_controller.dart';
-import '../../model/storyCatListModel.dart';
+import '../../controllers/getStoriesController.dart';
 import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 
 class StoryViewPage extends StatefulWidget {
-  DataList data;
-  final String? catName;
-  StoryViewPage({Key? key, required this.data, this.catName}) : super(key: key);
+  List<String>? images;
+  String story;
+  String storyTitle;
+  // SelectedStoryData? data;
+   String? catName;
+  StoryViewPage({Key? key, this.catName,this.story="", this.storyTitle="" , this.images}) : super(key: key);
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
 }
 enum TtsState { playing, stopped, paused, continued }
-class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateMixin {
+class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateMixin, WidgetsBindingObserver{
   FlutterTts tt = FlutterTts();
-  ChatTextController controllerText = Get.put(ChatTextController());
+  StoriesController controllerText = Get.put(StoriesController());
   final ScrollController _scrollController = ScrollController();
   List<String> image = [];
   int activeIndex = 0;
-  bool isPaused = false;
+  RxBool isPaused = false.obs;
+  RxBool textStop = false.obs;
   bool isPlayNext = false;
   late FlutterTts flutterTts;
   var styleOne = const TextStyle(color: Colors.black87, fontSize: 21);
@@ -40,20 +39,54 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   String _text = '';
   int _currentWordIndex = 0;
   List<String> _words = [];
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.paused:
+        if (!isPaused.value) {
+          textStop.value = true;
+          _playTextWithDelay();
+          tt.pause();
+        }
+        break;
+      case AppLifecycleState.resumed:
+        if (!isPaused.value) {
+          textStop.value = false;
+          _playTextWithDelay();
+          _ttsInit();
+        }
+        break;
+      default:
+        break;
+    }
+  }
 
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    if (ModalRoute.of(context)?.isCurrent == true) {
+    }
+  }
   Future<void> _playTextWithDelay() async {
     const Duration wordDelay =  Duration(milliseconds: 310); // Change this value
     Duration totalElapsedTime = const Duration(); // Track total elapsed time
     Future<void> playWord(int index) async {
       await Future.delayed(wordDelay);
-      if (mounted && !isPaused) {
+      if (mounted && !textStop.value) {
         setState(() {
           _currentWordIndex = index;
         });
         totalElapsedTime = Duration(); // Reset the total elapsed time
-        if (index < _words.length - 1) {
+        if (index <= _words.length - 1) {
           if(_words[_currentWordIndex].endsWith('.') || _words[_currentWordIndex].endsWith(',') ){
             print(_words[_currentWordIndex]);
+            await Future.delayed(const Duration(milliseconds: 290));
+            print(_words[_currentWordIndex]);
+
+          }
+          if(_words[_currentWordIndex].startsWith('.\n') ){
+            print('break');
             await Future.delayed(const Duration(milliseconds: 290));
             print(_words[_currentWordIndex]);
 
@@ -65,10 +98,14 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
     }
     await playWord(_currentWordIndex);
   }
+  StoriesController storiesController = Get.put(StoriesController());
+
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     MyRepo.isStoryReading.value=true;
-    _text=widget.data.story.toString();
+    print(widget.story.toString());
+    _text=widget.story.toString();
     _words = _text.split(' ');
     _playTextWithDelay();
     super.didChangeDependencies();
@@ -79,7 +116,12 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   }
   @override
   void dispose() {
-    // MyRepo.isStoryReading.value=false;
+    WidgetsBinding.instance!.removeObserver(this);
+    MyRepo.isStoryReading.value=false;
+    if(MyRepo.musicMuted.value == false)
+    {
+      BackgroundMusicManager().resumeMusic();
+    }
     super.dispose();
     tt.stop();
   }
@@ -111,9 +153,9 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
       'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
     ];
     image.clear();
-    if (widget.data.images!.isNotEmpty) {
-      for (int i = 0; i < widget.data.images!.length; i++) {
-        image.add(widget.data.images![i].imageUrl.toString());
+    if (widget.images!=null && widget.images!.isNotEmpty) {
+      for (int i = 0; i < widget.images!.length; i++) {
+        image.add(widget.images![i].toString());
       }
     } else {
       for (int i = 0; i < imgList.length; i++) {
@@ -125,7 +167,9 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
       margin: const EdgeInsets.all(5.0),
       child: ClipRRect(
           borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          child: Image.network(item, fit: BoxFit.cover, width: 1000.0)),
+          child: Image.network(item, fit: BoxFit.fitHeight, width: 1000.0),
+
+      ),
     ))
         .toList();
     return Scaffold(
@@ -237,7 +281,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                                 padding: EdgeInsets.only(
                                     left: 8.0, top: 4, bottom: 4, right: 8),
                                 child: Text(
-                                  "Story of ${widget.data.storyTitle}",
+                                  "Story of ${widget.storyTitle}",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
@@ -354,40 +398,62 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            IconButton(
+                onPressed:
+                controllerText.storyCategoryListModels.value.data!
+                    .indexWhere((element) =>
+                element.storyTitle == widget.storyTitle) ==
+                    0
+                    ? null
+                    : () {
+                  int newIndex = controllerText
+                      .storyCategoryListModels.value.data!
+                      .indexWhere((element) =>
+                  element.storyTitle == widget.storyTitle);
+                  logger.e(newIndex);
+                  if (newIndex < controllerText.storyCategoryListModels.value.data!.length) {
+                    widget.story = controllerText.storyCategoryListModels
+                        .value.data![newIndex - 1].story.toString();
+                    MyRepo.currentStory = controllerText
+                        .storyCategoryListModels
+                        .value
+                        .data![newIndex - 1];
+                    _text=widget.story.toString();
+                    _currentWordIndex = 0;
+                    _words = [];
+                    _words = _text.split(' ');
+                    // isPaused=false;
+                    displayText = _words.take(_currentWordIndex).join(' ');
+                    _playTextWithDelay();
+                    tt.stop();
+                    // listTxt.clear();
+                    _ttsInit();
+                    setState(() {  logger.i(_text);});
+                  }
+
+                },
+                icon: const Icon(
+                  Icons.skip_previous_rounded,
+                  color: AppColors.kBtnColor,
+                  size: 30,
+                )),
             // IconButton(
-            //     onPressed: controllerText.storyCategoryListModels.value.data!
-            //         .indexWhere((element) =>
-            //     element.storyTitle == widget.data.storyTitle) ==
-            //         0
+            //     onPressed:
+            //     storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
+            //     element.storyTitle == widget.storyTitle) == 0
             //         ? null
             //         : () {
-            //       int newIndex = controllerText
-            //           .storyCategoryListModels.value.data!
-            //           .indexWhere((element) =>
-            //       element.storyTitle == widget.data.storyTitle);
-            //       logger.e(newIndex);
-            //       if (newIndex <
-            //           controllerText
-            //               .storyCategoryListModels.value.data!.length) {
-            //         widget.data = controllerText.storyCategoryListModels
-            //             .value.data![newIndex - 1];
-            //         MyRepo.currentStory = controllerText
-            //             .storyCategoryListModels
-            //             .value
-            //             .data![newIndex - 1];
-            //         _text=widget.data.story.toString();
-            //         _currentWordIndex = 0;
-            //         _words = [];
-            //         _words = _text.split(' ');
-            //         isPaused=false;
-            //         displayText = _words.take(_currentWordIndex).join(' ');
-            //         _playTextWithDelay();
-            //         tt.stop();
-            //         // listTxt.clear();
-            //         _ttsInit();
-            //         setState(() {  logger.i(_text);});
-            //       }
+            //       int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
+            //       element.storyTitle == widget!.storyTitle);
             //
+            //       if (newIndex <
+            //           storiesController.storyCategoryListModels.value.data!.length) {
+            //         widget.catName=storiesController.storyCategoryListModels.value.data![newIndex - 1].category!.title.toString();
+            //         widget.storyTitle=storiesController.storyCategoryListModels.value.data![newIndex - 1].storyTitle.toString();
+            //         widget.story = storiesController.storyCategoryListModels.value.data![newIndex - 1].story!.toString();
+            //         MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex - 1];
+            //         setState(() {});
+            //       }
             //     },
             //     icon: const Icon(
             //       Icons.skip_previous_rounded,
@@ -398,9 +464,10 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
               backgroundColor: AppColors.kBtnColor,
               onPressed: () {
                 setState(() {
-                  isPaused = !isPaused;
+                  isPaused.value = !isPaused.value;
+                  textStop.value= isPaused.value;
                   _playTextWithDelay();
-                  if(isPaused)
+                  if(isPaused.value)
                   {
                     tt.pause();
                   }
@@ -410,62 +477,62 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                   }
                 });
               },
-              child: isPaused
+              child: isPaused.value
                   ? const Icon(Icons.play_arrow)
                   : const Icon(Icons.pause),
             ),
-            // IconButton(
-            //     onPressed: (controllerText.storyCategoryListModels.value.data!
-            //         .lastIndexWhere((element) =>
-            //     element.storyTitle ==
-            //         widget.data.storyTitle) ==
-            //         controllerText
-            //             .storyCategoryListModels.value.data!.length) ==
-            //         true
-            //         ? null
-            //         : () {
-            //       int newIndex = controllerText
-            //           .storyCategoryListModels.value.data!
-            //           .indexWhere((element) =>
-            //       element.storyTitle == widget.data.storyTitle);
-            //       setState(() {
-            //         if (newIndex ==
-            //             controllerText
-            //                 .storyCategoryListModels.value.data!.length) {
-            //           widget.data = controllerText
-            //               .storyCategoryListModels.value.data![newIndex];
-            //           MyRepo.currentStory = controllerText
-            //               .storyCategoryListModels.value.data![newIndex];
-            //           tt.stop();
-            //           // listTxt.clear();
-            //           _ttsInit();
-            //         } else {
-            //           widget.data = controllerText.storyCategoryListModels
-            //               .value.data![newIndex + 1];
-            //           MyRepo.currentStory = controllerText
-            //               .storyCategoryListModels
-            //               .value
-            //               .data![newIndex + 1];
-            //           _text=widget.data.story.toString();
-            //           _currentWordIndex = 0;
-            //           _words = [];
-            //           _words = _text.split(' ');
-            //           isPaused=false;
-            //           displayText = _words.take(_currentWordIndex).join(' ');
-            //           _playTextWithDelay();
-            //           tt.stop();
-            //           // listTxt.clear();
-            //           _ttsInit();
-            //         }
-            //       });
-            //     },
-            //
-            //     // widget.nextStory,
-            //     icon: const Icon(
-            //       Icons.skip_next_rounded,
-            //       color: AppColors.kBtnColor,
-            //       size: 30,
-            //     )),
+            IconButton(
+                onPressed: (controllerText.storyCategoryListModels.value.data!
+                    .lastIndexWhere((element) =>
+                element.storyTitle ==
+                    widget.storyTitle) ==
+                    controllerText
+                        .storyCategoryListModels.value.data!.length) ==
+                    true
+                    ? null
+                    : () {
+                  int newIndex = controllerText
+                      .storyCategoryListModels.value.data!
+                      .indexWhere((element) =>
+                  element.storyTitle == widget.storyTitle);
+                  setState(() {
+                    if (newIndex ==
+                        controllerText
+                            .storyCategoryListModels.value.data!.length) {
+                      // widget.data = controllerText
+                      //     .storyCategoryListModels.value.data![newIndex];
+                      MyRepo.currentStory = controllerText
+                          .storyCategoryListModels.value.data![newIndex];
+                      tt.stop();
+                      // listTxt.clear();
+                      _ttsInit();
+                    } else {
+                      // widget.data = controllerText.storyCategoryListModels
+                      //     .value.data![newIndex + 1];
+                      MyRepo.currentStory = controllerText
+                          .storyCategoryListModels
+                          .value
+                          .data![newIndex + 1];
+                      _text=widget.story.toString();
+                      _currentWordIndex = 0;
+                      _words = [];
+                      _words = _text.split(' ');
+                      // isPaused=false;
+                      displayText = _words.take(_currentWordIndex).join(' ');
+                      _playTextWithDelay();
+                      tt.stop();
+                      // listTxt.clear();
+                      _ttsInit();
+                    }
+                  });
+                },
+
+                // widget.nextStory,
+                icon: const Icon(
+                  Icons.skip_next_rounded,
+                  color: AppColors.kBtnColor,
+                  size: 30,
+                )),
           ],
         ),
       ),
@@ -474,7 +541,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   TtsState ttsState = TtsState.stopped;
   _ttsInit() async {
     WakelockPlus.enable();
-    await tt.speak(widget.data.story.toString());
+    await tt.speak(widget.story!.toString());
      tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
@@ -489,11 +556,15 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
       // Do something when speech is complete
       // Get.to(() => RateUsPage());
       MyRepo.isStoryReading.value=false;
+      if(MyRepo.musicMuted.value == false )
+      {
+        BackgroundMusicManager().resumeMusic();
+      }
       Navigator.of(Get.context!).push(
           MaterialPageRoute(
               builder: (context) =>
                   StoryFinish()));
-      // Get.to(() => StoryFinish());
+
       WakelockPlus.disable();
       print('Speech completed');
     });

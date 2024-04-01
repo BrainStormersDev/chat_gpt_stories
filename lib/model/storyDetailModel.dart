@@ -1,38 +1,54 @@
-// To parse this JSON data, do
-//
-//     final storyCatListModel = storyCatListModelFromJson(jsonString);
-
 import 'dart:convert';
 
-StoryCatListModel storyCatListModelFromJson(String str) => StoryCatListModel.fromJson(json.decode(str));
+StoryDetailModel storyDetailModelFromJson(String str) => StoryDetailModel.fromJson(json.decode(str));
 
-String storyCatListModelToJson(StoryCatListModel data) => json.encode(data.toJson());
+String storyDetailModelToJson(StoryDetailModel data) => json.encode(data.toJson());
 
-class StoryCatListModel {
+class StoryDetailModel {
   bool? status;
   String? message;
-  List<DataList>? data;
+  SelectedStoryData? data;
 
-  StoryCatListModel({
+  StoryDetailModel({
     this.status,
     this.message,
     this.data,
   });
 
-  factory StoryCatListModel.fromJson(Map<String, dynamic> json) => StoryCatListModel(
+  factory StoryDetailModel.fromJson(Map<String, dynamic> json) => StoryDetailModel(
     status: json["status"],
     message: json["message"],
-    data: json["data"] == null ? [] : List<DataList>.from(json["data"]!.map((x) => DataList.fromJson(x))),
+    data: json["data"] == null ? null : SelectedStoryData.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
     "status": status,
     "message": message,
-    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "data": data?.toJson(),
   };
 }
 
-class DataList {
+class SelectedStoryData {
+  Story? story;
+  List<String>? images;
+
+  SelectedStoryData({
+    this.story,
+    this.images,
+  });
+
+  factory SelectedStoryData.fromJson(Map<String, dynamic> json) => SelectedStoryData(
+    story: json["story"] == null ? null : Story.fromJson(json["story"]),
+    images: json["images"] == null ? [] : List<String>.from(json["images"]!.map((x) => x)),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "story": story?.toJson(),
+    "images": images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
+  };
+}
+
+class Story {
   int? id;
   String? storyTitle;
   String? story;
@@ -40,9 +56,8 @@ class DataList {
   Category? category;
   int? viewCount;
   int? averageRating;
-  String? featuredImage;
 
-  DataList({
+  Story({
     this.id,
     this.storyTitle,
     this.story,
@@ -50,10 +65,9 @@ class DataList {
     this.category,
     this.viewCount,
     this.averageRating,
-    this.featuredImage,
   });
 
-  factory DataList.fromJson(Map<String, dynamic> json) => DataList(
+  factory Story.fromJson(Map<String, dynamic> json) => Story(
     id: json["id"],
     storyTitle: json["story_title"],
     story: json["story"],
@@ -61,7 +75,6 @@ class DataList {
     category: json["category"] == null ? null : Category.fromJson(json["category"]),
     viewCount: json["view_count"],
     averageRating: json["average_rating"],
-    featuredImage: json["featured_image"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -72,30 +85,25 @@ class DataList {
     "category": category?.toJson(),
     "view_count": viewCount,
     "average_rating": averageRating,
-    "featured_image": featuredImage,
   };
 }
 
 class Category {
   int? id;
   String? title;
-  String? imageUrl;
 
   Category({
     this.id,
     this.title,
-    this.imageUrl,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
     id: json["id"],
     title: json["title"],
-    imageUrl: json["image_url"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "title": title,
-    "image_url": imageUrl,
   };
 }

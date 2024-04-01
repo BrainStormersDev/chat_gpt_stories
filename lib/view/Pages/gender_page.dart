@@ -91,8 +91,8 @@ class _GenderPageState extends State<GenderPage> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        border:MyRepo.selectedGender==Gender.Boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                        color:MyRepo.selectedGender==Gender.Boy ? AppColors.kPrimary:null
+                        // border:MyRepo.selectedGender==Gender.Boy ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                        // color:MyRepo.selectedGender==Gender.Boy ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -100,25 +100,19 @@ class _GenderPageState extends State<GenderPage> {
                         children: [
                           GestureDetector(
                             onTap: (){
-                              // isBoy.value == true;
-                              // isGirl.value == false;
-                              // print("========isBoy.value====${isBoy.value}");
                               setState(() {
                                 MyRepo.selectedGender=Gender.Boy;
 
                               });
-                              // Future.delayed(const Duration(milliseconds: 100), () {
-                              //   Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                              // });
-
-
 
                             },
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color:MyRepo.selectedGender==Gender.Boy ? AppColors.kBoyBGColor : Colors.transparent,
+                                  color:MyRepo.selectedGender==Gender.Boy ?
+                                  AppColors.kBoyBGColorShade :
+                                  Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kBoyBGColor, width: 2)),
                               child: Padding(
@@ -138,8 +132,13 @@ class _GenderPageState extends State<GenderPage> {
                                 fontWeight: FontWeight.bold,
                                 // color: selectedGender==Gender.boy ? AppColors.kBoyBGColor : Colors.transparent,
                                 foreground: Paint()
-                                  ..style =MyRepo. selectedGender==Gender.Boy ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =MyRepo.selectedGender==Gender.Boy ?AppColors.kWhite: AppColors.kBoyBGColor),
+                                  ..style =
+                                  // MyRepo. selectedGender==Gender.Boy ?
+                                  // PaintingStyle.fill :
+                                  PaintingStyle.stroke
+                                  ..color =
+                                  // MyRepo.selectedGender==Gender.Boy ?AppColors.kWhite:
+                                  AppColors.kBoyBGColor),
                           )
                         ],
                       ),
@@ -149,8 +148,9 @@ class _GenderPageState extends State<GenderPage> {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          border:MyRepo.selectedGender==Gender.Girl ? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-                          color:MyRepo.selectedGender==Gender.Girl ? AppColors.kPrimary:null
+                          // border:MyRepo.selectedGender==Gender.Girl ?
+                          // Border.all(color:AppColors.kPrimary,width: 5 ):null,
+                          // color:MyRepo.selectedGender==Gender.Girl ? AppColors.kPrimary:null
 
                       ),
                       child: Column(
@@ -158,22 +158,18 @@ class _GenderPageState extends State<GenderPage> {
                         children: [
                           GestureDetector(
                             onTap: (){
-                              // isGirl.value == true;
-                              // isBoy.value == false;
-                              // print("========isGirl.value====${isGirl.value}");
                               setState(() {
                                 MyRepo.selectedGender=Gender.Girl;
 
                               });
-                              // Future.delayed(const Duration(milliseconds: 100), () {
-                              //   Navigator.push(context, MaterialPageRoute(builder: (context) => const AgePage()));
-                              // });
+
                             },
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.25,
                               width: MediaQuery.of(context).size.width * 0.4,
                               decoration: BoxDecoration(
-                                  color: MyRepo. selectedGender==Gender.Girl? AppColors.kGirlBGColor : Colors.transparent,
+                                  color: MyRepo. selectedGender==Gender.Girl?
+                                  AppColors.kGirlBGColorShade : Colors.transparent,
                                   border: Border.all(
                                       color: AppColors.kGirlBGColor, width: 2)),
                               child: Padding(
@@ -192,8 +188,14 @@ class _GenderPageState extends State<GenderPage> {
                                 fontFamily: "BalooBhai",
                                 fontWeight: FontWeight.bold,
                                 foreground: Paint()
-                                  ..style = MyRepo.selectedGender==Gender.Girl ? PaintingStyle.fill : PaintingStyle.stroke
-                                  ..color =MyRepo.selectedGender==Gender.Girl ?AppColors.kWhite: AppColors.kGirlBGColor),
+                                  ..style =
+                                  // MyRepo.selectedGender==Gender.Girl ?
+                                  // PaintingStyle.fill :
+                                  PaintingStyle.stroke
+                                  ..color =
+                                  // MyRepo.selectedGender==Gender.Girl ?
+                                  // AppColors.kWhite:
+                                  AppColors.kGirlBGColor),
                           )
                         ],
                       ),

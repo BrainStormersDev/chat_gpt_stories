@@ -15,7 +15,7 @@ class BackgroundMusicManager with WidgetsBindingObserver{
 
   void _init() {
     playMusic();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   void playMusic() async {
@@ -48,11 +48,16 @@ class BackgroundMusicManager with WidgetsBindingObserver{
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.paused:
-        if(!MyRepo.musicMuted.value){pauseMusic();}
+        if(!MyRepo.musicMuted.value){
+
+          pauseMusic();
+
+        }
 
         break;
       case AppLifecycleState.resumed:
         if(!MyRepo.musicMuted.value && !MyRepo.isStoryReading.value){
+          print("music resumed");
           resumeMusic();
         }
         break;

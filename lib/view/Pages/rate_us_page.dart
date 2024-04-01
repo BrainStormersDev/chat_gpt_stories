@@ -17,9 +17,10 @@ import '../Widgets/customButton.dart';
 import 'package:http/http.dart' as http;
 
 class RateUsPage extends StatelessWidget {
-   RateUsPage({Key? key}) : super(key: key);
-    RxInt colorNum=0.obs;
-    RxBool isLoading=false.obs;
+  RateUsPage({Key? key}) : super(key: key);
+  RxInt colorNum = 0.obs;
+  RxBool isLoading = false.obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +31,9 @@ class RateUsPage extends StatelessWidget {
         title: storyByGptWidget(context),
         centerTitle: true,
         backgroundColor: AppColors.kScreenColor,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     // Navigator.pop(context);
-        //     // Get.close(1);
-        //     Get.off(()=>StoryViewPage(data: MyRepo.currentStory));
-        //   },
-        //   icon: const Icon(
-        //     Icons.arrow_back,
-        //     color: AppColors.txtColor1,
-        //   ),
-        // ),
       ),
-      body: Obx(()=>
-         Padding(
+      body: Obx(
+        () => Padding(
           padding:
               const EdgeInsets.only(left: 20.0, right: 20, top: 20, bottom: 10),
           child: SingleChildScrollView(
@@ -68,25 +58,26 @@ class RateUsPage extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 12),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: List.generate(
                                   MyRepo.emojiList.length,
                                   (index) => InkWell(
-                                    onTap: (){
-                                      colorNum.value=   index;
-                                      print("===== test ${colorNum.value}");
-                                    },
+                                        onTap: () {
+                                          colorNum.value = index;
+                                          print("===== test ${colorNum.value}");
+                                        },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              color:  colorNum.value== index? MyRepo.emojiListColor[colorNum.value]:Colors.transparent,
-                                              shape: BoxShape.circle
-                                          ),
+                                              color: colorNum.value == index
+                                                  ? MyRepo.emojiListColor[
+                                                      colorNum.value]
+                                                  : Colors.transparent,
+                                              shape: BoxShape.circle),
                                           child: Container(
-                                            margin:const EdgeInsets.all(2),
-                                            decoration:const BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle
-                                            ),
+                                            margin: const EdgeInsets.all(2),
+                                            decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                shape: BoxShape.circle),
                                             child: Image.asset(
                                               MyRepo.emojiList[index],
                                               height: 40,
@@ -122,70 +113,60 @@ class RateUsPage extends StatelessWidget {
                   style: TextStyle(color: AppColors.txtColor2, fontSize: 17),
                   textAlign: TextAlign.center,
                 ),
-                isLoading.value==true?myIndicator():  Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: CustomButton(
-                    onTap: () async {
-                      MyRepo.rating = (colorNum.value+1).toString();
-                    isLoading.value=true;
-                    if (GetStorage().read("userName")==null || GetStorage().read("userName")=="") {
-                      MyRepo.islogInHomeScreen=false;
-                      isLoading.value=false;
-                      Get.to(() => LogInPage());
-                    } else
-{
-  var token = GetStorage().read("bearerToken");
+                isLoading.value == true
+                    ? myIndicator()
+                    : Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: CustomButton(
+                          onTap: () async {
+                            MyRepo.rating = (colorNum.value + 1).toString();
+                            isLoading.value = true;
+                            if (GetStorage().read("userName") == null ||
+                                GetStorage().read("userName") == "") {
+                              MyRepo.islogInHomeScreen = false;
+                              isLoading.value = false;
+                              Get.to(() => LogInPage());
+                            } else {
+                              var token = GetStorage().read("bearerToken");
 
- try{
-   ApisCall.multiPartApiCall("https://gptstory.thebrainstormers.org/api/v1/story/rate", "post", {
-     "story_id":"${MyRepo.currentStory.id}",
-     "rating": "${colorNum.value+1}"
+                              try {
+                                ApisCall.multiPartApiCall(
+                                    "https://gptstory.thebrainstormers.org/api/v1/story/rate",
+                                    "post", {
+                                  "story_id": "${MyRepo.currentStory.id}",
+                                  "rating": "${colorNum.value + 1}"
+                                },
+                                    header: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json',
+                                      'Authorization': 'Bearer $token'
+                                    }).then((value) {
+                                  if (value['isData']) {
+                                    isLoading.value = false;
+                                    Get.to(SharePage());
 
-   },
-   header:  {
-     'Accept': 'application/json',
-     'Content-Type': 'application/json',
-     'Authorization': 'Bearer $token'
-   }
-   ).then((value) {
-     if(value['isData'])
-     {
-isLoading.value=false;
-Get.to(SharePage());
+                                    print('story rated');
+                                  } else {
+                                    print('error in rate story');
+                                  }
+                                });
+                              } catch (e) {
+                                MySnackBar.snackBarRed(
+                                    title: 'Error',
+                                    message: 'Some thing went wrong!');
 
-print('story rated');
-
-
-     }
-     else
-     {
-
-       print('error in rate story');
-
-     }
-
-
-   });
-
- }
- catch(e){
-   MySnackBar.snackBarRed(title: 'Error', message: 'Some thing went wrong!');
-
-   print('error in rate story $e');
-
-
- }
-
-}
-                    },
-                    color: AppColors.kBtnColor,
-                    // height: MediaQuery.of(context).size.height*0.17,
-                    width: MediaQuery.of(context).size.height * 0.15,
-                    text: "Rate Us",
-                    textSize: 20.0,
-                    txtcolor: AppColors.kBtnTxtColor,
-                  ),
-                ),
+                                print('error in rate story $e');
+                              }
+                            }
+                          },
+                          color: AppColors.kBtnColor,
+                          // height: MediaQuery.of(context).size.height*0.17,
+                          width: MediaQuery.of(context).size.height * 0.15,
+                          text: "Rate Us",
+                          textSize: 20.0,
+                          txtcolor: AppColors.kBtnTxtColor,
+                        ),
+                      ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: CustomButton(
@@ -224,6 +205,5 @@ print('story rated');
         ),
       ),
     );
-
   }
 }

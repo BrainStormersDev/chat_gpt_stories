@@ -221,7 +221,7 @@ logger.i(" url and header: ${url} ${header} ${apiBody}");
 
           request.fields.addAll(apiBody);
            response = await request.send();
-logger.i("response ${response}");
+// logger.i("response ${response}");
 
           stringResponse = await response.stream.bytesToString();
 
@@ -252,7 +252,8 @@ logger.i("response ${response}");
           };
         }
         else if (response.statusCode == 200) {
-          print("============== status code 200");
+          print("status code 200");
+          print(json.decode(stringResponse)['status']);
           if (json.decode(stringResponse)['status_code'] == 808) {
             print("========Session Out :$endpoint=======");
             MySnackBar.snackBarSessionOut(
@@ -268,10 +269,10 @@ logger.i("response ${response}");
           }
           else if (json.decode(stringResponse)['status']==true) {
 
-            MySnackBar.snackBarPrimary(
-                title: snackTitle,
-                message: json.decode(stringResponse)['message'] ??
-                    "Successfully done");
+            // MySnackBar.snackBarYellow(
+            //     title: snackTitle,
+            //     message: json.decode(stringResponse)['message'] ??
+            //         "Successfully done");
 
             return {
               'isData': true,
@@ -353,7 +354,7 @@ logger.i("response ${response}");
         }
         else {
           print("else part============");
-          MySnackBar.snackBarPrimary(
+          MySnackBar.snackBarRed(
               title: snackTitle, message: "Some thing went wrong");
           return {'isData': false, 'message': "Some thing went wrong"};
         }

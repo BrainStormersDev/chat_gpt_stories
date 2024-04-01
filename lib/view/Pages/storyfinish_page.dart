@@ -1,3 +1,7 @@
+import 'package:gpt_chat_stories/common/headers.dart';
+import 'package:gpt_chat_stories/utils/my_indicator.dart';
+
+import '../../controllers/CreateStoryController.dart';
 import '../../controllers/musicController.dart';
 import '../../utils/MyRepo.dart';
 import '../../view/Pages/rate_us_page.dart';
@@ -16,6 +20,8 @@ class StoryFinish extends StatefulWidget {
 }
 
 class _StoryFinishState extends State<StoryFinish> {
+  CreateStoryController controller = Get.put(CreateStoryController());
+
   @override
   Widget  build(BuildContext context) {
     return Scaffold(
@@ -48,7 +54,9 @@ class _StoryFinishState extends State<StoryFinish> {
             padding:
             const EdgeInsets.only(left: 20.0, right: 20, top: 20, bottom: 10),
             child: SingleChildScrollView(
-              child: Column(
+              child:
+    Obx(()=>
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
@@ -62,14 +70,14 @@ class _StoryFinishState extends State<StoryFinish> {
                     padding: const EdgeInsets.all(16.0),
                     child: CustomButton(
                       onTap:() async {
-                        if(MyRepo.musicMuted.value == false )
-                        {
-                          setState(() {
-
-                          });
-                          BackgroundMusicManager().resumeMusic();
-                        }
+                        // if(MyRepo.musicMuted.value == false )
+                        // {
+                        //   BackgroundMusicManager().resumeMusic();
+                        // }
+                        // setState(() {
+                        // });
                         Get.close(3);
+
                       },
                       height: MediaQuery.of(context).size.height*0.17,
                       width: MediaQuery.of(context).size.height * 0.45,
@@ -80,29 +88,70 @@ class _StoryFinishState extends State<StoryFinish> {
                       txtcolor: AppColors.kBtnTxtColor,
                     ),
                   ),
+                  controller.state.value==ApiState.loading
+                      ?
+                  myIndicator():
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: CustomButton(
                       onTap: (){
-                        if(MyRepo.musicMuted.value == false )
-                        {
-                          BackgroundMusicManager().resumeMusic();
-                        }
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    RateUsPage()));
+
+                        if(controller.isNewStory.value)
+                          {
+                            controller.saveStory();
+                          }
+                        else
+                          {
+                            Navigator.push(
+                                Get.context!,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        RateUsPage()));
+                          }
+
                       },
                       height: MediaQuery.of(context).size.height*0.17,
                       width: MediaQuery.of(context).size.height * 0.45,
-                      text: "It is Enough for today",
+                      text:
+                      controller.isNewStory.value?
+                          "Save this story"
+                          :
+                      "It is Enough for today",
                       textSize: 20.0,
                       txtcolor: AppColors.kBtnColor,
                     ),
-                  )
+                  ),
+                  // controller.state.value==ApiState.loading
+                  // ?
+                  //     myIndicator():
+                  // Padding(
+                  //   padding: const EdgeInsets.all(6.0),
+                  //   child: CustomButton(
+                  //
+                  //     onTap:() async {
+                  //       if(MyRepo.musicMuted.value == false )
+                  //       {
+                  //         BackgroundMusicManager().resumeMusic();
+                  //       }
+                  //       controller.saveStory();
+                  //       setState(() {
+                  //
+                  //       });
+                  //
+                  //       // Get.close(3);
+                  //     },
+                  //     height: MediaQuery.of(context).size.height*0.08,
+                  //     width: MediaQuery.of(context).size.height * 0.45,
+                  //     radius: 5.0,
+                  //     color: AppColors.kBtnColor,
+                  //     text: "Save this story",
+                  //     textSize: 20.0,
+                  //     txtcolor: AppColors.kBtnTxtColor,
+                  //   ),
+                  // ),
+
                 ],
-              ),
+              ),),
             ),
           ),
         ),

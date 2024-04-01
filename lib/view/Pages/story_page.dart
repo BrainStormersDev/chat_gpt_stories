@@ -18,7 +18,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../common/headers.dart';
-import '../../controllers/chat_text_controller.dart';
+import '../../controllers/getStoriesController.dart';
 import '../../model/storyCatListModel.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
@@ -37,7 +37,7 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
-  ChatTextController controllerText = Get.put(ChatTextController());
+  StoriesController storiesController = Get.put(StoriesController());
   late PackageInfo packageInfo;
   bool versionCheck1 = false;
   String version = '';
@@ -169,17 +169,6 @@ class _StoryPageState extends State<StoryPage> {
                       const SizedBox(
                         height: 15,
                       ),
-                      // InkWell(
-                      //   onTap: () async {
-                      //
-                      //     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => SplashScreen()), (Route<dynamic> route) => false);
-                      //
-                      //
-                      //     //   login();
-                      //   },
-                      //   child: Container(
-                      //       child: Text("Retry",style: TextStyle(color:AppColors.kPrimary ),)),
-                      // ),
                     ],
                   ),
                 ),
@@ -295,7 +284,7 @@ class _StoryPageState extends State<StoryPage> {
                       height: 20,
                     ),
                     // true
-                    controllerText.state.value == ApiState.loading
+                    storiesController.state.value == ApiState.loading
                         ? Container(
                             child: Column(
                               children: [
@@ -336,18 +325,17 @@ class _StoryPageState extends State<StoryPage> {
                             ),
                           )
                         : Container(
-                            child: controllerText.state.value ==
+                            child: storiesController.state.value ==
                                     ApiState.error
                                 ? Container(
                                     child: Center(
                                         child: Text(
-                                            controllerText.errorMsg.value)),
+                                            storiesController.errorMsg.value)),
                                   )
                                 : Column(
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          // Navigator.push(context, MaterialPageRoute(builder: (context) =>  StoryViewPage(storyType: widget.storyType,)));
                                         },
                                         child: Container(
                                           height: 220,
@@ -356,9 +344,9 @@ class _StoryPageState extends State<StoryPage> {
                                           child: CachedNetworkImage(
                                             // imageUrl: kDemoImage,
                                             imageUrl:
-                                            widget.data!.images!.isEmpty
+                                            widget.data==null || widget.data!.featuredImage==null || widget.data!.featuredImage!.isEmpty
                                               ? '' :
-                                            widget.data!.images![0].imageUrl.toString(),
+                                            widget.data!.featuredImage.toString(),
                                             fit: BoxFit.fill,
                                             progressIndicatorBuilder:
                                                 (context, url,
@@ -415,15 +403,17 @@ class _StoryPageState extends State<StoryPage> {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           IconButton(
-                                              onPressed: controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle) == 0
+                                              onPressed:
+                                              storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
+                                              element.storyTitle == widget.data!.storyTitle) == 0
                                                   ? null
                                                   : () {
-                                                      int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
+                                                      int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
 
                                                       if (newIndex <
-                                                          controllerText.storyCategoryListModels.value.data!.length) {
-                                                        widget.data = controllerText.storyCategoryListModels.value.data![newIndex - 1];
-                                                        MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex - 1];
+                                                          storiesController.storyCategoryListModels.value.data!.length) {
+                                                        widget.data = storiesController.storyCategoryListModels.value.data![newIndex - 1];
+                                                        MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex - 1];
                                                         setState(() {});
                                                       }
                                                     },
@@ -432,30 +422,15 @@ class _StoryPageState extends State<StoryPage> {
                                                 color: AppColors.kBtnColor,
                                                 size: 30,
                                               )),
+                                          ///
                                           GestureDetector(
                                             onTap: () async {
                                               BackgroundMusicManager().pauseMusic();
-                                              // if(MyRepo.musicMuted.value==false)
-                                              // {
-                                              //   print("Music muted");
-                                              //   BackgroundMusicManager().pauseMusic();}
                                               print("=========widget.data.id = ${widget.data!.id}");
-                                              await countViewApi(widget.data!.id.toString());
+                                              // await countViewApi(widget.data!.id.toString());
 
-
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          StoryViewPage(
-                                                            data:
-                                                            widget.data!,
-                                                          )
-                                                      // MyHomePage()
-                                                  )
-                                              );
                                               Future.delayed(const Duration(microseconds: 500)).then((value) {
-                                                getStory(widget.data!.id.toString());
+                                                storiesController.getStory(storyId: widget.data!.id.toString());
                                               });
 
 
@@ -473,24 +448,25 @@ class _StoryPageState extends State<StoryPage> {
                                           ),
                                           IconButton(
                                               onPressed: (
-                                                  controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) ==
-                                                      controllerText.storyCategoryListModels.value.data!
+                                                  storiesController.storyCategoryListModels.value.data!.lastIndexWhere
+                                                    ((element) => element.storyTitle == widget.data!.storyTitle) ==
+                                                      storiesController.storyCategoryListModels.value.data!
                                                           .length)==true
                                                   ? null
                                                   : () {
-                                                print("=====++++++: ${controllerText.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == controllerText.storyCategoryListModels.value.data!.length}");
+                                                print("=====++++++: ${storiesController.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == storiesController.storyCategoryListModels.value.data!.length}");
 
-                                                int newIndex = controllerText.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
+                                                int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
 
                                                       setState(() {
-                                                        if (newIndex == controllerText.storyCategoryListModels.value.data!.length) {
-                                                          widget.data = controllerText.storyCategoryListModels.value.data![newIndex];
-                                                          MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex];
+                                                        if (newIndex == storiesController.storyCategoryListModels.value.data!.length) {
+                                                          widget.data = storiesController.storyCategoryListModels.value.data![newIndex];
+                                                          MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex];
                                                         print("========if == current Story :${MyRepo.currentStory.storyTitle}");
                                                         }
                                                         else{
-                                                          widget.data = controllerText.storyCategoryListModels.value.data![newIndex+1];
-                                                          MyRepo.currentStory = controllerText.storyCategoryListModels.value.data![newIndex+1];
+                                                          widget.data = storiesController.storyCategoryListModels.value.data![newIndex+1];
+                                                          MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex+1];
                                                           print("========if == current Story :${MyRepo.currentStory.storyTitle}");
 
                                                         }
@@ -513,46 +489,5 @@ class _StoryPageState extends State<StoryPage> {
             )),
       );
     }
-  }
-
-  countViewApi(var storyID) async {
-    var request = http.MultipartRequest('POST',
-        Uri.parse('${kBaseUrl}/api/v1/count-story-view'));
-    request.fields.addAll({'story_id': storyID});
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-      // getStory(storyID);
-
-    } else {
-      print(response.reasonPhrase);
-    }
-  }
-  getStory(var storyID) async {
-    print("========= story id :$storyID");
-    print("=========user id :${ GetStorage().read("userId").toString()}");
-    var headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
-    var request = http.MultipartRequest('POST', Uri.parse('${kBaseUrl}/api/v1/get-story'));
-    request.fields.addAll({
-      // 'story_id': '33',
-      // 'user_id': '102'
-      'story_id': '$storyID',
-      'user_id': GetStorage().read("userId").toString()
-    });
-
-    request.headers.addAll(headers);
-    http.StreamedResponse response = await request.send();
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-    }
-    else {
-      print(response.reasonPhrase);
-    }
-
   }
 }

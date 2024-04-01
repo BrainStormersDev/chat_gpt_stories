@@ -1,5 +1,4 @@
 
-
 class ImageGenerationModel {
   final num created;
   final List<ImageGenerationData> data;

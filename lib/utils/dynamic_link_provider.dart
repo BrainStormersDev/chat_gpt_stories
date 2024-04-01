@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:share_plus/share_plus.dart';
 
-import '../controllers/chat_text_controller.dart';
+import '../controllers/getStoriesController.dart';
 import 'MyRepo.dart';
 
 StoryCatController dynamicStoryCatController =Get.put(StoryCatController());
@@ -64,7 +64,7 @@ class DynamicLinksProvider {
 
     // await MyRepo.assetsAudioPlayer.pause();
     Future.delayed(const Duration(milliseconds: 100), () {
-      Get.put(ChatTextController()).getTextCompletion(query: searchText, catId: "");
+      Get.put(StoriesController()).getTextCompletion(query: searchText, catId: "");
       // Get.put(ChatImageController()).getGenerateImages(searchText);
       Get.to(StoryCatList(catName: catN,));
     });

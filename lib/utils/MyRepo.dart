@@ -19,11 +19,17 @@ class MyRepo {
   static final assetsAudioPlayer = AssetsAudioPlayer();
   static List<String> ageList = ['1-3', '3-5', '5-10', '10+'];
   static List<String> gender = ['Boy', 'Girl'];
-  static List<SelectAgeClass> selectAgeList = [
-    SelectAgeClass(age: '1-3', assetImage: kOneToThreeLogo),
-    SelectAgeClass(age: '3-5', assetImage: kThreeToFiveLogo),
-    SelectAgeClass(age: '5-10', assetImage: kFiveToTenLogo),
-    SelectAgeClass(age: '10+', assetImage: kTenPlusLogo)
+  static List<SelectAgeClass> selectGirlAgeList = [
+    SelectAgeClass(age: '1-3', assetImage: kOneToThreeLogoGirl),
+    SelectAgeClass(age: '3-5', assetImage: kThreeToFiveLogoGirl),
+    SelectAgeClass(age: '5-10', assetImage: kFiveToTenLogoGirl),
+    SelectAgeClass(age: '10+', assetImage: kTenPlusLogoGirl)
+  ];
+  static List<SelectAgeClass> selectBoyAgeList = [
+    SelectAgeClass(age: '1-3', assetImage: kOneToThreeLogoBoy),
+    SelectAgeClass(age: '3-5', assetImage: kThreeToFiveLogoBoy),
+    SelectAgeClass(age: '5-10', assetImage: kFiveToTenLogoBoy),
+    SelectAgeClass(age: '10+', assetImage: kTenPlusLogoBoy)
   ];
   static List emojiList = [
     "assets/PNG/emoji_rate_1.png",
@@ -68,10 +74,14 @@ const String kBaseUrl = "https://gptstory.thebrainstormers.org/";
 const String v1 = "https://gptstory.thebrainstormers.org/api/v1/";
 const String audioLink = "${kBaseUrl}/public/s_1.mp3";
 const String kLogoAsset = "assets/PNG/loin.png";
-const String kOneToThreeLogo = "assets/PNG/age1-3.png";
-const String kThreeToFiveLogo = "assets/PNG/age3-5.png";
-const String kFiveToTenLogo = "assets/PNG/age5-10.png";
-const String kTenPlusLogo = "assets/PNG/age10.png";
+const String kOneToThreeLogoBoy = "assets/PNG/boyBaby.png";
+const String kThreeToFiveLogoBoy = "assets/PNG/boyKid.png";
+const String kFiveToTenLogoBoy = "assets/PNG/boyChild.png";
+const String kTenPlusLogoBoy = "assets/PNG/boyTeen.png";
+const String kOneToThreeLogoGirl = "assets/PNG/girlBaby.png";
+const String kThreeToFiveLogoGirl = "assets/PNG/girlKid.png";
+const String kFiveToTenLogoGirl = "assets/PNG/girlChild.png";
+const String kTenPlusLogoGirl = "assets/PNG/girlTeen.png";
 const String kWelcomeSound = "assets/audio/welcome_sound.mp3";
 const String kDemoImage = "https://pi.tedcdn.com/r/talkstar-assets.s3.amazonaws.com/production/playlists/playlist_62/how_to_tell_a_story_update.jpg?u%5Br%5D=2&u%5Bs%5D=0.5&u%5Ba%5D=0.8&u%5Bt%5D=0.03&quality=82&w=600c=1050%2C550&w=1050";
 

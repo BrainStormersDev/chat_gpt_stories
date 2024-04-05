@@ -147,7 +147,13 @@ class _StoryCatListState extends State<StoryCatList> {
                                   ApiState.error
                               ? Center(
                                   child: Text(
-                                      storyCatListController.errorMsg.value))
+                                      storyCatListController.errorMsg.value,
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontFamily: 'Bobbers',
+                                      color: AppColors.txtColor1
+                                  ),
+                                  ))
                               : SingleChildScrollView(
                                   child: Column(
                                       children: List.generate(
@@ -169,20 +175,7 @@ class _StoryCatListState extends State<StoryCatList> {
                                         child: InkWell(
                                             onTap: () {
                                               selectItems.value = index.toString();
-                                              MyRepo.currentStory =
-                                                  storyCatListController
-                                                      .storyCategoryListModels
-                                                      .value
-                                                      .data!
-                                                      .where((element) => element
-                                                          .storyTitle!
-                                                          .toString()
-                                                          .toLowerCase()
-                                                          .contains(
-                                                              _searachController
-                                                                  .text
-                                                                  .trim()))
-                                                      .toList()[index];
+
                                               nextPage(
                                                   data: storyCatListController
                                                       .storyCategoryListModels
@@ -197,11 +190,6 @@ class _StoryCatListState extends State<StoryCatList> {
                                                           .text
                                                           .trim()))
                                                       .toList()[index]);
-                                              // nextPage(
-                                              //     data: storyCatListController
-                                              //         .storyCategoryListModels
-                                              //         .value
-                                              //         .data![index]);
                                             },
                                             child: icon(index)));
                                     // return icon(data:storyCatController.storyCategoryModels.value.data![index],index: index);
@@ -249,9 +237,11 @@ class _StoryCatListState extends State<StoryCatList> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.height * 0.16,
               child: CachedNetworkImage(
                 imageUrl: storyData.featuredImage.toString(),
+                fit: BoxFit.cover,
+
                 placeholder: (context, url) =>
                     const CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Container(
@@ -275,7 +265,7 @@ class _StoryCatListState extends State<StoryCatList> {
                   width: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.fitWidth),
+                        image: imageProvider, fit: BoxFit.cover),
                     borderRadius: const BorderRadiusDirectional.only(
                         topStart: Radius.circular(20),
                         bottomStart: Radius.circular(20)),
@@ -410,11 +400,11 @@ class _StoryCatListState extends State<StoryCatList> {
   }
 
   nextPage({required DataList data}) async {
-    print("======Data==========${data.story}");
-
+    print("id of story ${data.id}");
+MyRepo.currentStory.value=data;
 
     Future.delayed(const Duration(milliseconds: 100), () {
-      print("========== List =========");
+      print("next page: StoryPage");
       Navigator.push(
           context,
           MaterialPageRoute(

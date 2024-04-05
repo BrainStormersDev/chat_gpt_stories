@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:gpt_chat_stories/utils/mySnackBar.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import '../../controllers/musicController.dart';
+import '../../model/storyCatListModel.dart';
 import '../../view/Pages/rate_us_page.dart';
 import '../../view/Pages/storyfinish_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,8 +22,9 @@ class StoryViewPage extends StatefulWidget {
   String story;
   String storyTitle;
   // SelectedStoryData? data;
-   String? catName;
-  StoryViewPage({Key? key, this.catName,this.story="", this.storyTitle="" , this.images}) : super(key: key);
+  String? catName;
+  bool isNewStory;
+  StoryViewPage({Key? key,this.isNewStory=false, this.catName,this.story="", this.storyTitle="" , this.images}) : super(key: key);
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();
 }
@@ -27,6 +32,7 @@ enum TtsState { playing, stopped, paused, continued }
 class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateMixin, WidgetsBindingObserver{
   FlutterTts tt = FlutterTts();
   StoriesController controllerText = Get.put(StoriesController());
+
   final ScrollController _scrollController = ScrollController();
   List<String> image = [];
   int activeIndex = 0;
@@ -68,31 +74,40 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
     if (ModalRoute.of(context)?.isCurrent == true) {
     }
   }
-  Future<void> _playTextWithDelay() async {
+  Future<void> _playTextWithDelay({bool fromStart=false}) async {
     const Duration wordDelay =  Duration(milliseconds: 310); // Change this value
     Duration totalElapsedTime = const Duration(); // Track total elapsed time
     Future<void> playWord(int index) async {
+      if(fromStart==true)
+      {
+        index=0;
+        _currentWordIndex=0;
+        // print("index: ${index} ${_currentWordIndex}");
+
+        fromStart=false;
+      }
+
       await Future.delayed(wordDelay);
       if (mounted && !textStop.value) {
         setState(() {
           _currentWordIndex = index;
+          // print("index is: ${index}");
         });
         totalElapsedTime = Duration(); // Reset the total elapsed time
         if (index <= _words.length - 1) {
-          if(_words[_currentWordIndex].endsWith('.') || _words[_currentWordIndex].endsWith(',') ){
-            print(_words[_currentWordIndex]);
+          // print("words length: ${_words.length}");
+          if (_words[_currentWordIndex].endsWith('.') ||
+              _words[_currentWordIndex].endsWith(',')) {
             await Future.delayed(const Duration(milliseconds: 290));
-            print(_words[_currentWordIndex]);
-
+            // print(".");
           }
-          if(_words[_currentWordIndex].startsWith('.\n') ){
+          if (_words[_currentWordIndex].startsWith('.\n')) {
             print('break');
             await Future.delayed(const Duration(milliseconds: 290));
-            print(_words[_currentWordIndex]);
 
           }
 
-          await playWord(index + 1);
+          await playWord(_currentWordIndex + 1);
         }
       }
     }
@@ -102,6 +117,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
 
   @override
   void initState() {
+
     WidgetsBinding.instance.addObserver(this);
     MyRepo.isStoryReading.value=true;
     print(widget.story.toString());
@@ -109,6 +125,8 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
     _words = _text.split(' ');
     _playTextWithDelay();
     super.didChangeDependencies();
+
+      BackgroundMusicManager().pauseMusic();
 
 
     _ttsInit();
@@ -144,6 +162,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   @override
   Widget build(BuildContext context) {
     String displayText = _words.take(_currentWordIndex).join(' ');
+    // print("current index: ${_currentWordIndex}");
     final List<String> imgList = [
       'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
       'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -166,8 +185,55 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         .map((item) => Container(
       margin: const EdgeInsets.all(5.0),
       child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-          child: Image.network(item, fit: BoxFit.fitHeight, width: 1000.0),
+        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+        child:
+        CachedNetworkImage(
+          imageUrl:item,
+          fit: BoxFit.cover, width: 1000.0,
+          progressIndicatorBuilder:
+              (context, url,
+              downloadProgress) =>
+              SizedBox(
+                  width:
+                  double.infinity,
+                  child: Shimmer
+                      .fromColors(
+                    baseColor: Colors
+                        .grey
+                        .withOpacity(
+                        .3),
+                    highlightColor:
+                    Colors.grey,
+                    child: Container(
+                      width: double
+                          .infinity,
+                      decoration: BoxDecoration(
+                          color: Colors
+                              .white,
+                          borderRadius:
+                          BorderRadius
+                              .circular(
+                              4)),
+                    ),
+                  )),
+          errorWidget:
+              (context, url, error) =>
+              Container(
+                height: 200,
+                width: 200,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                        "assets/PNG/img_4.png"
+                      // "${widget.data.images!.first.imageUrl}"
+                      // widget.data.imageUrl
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+        ),
+
 
       ),
     ))
@@ -192,14 +258,14 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                         try {
                           MyRepo.isStoryReading.value=false;
                           if(MyRepo.musicMuted.value == false )
-                            {
-                              BackgroundMusicManager().resumeMusic();
-                            }
+                          {
+                            BackgroundMusicManager().resumeMusic();
+                          }
                         } catch (t) {
-                        //mp3 unreachable
+                          //mp3 unreachable
                         }
-                          // Get.back();
-                       Navigator.pop(context);
+                        // Get.back();
+                        Navigator.pop(context);
 
                       },
                       icon: const Icon(
@@ -311,7 +377,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                               scrollPhysics:
                               const BouncingScrollPhysics(),
                               viewportFraction: 1,
-                              aspectRatio: 2.0,
+                              aspectRatio: 1.5,
                               enlargeCenterPage: true,
                               scrollDirection: Axis.horizontal,
                               autoPlay: true,
@@ -398,38 +464,38 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            if(widget.isNewStory==false)
             IconButton(
+
                 onPressed:
-                controllerText.storyCategoryListModels.value.data!
-                    .indexWhere((element) =>
-                element.storyTitle == widget.storyTitle) ==
-                    0
-                    ? null
-                    : () {
+                    () async {
                   int newIndex = controllerText
                       .storyCategoryListModels.value.data!
                       .indexWhere((element) =>
-                  element.storyTitle == widget.storyTitle);
-                  logger.e(newIndex);
-                  if (newIndex < controllerText.storyCategoryListModels.value.data!.length) {
-                    widget.story = controllerText.storyCategoryListModels
-                        .value.data![newIndex - 1].story.toString();
-                    MyRepo.currentStory = controllerText
-                        .storyCategoryListModels
-                        .value
-                        .data![newIndex - 1];
-                    _text=widget.story.toString();
-                    _currentWordIndex = 0;
-                    _words = [];
-                    _words = _text.split(' ');
-                    // isPaused=false;
-                    displayText = _words.take(_currentWordIndex).join(' ');
-                    _playTextWithDelay();
-                    tt.stop();
-                    // listTxt.clear();
-                    _ttsInit();
-                    setState(() {  logger.i(_text);});
+                  element.storyTitle ==
+                      widget.storyTitle
+                  );
+                  if (newIndex == 0) {
+
+                    MySnackBar.snackBarPrimary(title: "Info", message: "Start of the list");
+
+                    // tt.stop();
+                    // _ttsInit();
+
                   }
+                  else {
+                    setState(() {
+                      MyRepo.currentStory.value=DataList();
+
+                      MyRepo.currentStory.value.storyTitle=controllerText.storyCategoryListModels.value.data![newIndex-1].storyTitle;
+                      Navigator.pop(context);
+                    });
+                    await  controllerText.getStory( storyId: controllerText
+                        .storyCategoryListModels
+                        .value.data![newIndex-1].id.toString());
+
+                  }
+
 
                 },
                 icon: const Icon(
@@ -437,29 +503,6 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                   color: AppColors.kBtnColor,
                   size: 30,
                 )),
-            // IconButton(
-            //     onPressed:
-            //     storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
-            //     element.storyTitle == widget.storyTitle) == 0
-            //         ? null
-            //         : () {
-            //       int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
-            //       element.storyTitle == widget!.storyTitle);
-            //
-            //       if (newIndex <
-            //           storiesController.storyCategoryListModels.value.data!.length) {
-            //         widget.catName=storiesController.storyCategoryListModels.value.data![newIndex - 1].category!.title.toString();
-            //         widget.storyTitle=storiesController.storyCategoryListModels.value.data![newIndex - 1].storyTitle.toString();
-            //         widget.story = storiesController.storyCategoryListModels.value.data![newIndex - 1].story!.toString();
-            //         MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex - 1];
-            //         setState(() {});
-            //       }
-            //     },
-            //     icon: const Icon(
-            //       Icons.skip_previous_rounded,
-            //       color: AppColors.kBtnColor,
-            //       size: 30,
-            //     )),
             FloatingActionButton.small(
               backgroundColor: AppColors.kBtnColor,
               onPressed: () {
@@ -481,50 +524,38 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                   ? const Icon(Icons.play_arrow)
                   : const Icon(Icons.pause),
             ),
+            if(widget.isNewStory==false)
             IconButton(
-                onPressed: (controllerText.storyCategoryListModels.value.data!
-                    .lastIndexWhere((element) =>
-                element.storyTitle ==
-                    widget.storyTitle) ==
-                    controllerText
-                        .storyCategoryListModels.value.data!.length) ==
-                    true
-                    ? null
-                    : () {
+                onPressed:
+                    () async {
                   int newIndex = controllerText
                       .storyCategoryListModels.value.data!
                       .indexWhere((element) =>
-                  element.storyTitle == widget.storyTitle);
-                  setState(() {
-                    if (newIndex ==
-                        controllerText
-                            .storyCategoryListModels.value.data!.length) {
-                      // widget.data = controllerText
-                      //     .storyCategoryListModels.value.data![newIndex];
-                      MyRepo.currentStory = controllerText
-                          .storyCategoryListModels.value.data![newIndex];
-                      tt.stop();
-                      // listTxt.clear();
-                      _ttsInit();
-                    } else {
-                      // widget.data = controllerText.storyCategoryListModels
-                      //     .value.data![newIndex + 1];
-                      MyRepo.currentStory = controllerText
-                          .storyCategoryListModels
-                          .value
-                          .data![newIndex + 1];
-                      _text=widget.story.toString();
-                      _currentWordIndex = 0;
-                      _words = [];
-                      _words = _text.split(' ');
-                      // isPaused=false;
-                      displayText = _words.take(_currentWordIndex).join(' ');
-                      _playTextWithDelay();
-                      tt.stop();
-                      // listTxt.clear();
-                      _ttsInit();
-                    }
-                  });
+                  element.storyTitle ==
+                      widget.storyTitle
+                  );
+                  if (newIndex == controllerText.storyCategoryListModels.value.data!.length-1) {
+
+                    MySnackBar.snackBarPrimary(title: "Info", message: "End of the list");
+
+                    // tt.stop();
+                    // _ttsInit();
+
+                  }
+                  else {
+                    setState(() {
+                      MyRepo.currentStory.value=DataList();
+
+                      MyRepo.currentStory.value.storyTitle=controllerText.storyCategoryListModels.value.data![newIndex+1].storyTitle;
+                      Navigator.pop(context);
+                    });
+                    await  controllerText.getStory( storyId: controllerText
+                        .storyCategoryListModels
+                        .value.data![newIndex+1].id.toString());
+
+                  }
+
+
                 },
 
                 // widget.nextStory,
@@ -541,8 +572,9 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   TtsState ttsState = TtsState.stopped;
   _ttsInit() async {
     WakelockPlus.enable();
+    // print(widget.story!.toString());
     await tt.speak(widget.story!.toString());
-     tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
+    tt.setProgressHandler((String text, int startOffset, int endOffset, String word) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 200),
@@ -553,8 +585,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         ttsState = TtsState.continued;
       });});
     tt.setCompletionHandler(() {
-      // Do something when speech is complete
-      // Get.to(() => RateUsPage());
+
       MyRepo.isStoryReading.value=false;
       if(MyRepo.musicMuted.value == false )
       {

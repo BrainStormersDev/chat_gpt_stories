@@ -3,8 +3,10 @@ import 'package:flutter/widgets.dart';
 
 import '../utils/MyRepo.dart';
 
-class BackgroundMusicManager with WidgetsBindingObserver{
-  static final BackgroundMusicManager _instance = BackgroundMusicManager._internal();
+class BackgroundMusicManager with WidgetsBindingObserver {
+  static final BackgroundMusicManager _instance =
+      BackgroundMusicManager._internal();
+
   factory BackgroundMusicManager() => _instance;
 
   BackgroundMusicManager._internal() {
@@ -19,12 +21,18 @@ class BackgroundMusicManager with WidgetsBindingObserver{
   }
 
   void playMusic() async {
-    await _assetsAudioPlayer.open(
-        Playlist(audios: [
-          Audio.network(
-              "${audioLink}"),
-        ]),
-        loopMode: LoopMode.playlist, autoStart: true);
+    try {
+      await _assetsAudioPlayer.open(
+          Playlist(audios: [
+            Audio("assets/PNG/s_1.mp3"),
+            // Audio.network(
+            //     "${audioLink}"),
+          ]),
+          loopMode: LoopMode.playlist,
+          autoStart: true);
+    } catch (e) {
+      logger.e("error is : $e");
+    }
   }
 
   void pauseMusic() {
@@ -36,6 +44,7 @@ class BackgroundMusicManager with WidgetsBindingObserver{
     // Resume the paused audio
     _assetsAudioPlayer.play();
   }
+
   void toggleMute() {
     if (MyRepo.musicMuted.value) {
       pauseMusic();
@@ -43,20 +52,19 @@ class BackgroundMusicManager with WidgetsBindingObserver{
       resumeMusic();
     }
   }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.paused:
-        if(!MyRepo.musicMuted.value){
-
+        if (!MyRepo.musicMuted.value) {
           pauseMusic();
-
         }
 
         break;
       case AppLifecycleState.resumed:
-        if(!MyRepo.musicMuted.value && !MyRepo.isStoryReading.value){
+        if (!MyRepo.musicMuted.value && !MyRepo.isStoryReading.value) {
           print("music resumed");
           resumeMusic();
         }

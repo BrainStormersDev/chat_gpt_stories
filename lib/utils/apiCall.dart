@@ -27,7 +27,7 @@ class ApisCall {
       result = await _connectivity.checkConnectivity();
       print("-------internet result :${result.toString()}---------");
     } on PlatformException catch (e) {
-      print(e.toString());
+      print(" internet connection issue:${e.toString()}");
     }
     switch (result) {
       case ConnectivityResult.none:
@@ -46,6 +46,7 @@ class ApisCall {
             body: apiBody,
           )
               .timeout(const Duration(seconds: 20), onTimeout: () {
+                logger.e("timeout");
                return http.Response('Error', 503);
           });
         } else if (method == "get") {
@@ -66,7 +67,7 @@ class ApisCall {
           };
         }
         else if (response.statusCode == 200) {
-          print("============== status code 200");
+          print("status code 200");
           if (json.decode(response.body)['status_code'] == 808) {
             print("========Session Out :$endpoint=======");
             MySnackBar.snackBarSessionOut(
@@ -81,11 +82,12 @@ class ApisCall {
             };
           }
           else if (json.decode(response.body)['status']==true) {
+            print("status true");
 
-              MySnackBar.snackBarPrimary(
-                  title: snackTitle,
-                  message: json.decode(response.body)['message'] ??
-                      "Successfully done");
+              // MySnackBar.snackBarPrimary(
+              //     title: snackTitle,
+              //     message: json.decode(response.body)['message'] ??
+              //         "Successfully done");
 
             return {
               'isData': true,
@@ -95,6 +97,7 @@ class ApisCall {
           }
           else {
             if (isSnackBarShow) {
+              print("message here");
               MySnackBar.snackBarRed(
                   title: snackTitle,
                   message: json.decode(response.body)['message'] ?? "Error! ");
@@ -197,7 +200,7 @@ class ApisCall {
       result = await _connectivity.checkConnectivity();
       print("-------internet result :${result.toString()}---------");
     } on PlatformException catch (e) {
-      print(e.toString());
+      print("error in network: ${e.toString()}");
     }
     switch (result) {
       case ConnectivityResult.none:
@@ -212,19 +215,17 @@ class ApisCall {
 
         if (method == "post") {
 logger.i(" url and header: ${url} ${header} ${apiBody}");
-
-
           var request = http.MultipartRequest('POST', url);
           if(header!=null)
-
           request.headers.addAll(header);
-
           request.fields.addAll(apiBody);
-           response = await request.send();
-// logger.i("response ${response}");
+          try{
+           response = await request.send();}
+          catch(e){
+            print("error in network: ${e.toString()}");
 
+          }
           stringResponse = await response.stream.bytesToString();
-
         }
 
 
@@ -238,7 +239,6 @@ logger.i(" url and header: ${url} ${header} ${apiBody}");
           stringResponse = await response.stream.bytesToString();
 
         }
-
         print("====== prob start  ${response.statusCode}= ${stringResponse} = ");
 
         if (response.statusCode == 500) {

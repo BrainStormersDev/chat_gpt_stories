@@ -30,7 +30,7 @@ class _SharePageState extends State<SharePage> {
 
   getShare() async {
     shareStoryLink = await DynamicLinksProvider().createLink(
-        MyRepo.storyCat.toString(), MyRepo.currentStory.storyTitle.toString());
+        MyRepo.storyCat.toString(), MyRepo.currentStory.value.storyTitle.toString());
     print("======shareStoryLink== $shareStoryLink");
   }
 
@@ -80,7 +80,7 @@ class _SharePageState extends State<SharePage> {
                             "Story Title: ${widget.shareData?.storyTitle}\nStory: \n${widget.shareData?.story}";
                         getShare();
                         Share.share(
-                            "GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
+                            "GPT Stories For Kids\n \nStory: ${MyRepo.currentStory.value.storyTitle}\n \nHere is a Story click on the link\n \n$shareStoryLink");
 
                       },
                       color: AppColors.kBtnColor,

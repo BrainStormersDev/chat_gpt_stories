@@ -60,13 +60,17 @@ class StoriesController extends GetxController {
           .then((value) {
         if (value["isData"]) {
           storyCategoryListModels.value=storyCatListModelFromJson(value["response"]);
+
           state.value=ApiState.success;
         } else {
           state.value=ApiState.error;
+          errorMsg.value = value["message"];
 
         }
       });
     } catch (e) {
+      errorMsg.value = "Something Went Wrong!";
+
       state.value=ApiState.error;
       print(e);
     }
@@ -92,27 +96,35 @@ class StoriesController extends GetxController {
 
   getTextCompletion({required String query, required String catId}) async {
     state.value = ApiState.loading;
+    storyCategoryListModels = StoryCatListModel(status: false, message: '', data: []).obs;
     try {
-      final response = await http.post(
-        Uri.parse("${kBaseUrl}api/v1/get-stories"),
-        body: {
-          "search": query,
-          "cat_id": catId,
-        },
-      );
-      if (response.statusCode == 200) {
-        storyCategoryListModels =
-            StoryCatListModel(status: false, message: '', data: []).obs;
-        storyCategoryListModels.value =
-            StoryCatListModel.fromJson(json.decode(response.body));
+      ApisCall.apiCall("${kBaseUrl}api/v1/get-stories", "post", {
+        "search": query,
+        "cat_id": catId,
+      },
+      isSnackBarShow: true
+      ).then((value) {
+        if(value["isData"])
+          {
+            logger.i(value["message"]);
+            state.value = ApiState.success;
+            storyCategoryListModels =
+                StoryCatListModel(status: false, message: '', data: []).obs;
+            storyCategoryListModels.value = storyCatListModelFromJson(value["response"]);
 
-        state.value = ApiState.success;
-      } else {
-        logger.e(response.statusCode);
-        state.value = ApiState.error;
-        errorMsg.value = "Error :${storyCategoryListModels.value.message}";
-      }
+          }
+        else
+          {
+            logger.e(value["message"]);
+            state.value = ApiState.error;
+            errorMsg.value = value["message"];
+          }
+
+      });
+
+
     } catch (e) {
+      logger.e("error: $e");
       state.value = ApiState.error;
       errorMsg.value = "Error :$e";
     } finally {
@@ -127,10 +139,12 @@ class StoriesController extends GetxController {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   };
-
+/// get specific story by story id to read
   getStory({required String storyId}) async {
     state.value = ApiState.loading;
     try {
+      print("story id: ${storyId}");
+
       await ApisCall.multiPartApiCall(
               "${kBaseUrl}api/v1/get-story",
               'post',
@@ -141,14 +155,14 @@ class StoriesController extends GetxController {
           .then((value) {
         if (value["isData"]) {
           storyDetailModel = storyDetailModelFromJson(value["response"]);
-          print(
-              "story title: ${storyDetailModel.data!.story!.storyTitle!.toString()}");
+          print("story title: ${storyDetailModel.data!.story!.storyTitle!.toString()}");
+          // print("new story id: ${storyDetailModel.data!.story!.id.toString()}");
+
           state.value = ApiState.success;
           if(storyDetailModel.data!=null && storyDetailModel.data!.story!=null)
             {
 
               CreateStoryController().isNewStory.value=false;
-
               Navigator.push(
                   Get.context!,
                   MaterialPageRoute(

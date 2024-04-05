@@ -572,7 +572,13 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
                         ApiState.error
                         ? Center(
                         child: Text(
-                           "Something went wrong. Please try again"))
+                            myStoriesController.errorMsg.toString(),
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              fontFamily: 'Bobbers',
+                              color: AppColors.txtColor1
+                          ),
+                        ))
                         : SingleChildScrollView(
                       child: Column(
                           children: List.generate(
@@ -594,7 +600,7 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
                                 child: InkWell(
                                     onTap: () {
                                       selectItems.value = index.toString();
-                                      MyRepo.currentStory =
+                                      MyRepo.currentStory.value =
                                       myStoriesController
                                           .storyCategoryListModels
                                           .value

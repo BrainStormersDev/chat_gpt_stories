@@ -1,3 +1,5 @@
+import 'package:gpt_chat_stories/utils/apiCall.dart';
+
 import '../../utils/MyRepo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,22 +28,18 @@ class RegistrationController extends GetxController {
   }
 
   late RegistrationModels registrationModels;
-
-
-
   var state = ApiState.notFound.obs;
 
   getRegistration({required String age, String? token,required String gender}) async {
 
-    print("=======age: $age=======");
-    print("=======token: $token=======");
-    print("=======gender: $gender=======");
+    print("age: $age");
+    print("token: $token");
+    print("gender: $gender");
 
     state.value = ApiState.loading;
     registrationModels =RegistrationModels(status: false,message: '',data:Data());
 
     try {
-      // ['256x256', '512x512', '1024x1024']
       Map<String, dynamic> rowParams = {
         "age": age,
         "device_token":token,
@@ -50,27 +48,24 @@ class RegistrationController extends GetxController {
         "email": '',
       };
 
-      // final encodedParams = json.encode(rowParams);
+ApisCall.apiCall("${kBaseUrl}register", "post", rowParams).then((value) {
 
-      final response = await http.post(
-        Uri.parse("${kBaseUrl}register"),
-        body: rowParams,
-      );
+  if(value["isData"]){
 
-      if (response.statusCode == 200) {
-        registrationModels = RegistrationModels.fromJson(jsonDecode(response.body));
-        print("succccccccccccccccccccccccc ");
-        state.value = ApiState.success;
-      }
-      else {
-        print("Errorrrrrrrrrrrrrrr  ${response.body} registratio_controller");
-        // throw ServerException(message: "Image Generation Server Exception");
-        state.value = ApiState.error;
-      }
+    registrationModels = RegistrationModels.fromJson(value["response"]);
+    print("success ");
+    state.value = ApiState.success;
+  }
+  else
+    {
+      print("Error ${value["message"]} registration_controller");
+      state.value = ApiState.error;
+    }
+});
+
     } catch (e) {
-      print("Errorrrrrrrrrrrrrrr  ");
+      print("Error $e");
     } finally {
-     // searchTextController.clear();
       update();
     }
   }

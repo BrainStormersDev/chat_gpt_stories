@@ -265,7 +265,7 @@ class _StoryPageState extends State<StoryPage> {
                               repeatForever: true,
                               animatedTexts: [
                                 TyperAnimatedText(
-                                    '${widget.data!.storyTitle}',
+                                    '${MyRepo.currentStory.value.storyTitle}',
                                     textStyle: const TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -311,7 +311,7 @@ class _StoryPageState extends State<StoryPage> {
                                           TyperAnimatedText(
                                               'Please wait ....'),
                                           TyperAnimatedText(
-                                              'While your story of ${widget.data!.storyTitle} is creating'),
+                                              'While your story of ${MyRepo.currentStory.value.storyTitle} is creating'),
                                           // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
                                         ],
                                         onTap: () {
@@ -413,7 +413,8 @@ class _StoryPageState extends State<StoryPage> {
                                                       if (newIndex <
                                                           storiesController.storyCategoryListModels.value.data!.length) {
                                                         widget.data = storiesController.storyCategoryListModels.value.data![newIndex - 1];
-                                                        MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex - 1];
+                                                        MyRepo.currentStory.value=DataList();
+                                                        MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex - 1];
                                                         setState(() {});
                                                       }
                                                     },
@@ -429,8 +430,8 @@ class _StoryPageState extends State<StoryPage> {
                                               print("=========widget.data.id = ${widget.data!.id}");
                                               // await countViewApi(widget.data!.id.toString());
 
-                                              Future.delayed(const Duration(microseconds: 500)).then((value) {
-                                                storiesController.getStory(storyId: widget.data!.id.toString());
+                                              Future.delayed(const Duration(microseconds: 500)).then((value) async {
+                                                await storiesController.getStory(storyId: widget.data!.id.toString());
                                               });
 
 
@@ -461,13 +462,17 @@ class _StoryPageState extends State<StoryPage> {
                                                       setState(() {
                                                         if (newIndex == storiesController.storyCategoryListModels.value.data!.length) {
                                                           widget.data = storiesController.storyCategoryListModels.value.data![newIndex];
-                                                          MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex];
-                                                        print("========if == current Story :${MyRepo.currentStory.storyTitle}");
+                                                          MyRepo.currentStory.value=DataList();
+
+                                                          MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex];
+                                                        print("========if == current Story :${MyRepo.currentStory.value.storyTitle}");
                                                         }
                                                         else{
                                                           widget.data = storiesController.storyCategoryListModels.value.data![newIndex+1];
-                                                          MyRepo.currentStory = storiesController.storyCategoryListModels.value.data![newIndex+1];
-                                                          print("========if == current Story :${MyRepo.currentStory.storyTitle}");
+                                                          MyRepo.currentStory.value=DataList();
+
+                                                          MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex+1];
+                                                          print("========if == current Story :${MyRepo.currentStory.value.storyTitle}");
 
                                                         }
                                                       });

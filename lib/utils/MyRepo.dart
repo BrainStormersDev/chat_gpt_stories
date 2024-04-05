@@ -54,7 +54,8 @@ class MyRepo {
 
   static RxString kApiToken = "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".obs;
 
-  static DataList currentStory = DataList();
+  static Rx<DataList> currentStory = DataList().obs;
+  // static DataList currentStory = DataList();
   static String storyCat="";
   static String rating="1";
   static String bearerToken = "";
@@ -72,7 +73,7 @@ bool isSignedInUser=false;
 
 const String kBaseUrl = "https://gptstory.thebrainstormers.org/";
 const String v1 = "https://gptstory.thebrainstormers.org/api/v1/";
-const String audioLink = "${kBaseUrl}/public/s_1.mp3";
+const String audioLink = "${kBaseUrl}public/s_1.mp3";
 const String kLogoAsset = "assets/PNG/loin.png";
 const String kOneToThreeLogoBoy = "assets/PNG/boyBaby.png";
 const String kThreeToFiveLogoBoy = "assets/PNG/boyKid.png";

@@ -1,7 +1,9 @@
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gpt_chat_stories/utils/mySnackBar.dart';
 import '../../controllers/story_watched_controller.dart';
 import '../../model/StoryCategoryModels.dart';
 import '../../utils/MyRepo.dart';
+import '../../utils/app_size.dart';
 import '../../view/Pages/story_catList_page.dart';
 import '../../view/Widgets/constWidgets.dart';
 import '../../view/Widgets/settingsDialog.dart';
@@ -27,9 +29,11 @@ class StoryCategoryPage extends StatefulWidget {
 class _StoryCategoryPageState extends State<StoryCategoryPage>
     with SingleTickerProviderStateMixin {
   RxString selectItems = "-1".obs;
+  bool _isNetworkConnected = true;
+
   StoryCatController storyCatController = Get.put(StoryCatController());
-  StoryWatchedController storyWatchedController =
-      Get.put(StoryWatchedController());
+  // StoryWatchedController storyWatchedController =
+  //     Get.put(StoryWatchedController());
   TabController? tabController;
 
   @override
@@ -100,6 +104,31 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                         const SizedBox(
                           height: 20,
                         ),
+                        // if (_isNetworkConnected)
+                        //   Container(
+                        //       margin:
+                        //       EdgeInsets.only(bottom: AppSizes.appVerticalMd * 0.2),
+                        //       child: Column(
+                        //         children: [
+                        //           const Text(
+                        //             "No Internet Connection",
+                        //             style: TextStyle(
+                        //                 color: AppColors.kRed, fontWeight: FontWeight.w700),
+                        //           ),
+                        //           Row(
+                        //             mainAxisAlignment: MainAxisAlignment.center,
+                        //             children: const [
+                        //               SpinKitWave(
+                        //                 color:AppColors.kPrimary,
+                        //                 size: 20.0,
+                        //               ),
+                        //               SizedBox(width: 10,),
+                        //               Text("Connecting to internet...",style: TextStyle(
+                        //                   color: AppColors.kPrimary, fontWeight: FontWeight.w700),)
+                        //             ],
+                        //           )
+                        //         ],
+                        //       )),
                         Center(
                           child: Text(
                             "I want to listen a story about",
@@ -377,8 +406,9 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
     String searchText = '';
     String catId = '${data.id}';
     Future.delayed(const Duration(milliseconds: 100), () {
-      Get.put(StoriesController())
-          .getTextCompletion(query: searchText, catId: catId);
+      Get.put(StoriesController()).getTextCompletion(query: searchText, catId: catId);
+
+
       Navigator.push(
           context,
           MaterialPageRoute(

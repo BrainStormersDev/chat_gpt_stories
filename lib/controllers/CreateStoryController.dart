@@ -39,39 +39,44 @@ class CreateStoryController extends GetxController {
   var state = ApiState.notFound.obs;
   Message? messageData = Message();
 
-  getTextCompletion(String query) async {
-    addMyMessage();
-
-    state.value = ApiState.loading;
-    try {
-      final response = await http.post(
-        Uri.parse('https://api.openai.com/v1/chat/completions'),
-        body: json.encode({
-          "model": "gpt-3.5-turbo",
-          "messages": [
-            {"role": "user", "content": searchTextController.text}
-          ]
-        }),
-        headers: headerBearerOption(
-            "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"),
-      );
-
-      if (response.statusCode == 200) {
-        var textCompilation = textCompletionModelFromJson(response.body);
-        if (textCompilation.choices != null) {
-          addServerMessage(textCompilation.choices);
-        }
-        state.value = ApiState.success;
-      } else {
-        state.value = ApiState.error;
-      }
-    } catch (e) {
-      // logger.e("Errorrrrrrrrrrrrrrr ");
-    } finally {
-      // searchTextController.clear();
-      update();
-    }
-  }
+  // getTextCompletion(String query) async {
+  //   addMyMessage();
+  //
+  //   state.value = ApiState.loading;
+  //   try {
+  //     ApisCall.apiCall('https://api.openai.com/v1/chat/completions', "post", {
+  //       "model": "gpt-3.5-turbo",
+  //       "messages": [
+  //         {"role": "user", "content": searchTextController.text}
+  //       ]
+  //     }, header:GetStorage().read("bearerToken" )).then((value) {
+  //
+  //
+  //       if(value["isData"])
+  //         {
+  //           var textCompilation = textCompletionModelFromJson(value["response"]);
+  //           if (textCompilation.choices != null) {
+  //             addServerMessage(textCompilation.choices);
+  //             state.value = ApiState.success;
+  //
+  //           }
+  //         }
+  //
+  //       else
+  //       {
+  //       state.value = ApiState.error;
+  //       }
+  //
+  //
+  //
+  //     });
+  //   } catch (e) {
+  //     // logger.e("Errorrrrrrrrrrrrrrr ");
+  //   } finally {
+  //     // searchTextController.clear();
+  //     update();
+  //   }
+  // }
 
   ///
   ///
@@ -118,6 +123,7 @@ class CreateStoryController extends GetxController {
                 Get.context!,
                 MaterialPageRoute(
                     builder: (context) => StoryViewPage(
+                        isNewStory:isNewStory.value,
                           story:
                               newStoryCreatedResponse!.data!.story.toString(),
                           storyTitle:
@@ -167,7 +173,7 @@ class CreateStoryController extends GetxController {
           state.value = ApiState.success;
           print(jsonDecode(value["response"])["data"]["story_id"]);
 
-          MyRepo.currentStory.id = int.parse(
+          MyRepo.currentStory.value.id = int.parse(
               jsonDecode(value["response"])["data"]["story_id"].toString());
           Navigator.push(Get.context!,
               MaterialPageRoute(builder: (context) => RateUsPage()));

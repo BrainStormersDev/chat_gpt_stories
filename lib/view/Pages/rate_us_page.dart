@@ -5,7 +5,6 @@ import '../../utils/apiCall.dart';
 import '../../utils/my_indicator.dart';
 import '../../view/Pages/login_page.dart';
 import '../../view/Pages/share_page.dart';
-import '../../view/Pages/story_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -14,7 +13,6 @@ import 'package:get_storage/get_storage.dart';
 import '../../utils/app_color.dart';
 import '../Widgets/constWidgets.dart';
 import '../Widgets/customButton.dart';
-import 'package:http/http.dart' as http;
 
 class RateUsPage extends StatelessWidget {
   RateUsPage({Key? key}) : super(key: key);
@@ -133,7 +131,7 @@ class RateUsPage extends StatelessWidget {
                                 ApisCall.multiPartApiCall(
                                     "https://gptstory.thebrainstormers.org/api/v1/story/rate",
                                     "post", {
-                                  "story_id": "${MyRepo.currentStory.id}",
+                                  "story_id": "${MyRepo.currentStory.value.id}",
                                   "rating": "${colorNum.value + 1}"
                                 },
                                     header: {

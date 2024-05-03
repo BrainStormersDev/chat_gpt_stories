@@ -49,11 +49,9 @@ class _StoryPageState extends State<StoryPage> {
   }
 
   Future<void> versionCheck() async {
-    // versionCheck1 = true;
     packageInfo = await PackageInfo.fromPlatform();
     var url;
     setState(() {
-      // version = packageInfo.version; //+'\n'+Platform.operatingSystemVersion;
     });
     url = Uri.parse("${kBaseUrl}/api/v1/version");
 

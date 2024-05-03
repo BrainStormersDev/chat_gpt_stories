@@ -164,15 +164,17 @@ class LogInPage extends StatelessWidget {
                                           "bearerToken",
                                           jsonDecode(value["response"])[
                                               "access_token"]);
+                                      // print(GetStorage().read("bearerToken"));
                                       GetStorage().write(
                                           "userId",
                                           jsonDecode(value["response"])["data"]
                                               ["id"]);
                                       print(
                                           "====read data ${GetStorage().read("userName")}===");
-                                      Get.close(2);
-                                      Get.to(()=>StoryCategoryPage());
-                                          // : Get.to(() => RateUsPage());
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  StoryCategoryPage()));
                                       isLoading.value = true;
                                      MyRepo.islogIn=true;
                                     } else if (value["isData"] == false) {
@@ -324,11 +326,15 @@ class LogInPage extends StatelessWidget {
               ["email"]);
           GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
           GetStorage().write(
-              "bearerToken",
-              jsonDecode(value["response"])[
-              "access_token"]);
+              "bearerToken", jsonDecode(value["response"])["access_token"]);
+          print(
+              "bearerToken ${GetStorage().read("bearerToken")}");
           MyRepo.islogIn = true;
-          Get.to(StoryCategoryPage());
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                  builder: (context) =>
+                      StoryCategoryPage()));
+
           // ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value) {
           //   if (value["isData"] == true) {
           //     GetStorage().write(

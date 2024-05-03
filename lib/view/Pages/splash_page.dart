@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:gpt_chat_stories/view/Pages/versionUpdatePage.dart';
 import '../../controllers/musicController.dart';
+import '../../controllers/versions.dart';
 import '../../utils/dynamic_link_provider.dart';
 import '../../view/Pages/story_category_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -34,11 +36,9 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
   void initState() {
     // TODO: implement initState
     getInterNetConnections();
+    versionCheck();
     _updateProgress();
     super.initState();
-
-    // playSound();
-
     var mute=GetStorage().read(kMute);
     if(mute!=null){
       MyRepo.musicMuted.value=mute;
@@ -179,6 +179,13 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                             () async {
                         ///Start
                         if(!_isNetworkConnected){
+
+                          if(versionMismatch){
+
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>VersionUpdatePage()));
+                          }
+else
+
                           if(GetStorage().hasData(kGender) ){
                             Navigator.push(context, MaterialPageRoute(builder: (context) =>
                                 StoryCategoryPage( )));
@@ -190,6 +197,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
                           if(!MyRepo.musicMuted.value)
                             BackgroundMusicManager().playMusic();
                       }
+
                         else{
                           MySnackBar.snackBarRed(
                               title: "Alert",
@@ -252,5 +260,9 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     _animationController.repeat(reverse: true);
 
   }
+
+
+
+
 }
 

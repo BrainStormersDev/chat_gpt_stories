@@ -17,13 +17,6 @@ class GenderPage extends StatefulWidget {
 
 class _GenderPageState extends State<GenderPage> {
 
-  // const GenderPage({Key? key}) : super(key: key);
-  //
-  // RxBool isBoy = false.obs;
-  // RxBool isGirl = false.obs;
-
-
-
   @override
   Widget build(BuildContext context) {
 

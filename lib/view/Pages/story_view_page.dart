@@ -45,9 +45,13 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   String _text = '';
   int _currentWordIndex = 0;
   List<String> _words = [];
+
+
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    if (!mounted) return;
     switch (state) {
       case AppLifecycleState.paused:
         if (!isPaused.value) {
@@ -67,6 +71,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
         break;
     }
   }
+
 
   @override
   void didChangeMetrics() {
@@ -134,7 +139,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
   }
   @override
   void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     MyRepo.isStoryReading.value=false;
     if(MyRepo.musicMuted.value == false)
     {
@@ -591,7 +596,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
       {
         BackgroundMusicManager().resumeMusic();
       }
-      Navigator.of(Get.context!).push(
+      Navigator.of(context).pushReplacement(
           MaterialPageRoute(
               builder: (context) =>
                   StoryFinish()));

@@ -50,7 +50,7 @@ class StoriesController extends GetxController {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token'
     };
-
+print(headers['Authorization']);
     try {
       await ApisCall.multiPartApiCall(
           "http://gptstory.thebrainstormers.org/api/v1/user/story/list",

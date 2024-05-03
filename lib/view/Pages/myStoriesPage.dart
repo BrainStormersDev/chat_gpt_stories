@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:gpt_chat_stories/common/headers.dart';
 import 'package:gpt_chat_stories/utils/my_indicator.dart';
 import 'package:intl/intl.dart';
@@ -572,6 +573,7 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
                         ApiState.error
                         ? Center(
                         child: Text(
+                          // GetStorage().read("bearerToken"),
                             myStoriesController.errorMsg.toString(),
                           style: TextStyle(
                               fontSize: 20.0,
@@ -679,8 +681,6 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
 
   Widget icon(index) {
 
-
-    // print("index of list $index");
     DataList storyData = DataList(featuredImage: '');
     storyData= myStoriesController
         .storyCategoryListModels
@@ -709,9 +709,11 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.height * 0.16,
+
               child: CachedNetworkImage(
                 imageUrl: storyData.featuredImage.toString(),
+                fit: BoxFit.cover,
                 placeholder: (context, url) =>
                 const CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Container(
@@ -735,7 +737,7 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
                   width: MediaQuery.of(context).size.height * 0.15,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.fitWidth),
+                        image: imageProvider, fit: BoxFit.cover),
                     borderRadius: const BorderRadiusDirectional.only(
                         topStart: Radius.circular(20),
                         bottomStart: Radius.circular(20)),

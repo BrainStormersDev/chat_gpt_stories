@@ -16,7 +16,7 @@ import '../Widgets/customButton.dart';
 
 class RateUsPage extends StatelessWidget {
   RateUsPage({Key? key}) : super(key: key);
-  RxInt colorNum = 0.obs;
+  RxInt colorNum = 4.obs;
   RxBool isLoading = false.obs;
 
   @override

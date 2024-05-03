@@ -239,7 +239,7 @@ logger.i(" url and header: ${url} ${header} ${apiBody}");
           stringResponse = await response.stream.bytesToString();
 
         }
-        print("====== prob start  ${response.statusCode}= ${stringResponse} = ");
+        print("====== prob start  ${response.statusCode} = ${stringResponse} = ");
 
         if (response.statusCode == 500) {
           print("======response ($url ) :${response.body}=======");
@@ -343,6 +343,7 @@ logger.i(" url and header: ${url} ${header} ${apiBody}");
           };
         }
         else if (response.statusCode == 404) {
+          print("Status code 404");
           MySnackBar.snackBarRed(
               title: snackTitle,
               message: json.decode(stringResponse)['message'] ?? "Error! ");

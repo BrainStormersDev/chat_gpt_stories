@@ -321,14 +321,11 @@ class LogInPage extends StatelessWidget {
       ApisCall.apiCall("${kBaseUrl}api/v1/social-auth", "post", body).then((value){
         if(value["isData"]==true){
           GetStorage().write(
-              "userName",
-              jsonDecode(value["response"])["data"]
-              ["email"]);
+              "userName", jsonDecode(value["response"])["data"]["email"]);
           GetStorage().write("userId", jsonDecode(value["response"])["data"]["id"]);
-          GetStorage().write(
-              "bearerToken", jsonDecode(value["response"])["access_token"]);
-          print(
-              "bearerToken ${GetStorage().read("bearerToken")}");
+          GetStorage().write("bearerToken", jsonDecode(value["response"])["access_token"]);
+          print("bearerToken is: ${jsonDecode(value["response"])["access_token"]}");
+
           MyRepo.islogIn = true;
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(

@@ -207,6 +207,8 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                 onPressed: () {
                   setState(() {
                     GetStorage().write("userName", '');
+                    GetStorage().write("bearerToken", '');
+                    print("token: ${GetStorage().read("bearerToken")}");
                     MySnackBar.snackBarPrimary(
                         title: 'Logout', message: 'Logout SuccessFully');
                   });

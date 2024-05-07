@@ -129,7 +129,7 @@ class _OurMainCatStoriesState extends State<OurMainCatStories> {
               height:80,
               width: 80,
               child: CachedNetworkImage(
-                imageUrl: data.imageUrl!,
+                imageUrl: "data.imageUrl!",
                 placeholder: (context, url) =>
                     Container(
                       height: 80,
@@ -151,7 +151,7 @@ class _OurMainCatStoriesState extends State<OurMainCatStories> {
                         image: AssetImage(
                           image,
                         ),
-                        // fit: BoxFit.fill
+                         // fit: BoxFit.fill
                     ),
                   ),
                 ),

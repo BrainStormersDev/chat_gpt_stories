@@ -52,133 +52,150 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kScreenColor,
+
       appBar: AppBar(
         automaticallyImplyLeading: false,
         toolbarHeight: 40,
         elevation: 0,
-        backgroundColor: AppColors.kScreenColor,
+        backgroundColor:  AppColors.kBackgroundTopColor,
         title: storyByGptWidget(context),
         centerTitle: true,
         actions: [
           IconButton(
               onPressed: () {
                 showCustomSettingDialog(context);
-                // Get.to(const Settings());
+
               },
-              icon: const Icon(
+              icon:  Icon(
                 FontAwesomeIcons.gear,
-                color: AppColors.kPrimary,
+                color: AppColors.kBtnColor,
               ))
         ],
       ),
-      body: WillPopScope(
-        onWillPop: () async {
-          changeSystemUIOverlayColor(AppColors.kSplashColor, AppColors.kWhite);
-          Navigator.pop(context);
-          return false;
-        },
-        child: GetStorage().read("userName").toString().isEmpty
-            ? Obx(
-                () => Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20.0,
-                    right: 20.0,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFFDDFE9),
+              Color(0xFFB6E7F1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
 
-
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        storyCatController.state.value == ApiState.loading
-                            ? myIndicator()
-                            :
-                        OurMainCatStories(),
-                        // Container(
-                        //         // height: 400,
-                        //         child: storyCatController.state.value ==
-                        //                 ApiState.error
-                        //             ? Center(
-                        //                 child: Text("Something went wrong please try again"))
-                        //             : GridView.count(
-                        //                 childAspectRatio: 0.8,
-                        //                 crossAxisCount: 3,
-                        //                 crossAxisSpacing: 4.0,
-                        //                 mainAxisSpacing: 8.0,
-                        //                 shrinkWrap: true,
-                        //                 children: List.generate(
-                        //                     storyCatController
-                        //                         .storyCategoryModels
-                        //                         .value
-                        //                         .data!
-                        //                         .length, (index) {
-                        //                   return icon(
-                        //                       data: storyCatController
-                        //                           .storyCategoryModels
-                        //                           .value
-                        //                           .data![index],
-                        //                       index: index);
-                        //                 }),
-                        //               ),
-                        //       ),
-                      ],
+        child: WillPopScope(
+          onWillPop: () async {
+            changeSystemUIOverlayColor(AppColors.kSplashColor, AppColors.kWhite);
+            Navigator.pop(context);
+            return false;
+          },
+          child: GetStorage().read("userName").toString().isEmpty
+              ? Obx(
+                  () => Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20.0,
+                      right: 20.0,
                     ),
-                  ),
-                ),
-              )
-            : DefaultTabController(
-                length: 2,
-                          child: Column(
-                  children: [
-                    Container(
-                      // height: 50,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
-                      child: TabBar(
-                        controller: tabController,
-                        indicator: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            15.0,
-                          ),
-                          color: AppColors.kBtnColor,
-                        ),
-                        labelStyle: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "BalooBhai",
-                        ),
-                        labelColor: AppColors.kBtnTxtColor,
-                        unselectedLabelColor: AppColors.kGrey,
-                        tabs: const [
-                          Tab(
-                            text: "Our Stories",
-                          ),
-                          Tab(
-                            text: 'My Stories',
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: TabBarView(
-
-                        controller: tabController,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // Content for Child 1
+
+
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          storyCatController.state.value == ApiState.loading
+                              ? myIndicator()
+                              :
                           OurMainCatStories(),
-                          // MyStories(),
-                          MyStoriesScreen(),
+                          // Container(
+                          //         // height: 400,
+                          //         child: storyCatController.state.value ==
+                          //                 ApiState.error
+                          //             ? Center(
+                          //                 child: Text("Something went wrong please try again"))
+                          //             : GridView.count(
+                          //                 childAspectRatio: 0.8,
+                          //                 crossAxisCount: 3,
+                          //                 crossAxisSpacing: 4.0,
+                          //                 mainAxisSpacing: 8.0,
+                          //                 shrinkWrap: true,
+                          //                 children: List.generate(
+                          //                     storyCatController
+                          //                         .storyCategoryModels
+                          //                         .value
+                          //                         .data!
+                          //                         .length, (index) {
+                          //                   return icon(
+                          //                       data: storyCatController
+                          //                           .storyCategoryModels
+                          //                           .value
+                          //                           .data![index],
+                          //                       index: index);
+                          //                 }),
+                          //               ),
+                          //       ),
                         ],
                       ),
                     ),
-                  ],
+                  ),
+                )
+              : DefaultTabController(
+
+                  length: 2,
+                            child: Column(
+                    children: [
+                      Container(
+                        // height: 50,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 20),
+                        child: TabBar(
+                          indicatorSize: TabBarIndicatorSize.tab,
+
+                          controller: tabController,
+                          indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              15.0,
+                            ),
+                            color: AppColors.kBtnColor,
+                          ),
+                          labelStyle: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "BalooBhai",
+                          ),
+                          labelColor: AppColors.kBtnTxtColor,
+                          unselectedLabelColor: AppColors.kGrey,
+                          tabs: const [
+                            Tab(
+                              text: "Our Stories",
+                            ),
+                            Tab(
+                              text: 'My Stories',
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: TabBarView(
+
+                          controller: tabController,
+                          children: [
+                            // Content for Child 1
+                            OurMainCatStories(),
+                            // MyStories(),
+                            MyStoriesScreen(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+        ),
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -194,6 +211,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                 },
                 child: const Icon(
                   Icons.login,
+                  color: AppColors.kWhite,
                 ),
               ),
             ),
@@ -215,6 +233,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
                 },
                 child: const Icon(
                   Icons.logout_sharp,
+                  color: AppColors.kWhite,
                 ),
               ),
             ),
@@ -243,7 +262,7 @@ class _StoryCategoryPageState extends State<StoryCategoryPage>
               },
               child: const Text(
                 'Create Story',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle( color: AppColors.kWhite, fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
           ),

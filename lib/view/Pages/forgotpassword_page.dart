@@ -1,17 +1,16 @@
+import '../../utils/MyRepo.dart';
 import '../../utils/apiCall.dart';
 import '../../utils/app_color.dart';
-import '../../utils/app_size.dart';
 import '../../utils/mySnackBar.dart';
 import '../../utils/my_indicator.dart';
-import '../../view/Pages/createPassword_page.dart';
 import '../../view/Pages/login_page.dart';
 import '../../view/Widgets/appTextField.dart';
 import '../../view/Widgets/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
-import '../../utils/MyRepo.dart';
+import 'createPassword_page.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({Key? key}) : super(key: key);
@@ -22,11 +21,31 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.kSplashColor,
-      body: SafeArea(
+
+      body: Container(
+
+
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFFDDFE9),
+              Color(0xFFB6E7F1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+
+
+
         child: Obx(()=>
            Padding(
-            padding: const EdgeInsets.all(8.0),
+             padding: const EdgeInsets.only(top:50.0,
+               left:8,
+               right:8,
+
+             ),
             child: Form(
               key: _formKey,
               child: Column(
@@ -92,17 +111,22 @@ class ForgotPasswordPage extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.08,
                           textSize: 18.0,
                           color: AppColors.kBtnColor,
-                          onTap: () {
+                          onTap: () async {
                             if (_formKey.currentState!.validate()) {
                               if(emailController.text.contains("@")){
 
                                  isLoading.value=true;
-                                ApisCall.apiCall(
-                                    "${kBaseUrl}forgot-password", "post", { "email": emailController.text.trim()
-                                }).then((value) {
+                                ApisCall.multiPartApiCall(
+                                    "${v1}forgot-password", "post",
+                                    { "email": emailController.text.trim()},
+                                  header:  {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json'
+                                  }
+                                ).then((value) {
                                   isLoading.value=true;
                                   if (value["isData"] == true) {
-                                    Get.to(() => CreatePasswordPage());
+                                    Get.to(() => CreatePasswordPage(email:emailController.text.trim()));
                                     isLoading.value=false;
                                   }
                                   else if(value["isData"] == false){
@@ -115,6 +139,29 @@ class ForgotPasswordPage extends StatelessWidget {
                               }
 
                             }
+
+                            // var headers = {
+                            //   'Accept': 'application/json',
+                            //   'Content-Type': 'application/json'
+                            // };
+                            // var request = http.MultipartRequest('POST',
+                            //     Uri.parse('https://gptstory.thebrainstormers.org/api/v1/forgot-password'));
+                            // request.fields.addAll({
+                            //   'email': 'maryamshabbirahmed@gmail.com'
+                            // });
+                            //
+                            // request.headers.addAll(headers);
+                            //
+                            // http.StreamedResponse response = await request.send();
+                            //
+                            // if (response.statusCode == 200) {
+                            //   print(await response.stream.bytesToString());
+                            // }
+                            // else {
+                            // print(response.reasonPhrase);
+                            // }
+
+
                           },
                         )
                       : myIndicator(),
@@ -129,9 +176,9 @@ class ForgotPasswordPage extends StatelessWidget {
                             Get.close(1);
                             Get.to(() => LogInPage());
                           },
-                          child: const Text(
+                          child:  Text(
                             "Login",
-                            style: TextStyle(color: AppColors.kBtnTxtColor),
+                            style: TextStyle(color: AppColors.kBtnColor),
                           ))
                     ],
                   )

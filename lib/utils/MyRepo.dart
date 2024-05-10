@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:gpt_chat_stories/utils/app_color.dart';
 import 'package:logger/logger.dart';
 
 import '../model/selectAgeModel.dart';
@@ -31,6 +32,17 @@ class MyRepo {
     SelectAgeClass(age: '5-10', assetImage: kFiveToTenLogoBoy),
     SelectAgeClass(age: '10+', assetImage: kTenPlusLogoBoy)
   ];
+
+  static String storyTitle1="AI Stories ";
+  static String storyTitle2="for ";
+  static String storyTitle3="Kids";
+
+
+
+
+
+
+
   static List emojiList = [
     "assets/PNG/emoji_rate_1.png",
     "assets/PNG/emoji_rate_2.png",

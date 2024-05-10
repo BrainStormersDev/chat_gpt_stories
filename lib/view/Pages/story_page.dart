@@ -89,99 +89,99 @@ class _StoryPageState extends State<StoryPage> {
   Widget build(BuildContext context) {
     RxString abc = ''.obs;
 
-    if (versionCheck1) {
-      return Scaffold(
-        body: Container(
-            padding: EdgeInsets.all(20),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Update Available",
-                        style: TextStyle(
-                            color: AppColors.kPrimary,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                            decoration: TextDecoration.underline),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 30),
-                        child: const Text(
-                          "Please Update your app before using it",
-                          style:
-                              TextStyle(color: AppColors.kBlack, fontSize: 18),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                            print("=====playStoreUrl:$playStoreUrl=====");
-                            try {
-                              launchUrl(Uri.parse(playStoreUrl)
-                                  // playStoreUrl
-
-                                  );
-                            } on PlatformException {
-                              launchUrl(Uri.parse(
-                                  // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
-                                  playStoreUrl));
-                            } finally {
-                              launchUrl(Uri.parse(playStoreUrl
-                                  // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
-
-                                  ));
-                            }
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(2, 3),
-                                    color: AppColors.kPrimary.withOpacity(0.2),
-                                    blurRadius: 2.0,
-                                    spreadRadius: 3.0)
-                              ],
-                              color: AppColors.kPrimary,
-                              shape: BoxShape.rectangle,
-                            ),
-                            child: const Text(
-                              "Update",
-                              // ( Platform.isAndroid)? "Go to Play Store":"Go to App Store",
-                              style: TextStyle(color: AppColors.kWhite),
-                            ),
-                          )),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                    ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    "v $version",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: AppColors.kBlack),
-                  ),
-                )
-              ],
-            )),
-      );
-    } else {
+    // if (versionCheck1) {
+    //   return Scaffold(
+    //     body: Container(
+    //         padding: EdgeInsets.all(20),
+    //         child: Stack(
+    //           children: [
+    //             Align(
+    //               alignment: Alignment.center,
+    //               child: Column(
+    //                 mainAxisAlignment: MainAxisAlignment.center,
+    //                 crossAxisAlignment: CrossAxisAlignment.center,
+    //                 children: [
+    //                   const Text(
+    //                     "Update Available",
+    //                     style: TextStyle(
+    //                         color: AppColors.kPrimary,
+    //                         fontWeight: FontWeight.w700,
+    //                         fontSize: 18,
+    //                         decoration: TextDecoration.underline),
+    //                     textAlign: TextAlign.center,
+    //                   ),
+    //                   const SizedBox(
+    //                     height: 15,
+    //                   ),
+    //                   Container(
+    //                     margin: const EdgeInsets.symmetric(horizontal: 30),
+    //                     child: const Text(
+    //                       "Please Update your app before using it",
+    //                       style:
+    //                           TextStyle(color: AppColors.kBlack, fontSize: 18),
+    //                       textAlign: TextAlign.center,
+    //                     ),
+    //                   ),
+    //                   const SizedBox(
+    //                     height: 15,
+    //                   ),
+    //                   GestureDetector(
+    //                       onTap: () {
+    //                         print("=====playStoreUrl:$playStoreUrl=====");
+    //                         try {
+    //                           launchUrl(Uri.parse(playStoreUrl)
+    //                               // playStoreUrl
+    //
+    //                               );
+    //                         } on PlatformException {
+    //                           launchUrl(Uri.parse(
+    //                               // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
+    //                               playStoreUrl));
+    //                         } finally {
+    //                           launchUrl(Uri.parse(playStoreUrl
+    //                               // "https://play.google.com/store/apps/details?id=com.americanlyceum.staff"
+    //
+    //                               ));
+    //                         }
+    //                       },
+    //                       child: Container(
+    //                         padding: const EdgeInsets.symmetric(
+    //                             vertical: 10, horizontal: 20),
+    //                         decoration: BoxDecoration(
+    //                           boxShadow: [
+    //                             BoxShadow(
+    //                                 offset: const Offset(2, 3),
+    //                                 color: AppColors.kPrimary.withOpacity(0.2),
+    //                                 blurRadius: 2.0,
+    //                                 spreadRadius: 3.0)
+    //                           ],
+    //                           color: AppColors.kPrimary,
+    //                           shape: BoxShape.rectangle,
+    //                         ),
+    //                         child: const Text(
+    //                           "Update",
+    //                           // ( Platform.isAndroid)? "Go to Play Store":"Go to App Store",
+    //                           style: TextStyle(color: AppColors.kWhite),
+    //                         ),
+    //                       )),
+    //                   const SizedBox(
+    //                     height: 15,
+    //                   ),
+    //                 ],
+    //               ),
+    //             ),
+    //             Align(
+    //               alignment: Alignment.bottomCenter,
+    //               child: Text(
+    //                 "v $version",
+    //                 textAlign: TextAlign.center,
+    //                 style: const TextStyle(color: AppColors.kBlack),
+    //               ),
+    //             )
+    //           ],
+    //         )),
+    //   );
+    // } else {
       return Scaffold(
         backgroundColor: AppColors.kScreenColor,
         appBar: AppBar(
@@ -189,7 +189,7 @@ class _StoryPageState extends State<StoryPage> {
           title: storyByGptWidget(context),
           centerTitle: true,
           elevation: 0,
-          backgroundColor: AppColors.kScreenColor,
+          backgroundColor: AppColors.kBackgroundTopColor,
           leading: IconButton(
             onPressed: () async {
               Navigator.pop(context);
@@ -216,281 +216,295 @@ class _StoryPageState extends State<StoryPage> {
                   showCustomSettingDialog(context);
                   // Get.to(const Settings());
                 },
-                icon: const Icon(
+                icon:  Icon(
                   FontAwesomeIcons.gear,
-                  color: AppColors.kPrimary,
+                  color: AppColors.kBtnColor,
                 ))
           ],
         ),
-        body: Obx(() => Padding(
-              padding:
-                  const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.12,
-                          child: Image.asset("assets/PNG/loin.png")),
-                    ),
-                    const Center(
-                      child: Text(
-                        "Listen Story",
-                        style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "BalooBhai",
-                            color: AppColors.txtColor1),
+        body: Container(
+
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.kBackgroundTopColor,
+                AppColors.kBackgroundBottomColor,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Obx(() => Padding(
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(
+                        height: 20,
                       ),
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: 250.0,
-                        child: DefaultTextStyle(
-                          style: const TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Bobbers',
-                              color: AppColors.kBtnColor),
-                          child: Center(
-                            child: AnimatedTextKit(
-                              // totalRepeatCount: 3,
-                              pause: const Duration(seconds: 2),
-                              repeatForever: true,
-                              animatedTexts: [
-                                TyperAnimatedText(
-                                    '${MyRepo.currentStory.value.storyTitle}',
-                                    textStyle: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "BalooBhai",
-                                        color: AppColors.kBtnColor),
-                                    textAlign: TextAlign.center),
-                                // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
-                              ],
+                      Center(
+                        child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.12,
+                            child: Image.asset("assets/PNG/loin.png")),
+                      ),
+                      const Center(
+                        child: Text(
+                          "Listen Story",
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "BalooBhai",
+                              color: AppColors.txtColor1),
+                        ),
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: 250.0,
+                          child: DefaultTextStyle(
+                            style:  TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Bobbers',
+                                color: AppColors.kBtnColor),
+                            child: Center(
+                              child: AnimatedTextKit(
+                                // totalRepeatCount: 3,
+                                pause: const Duration(seconds: 2),
+                                repeatForever: true,
+                                animatedTexts: [
+                                  TyperAnimatedText(
+                                      '${MyRepo.currentStory.value.storyTitle}',
+                                      textStyle:  TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "BalooBhai",
+                                          color: AppColors.kBtnColor),
+                                      textAlign: TextAlign.center),
+                                  // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
 
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    // true
-                    storiesController.state.value == ApiState.loading
-                        ? Container(
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  "assets/PNG/giphy2.gif",
-                                  height: 125.0,
-                                  width: 125.0,
-                                ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      // true
+                      storiesController.state.value == ApiState.loading
+                          ? Container(
+                              child: Column(
+                                children: [
+                                  Image.asset(
+                                    "assets/PNG/giphy2.gif",
+                                    height: 125.0,
+                                    width: 125.0,
+                                  ),
 
-                                const SizedBox(
-                                  height: 10,
-                                ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
 
-                                Center(
-                                  child: SizedBox(
-                                    width: 250.0,
-                                    child: DefaultTextStyle(
-                                      style: const TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Bobbers',
-                                          color: AppColors.txtColor1),
-                                      child: AnimatedTextKit(
-                                        animatedTexts: [
-                                          TyperAnimatedText(
-                                              'Please wait ....'),
-                                          TyperAnimatedText(
-                                              'While your story of ${MyRepo.currentStory.value.storyTitle} is creating'),
-                                          // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
-                                        ],
-                                        onTap: () {
-                                          print("Tap Event");
-                                        },
+                                  Center(
+                                    child: SizedBox(
+                                      width: 250.0,
+                                      child: DefaultTextStyle(
+                                        style: const TextStyle(
+                                            fontSize: 20.0,
+                                            fontFamily: 'Bobbers',
+                                            color: AppColors.txtColor1),
+                                        child: AnimatedTextKit(
+                                          animatedTexts: [
+                                            TyperAnimatedText(
+                                                'Please wait ....'),
+                                            TyperAnimatedText(
+                                                'While your story of ${MyRepo.currentStory.value.storyTitle} is creating'),
+                                            // TyperAnimatedText('While your story of ${widget.data.title} is creating'),
+                                          ],
+                                          onTap: () {
+                                            print("Tap Event");
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        : Container(
-                            child: storiesController.state.value ==
-                                    ApiState.error
-                                ? Container(
-                                    child: Center(
-                                        child: Text(
-                                            storiesController.errorMsg.value)),
-                                  )
-                                : Column(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                        },
-                                        child: Container(
-                                          height: 220,
-                                          // width: double.infinity,
+                                ],
+                              ),
+                            )
+                          : Container(
+                              child: storiesController.state.value ==
+                                      ApiState.error
+                                  ? Container(
+                                      child: Center(
+                                          child: Text(
+                                              storiesController.errorMsg.value)),
+                                    )
+                                  : Column(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                          },
+                                          child: Container(
+                                            height: 220,
+                                            // width: double.infinity,
 
-                                          child: CachedNetworkImage(
-                                            // imageUrl: kDemoImage,
-                                            imageUrl:
-                                            widget.data==null || widget.data!.featuredImage==null || widget.data!.featuredImage!.isEmpty
-                                              ? '' :
-                                            widget.data!.featuredImage.toString(),
-                                            fit: BoxFit.fill,
-                                            progressIndicatorBuilder:
-                                                (context, url,
-                                                        downloadProgress) =>
-                                                    SizedBox(
-                                                        width:
-                                                            double.infinity,
-                                                        child: Shimmer
-                                                            .fromColors(
-                                                          baseColor: Colors
-                                                              .grey
-                                                              .withOpacity(
-                                                                  .3),
-                                                          highlightColor:
-                                                              Colors.grey,
-                                                          child: Container(
-                                                            width: double
-                                                                .infinity,
-                                                            decoration: BoxDecoration(
-                                                                color: Colors
-                                                                    .white,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4)),
-                                                          ),
-                                                        )),
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    Container(
-                                              height: 200,
-                                              width: 200,
-                                              decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                  image: AssetImage(
-                                                      "assets/PNG/img_4.png"
-                                                      // "${widget.data.images!.first.imageUrl}"
-                                                      // widget.data.imageUrl
-                                                      ),
-                                                  fit: BoxFit.fill,
+                                            child: CachedNetworkImage(
+                                              // imageUrl: kDemoImage,
+                                              imageUrl:
+                                              widget.data==null || widget.data!.featuredImage==null || widget.data!.featuredImage!.isEmpty
+                                                ? '' :
+                                              widget.data!.featuredImage.toString(),
+                                              fit: BoxFit.fill,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: Shimmer
+                                                              .fromColors(
+                                                            baseColor: Colors
+                                                                .grey
+                                                                .withOpacity(
+                                                                    .3),
+                                                            highlightColor:
+                                                                Colors.grey,
+                                                            child: Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              4)),
+                                                            ),
+                                                          )),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      Container(
+                                                height: 200,
+                                                width: 200,
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        "assets/PNG/img_4.png"
+                                                        // "${widget.data.images!.first.imageUrl}"
+                                                        // widget.data.imageUrl
+                                                        ),
+                                                    fit: BoxFit.fill,
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 35,
-                                      ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          IconButton(
-                                              onPressed:
-                                              storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
-                                              element.storyTitle == widget.data!.storyTitle) == 0
-                                                  ? null
-                                                  : () {
-                                                      int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
+                                        const SizedBox(
+                                          height: 35,
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            IconButton(
+                                                onPressed:
+                                                storiesController.storyCategoryListModels.value.data!.indexWhere((element) =>
+                                                element.storyTitle == widget.data!.storyTitle) == 0
+                                                    ? null
+                                                    : () {
+                                                        int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
 
-                                                      if (newIndex <
-                                                          storiesController.storyCategoryListModels.value.data!.length) {
-                                                        widget.data = storiesController.storyCategoryListModels.value.data![newIndex - 1];
-                                                        MyRepo.currentStory.value=DataList();
-                                                        MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex - 1];
-                                                        setState(() {});
-                                                      }
-                                                    },
-                                              icon: const Icon(
-                                                Icons.skip_previous_rounded,
-                                                color: AppColors.kBtnColor,
-                                                size: 30,
-                                              )),
-                                          ///
-                                          GestureDetector(
-                                            onTap: () async {
-                                              BackgroundMusicManager().pauseMusic();
-                                              print("=========widget.data.id = ${widget.data!.id}");
-                                              // await countViewApi(widget.data!.id.toString());
+                                                        if (newIndex <
+                                                            storiesController.storyCategoryListModels.value.data!.length) {
+                                                          widget.data = storiesController.storyCategoryListModels.value.data![newIndex - 1];
+                                                          MyRepo.currentStory.value=DataList();
+                                                          MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex - 1];
+                                                          setState(() {});
+                                                        }
+                                                      },
+                                                icon:  Icon(
+                                                  Icons.skip_previous_rounded,
+                                                  color: AppColors.kBtnColor,
+                                                  size: 30,
+                                                )),
+                                            ///
+                                            GestureDetector(
+                                              onTap: () async {
+                                                BackgroundMusicManager().pauseMusic();
+                                                print("=========widget.data.id = ${widget.data!.id}");
+                                                // await countViewApi(widget.data!.id.toString());
 
-                                              Future.delayed(const Duration(microseconds: 500)).then((value) async {
-                                                await storiesController.getStory(storyId: widget.data!.id.toString());
-                                              });
+                                                Future.delayed(const Duration(microseconds: 500)).then((value) async {
+                                                  await storiesController.getStory(storyId: widget.data!.id.toString());
+                                                });
 
 
-                                            },
-                                            child: const CircleAvatar(
-                                              radius: 30,
-                                              backgroundColor:
-                                                  AppColors.kBtnColor,
-                                              child: Icon(
-                                                CupertinoIcons
-                                                    .play_arrow_solid,
-                                                color: AppColors.txtColor1,
+                                              },
+                                              child:  CircleAvatar(
+                                                radius: 30,
+                                                backgroundColor:
+                                                    AppColors.kBtnColor,
+                                                child: Icon(
+                                                  CupertinoIcons
+                                                      .play_arrow_solid,
+                                                  color: AppColors.txtColor1,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          IconButton(
-                                              onPressed: (
-                                                  storiesController.storyCategoryListModels.value.data!.lastIndexWhere
-                                                    ((element) => element.storyTitle == widget.data!.storyTitle) ==
-                                                      storiesController.storyCategoryListModels.value.data!
-                                                          .length)==true
-                                                  ? null
-                                                  : () {
-                                                print("=====++++++: ${storiesController.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == storiesController.storyCategoryListModels.value.data!.length}");
+                                            IconButton(
+                                                onPressed: (
+                                                    storiesController.storyCategoryListModels.value.data!.lastIndexWhere
+                                                      ((element) => element.storyTitle == widget.data!.storyTitle) ==
+                                                        storiesController.storyCategoryListModels.value.data!
+                                                            .length)==true
+                                                    ? null
+                                                    : () {
+                                                  print("=====++++++: ${storiesController.storyCategoryListModels.value.data!.lastIndexWhere((element) => element.storyTitle == widget.data!.storyTitle) == storiesController.storyCategoryListModels.value.data!.length}");
 
-                                                int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
+                                                  int newIndex = storiesController.storyCategoryListModels.value.data!.indexWhere((element) => element.storyTitle == widget.data!.storyTitle);
 
-                                                      setState(() {
-                                                        if (newIndex == storiesController.storyCategoryListModels.value.data!.length) {
-                                                          widget.data = storiesController.storyCategoryListModels.value.data![newIndex];
-                                                          MyRepo.currentStory.value=DataList();
+                                                        setState(() {
+                                                          if (newIndex == storiesController.storyCategoryListModels.value.data!.length) {
+                                                            widget.data = storiesController.storyCategoryListModels.value.data![newIndex];
+                                                            MyRepo.currentStory.value=DataList();
 
-                                                          MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex];
-                                                        print("========if == current Story :${MyRepo.currentStory.value.storyTitle}");
-                                                        }
-                                                        else{
-                                                          widget.data = storiesController.storyCategoryListModels.value.data![newIndex+1];
-                                                          MyRepo.currentStory.value=DataList();
-
-                                                          MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex+1];
+                                                            MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex];
                                                           print("========if == current Story :${MyRepo.currentStory.value.storyTitle}");
+                                                          }
+                                                          else{
+                                                            widget.data = storiesController.storyCategoryListModels.value.data![newIndex+1];
+                                                            MyRepo.currentStory.value=DataList();
 
-                                                        }
-                                                      });
-                                                    },
-                                              // widget.nextStory,
-                                              icon: const Icon(
-                                                Icons.skip_next_rounded,
-                                                color: AppColors.kBtnColor,
-                                                size: 30,
-                                              )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                          ),
-                  ],
+                                                            MyRepo.currentStory.value = storiesController.storyCategoryListModels.value.data![newIndex+1];
+                                                            print("========if == current Story :${MyRepo.currentStory.value.storyTitle}");
+
+                                                          }
+                                                        });
+                                                      },
+                                                // widget.nextStory,
+                                                icon:  Icon(
+                                                  Icons.skip_next_rounded,
+                                                  color: AppColors.kBtnColor,
+                                                  size: 30,
+                                                )),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                            ),
+                    ],
+                  ),
                 ),
-              ),
-            )),
+              )),
+        ),
       );
-    }
+    // }
   }
 }

@@ -95,7 +95,7 @@ import 'story_page.dart';
 //                           borderRadius: BorderRadiusDirectional.only(
 //                               topStart: Radius.circular(20),
 //                               bottomStart: Radius.circular(20)),
-//                           color: AppColors.kBtnColor,
+//                           color: kBtnColor,
 //                         ),
 //                       ),
 //                       imageBuilder: (context, imageProvider) => Container(
@@ -108,7 +108,7 @@ import 'story_page.dart';
 //                           const BorderRadiusDirectional.only(
 //                               topStart: Radius.circular(20),
 //                               bottomStart: Radius.circular(20)),
-//                           color: AppColors.kBtnColor,
+//                           color: kBtnColor,
 //                         ),
 //                       ),
 //                     ),
@@ -179,7 +179,7 @@ import 'story_page.dart';
 //                                 backgroundColor:
 //                                 int.parse(selectItems.value.toString()) == index
 //                                     ? AppColors.kWhite
-//                                     : AppColors.kBtnColor,
+//                                     : kBtnColor,
 //                                 child: const Center(
 //                                     child: Icon(
 //                                       CupertinoIcons.play_arrow_solid,
@@ -311,7 +311,7 @@ import 'story_page.dart';
 //                   borderRadius: BorderRadiusDirectional.only(
 //                       topStart: Radius.circular(20),
 //                       bottomStart: Radius.circular(20)),
-//                   color: AppColors.kBtnColor,
+//                   color: kBtnColor,
 //                 ),
 //               ),
 //               imageBuilder: (context, imageProvider) => Container(
@@ -324,7 +324,7 @@ import 'story_page.dart';
 //                   const BorderRadiusDirectional.only(
 //                       topStart: Radius.circular(20),
 //                       bottomStart: Radius.circular(20)),
-//                   color: AppColors.kBtnColor,
+//                   color: kBtnColor,
 //                 ),
 //               ),
 //             ),
@@ -393,7 +393,7 @@ import 'story_page.dart';
 //                         backgroundColor:
 //                         int.parse(selectItems.value.toString()) == index
 //                             ? AppColors.kWhite
-//                             : AppColors.kBtnColor,
+//                             : kBtnColor,
 //                         child: const Center(
 //                             child: Icon(
 //                               CupertinoIcons.play_arrow_solid,
@@ -508,170 +508,190 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: AppColors.kScreenColor,
+        // backgroundColor: AppColors.kScreenColor,
 
-        body: Obx(
-              () => Padding(
-            padding: const EdgeInsets.only(
-              left: 20.0,
-              right: 20.0,
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFFFDDFE9),
+                Color(0xFFB6E7F1),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                TextField(
-                  controller: _searchController,
-                  cursorColor: AppColors.kBtnColor,
-                  onSubmitted: (value) {
-                    _searchController.text = value;
-                  },
-                  onChanged: (value) {
-                    myStoriesController.storyCategoryListModels.value.data!
-                        .where((element) => element.storyTitle!
-                        .toString()
-                        .toLowerCase()
-                        .contains(value))
-                        .toList();
-                    print(
-                        "=======length :${myStoriesController.storyCategoryListModels.value.data!.where((element) => element.storyTitle!.toString().toLowerCase().contains(value)).toList().length}");
-                    setState(() {});
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Search Story...",
-                    hintStyle: TextStyle(color: AppColors.kPrimary),
-                    suffixIcon: InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.search,
-                          color: AppColors.kPrimary,
-                          size: 40,
-                        )),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: AppColors.kBtnColor, width: 2.0),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.kBtnColor)),
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(7.0),
+          ),
+          child: Obx(
+                () => Padding(
+              padding: const EdgeInsets.only(
+                left: 20.0,
+                right: 20.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+                    controller: _searchController,
+                    cursorColor: AppColors.kBtnColor,
+                    onSubmitted: (value) {
+                      _searchController.text = value;
+                    },
+                    onChanged: (value) {
+                      myStoriesController.storyCategoryListModels.value.data!
+                          .where((element) => element.storyTitle!
+                          .toString()
+                          .toLowerCase()
+                          .contains(value))
+                          .toList();
+                      print(
+                          "=======length :${myStoriesController.storyCategoryListModels.value.data!.where((element) => element.storyTitle!.toString().toLowerCase().contains(value)).toList().length}");
+                      setState(() {});
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Search Story...",
+                      hintStyle: TextStyle(color: AppColors.kBtnColor),
+                      suffixIcon: InkWell(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.search,
+                            color: AppColors.kBtnColor,
+                            size: 40,
+                          )),
+                      enabledBorder:  OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: AppColors.kBtnColor, width: 2.0),
+                      ),
+                      focusedBorder:  OutlineInputBorder(
+                          borderSide: BorderSide(color: AppColors.kBtnColor)),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(7.0),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                myStoriesController.state.value == ApiState.loading
-                    ? myIndicator()
-                    : Expanded(
-                  child: Container(
-                    child: myStoriesController.state.value ==
-                        ApiState.error
-                        ? Center(
-                        child: Text(
-                          // GetStorage().read("bearerToken"),
-                            myStoriesController.errorMsg.toString(),
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: 'Bobbers',
-                              color: AppColors.txtColor1
-                          ),
-                        ))
-                        : SingleChildScrollView(
-                      child: Column(
-                          children: List.generate(
-                              myStoriesController
-                                  .storyCategoryListModels
-                                  .value
-                                  .data!
-                                  .where((element) => element
-                                  .storyTitle!
-                                  .toString()
-                                  .toLowerCase()
-                                  .contains(_searchController
-                                  .text
-                                  .trim()))
-                                  .toList()
-                                  .length, (index) {
-                            return SizedBox(
-                              // height: 100,
-                                child: InkWell(
-                                    onTap: () {
-                                      selectItems.value = index.toString();
-                                      MyRepo.currentStory.value =
-                                      myStoriesController
-                                          .storyCategoryListModels
-                                          .value
-                                          .data!
-                                          .where((element) => element
-                                          .storyTitle!
-                                          .toString()
-                                          .toLowerCase()
-                                          .contains(
-                                          _searchController
-                                              .text
-                                              .trim()))
-                                          .toList()[index];
-                                      nextPage(
-                                          data: myStoriesController
-                                              .storyCategoryListModels
-                                              .value
-                                              .data!
-                                              .where((element) => element
-                                              .storyTitle!
-                                              .toString()
-                                              .toLowerCase()
-                                              .contains(
-                                              _searchController
-                                                  .text
-                                                  .trim()))
-                                              .toList()[index], catName:
-                                      myStoriesController
-                                          .storyCategoryListModels
-                                          .value
-                                          .data!
-                                          .where((element) => element
-                                          .storyTitle!
-                                          .toString()
-                                          .toLowerCase()
-                                          .contains(
-                                          _searchController
-                                              .text
-                                              .trim()))
-                                          .toList()[index].category!=null?
-                                      myStoriesController
-                                          .storyCategoryListModels
-                                          .value
-                                          .data!
-                                          .where((element) => element
-                                          .storyTitle!
-                                          .toString()
-                                          .toLowerCase()
-                                          .contains(
-                                          _searchController
-                                              .text
-                                              .trim()))
-                                          .toList()[index].category!.title!
-                                          :
-                                          ""
-                                      );
-                                      // nextPage(
-                                      //     data: storyCatListController
-                                      //         .storyCategoryListModels
-                                      //         .value
-                                      //         .data![index]);
-                                    },
-                                    child: icon(index)));
-                            // return icon(data:storyCatController.storyCategoryModels.value.data![index],index: index);
-                          })),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  myStoriesController.state.value == ApiState.loading
+                      ? myIndicator()
+                      : Expanded(
+                    child: Container(
+                      child: myStoriesController.state.value ==
+                          ApiState.error
+                          ? Center(
+                          child: Text(
+                            // GetStorage().read("bearerToken"),
+                              myStoriesController.errorMsg.toString(),
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Bobbers',
+                                color: AppColors.txtColor1
+                            ),
+                          ))
+                          : SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Column(
+                                children: List.generate(
+                                    myStoriesController
+                                        .storyCategoryListModels
+                                        .value
+                                        .data!
+                                        .where((element) => element
+                                        .storyTitle!
+                                        .toString()
+                                        .toLowerCase()
+                                        .contains(_searchController
+                                        .text
+                                        .trim()))
+                                        .toList()
+                                        .length, (index) {
+                                  return SizedBox(
+                                    // height: 100,
+                                      child: InkWell(
+                                          onTap: () {
+                                            selectItems.value = index.toString();
+                                            MyRepo.currentStory.value =
+                                            myStoriesController
+                                                .storyCategoryListModels
+                                                .value
+                                                .data!
+                                                .where((element) => element
+                                                .storyTitle!
+                                                .toString()
+                                                .toLowerCase()
+                                                .contains(
+                                                _searchController
+                                                    .text
+                                                    .trim()))
+                                                .toList()[index];
+                                            nextPage(
+                                                data: myStoriesController
+                                                    .storyCategoryListModels
+                                                    .value
+                                                    .data!
+                                                    .where((element) => element
+                                                    .storyTitle!
+                                                    .toString()
+                                                    .toLowerCase()
+                                                    .contains(
+                                                    _searchController
+                                                        .text
+                                                        .trim()))
+                                                    .toList()[index], catName:
+                                            myStoriesController
+                                                .storyCategoryListModels
+                                                .value
+                                                .data!
+                                                .where((element) => element
+                                                .storyTitle!
+                                                .toString()
+                                                .toLowerCase()
+                                                .contains(
+                                                _searchController
+                                                    .text
+                                                    .trim()))
+                                                .toList()[index].category!=null?
+                                            myStoriesController
+                                                .storyCategoryListModels
+                                                .value
+                                                .data!
+                                                .where((element) => element
+                                                .storyTitle!
+                                                .toString()
+                                                .toLowerCase()
+                                                .contains(
+                                                _searchController
+                                                    .text
+                                                    .trim()))
+                                                .toList()[index].category!.title!
+                                                :
+                                                ""
+                                            );
+                                            // nextPage(
+                                            //     data: storyCatListController
+                                            //         .storyCategoryListModels
+                                            //         .value
+                                            //         .data![index]);
+                                          },
+                                          child: icon(index)));
+                                  // return icon(data:storyCatController.storyCategoryModels.value.data![index],index: index);
+                                }),
+
+                            ),
+                            SizedBox(height: 70,)
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -700,172 +720,197 @@ class _MyStoriesScreenState extends State<MyStoriesScreen> {
       decoration: const BoxDecoration(),
       child: Card(
         color: int.parse(selectItems.value.toString()) == index
-            ? AppColors.kPrimary
+            ? AppColors.kBtnColor
             : null,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadiusDirectional.circular(20)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.height * 0.16,
+        child: Container(
 
-              child: CachedNetworkImage(
-                imageUrl: storyData.featuredImage.toString(),
-                fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.height * 0.15,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          "assets/PNG/img_4.png",
-                        ),
-                        fit: BoxFit.fill),
+          decoration:
+          int.parse(selectItems.value.toString()) == index
+              ? BoxDecoration(
+              color:
+              AppColors.kBtnColor,
+              borderRadius: BorderRadius.circular(20)
+          )
+              :
+          BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
 
-                    borderRadius: BorderRadiusDirectional.only(
-                        topStart: Radius.circular(20),
-                        bottomStart: Radius.circular(20)),
-                    color: AppColors.kBtnColor,
+            gradient: LinearGradient(
+              colors: [
+                AppColors.kBackgroundTopColor,
+                AppColors.kBackgroundBottomColor,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+
+
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.height * 0.16,
+
+                child: CachedNetworkImage(
+                  imageUrl: storyData.featuredImage.toString(),
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                  const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    width: MediaQuery.of(context).size.height * 0.15,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/PNG/img_4.png",
+                          ),
+                          fit: BoxFit.fill),
+
+                      borderRadius: BorderRadiusDirectional.only(
+                          topStart: Radius.circular(20),
+                          bottomStart: Radius.circular(20)),
+                      color: AppColors.kBtnColor,
+                    ),
                   ),
-                ),
-                imageBuilder: (context, imageProvider) => Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  width: MediaQuery.of(context).size.height * 0.15,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover),
-                    borderRadius: const BorderRadiusDirectional.only(
-                        topStart: Radius.circular(20),
-                        bottomStart: Radius.circular(20)),
-                    color: AppColors.kBtnColor,
+                  imageBuilder: (context, imageProvider) => Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    width: MediaQuery.of(context).size.height * 0.15,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                      borderRadius: const BorderRadiusDirectional.only(
+                          topStart: Radius.circular(20),
+                          bottomStart: Radius.circular(20)),
+                      color: AppColors.kBtnColor,
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.02,
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.1,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                            widget.data == null ? '' : widget.data!.title!,
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontFamily: "BalooBhai",
-                                color:
-                                int.parse(selectItems.value.toString()) ==
-                                    index
-                                    ? AppColors.txtColor1
-                                    : Colors.grey)),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          storyData.storyTitle
-                              .toString(),
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "DMSerifDisplayRegular",
-                              color: int.parse(selectItems.value.toString()) ==
-                                  index
-                                  ? AppColors.kWhite
-                                  : AppColors.txtColor1),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.02,
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.1,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              widget.data == null ? '' : widget.data!.title!,
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: "BalooBhai",
+                                  color:
+                                  int.parse(selectItems.value.toString()) ==
+                                      index
+                                      ? AppColors.txtColor1
+                                      : Colors.grey)),
                         ),
-                      ),
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundColor:
-                        int.parse(selectItems.value.toString()) == index
-                            ? AppColors.kWhite
-                            : AppColors.kBtnColor,
-                        child: const Center(
-                            child: Icon(
-                              CupertinoIcons.play_arrow_solid,
-                              color: AppColors.txtColor1,
-                              size: 20,
-                            )),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.1,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Rating  ",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: "BalooBhai",
-                              color: int.parse(selectItems.value.toString()) ==
-                                  index
-                                  ? AppColors.txtColor1
-                                  : Colors.grey)),
-                      Expanded(
-                        child: Text(
-                            storyData
-                                .averageRating
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            storyData.storyTitle
                                 .toString(),
                             style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "DMSerifDisplayRegular",
+                                color: int.parse(selectItems.value.toString()) ==
+                                    index
+                                    ? AppColors.kWhite
+                                    : AppColors.txtColor1),
+                          ),
+                        ),
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundColor:
+                          int.parse(selectItems.value.toString()) == index
+                              ? AppColors.kWhite
+                              : AppColors.kBtnColor,
+                          child: const Center(
+                              child: Icon(
+                                CupertinoIcons.play_arrow_solid,
+                                color: AppColors.txtColor1,
+                                size: 20,
+                              )),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.1,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Rating  ",
+                            style: TextStyle(
                                 fontSize: 13,
                                 fontFamily: "BalooBhai",
-                                color:
-                                int.parse(selectItems.value.toString()) ==
+                                color: int.parse(selectItems.value.toString()) ==
                                     index
                                     ? AppColors.txtColor1
                                     : Colors.grey)),
-                      ),
-                      // SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
-                      Icon(Icons.visibility,
-                          size: 15,
-                          color:
-                          int.parse(selectItems.value.toString()) == index
-                              ? AppColors.txtColor1
-                              : Colors.grey),
-                      Text(
-                          storyData.viewCount !=
-                              null
-                              ? " ${formatLargeValue(storyData.viewCount!)}"
-                              : "",
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: "BalooBhai",
-                              color: int.parse(selectItems.value.toString()) ==
-                                  index
-                                  ? AppColors.txtColor1
-                                  : Colors.grey)),
-                    ],
+                        Expanded(
+                          child: Text(
+                              storyData
+                                  .averageRating
+                                  .toString(),
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: "BalooBhai",
+                                  color:
+                                  int.parse(selectItems.value.toString()) ==
+                                      index
+                                      ? AppColors.txtColor1
+                                      : Colors.grey)),
+                        ),
+                        // SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
+                        Icon(Icons.visibility,
+                            size: 15,
+                            color:
+                            int.parse(selectItems.value.toString()) == index
+                                ? AppColors.txtColor1
+                                : Colors.grey),
+                        Text(
+                            storyData.viewCount !=
+                                null
+                                ? " ${formatLargeValue(storyData.viewCount!)}"
+                                : "",
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: "BalooBhai",
+                                color: int.parse(selectItems.value.toString()) ==
+                                    index
+                                    ? AppColors.txtColor1
+                                    : Colors.grey)),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

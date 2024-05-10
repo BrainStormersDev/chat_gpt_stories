@@ -244,220 +244,240 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
     ))
         .toList();
     return Scaffold(
-      backgroundColor: AppColors.kScreenColor,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () async {
-                        try {
-                          MyRepo.isStoryReading.value=false;
-                          if(MyRepo.musicMuted.value == false )
-                          {
-                            BackgroundMusicManager().resumeMusic();
-                          }
-                        } catch (t) {
-                          //mp3 unreachable
-                        }
-                        // Get.back();
-                        Navigator.pop(context);
+      // backgroundColor: AppColors.kScreenColor,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFFDDFE9),
+              // Colors.red,
+              // Colors.orange,
+              Color(0xFFB6E7F1),
 
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: AppColors.txtColor1,
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                              height: 27,
-                              child: Image.asset("assets/PNG/gridIcon.png")),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.03,
-                          ),
-                          const Text(
-                            "Story ",
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "BalooBhai",
-                                color: AppColors.kBtnColor),
-                          ),
-                          const Text(
-                            "By GPT",
-                            style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "BalooBhai",
-                                color: AppColors.txtColor1),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          "assets/PNG/bellIcon.png",
-                          width: 20,
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RateUsPage()));
-                            },
-                            icon: const Icon(
-                              CupertinoIcons.star,
-                              color: AppColors.kBtnColor,
-                            ))
-                      ],
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  padding:
-                  const EdgeInsets.only(bottom: 10, left: 15, right: 15),
-                  child: Column(
+              // Colors.green,
+              // Colors.blue,
+              // Colors.indigo,
+              // Colors.purple,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      IconButton(
+                        onPressed: () async {
+                          try {
+                            MyRepo.isStoryReading.value=false;
+                            if(MyRepo.musicMuted.value == false )
+                            {
+                              BackgroundMusicManager().resumeMusic();
+                            }
+                          } catch (t) {
+                            //mp3 unreachable
+                          }
+                          // Get.back();
+                          Navigator.pop(context);
+
+                        },
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: AppColors.txtColor1,
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                height: 27,
+                                child: Image.asset("assets/PNG/gridIcon.png")),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.03,
+                            ),
+                             Text(
+                              "Story ",
+                              style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "BalooBhai",
+                                  color: AppColors.kBtnColor),
+                            ),
+                            const Text(
+                              "By GPT",
+                              style: TextStyle(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "BalooBhai",
+                                  color: AppColors.txtColor1),
+                            ),
+                          ],
+                        ),
+                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
-                            child: Container(
-                              // height: MediaQuery.of(context).size.height * 0.1,
-                              // width: MediaQuery.of(context).size.width * 0.5,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: AppColors.kBtnColor, width: 1)),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: 8.0, top: 4, bottom: 4, right: 8),
-                                child: Text(
-                                  "Story of ${widget.storyTitle}",
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "BalooBhai",
-                                      color: AppColors.kBtnColor),
+                          // Image.asset(
+                          //   "assets/PNG/bellIcon.png",
+                          //   width: 20,
+                          // ),
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RateUsPage()));
+                              },
+                              icon:  Icon(
+                                CupertinoIcons.star,
+                                color: AppColors.kBtnColor,
+                              ))
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding:
+                    const EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                // height: MediaQuery.of(context).size.height * 0.1,
+                                // width: MediaQuery.of(context).size.width * 0.5,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
+                                        color: AppColors.kBtnColor, width: 1)),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 8.0, top: 4, bottom: 4, right: 8),
+                                  child: Text(
+                                    "Story of ${widget.storyTitle}",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    style:  TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "BalooBhai",
+                                        color: AppColors.kBtnColor),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          // SizedBox(
-                          //     height: MediaQuery.of(context).size.height * 0.12,
-                          //     child: Image.asset("assets/PNG/loin.png")),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-
-                      imageSliders != null
-                          ? Padding(
-                        padding:
-                        const EdgeInsets.only(left: 15, right: 15),
-                        child: CarouselSlider(
-                          options: CarouselOptions(
-                              scrollPhysics:
-                              const BouncingScrollPhysics(),
-                              viewportFraction: 1,
-                              aspectRatio: 1.5,
-                              enlargeCenterPage: true,
-                              scrollDirection: Axis.horizontal,
-                              autoPlay: true,
-                              onPageChanged:
-                                  (index, CarouselPageChangedReason) {
-                                activeIndex = index;
-                              }),
-                          items: imageSliders,
+                            // SizedBox(
+                            //     height: MediaQuery.of(context).size.height * 0.12,
+                            //     child: Image.asset("assets/PNG/loin.png")),
+                          ],
                         ),
-                      )
-                          : SizedBox(),
-                    ],
+                        SizedBox(
+                          height: 10,
+                        ),
+
+                        imageSliders != null
+                            ? Padding(
+                          padding:
+                          const EdgeInsets.only(left: 15, right: 15),
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                                scrollPhysics:
+                                const BouncingScrollPhysics(),
+                                viewportFraction: 1,
+                                aspectRatio: 1.5,
+                                enlargeCenterPage: true,
+                                scrollDirection: Axis.horizontal,
+                                autoPlay: true,
+                                onPageChanged:
+                                    (index, CarouselPageChangedReason) {
+                                  activeIndex = index;
+                                }),
+                            items: imageSliders,
+                          ),
+                        )
+                            : SizedBox(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.only(bottom: 10, left: 15, right: 15),
-                child: SingleChildScrollView(
-                  reverse: true,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: [
-                          DefaultTextStyle(
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'Bobbers',
-                                color: AppColors.kPrimary),
-                            child:
-                            Text(
-                              displayText,
-                              style:
-                              TextStyle(
-                                  color: AppColors.txtColor2,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
+                ],
+              ),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.topLeft,
+                  padding: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+                  child: SingleChildScrollView(
+                    reverse: true,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Stack(
+                          children: [
+                            DefaultTextStyle(
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'Bobbers',
+                                  color: AppColors.kPrimary),
+                              child:
+                              Text(
+                                displayText,
+                                style:
+                                TextStyle(
+                                    color: AppColors.txtColor2,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+
+                              // AnimatedTextKit(
+                              //   animatedTexts: [
+                              //     TyperAnimatedText(
+                              //       widget.data.story!,
+                              //       textStyle: TextStyle(
+                              //           color: AppColors.txtColor2,
+                              //           fontSize: 25,
+                              //           fontWeight: FontWeight.bold),
+                              //       speed: Duration(milliseconds: 65),
+                              //     ),
+                              //   ],
+                              //
+                              //     pause: Duration(milliseconds: 80),
+                              //   onTap: () {
+                              //     print("Tap Event");
+                              //   },
+                              //
+                              //   stopPauseOnTap: false,
+                              //   totalRepeatCount: 1,
+                              //   // isRepeatingAnimation: isAnimationRunning,
+                              //   key: ValueKey<bool>(isAnimationRunning),
+                              // ),
                             ),
 
-                            // AnimatedTextKit(
-                            //   animatedTexts: [
-                            //     TyperAnimatedText(
-                            //       widget.data.story!,
-                            //       textStyle: TextStyle(
-                            //           color: AppColors.txtColor2,
-                            //           fontSize: 25,
-                            //           fontWeight: FontWeight.bold),
-                            //       speed: Duration(milliseconds: 65),
-                            //     ),
-                            //   ],
-                            //
-                            //     pause: Duration(milliseconds: 80),
-                            //   onTap: () {
-                            //     print("Tap Event");
-                            //   },
-                            //
-                            //   stopPauseOnTap: false,
-                            //   totalRepeatCount: 1,
-                            //   // isRepeatingAnimation: isAnimationRunning,
-                            //   key: ValueKey<bool>(isAnimationRunning),
-                            // ),
-                          ),
-
-                        ],
-                      ), SizedBox(height: 60,),
-                    ],
+                          ],
+                        ), SizedBox(height: 60,),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: Container(
@@ -503,7 +523,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
 
 
                 },
-                icon: const Icon(
+                icon:  Icon(
                   Icons.skip_previous_rounded,
                   color: AppColors.kBtnColor,
                   size: 30,
@@ -564,7 +584,7 @@ class _StoryViewPageState extends State<StoryViewPage> with TickerProviderStateM
                 },
 
                 // widget.nextStory,
-                icon: const Icon(
+                icon:  Icon(
                   Icons.skip_next_rounded,
                   color: AppColors.kBtnColor,
                   size: 30,

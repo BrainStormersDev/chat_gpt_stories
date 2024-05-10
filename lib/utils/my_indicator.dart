@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'MyRepo.dart';
 import 'app_color.dart';
 import 'dart:async';
 Widget myIndicator() {
-  return const SizedBox(
+  return  SizedBox(
     width: double.infinity,
     height: 40,
     child: Center(
-      child: CircularProgressIndicator( color: AppColors.kPrimary,),
+      child: CircularProgressIndicator( color: AppColors.kBtnColor,),
     ),
   );
 }

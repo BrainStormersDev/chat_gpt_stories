@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 class AppTextField extends StatefulWidget {
   TextEditingController textEditingController;
@@ -30,15 +31,15 @@ class _AppTextFieldState extends State<AppTextField> {
             print("=====obsecureTxt ${widget.obsecureTxt}");
           });
 
-        },child:widget.obsecureTxt? const Icon(Icons.visibility,color: AppColors.kBtnColor,) :const Icon(Icons.visibility_off,color: AppColors.kBtnColor,)):null,
-        hintStyle:  const TextStyle(color: AppColors.kGrey),
+        },child:widget.obsecureTxt?  Icon(Icons.visibility,color: AppColors.kBtnColor,) : Icon(Icons.visibility_off,color: AppColors.kBtnColor,)):null,
+        hintStyle:   TextStyle(color: AppColors.kGrey),
         enabledBorder:  OutlineInputBorder(
           borderSide:
           BorderSide(color: AppColors.textFieldColor, width: 2.0),
         ),
         filled: true,
         fillColor: AppColors.textFieldColor,
-        focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: AppColors.kBtnColor)),
+        focusedBorder:  OutlineInputBorder(borderSide: BorderSide(color: AppColors.kBtnColor)),
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(7.0),

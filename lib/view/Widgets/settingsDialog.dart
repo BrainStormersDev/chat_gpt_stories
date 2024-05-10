@@ -79,12 +79,14 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                           height: 50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: AppColors.kPrimary)),
+                              border: Border.all(color:
+                              // AppColors.kBtnColor
+                              AppColors.kBtnColor
+                              )),
                           child: DropdownButton(
                             underline: Container(),
                             isExpanded: false,
-                            hint: const Text(
-                                'Please choose a location'), // Not necessary for Option 1
+                         // Not necessary for Option 1
                             value: selectedAge.value,
                             onChanged: (newValue) {
                               selectedAge.value = newValue!;
@@ -96,8 +98,11 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                                 child: Container(
                                     margin: const EdgeInsets.only(left: 10),
                                     child: Text(location,
-                                        style: const TextStyle(
-                                            color: AppColors.kPrimary))),
+                                        style:  TextStyle(
+                                            color:
+                                            AppColors.kBtnColor
+                                            // AppColors.kBtnColor
+                                        ))),
                               );
                             }).toList(),
                           ),
@@ -122,7 +127,10 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                           height: 50,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: AppColors.kPrimary)),
+                              border: Border.all(color:
+                              AppColors.kBtnColor
+                              // AppColors.kBtnColor
+                              )),
                           child: DropdownButton(
                             underline: Container(),
                             isExpanded: false,
@@ -130,15 +138,21 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                   selectedGender.value,
-                                  style: const TextStyle(
-                                      color: AppColors.kPrimary)
+                                  style:  TextStyle(
+                                      color:
+                                      AppColors.kBtnColor
+                                      // AppColors.kBtnColor
+                                  )
                               ),
                             ),
                             // Not necessary for Option 1
                             // value: selectedGender.value,
                             onChanged: (newValue) {
                               selectedGender.value = newValue!;
-                              // GetStorage().write(kAge, selectedAge.value );
+                              print(selectedGender.value);
+
+
+                              GetStorage().write(kGender, selectedGender.value );
                             },
                             items: MyRepo.gender.map((location) {
                               return DropdownMenuItem(
@@ -146,8 +160,12 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                                 child: Container(
                                     margin: const EdgeInsets.only(left: 10),
                                     child: Text(location,
-                                        style: const TextStyle(
-                                            color: AppColors.kPrimary))),
+                                        style:  TextStyle(
+                                            color:
+                                            AppColors.kBtnColor
+                                            // AppColors.kBtnColor
+
+                                        ))),
                               );
                             }).toList(),
                           ),
@@ -205,7 +223,7 @@ void showCustomSettingDialog(BuildContext dialogContext, ) {
                         style: ButtonStyle(
                             shadowColor: MaterialStatePropertyAll(
                                 AppColors.kBtnShadowColor),
-                            backgroundColor: const MaterialStatePropertyAll(
+                            backgroundColor:  MaterialStatePropertyAll(
                                 AppColors.kBtnColor),
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(

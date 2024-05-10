@@ -1,3 +1,4 @@
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -12,16 +13,24 @@ Widget storyByGptWidget (BuildContext context) {
       SizedBox(
         width: MediaQuery.of(context).size.width * 0.03,
       ),
-      const Text(
-        "Story ",
+       Text(
+        "AI Stories ",
         style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
             fontFamily: "BalooBhai",
             color: AppColors.kBtnColor),
       ),
-      const Text(
-        "By GPT",
+      Text(
+        "for ",
+        style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            fontFamily: "BalooBhai",
+            color: AppColors.txtColor1),
+      ),
+       Text(
+        "Kids",
         style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
@@ -29,9 +38,9 @@ Widget storyByGptWidget (BuildContext context) {
             color: AppColors.txtColor1),
       ),
       const Spacer(),
-      SizedBox(
-          height: 30,
-          child: Image.asset("assets/PNG/bellIcon.png")),
+      // SizedBox(
+      //     height: 30,
+      //     child: Image.asset("assets/PNG/bellIcon.png")),
     ],
   );
   //   Row(

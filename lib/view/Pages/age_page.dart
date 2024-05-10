@@ -32,7 +32,7 @@ class _AgePageState extends State<AgePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        backgroundColor: AppColors.kScreenColor,
+        backgroundColor: AppColors.kBackgroundTopColor,
         leading: IconButton(
           onPressed: (){
             Navigator.pop(context);
@@ -41,9 +41,26 @@ class _AgePageState extends State<AgePage> {
           icon: const Icon(Icons.arrow_back, color: AppColors.txtColor1,), ),
       ),
       backgroundColor: AppColors.kScreenColor,
-      body: SafeArea(
-        child:Padding(
-          padding: const EdgeInsets.only(left: 20.0,right: 20.0),
+      body: Container(
+
+
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFFDDFE9),
+              Color(0xFFB6E7F1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top:50.0,
+            left:20,
+            right:20,
+
+          ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +68,7 @@ class _AgePageState extends State<AgePage> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children:  [
                     Text(
                       "Story ",
                       style: TextStyle(
@@ -130,10 +147,10 @@ class _AgePageState extends State<AgePage> {
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                        backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+                        backgroundColor:  MaterialStatePropertyAll(AppColors.kBtnColor),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
                     ),
-                    child: const SizedBox(
+                    child:  SizedBox(
                         height: 50,
                         // width: MediaQuery.of(context).size.width/2,
                         child: Center(
@@ -142,7 +159,7 @@ class _AgePageState extends State<AgePage> {
               ],
             ),
           ),
-        )
+        ),
       ),
     );
   }
@@ -167,8 +184,9 @@ class _AgePageState extends State<AgePage> {
       child: Container(
 
         decoration: BoxDecoration(
-            border:int.parse(selectItems.value.toString())==index? Border.all(color:AppColors.kPrimary,width: 5 ):null,
-            color:int.parse(selectItems.value.toString())==index? AppColors.kPrimary:null,
+            border:int.parse(selectItems.value.toString())==index?
+            Border.all(color:AppColors.kBtnColor,width: 5 ):null,
+            color:int.parse(selectItems.value.toString())==index? AppColors.kBtnColor:null,
             borderRadius: BorderRadius.circular(10)
 
         ),
@@ -184,7 +202,8 @@ class _AgePageState extends State<AgePage> {
                   height: 60,
                   width: 110,
                   decoration: ShapeDecoration(
-                      color:int.parse(selectItems.value.toString())==index?AppColors.kPrimary:null,
+                      color:int.parse(selectItems.value.toString())==index?
+                      AppColors.kGirlBGColor:null,
                       shape: polygonAgeContainer(bordColor:int.parse(selectItems.value.toString())==index?AppColors.kWhite:AppColors.txtColor1)),
                   child:  Center(
                     child: Text(

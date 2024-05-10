@@ -18,7 +18,7 @@ class MySnackBar {
     // ));
     Get.snackbar(title, message,
         colorText: AppColors.kWhite,
-        backgroundColor: AppColors.kPrimary,
+        backgroundColor: AppColors.kBtnColor,
         snackPosition: SnackPosition.BOTTOM,
         isDismissible: true,
         margin: EdgeInsets.only(bottom: 10, left: 10, right: 10));
@@ -52,7 +52,7 @@ class MySnackBar {
         backgroundColor: AppColors.kWhite,
         titleStyle: TextStyle(color: AppColors.kPrimary),
         middleTextStyle: TextStyle(
-          color: AppColors.kPrimary,
+          color: AppColors.kBtnColor,
         ),
         radius: 30,
         textCancel: "OK",
@@ -84,7 +84,7 @@ class MySnackBar {
   static snackBarYellow({required String title, required String message}) {
     Get.snackbar(title, message,
         colorText: AppColors.kWhite,
-        backgroundColor: AppColors.kPrimary,
+        backgroundColor: AppColors.kBtnColor,
         snackPosition: SnackPosition.TOP,
         margin: EdgeInsets.only(bottom: 10, left: 10, right: 10));
 

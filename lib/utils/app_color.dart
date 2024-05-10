@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'MyRepo.dart';
 
 class AppColors {
-  static const kSplashColor = Color(0xFFFEF0D6);
+  String gender=GetStorage().read(kGender);
+  static const kSplashColor = Color(0xFFDBEEF2);
+  static const kBackgroundTopColor = Color(0xFFFDDFE9);
+  static const kBackgroundBottomColor =  Color(0xFFB6E7F1);
+  static const kBackgroundBottomColo =  Color(0xFF048FA9);
+  // static const kSplashColor = Color(0xFFFEF0D6);
   static const kWhite = Colors.white;
   static const kGrey = Colors.grey;
   static const kBlack = Colors.black;
@@ -10,14 +18,20 @@ class AppColors {
   static const kRed =Colors.red;
   static const kScreenColor = Color(0xFFF5F5F5);
   static const kOrbit1 = Color(0xFF7511F4);
-  static const kBtnColor = Color(0xFFFFBA17);
+  static const kBtnColor =
+  Color(0xFF13ACBE)
+
+  ;
+  // static const kBtnColor = Color(0xFFFFBA17);
   static  Color kBtnShadowColor = const Color(0xFFFFBA17).withOpacity(0.5);
-  static const kBtnTxtColor = Color(0xFF580600);
+  static const kBtnTxtColor = Colors.white;
+  // static const kBtnTxtColor = Color(0xFF580600);
   static const kBoyBGColor = Color(0xFF4EA6FF);
   static Color kBoyBGColorShade = Color(0xFF4EA6FF).withOpacity(0.5);
   static const kGirlBGColor = Color(0xFFFF499E);
   static Color kGirlBGColorShade = Color(0xFFFF499E).withOpacity(0.5);
   static const txtColor1 = Color(0xFF021E40);
+  static const hintTextColor = Color(0xC545484B);
   static Color txtColor2 = Color(0xFF021E40).withOpacity(0.5);
   static Color textFieldColor = Color(0xFFE8ECF4);
   static Color emoji1Color = Color(0xFFE65460);

@@ -101,7 +101,7 @@
 //
 //                   const SizedBox(height: 12),
 //                         SearchTextFieldWidget(
-//                       color: AppColors.kBtnColor.withOpacity(0.8),
+//                       color: kBtnColor.withOpacity(0.8),
 //                       textEditingController: controller.searchTextController,
 //                       onTap: () {
 //                         controller.createStory();
@@ -135,7 +135,7 @@
 //           tts.stop();
 //         },
 //         child: Container(
-//           color: AppColors.kBtnColor.withOpacity(0.1),
+//           color: kBtnColor.withOpacity(0.1),
 //           child: Padding(
 //             padding: const EdgeInsets.all(12.0),
 //             child: Column(
@@ -266,7 +266,7 @@
 //                   borderRadius: const BorderRadius.all(Radius.circular(10)),
 //                   boxShadow: [
 //                     BoxShadow(
-//                       color: AppColors.kBtnColor.withOpacity(.2),
+//                       color: kBtnColor.withOpacity(.2),
 //                       offset: const Offset(0.0, 0.50),
 //                       spreadRadius: 1,
 //                       blurRadius: 1,

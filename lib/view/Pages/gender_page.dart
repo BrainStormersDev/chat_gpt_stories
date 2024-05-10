@@ -21,10 +21,27 @@ class _GenderPageState extends State<GenderPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: AppColors.kScreenColor,
-      body:SafeArea(
+      // backgroundColor: AppColors.kScreenColor,
+      body:Container(
+
+
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFFFDDFE9),
+              Color(0xFFB6E7F1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.only(top:50.0,
+            left:20,
+            right:20,
+
+          ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +52,7 @@ class _GenderPageState extends State<GenderPage> {
                 // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children:  [
                     Text(
                       "Story ",
                       style: TextStyle(
@@ -211,7 +228,7 @@ class _GenderPageState extends State<GenderPage> {
                     },
                     style: ButtonStyle(
                         shadowColor:  MaterialStatePropertyAll(AppColors.kBtnShadowColor),
-                        backgroundColor: const MaterialStatePropertyAll(AppColors.kBtnColor),
+                        backgroundColor:  MaterialStatePropertyAll(AppColors.kBtnColor),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))
                     ),
                     child: const SizedBox(

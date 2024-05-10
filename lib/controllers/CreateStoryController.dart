@@ -14,7 +14,7 @@ import '../model/storyCatListModel.dart';
 import '../utils/MyRepo.dart';
 import '../view/Pages/rate_us_page.dart';
 import '../view/Pages/story_view_page.dart';
-
+RxBool isCatSearch=false.obs;
 class CreateStoryController extends GetxController {
   //TODO: Implement ChatTextController
 

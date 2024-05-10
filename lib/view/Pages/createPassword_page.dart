@@ -16,14 +16,27 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../utils/MyRepo.dart';
 
-class CreatePasswordPage extends StatelessWidget {
-  CreatePasswordPage({Key? key}) : super(key: key);
+class CreatePasswordPage extends StatefulWidget {
+  String email;
+  CreatePasswordPage({ required this.email}) ;
+
+  @override
+  State<CreatePasswordPage> createState() => _CreatePasswordPageState();
+}
+
+class _CreatePasswordPageState extends State<CreatePasswordPage> {
   final TextEditingController newPasswordController = TextEditingController();
+
   final TextEditingController confirmPasswordController = TextEditingController();
+
   final List<TextEditingController> _otpControllers = List.generate(4, (index) => TextEditingController());
+
   final List<FocusNode> _focusNodes = List.generate(4, (index) => FocusNode());
+
   final _formKey=GlobalKey<FormState>();
+
   RxBool isLoading = false.obs;
+
   void _nextField(String value, int index) {
     if (value.length == 1 && index != 3) {
       _focusNodes[index].unfocus();
@@ -36,6 +49,7 @@ class CreatePasswordPage extends StatelessWidget {
   }
 
   RxBool passwordChanged=false.obs;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -44,13 +58,28 @@ class CreatePasswordPage extends StatelessWidget {
         return true;
       },
       child: Scaffold(
-        backgroundColor: AppColors.kSplashColor,
-        body: SafeArea(
-          child:
+        // backgroundColor: AppColors.kSplashColor,
+        body: Container(
 
-          Obx(()=>
+
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFFFDDFE9),
+                Color(0xFFB6E7F1),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Obx(()=>
              Padding(
-              padding: const EdgeInsets.all(8.0),
+               padding: const EdgeInsets.only(top:50.0,
+                 left:8,
+                 right:8,
+
+               ),
               child:
               passwordChanged.isFalse?
               SingleChildScrollView(
@@ -145,7 +174,7 @@ class CreatePasswordPage extends StatelessWidget {
                               cursorColor: AppColors.kBtnColor,
                               style:const TextStyle(fontSize: 24.0),
                               textAlign: TextAlign.center,
-                              decoration:const InputDecoration(
+                              decoration: InputDecoration(
                                 filled: true,
                                 fillColor: AppColors.kWhite,
                                 focusColor: AppColors.kBtnColor,
@@ -165,7 +194,8 @@ class CreatePasswordPage extends StatelessWidget {
                       const  SizedBox(
                         height: 8,
                       ),
-                      isLoading.value==false?   CustomButton(
+                      isLoading.value==false?
+                      CustomButton(
                         onTap: (){
                           print(newPasswordController.text.trim());
                           print(confirmPasswordController.text.trim());
@@ -181,31 +211,35 @@ class CreatePasswordPage extends StatelessWidget {
                               String otp = _otpControllers.map((controller) => controller.text).join();
                               print("===> user ${GetStorage().read("userName")} ==== new password ${newPasswordController.text.trim()} confirm ==> ${confirmPasswordController.text.trim()} ==>otp $otp"
                                   "");
-                                var body={
-                                  "email":GetStorage().read("userName"),
+                              var headers = {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                              };
+                                ApisCall.multiPartApiCall("https://gptstory.thebrainstormers.org/api/v1/reset-password",
+                                    "post",
+                                    {
+                                  "email": widget.email.toString(),
                                   "otp":otp,
                                   "password":newPasswordController.text.trim(),
-                                  "password_confirmation":confirmPasswordController.text.trim()
-                                  // "email":"farmaan@thebrainstormers.org",
-                                  // "otp":"9849",
-                                  // "password":"123456789",
-                                  // "password_confirmation":"123456789"
-                                };
-                                ApisCall.apiCall("${kBaseUrl}reset-password","post", body).then((value){
+                                  "password_confirmation":confirmPasswordController.text.trim()},
+                                   header: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    }
+                                ).then((value){
+                                  isLoading.value=false;
                                   print("======= val :$value");
                                   if(value["isData"]==true){
                                     passwordChanged.value=true;
+                                  }
 
-                                  }
-                                  else if(value["isData"]==false){
-                                    isLoading.value=false;
-                                    // MySnackBar.snackBarRed(title: "Alert", message: value["message"]);
-                                  }
                                 });
                                   print("========= done ======");
                              }
                           }
                           else{
+                            isLoading.value=false;
+
                             MySnackBar.snackBarRed(title: "Alert", message: "Check Your Password and OTP");
                           }
                           // passwordChanged.value=true;

@@ -212,8 +212,8 @@ class SignInPage extends StatelessWidget {
                         text: "Skip for now",
                         textSize: 18.0,
                         height: MediaQuery.of(context).size.height * 0.08,
-                        txtcolor: AppColors.kBtnTxtColor,
-                        bordercolor: AppColors.kBtnTxtColor,
+                        txtcolor: AppColors.kBtnColor,
+                        bordercolor: AppColors.kBtnColor,
                         onTap: (){
                           Get.offAll(() => StoryCategoryPage());
 
@@ -270,7 +270,7 @@ class SignInPage extends StatelessWidget {
                             },
                             child: Text(
                               " Login Now",
-                              style: TextStyle(color: AppColors.kBtnTxtColor),
+                              style: TextStyle(color: AppColors.kBtnColor),
                             ))
                       ],
                     )

@@ -116,7 +116,7 @@ class _OurMainCatStoriesState extends State<OurMainCatStories> {
         decoration: BoxDecoration(
           // color: Colors.red,
             color: int.parse(selectItems.value.toString()) == index
-                ? AppColors.kPrimary
+                ? AppColors.kBtnColor
                 : null,
             border: int.parse(selectItems.value.toString()) == index
                 ? Border.all(color: AppColors.kBtnColor)

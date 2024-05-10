@@ -4,10 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/versions.dart';
+import '../../utils/MyRepo.dart';
 import '../../utils/app_color.dart';
 
 class VersionUpdatePage extends StatefulWidget {
-  const VersionUpdatePage({super.key});
+   VersionUpdatePage({super.key});
 
   @override
   State<VersionUpdatePage> createState() => _VersionUpdatePageState();
@@ -31,14 +32,14 @@ class _VersionUpdatePageState extends State<VersionUpdatePage> {
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children:  [
                     Text("Story ", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "BalooBhai", color: AppColors.kBtnColor),),
                     Text("By GPT", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, fontFamily: "BalooBhai", color: AppColors.txtColor1),),
                   ],
                 ),
-                const SizedBox(height: 10,),
+                 SizedBox(height: 10,),
                 DefaultTextStyle(
-                  style: const TextStyle(
+                  style:  TextStyle(
                       fontSize: 20.0,
                       fontFamily: 'Bobbers',
                       color:  AppColors.txtColor1
@@ -73,7 +74,7 @@ class _VersionUpdatePageState extends State<VersionUpdatePage> {
               child: Container(
                 height: MediaQuery.of(context).size.height/2.3,
                 width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(150), topRight: Radius.circular(150))
                 ),
